@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetspeedMainWebsite", "NetspeedMainWebsite\NetspeedMainWebsite.csproj", "{F399A95C-E336-4928-8F97-A097E629F2A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetspeedMainWebService", "NetspeedMainWebService\NetspeedMainWebService.csproj", "{19E2C36A-41AB-4318-997C-C5A342C90B8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F399A95C-E336-4928-8F97-A097E629F2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F399A95C-E336-4928-8F97-A097E629F2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F399A95C-E336-4928-8F97-A097E629F2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E2C36A-41AB-4318-997C-C5A342C90B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E2C36A-41AB-4318-997C-C5A342C90B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E2C36A-41AB-4318-997C-C5A342C90B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E2C36A-41AB-4318-997C-C5A342C90B8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,223 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Info-->
+        <!--begin::Page Heading-->
+        <div class="d-flex align-items-baseline flex-wrap my-5 mr-5">
+
+        </div>
+        <!--end::Toolbar-->
+    </div>
+</div>
+<!--end::Subheader-->
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card card-custom">
+            <!--begin::Card Body-->
+            <div class="card-body p-0">
+                <!--begin::Wizard 5-->
+                <div class="wizard wizard-5 d-flex flex-column flex-lg-row flex-row-fluid" id="kt_wizard">
+                    <!--begin::Aside-->
+                    <div class="wizard-aside bg-white d-flex flex-column flex-row-auto w-100 w-lg-300px w-xl-400px w-xxl-450px" style="
+                                    box-shadow:-webkit-box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);
+                                    -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);
+                                    box-shadow: box-shadow:-webkit-box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);
+                                    -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);">
+                        <!--begin::Aside Top-->
+                        <div class="d-flex flex-column-fluid flex-column px-xxl-20 px-10">
+                            <!--begin: Wizard Nav-->
+                            <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
+                                <!--begin::Wizard Steps-->
+                                <div class="wizard-steps">
+                                    <!--begin::Wizard Step 1 Nav-->
+                                    <div class="wizard-step">
+                                        <div class="wizard-wrapper">
+                                            <div class="wizard-icon">
+                                                <i class="wizard-check ki ki-check"></i>
+                                                <span class="wizard-number"><i class="flaticon-placeholder-3 font-size-h2 text-info"></i></span>
+                                            </div>
+                                            <div class="wizard-label">
+                                                <h3 class="wizard-title font-weight font-size-h4">Adres Altyapı Sorgulama</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Wizard Step 1 Nav-->
+                                    <!--begin::Wizard Step 2 Nav-->
+                                    <div class="wizard-step">
+                                        <div class="wizard-wrapper">
+                                            <div class="wizard-icon">
+                                                <i class="wizard-check ki ki-check"></i>
+                                                <span class="wizard-number"><i class="flaticon2-rocket-1 font-size-h2 text-dark-50"></i></span>
+                                            </div>
+                                            <div class="wizard-label">
+                                                <h3 class="wizard-title font-weight font-size-h4">Altyapı Sorgulama Sonucu</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Steps-->
+                            </div>
+                            <!--end: Wizard Nav-->
+                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="  background-image: url(../../Content/media/svg/astitled-1.svg)"></div><br>
+                        </div>
+                        <!--end::Aside Top-->
+
+                    </div>
+                    <!--begin::Aside-->
+                    <!--begin::Content-->
+
+                    <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 " style="
+
+                                    box-shadow:-webkit-box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);
+                                    -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);
+                                    box-shadow: box-shadow:-webkit-box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);
+                                    -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);">
+
+
+
+                        <!--begin::Title-->
+                        <div class="text-right mb-lg-4 mb-15 mr-xxl-10">
+
+                        </div>
+                        <!--end::Title-->
+                        <!--begin::Form-->
+                        <div class="d-flex justify-content-center flex-row-fluid ">
+                            <form class="pb-5 w-100 w-md-450px w-lg-500px" id="kt_form2">
+                                <!--begin: Wizard Step 1-->
+                                <!--begin::Title-->
+                                <div class="pb-10 pb-lg-15">
+
+                                    <h3 class="font-weight-bolder text-info font-size-h2">Netspeed Altyapı Sorgulama</h3><hr class="my-0">
+                                    <div class="text-dark-50 font-weight font-size-h5 my-6 mt-2">Altyapı port ve alabileceğiniz hız durumunu sorgulayabilmek için adres bilgilerinizi dikkatli bir şekilde seçerek <strong>Altyapımı Sorgula </strong> butonuna basınız.</div>
+
+                                    <!--begin::Form Group-->
+                                    <div class="row">
+
+                                        <div class="separator separator-dashed mt-5 my-3"></div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <h3 class="font-weight-bolder text-dark-50 font-size-h3">Adres Bilgileriniz</h3><hr>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Şehir</label>
+                                                <select name="sehir" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">Hatay</option>
+                                                    <option value="AU">İstanbul</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
+                                                <select name="ilce" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">Altınözü</option>
+                                                    <option value="AU">Merkezefendi</option>
+
+                                                </select>
+                                            </div>
+                                            <!--end::Form Group-->
+                                        </div>
+
+
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
+                                                <select name="semt" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">Fatikli</option>
+                                                    <option value="AU">Mercan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
+                                                <select name="mahalle" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">İstiklal</option>
+                                                    <option value="AU">Ulus</option>
+
+                                                </select>
+                                            </div>
+                                            <!--end::Form Group-->
+                                        </div>
+
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
+                                                <select name="sokak" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">Çiçek</option>
+                                                    <option value="AU">Şafak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
+                                                <select name="aptbina" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">15</option>
+                                                    <option value="AU">22</option>
+
+                                                </select>
+                                            </div>
+                                            <!--end::Form Group-->
+                                        </div>
+
+
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
+                                                <select name="kapino" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="">Seçim Yapınız</option>
+                                                    <option value="AF">4</option>
+                                                    <option value="AU">3</option>
+                                                </select>
+                                            </div>
+                                            <!--end::Form Group-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/Home/QuestioningAndConclusion" type="button" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12">Altyapımı Sorgula</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--end::Form-->
+</div>
+
+<!--end::Content-->
+
+@section script{
+    <script src="~/Scripts/js/hide-show-fields-form.js"></script>
+    <script src="~/Scripts/js/input-mask.js"></script>
+}

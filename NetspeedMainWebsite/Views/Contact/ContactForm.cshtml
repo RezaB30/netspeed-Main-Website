@@ -1,0 +1,106 @@
+﻿@model NetspeedMainWebsite.Models.ViewModel.ContactViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="d-flex bgi-size-cover bgi-position-center" style="background-image: url('../../Content/media/bg/bb-3.jpg')">
+    <div class="container">
+        <!--begin::Topbar-->
+        <div class="d-flex justify-content-between align-items-center border-bottom border-white py-7">
+            <h3 class="h4 text-dark-25 mb-0">İletişim Formu</h3>
+            <div class="d-flex">
+                <a href="/Support/ContactUs" class="font-size-h6 text-dark-25 text-hover-warning font-weight-bold ml-8">İletişim Kanalları</a>
+            </div>
+        </div>
+        <!--end::Topbar-->
+
+        <div class="d-flex align-items-stretch text-center flex-column py-15">
+            <!--begin::Heading-->
+            <h1 class="text-white font-weight-bolder mb-12">Bize Yazın</h1>
+            <div class="h8 text-dark-25 mb-6">
+                Netspeed olarak size destek olmak için buradayız. Sunduğumuz hizmetleri ile ilgili her türlü soru, öneri, şikayet ya da memnuniyetinizi bize buradan iletebilirsiniz.
+                <!--end::Heading-->
+                <!--begin::Form-->
+                <!--end::Form-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("ContactForm", "Contact", FormMethod.Post, new { id = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="card-body bg-white">
+        <div class="row">
+            <div class="col-xl-3"></div>
+            
+            <div class="col-xl-6">
+                <div style="text-align:center; color:red; font-size:2em; margin-bottom:1em">
+                    @TempData["Message"]
+                </div>
+                <div class="alert alert-custom fade show my-8 mb-8" style="background-color: rgb(255 248 225)" role="alert">
+                    <div class="alert-icon ">
+                        <i class="animate__animated animate__flash animate__delay-3s fas fa-info-circle text-warning">
+                        </i>
+                    </div>
+                    <div class="alert-text">Eğer abonemiz iseniz daha hızlı işleme alınabilmesi için Online İşlem Merkezi üzerinden Destek Kaydı oluşturmanızı öneririz.</div>
+                </div>
+                <!--begin::Input-->
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız Soyadınız</label>
+                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName" @*id="FullName"*@ placeholder="Adı Soyadı">
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+                <!--end::Input-->
+                <!--begin::Input-->
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">İletişim Numaranız</label>
+                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber" @*id="PhoneNumber"*@ placeholder="Telefon Numarası">
+                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                </div>
+                <!--end::Input-->
+                <!--begin::Input-->
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
+                    <input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress" @*id="EmailAddress"*@ placeholder="E-Posta Adresi">
+                    @Html.ValidationMessageFor(m => m.EmailAddress)
+                </div>
+                <!--end::Input-->
+                <!--begin::Input-->
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark" for="exampleTextarea">Mesajınız</label>
+                    <textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message" @*id="Message"*@ id="exampleTextarea" rows="3"></textarea>
+                    <span class="form-text text-muted">Mesajınıza gerekiyorsa 24 saat içerisinde dönüş sağlayacağız.</span>
+                    @Html.ValidationMessageFor(m => m.Message)
+                </div>
+                <!--end::Input-->
+            </div>
+            <div class="col-xl-3"></div>
+        </div>
+    </div>
+   
+    <!--begin::Actions-->
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-xl-3"></div>
+            <div class="col-xl-6">
+                <button type="submit" class="btn btn-primary font-weight-bold mr-2">Gönder</button>
+                <button type="reset" class="btn btn-clean font-weight-bold">İptal</button>
+            </div>
+            <div class="col-xl-3"></div>
+        </div>
+    </div>
+    <!--end::Actions-->
+
+}
+<div class="py-10">
+</div>
+
+
+@section script{
+    <script src="~/Scripts/js/hide-show-fields-form.js"></script>
+    <script src="~/Scripts/js/input-mask.js"></script>
+}

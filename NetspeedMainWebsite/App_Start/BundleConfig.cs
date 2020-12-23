@@ -19,12 +19,18 @@ namespace NetspeedMainWebsite
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            //          "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/animate.min.css",
+                      "~/Content/login-6.css",
+                      "~/Content/plugins.bundle.css",
+                      "~/Content/prismjs.bundle.css",
+                      "~/Content/style.bundle.css",
+                      "~/Content/wizard5-basvuru.css"));
         }
+
+
     }
 }

@@ -13,17 +13,43 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Application()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ContractAndForm()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult InfrastructureAndInquiry()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult FastLogin()
+        {
+            return View();
+        }
+
+        public ActionResult SpeedTest()
+        {
+            return View();
+        }
+
+        public ActionResult QuestioningAndConclusion()
+        {
+            return View();
+        }
+
+        public ActionResult Error()
+        {
             return View();
         }
     }
