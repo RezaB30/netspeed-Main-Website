@@ -8,14 +8,14 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class CallMeViewModel
     {
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "*Adınız Soyadınız Alanı Gereklidir.")]
         [MaxLength(50), MinLength(5)]
-        [RegularExpression(@"^[\p{L}]{2,}(\s[\p{L}]{2,})+$", ErrorMessage = "Invalid Name")]
+        [RegularExpression(@"^[\p{L}]{2,}(\s[\p{L}]{2,})+$", ErrorMessage = "*Lütfen Adınızı Soyadınızı Giriniz.")]
         public string FullName { get; set; }
-        
-        [MaxLength(10)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Invalid Phone Number")]
-        [Required(ErrorMessage = "Phone Number is required.")]
+
+        [MaxLength(11)]
+        [Required(ErrorMessage = "*İletişim Numaranız Alanı Zorunlu Alandır.")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "*Lütfen İletişim Numaranızı Doğru Giriniz.")]
         public string PhoneNumber { get; set; }
     }
 }

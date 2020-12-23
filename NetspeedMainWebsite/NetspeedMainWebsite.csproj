@@ -123,7 +123,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CallMeController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\PaymentBillController.cs" />
+    <Compile Include="Controllers\PaymentClientController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SpecialOffersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -131,7 +131,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModel\BillInfo.cs" />
+    <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
@@ -1115,7 +1115,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\media\svg\social-icons\" />
     <Folder Include="Views\CallMe\" />
-    <Folder Include="Views\PaymentBill\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\media\bg\debug.log" />
@@ -1217,9 +1216,9 @@
     <Content Include="Views\Support\FixedPhoneIssue.cshtml" />
     <Content Include="Views\Support\NewModem.cshtml" />
     <Content Include="Views\Support\SubscriptionActive.cshtml" />
-    <Content Include="Views\Payment\PaymentBill.cshtml" />
+    <Content Include="Views\PaymentClient\PaymentBill.cshtml" />
     <Content Include="Views\Payment\PaymentBillWithCard.cshtml" />
-    <Content Include="Views\Payment\PaymentBillAndResult.cshtml" />
+    <Content Include="Views\PaymentClient\PaymentBillAndResult.cshtml" />
     <Content Include="Views\Shared\LayoutParts\HelpBubModal.cshtml" />
   </ItemGroup>
   <PropertyGroup>

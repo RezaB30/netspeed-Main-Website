@@ -1,4 +1,5 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ContactViewModel
+@using NetspeedMainWebsite.Models.ViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -36,7 +37,7 @@
     <div class="card-body bg-white">
         <div class="row">
             <div class="col-xl-3"></div>
-            
+
             <div class="col-xl-6">
                 <div style="text-align:center; color:red; font-size:2em; margin-bottom:1em">
                     @TempData["Message"]
@@ -52,21 +53,27 @@
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız Soyadınız</label>
                     <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName" @*id="FullName"*@ placeholder="Adı Soyadı">
-                    @Html.ValidationMessageFor(m => m.FullName)
+                    <div style="color: #c44311">
+                        @Html.ValidationMessageFor(m => m.FullName)
+                    </div> 
                 </div>
                 <!--end::Input-->
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">İletişim Numaranız</label>
                     <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber" @*id="PhoneNumber"*@ placeholder="Telefon Numarası">
-                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    <div style="color: #c44311">
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    </div>
                 </div>
                 <!--end::Input-->
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
                     <input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress" @*id="EmailAddress"*@ placeholder="E-Posta Adresi">
-                    @Html.ValidationMessageFor(m => m.EmailAddress)
+                    <div style="color: #c44311">
+                        @Html.ValidationMessageFor(m => m.EmailAddress)
+                    </div>
                 </div>
                 <!--end::Input-->
                 <!--begin::Input-->
@@ -74,14 +81,16 @@
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark" for="exampleTextarea">Mesajınız</label>
                     <textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message" @*id="Message"*@ id="exampleTextarea" rows="3"></textarea>
                     <span class="form-text text-muted">Mesajınıza gerekiyorsa 24 saat içerisinde dönüş sağlayacağız.</span>
-                    @Html.ValidationMessageFor(m => m.Message)
+                    <div style="color: #c44311">
+                        @Html.ValidationMessageFor(m => m.Message)
+                    </div>
                 </div>
                 <!--end::Input-->
             </div>
             <div class="col-xl-3"></div>
         </div>
     </div>
-   
+
     <!--begin::Actions-->
     <div class="card-footer">
         <div class="row">

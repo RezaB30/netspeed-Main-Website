@@ -14,11 +14,6 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
         
-        public ActionResult PaymentBill()
-        {
-            return View();
-        }
-
         public ActionResult PaymentBillWithCard()
         {
             return View();

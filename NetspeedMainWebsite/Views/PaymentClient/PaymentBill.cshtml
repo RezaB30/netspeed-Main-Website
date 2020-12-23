@@ -1,5 +1,5 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.PaymentBillViewModel
-
+@using NetspeedMainWebsite.Models.ViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -73,7 +73,7 @@
                         </div>
                         <!--end::Title-->
                         <!--begin::Form-->
-                        @using (Html.BeginForm("FindClientBill", "PaymentBill", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
+                        @using (Html.BeginForm("PaymentBill", "PaymentClient", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                         {
                             @Html.AntiForgeryToken()
                             <div class="d-flex justify-content-center flex-row-fluid ">
@@ -95,7 +95,10 @@
                                             <!--begin::Form group-->
                                             <div class="form-group fv-plugins-icon-container">
                                                 <label class="font-size-h6 font-weight-bolder text-dark">TC. Kimlik NO veya Müşteri No</label>
-                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo"  autocomplete="off">
+                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo" autocomplete="off">
+                                                <div style="color: #c44311">
+                                                    @Html.ValidationMessageFor(m => m.ClientInfo)
+                                                </div> 
                                                 <div class="fv-plugins-message-container"></div>
                                             </div>
                                             <!--end::Form group-->
@@ -104,16 +107,22 @@
                                                 <div class="d-flex justify-content-between mt-n5">
                                                     <label class="font-size-h6 font-weight-bolder text-dark pt-5">GSM Numarası</label>
                                                 </div>
-                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg kt_inputmask_3" type="text" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber"  autocomplete="off">
-                                                @Html.ValidationMessageFor(m => m.PhoneNumber)
-                                            <div class="fv-plugins-message-container"></div>
+                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg kt_inputmask_3" type="text" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber" autocomplete="off">
+                                                <div style="color: #c44311">
+                                                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
                                             </div>
                                             <!--end::Form group-->
                                             <!--begin::Action-->
                                             <div class="pb-lg-0 pb-5">
-                                                <a href="/Payment/PaymentBillAndResult" type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Fatura Borcumu Sorgula</a>
-                                                <!--end::Action-->
-                                                @TempData["Message"]
+                                                @* <a href="/Payment/PaymentBillAndResult" type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Fatura Borcumu Sorgula</a>*@
+                                                
+                                                    @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { Id = 2 }, new { @class = "btn btn-primary font-weight-bold mr-2" })
+                                                
+                                               @* <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>*@
+    <!--end::Action-->
+
                                                 <input type="hidden">
                                             </div>
                                             <hr class="my-8">

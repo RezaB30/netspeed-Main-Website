@@ -1,13 +1,14 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.CallMeViewModel
 
 
+
 <!-- Modal-->
 <div class="modal fade" id="exampleModal" tabindex="-0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            @using (Html.BeginForm("AddCallMe", "CallMe", FormMethod.Post, new { @class = "form-group" }))
+            @using (Html.BeginForm("AddCallMe", "CallMe", FormMethod.Post, new { @class = "form-group", id = "myModal" }))
             {
-                @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
                 <div class="modal-header" style="background:#290b63">
                     <i class="fa fas fa-headphones-alt font-size-h2 text-white"></i>
                     <h5 class="modal-title text-white" id="exampleModalLabel">Biz Sizi Arayalım!</h5>
@@ -15,35 +16,69 @@
                         <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
                     </button>
                 </div>
-                <div class="modal-body bg-secondary">
-                    <div class="form-group fv-plugins-icon-container">
-                        <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="">
-                        <div class="fv-plugins-message-container"></div>
-                        @Html.ValidationMessageFor(m => m.FullName)
-                    </div>
+                                <div class="modal-body bg-secondary">
+                                    <div class="form-group fv-plugins-icon-container">
+                                        <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="">
+                                        <div class="fv-plugins-message-container"></div>
+                                        @Html.ValidationMessageFor(m => m.FullName)
+                                    </div>
 
-                    <div class="form-group fv-plugins-icon-container">
-                        <input type="tel" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="PhoneNumber" id="PhoneNumber" placeholder="GSM Numaranız">
-                        <div class="fv-plugins-message-container"></div>
-                        <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
-                        @Html.ValidationMessageFor(m => m.PhoneNumber)
-                    </div>
-                    <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
+                                    <div class="form-group fv-plugins-icon-container">
+                                        <input type="tel" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="PhoneNumber" id="PhoneNumber" placeholder="GSM Numaranız">
+                                        <div class="fv-plugins-message-container"></div>
+                                        <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
+                                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                                    </div>
+                                    <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
 
-                        <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
-                        <button type="submit" class="btn btn-info font-weight-bold px-12 m-2">Beni Arayın</button>
-                    </div>
-                    @ViewBag.message
-                </div>
-                <div class="modal-footer bg-secondary">
-                    <p>
-                        <small>
-                            <span>Başvurunuz esnasında paylaşacağınız GSM numarası, Ad-Soyadı, hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için </span>
-                            <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
-                        </small>
-                    </p>
-                </div>
-                }
+                                        <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
+                                        <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm">Beni Arayın</button>
+                                    </div>
+                                    @ViewBag.message
+                                </div>
+                                                <div class="modal-footer bg-secondary">
+                                                    <p>
+                                                        <small>
+                                                            <span>Başvurunuz esnasında paylaşacağınız GSM numarası, Ad-Soyadı, hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için </span>
+                                                            <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
+                                                        </small>
+                                                    </p>
+                                                </div>}
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+
+    <script>
+        $('#confirm').click(function () {
+            FullName = $('#FullName').val();
+            PhoneNumber = $('#PhoneNumber').val();
+            
+            var data = { "FullName": FullName, "PhoneNumber": PhoneNumber };
+            $.ajax({
+                type: "Post",
+                url: "@Url.Action("Validate")",
+                data: data,
+                success: function (response) {
+                    if (response == "True") {
+                        $.ajax({
+                            type: "Post",
+                            url: "@Url.Action("AddCallMe")",
+                            data: data,
+                            success: function (result) {
+                                alert("Verification passed!" + result);
+                                $('#myModal').modal('hide');
+                            }
+                        })
+                    } else {
+                        alert("Verification didnt pass!")
+                    }
+                }
+            })
+
+
+        })
+    </script>
+}

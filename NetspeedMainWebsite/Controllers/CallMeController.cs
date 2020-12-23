@@ -17,12 +17,16 @@ namespace NetspeedMainWebsite.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult AddCallMe()
-        //{
-        //    CallMeViewModel model = new CallMeViewModel();
-        //    return View(model);
-        //}
+        [HttpPost]
+        public bool Validate(string FullName, string PhoneNumber)
+        {
+            if (   FullName == "" || PhoneNumber == ""  )
+            {
+                return false;
+            }
+            return true;
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -45,7 +49,7 @@ namespace NetspeedMainWebsite.Controllers
                 message = "message isn't successful";
             }
             ViewBag.message=message;
-            return View();
+            return View(addCallMe);
         }
 
 
