@@ -3,6 +3,7 @@
 
 
 @{
+    var selectedBills = Model.ToArray();
     Layout = "~/Views/Shared/_Layout.cshtml";
     <title>Fatura Sorgulama ve Ödeme / faturalar - Netspeed</title>
     <meta name="searchTitle" content="Fatura Sorgulama ve Ödeme">
@@ -82,6 +83,7 @@
 
                             @using (Html.BeginForm("PaymentBillAndResult", "PaymentClient", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                             {
+                                @Html.AntiForgeryToken()
                                 <!--begin: Wizard Step 1-->
                                 <!--begin::Title-->
                                 <div class="pb-10 pb-lg-15">
@@ -129,63 +131,53 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    @foreach (var item in Model)
+
+
+                                                    @for (int i = 0; i < selectedBills.Length; i++)
                                                     {
                                                         <tbody>
                                                             <tr>
                                                                 <td class="pl-0 py-6">
                                                                     <label class="checkbox checkbox checkbox-inline">
-                                                                        <input type="checkbox" attached-value ="@item.BillId">
-                                                                        @Html.HiddenFor(modelItem => item.BillId)
+                                                                        @Html.HiddenFor(model => selectedBills[i].BillId)
+                                                                        @Html.CheckBoxFor(model => selectedBills[i].BillCheck)
+                                                                        @*<input type="checkbox" name="@Model[i].BillCheck"id="@item.BillCheck" attached-value ="@item.BillId" value="true">*@
+
                                                                         @* @Html.DisplayFor(modelitem => item.BillId)*@
                                                                         <span></span>
+
                                                                     </label>
+                                                                    <div class="text-danger">
+                                                                        @ViewBag.message
+                                                                    </div>
                                                                 </td>
                                                                 <td class="pl-0">
+
+
                                                                     <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary">
-                                                                        @*NET EKO 8M E KADAR*@
-                                                                        @Html.DisplayFor(modelitem => item.TariffName)
+                                                                        @Html.DisplayFor(model => selectedBills[i].TariffName)
+                                                                        @Html.HiddenFor(model => selectedBills[i].TariffName)
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                     <span class="text-dark-75 font-weight-bolder d-block ">
-                                                                        @*Şubat 2020*@
-                                                                        @Html.DisplayFor(modelitem => item.BillDate)
+                                                                        @Html.DisplayFor(model => selectedBills[i].BillDate)
+                                                                        @Html.HiddenFor(model => selectedBills[i].BillDate)
                                                                     </span>
                                                                 </td>
                                                                 <td>
                                                                     <span class="text-info font-weight-bolder d-block ">
-                                                                        @*25/10/2020*@
-                                                                        @Html.DisplayFor(modelitem => item.ExpiryDate)
+                                                                        @Html.DisplayFor(model => selectedBills[i].ExpiryDate)
+                                                                        @Html.HiddenFor(model => selectedBills[i].ExpiryDate)
                                                                     </span>
                                                                 </td>
                                                                 <td>
                                                                     <span class="text-dark-75 font-weight-bolder d-block ">
-                                                                        @*66 TL*@
-                                                                        @Html.DisplayFor(modelitem => item.BillAmount)
+                                                                        @Html.DisplayFor(model => selectedBills[i].BillAmount)
+                                                                        @Html.HiddenFor(model => selectedBills[i].BillAmount)
                                                                     </span>
                                                                 </td>
                                                             </tr>
-                                                            @*<tr>
-                                                                <td class="pl-0 py-6">
-                                                                    <label class="checkbox checkbox checkbox-inline">
-                                                                        <input type="checkbox" value="1">
-                                                                        <span></span>
-                                                                    </label>
-                                                                </td>
-                                                                <td class="pl-0">
-                                                                    <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary">NET EKO 8M E KADAR</a>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="text-dark-75 font-weight-bolder d-block">Şubat 2020</span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="text-info font-weight-bolder d-block">25/10/2020</span>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="text-dark-75 font-weight-bolder d-block">66 TL</span>
-                                                                </td>
-                                                            </tr>*@
                                                         </tbody>
                                                     }
                                                 </table>
@@ -193,7 +185,8 @@
                                             <!--end::Table-->
                                         </div>
                                         <div class="pb-lg-0 pb-5">
-                                            <a href="/Payment/PaymentBillWithCard" type="submit" class="btn btn-danger font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Ödeme Yap</a>
+
+                                            <button type="submit" class="btn btn-primary font-weight-bold mr-2">Ödeme Yap</button>
                                             <hr class="my-8">
                                             <div class="d-flex align-items-center">
                                                 <p class="text-dark-50 font-weight-bold my-8">Ödemelerinizi kolay ve güvenli bir şekilde yapabilmenizi sağlayan yeni nesil ödeme sistemi ile her seferinde kredi kartı bilgilerinizi paylaşmaya gerek kalmadan çok kolay, hızlı ve güvenli bir şekilde Netspeed evde internet faturalarınızı ödeyebilir veya otomatik olarak ödenmesini sağlayabilirsiniz. </p>

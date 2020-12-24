@@ -13,11 +13,11 @@
 <body>
     @Html.Partial("LayoutParts/Menu")
 
-   
+
     @RenderBody()
     @Html.Partial(partialViewName: "LayoutParts/HelpBubModal", model: null, viewData: new ViewDataDictionary())
     @Html.Partial("LayoutParts/Footer")
-  
+
 
     @Scripts.Render("~/bundles/jquery")
     <!--end::Global Config-->
@@ -29,11 +29,57 @@
     <!--begin::Sayfa Ozel Full-->
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(Sayfa Ozel Full)-->
-   
+
     <script src="~/Scripts/js/widgets.js"></script>
     <script src="~/Scripts/js/cookieconsent.min.js" defer></script>
     <script src="~/Scripts/js/helpbubscript.js"></script>
-  
-    @RenderSection("script", required: false)
-</body>
+    @section Scripts {
+        <script>
+            function documentR()
+            {
+                $("#exampleModel").show();
+                $(".modal fade").show();
+
+
+                if (div.myDivClass.display == "none")
+                {
+                    div.myDivClass.display = "block";
+                    div.style.padding = "17px";
+                }
+            }
+        </script>
+        }
+
+        @*<script>
+        $('#confirm').click(function () {
+            FullName = $('#FullName').val();
+            PhoneNumber = $('#PhoneNumber').val();
+
+            var data = { "FullName": FullName, "PhoneNumber": PhoneNumber };
+            $.ajax({
+                type: "Post",
+                url: "@Url.Action("Validate")",
+                data: data,
+                success: function (response) {
+                    if (response == "True") {
+                        $.ajax({
+                            type: "Post",
+                            url: "@Url.Action("AddCallMe")",
+                            data: data,
+                            success: function (result) {
+                                alert("Verification passed!" + result);
+                                $('#myModal').modal('hide');
+                            }
+                        })
+                    } else {
+                        alert("Verification didnt pass!")
+                    }
+                }
+            })
+        })
+        </script>
+        }*@
+
+        @RenderSection("script", required: false)
+    </body>
 </html>

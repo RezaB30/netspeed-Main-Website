@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class SupportController : Controller
+    public class SupportController : BaseController
     {
         // GET: Support
         public ActionResult Index()

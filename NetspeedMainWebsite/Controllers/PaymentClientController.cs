@@ -8,7 +8,7 @@ using NetspeedMainWebsite.Models.ViewModel;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class PaymentClientController : Controller
+    public class PaymentClientController : BaseController
     {
         // GET: PaymentBill
         [HttpGet]
@@ -38,7 +38,6 @@ namespace NetspeedMainWebsite.Controllers
                 return View(client);
             }
             return RedirectToAction("PaymentBillAndResult", "PaymentClient");
-
         }
 
         [HttpGet]
@@ -65,42 +64,54 @@ namespace NetspeedMainWebsite.Controllers
                     ExpiryDate = edt,
                     BillAmount = 80.55m
                 }
+
             };
             return View(results);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentBillAndResult(int Id)
+        public ActionResult PaymentBillAndResult(BillInfoViewModel[] selectedBills)
         {
+            var ClientBillList = new List<BillInfoViewModel>();
+            int cb = 0;
+            var message = string.Empty;
 
-            //PaymentBill.BillId = Id;
-            //PaymentBill.TariffName = "Fiber Ham Çökelek";
-            //DateTime dt = new DateTime(2020, 12, 30);
-            //DateTime edt = new DateTime(2021, 12, 30);
-            //PaymentBill.BillDate = dt;
-            //PaymentBill.ExpiryDate = edt;
-            //PaymentBill.BillAmount = 55;
+            for (int l = 0; l < selectedBills.Length; l++)
+            {
+                if (selectedBills[l].BillCheck == true)
+                {
+                    cb++;
+                }
+            }
+            if (cb >= 1)
+            {
+                for (int i = 0; i < selectedBills.Length; i++)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        if (selectedBills[i].BillCheck == true)
+                        {
+                            ClientBillList.Add(new BillInfoViewModel()
+                            {
+                                BillId = selectedBills[i].BillId,
+                                TariffName = selectedBills[i].TariffName,
+                                BillAmount = selectedBills[i].BillAmount,
+                                BillDate = selectedBills[i].BillDate,
+                                ExpiryDate = selectedBills[i].ExpiryDate
+                            });
+                        }
+                    }
+                }
+                return View(ClientBillList);
+            }
+            else
+            {
+                message = "Lütfen Ödenecek Faturayı/Faturaları Seçiniz.";
+            }
+            ViewBag.message = message;
 
-
-            //if (PaymentBill == null)
-            //{
-            //    return RedirectToAction("", "");
-            //}
-            //var viewResults = BillInfoList.Select(a => new BillInfoViewModel()
-            //{
-            //    BillId = Id,
-            //    TariffName = a.TariffName,
-            //    BillDate = a.BillDate,
-            //    ExpiryDate = a.ExpiryDate,
-            //    BillAmount = a.BillAmount
-            //});
-
-
-            return RedirectToAction("PaymentBillWithCard", "Payment");
+            return View(selectedBills);
         }
-
-
-
     }
 }

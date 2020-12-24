@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class SpecialOffersController : Controller
+    public class SpecialOffersController : BaseController
     {
         // GET: Campaigns
         public ActionResult Index()

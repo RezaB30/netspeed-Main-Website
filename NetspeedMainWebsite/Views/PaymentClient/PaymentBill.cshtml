@@ -61,7 +61,7 @@
                                 <!--end::Wizard Steps-->
                             </div>
                             <!--end: Wizard Nav-->
-                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="        background-image: url(../../Content/media/svg/cred3868.svg)"></div><br>
+                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(../../Content/media/svg/cred3868.svg)"></div><br>
                         </div>
                     </div>
                     <!--begin::Aside-->
@@ -95,7 +95,7 @@
                                             <!--begin::Form group-->
                                             <div class="form-group fv-plugins-icon-container">
                                                 <label class="font-size-h6 font-weight-bolder text-dark">TC. Kimlik NO veya Müşteri No</label>
-                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo" autocomplete="off">
+                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo" maxlength="11" autocomplete="off">
                                                 <div style="color: #c44311">
                                                     @Html.ValidationMessageFor(m => m.ClientInfo)
                                                 </div> 
@@ -118,9 +118,9 @@
                                             <div class="pb-lg-0 pb-5">
                                                 @* <a href="/Payment/PaymentBillAndResult" type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Fatura Borcumu Sorgula</a>*@
                                                 
-                                                    @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { Id = 2 }, new { @class = "btn btn-primary font-weight-bold mr-2" })
+                                                   @* @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { @class = "btn btn-primary font-weight-bold mr-2" })*@
                                                 
-                                               @* <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>*@
+                                                <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>
     <!--end::Action-->
 
                                                 <input type="hidden">

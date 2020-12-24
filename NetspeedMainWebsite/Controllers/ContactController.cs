@@ -8,7 +8,7 @@ using NetspeedMainWebsite.Models.ViewModel;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         [HttpGet]
         public ActionResult ContactForm()

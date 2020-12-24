@@ -8,7 +8,12 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class BillInfoViewModel
     {
-        [Required(ErrorMessage ="Lütfen Ödenecek Faturayı Seçiniz.")]
+       
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "Lütfen Ödenecek Faturayı Seçiniz.")]
+      
+        //[Required(ErrorMessage ="Lütfen Ödenecek Faturayı Seçiniz.")]
+        public bool BillCheck { get; set; }
+        
         public int BillId { get; set; }
         public string TariffName { get; set; }
         public DateTime BillDate { get; set; }

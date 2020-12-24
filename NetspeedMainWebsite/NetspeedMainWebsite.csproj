@@ -121,7 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
-    <Compile Include="Controllers\CallMeController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\PaymentClientController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -1114,6 +1114,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\media\svg\social-icons\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\CallMe\" />
   </ItemGroup>
   <ItemGroup>

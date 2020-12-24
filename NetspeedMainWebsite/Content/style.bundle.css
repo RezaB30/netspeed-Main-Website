@@ -7455,6 +7455,7 @@ a.close.disabled {
     .modal-content {
         -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        background-color: #E4E6EF;
     }
 
     .modal-sm {

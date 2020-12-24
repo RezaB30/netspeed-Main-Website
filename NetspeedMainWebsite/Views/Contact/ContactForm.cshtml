@@ -52,7 +52,7 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız Soyadınız</label>
-                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName" @*id="FullName"*@ placeholder="Adı Soyadı">
+                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName" @*id="FullName"*@  placeholder="Adı Soyadı" maxlength="50">
                     <div style="color: #c44311">
                         @Html.ValidationMessageFor(m => m.FullName)
                     </div> 
@@ -61,7 +61,7 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">İletişim Numaranız</label>
-                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber" @*id="PhoneNumber"*@ placeholder="Telefon Numarası">
+                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber" @*id="PhoneNumber"*@ placeholder="Telefon Numarası" id="kt_inputmask_3" im-insert="true">
                     <div style="color: #c44311">
                         @Html.ValidationMessageFor(m => m.PhoneNumber)
                     </div>
@@ -70,7 +70,7 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
-                    <input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress" @*id="EmailAddress"*@ placeholder="E-Posta Adresi">
+                    <input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress" @*id="EmailAddress"*@ placeholder="E-Posta Adresi" maxlength="50">
                     <div style="color: #c44311">
                         @Html.ValidationMessageFor(m => m.EmailAddress)
                     </div>
@@ -79,7 +79,7 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark" for="exampleTextarea">Mesajınız</label>
-                    <textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message" @*id="Message"*@ id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message" @*id="Message"*@ id="exampleTextarea" rows="3" maxlength="1000"></textarea>
                     <span class="form-text text-muted">Mesajınıza gerekiyorsa 24 saat içerisinde dönüş sağlayacağız.</span>
                     <div style="color: #c44311">
                         @Html.ValidationMessageFor(m => m.Message)
