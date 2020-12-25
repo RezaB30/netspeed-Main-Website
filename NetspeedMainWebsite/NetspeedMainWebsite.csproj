@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,7 +122,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\NetspeedServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ClientPaymentController.cs" />
@@ -131,6 +139,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hash.cs" />
+    <Compile Include="Models\ViewModel\ApplicationViewModel.cs" />
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
@@ -139,6 +149,36 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\NetspeedServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\NetspeedServiceReference\configuration.svcinfo" />
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfAddressDetailsSHA1YRdDhl3A.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1O2vOAcMM.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfArrayOfValueNamePairSHA1O2vOAcMM.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfbooleanSHA1Miy85_SUl.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfPayBillsResponseSHA1O2vOAcMM.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfServiceAvailabilityResponseSHA1O2vOAcMM.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfSubscriberPayBillsResponseSHA1O2vOAcMM.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\NetspeedServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\4buneg-1.png" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\login-6.css" />
@@ -1162,12 +1202,31 @@
     <Content Include="Content\fonts\summernote\summernote.ttf" />
     <Content Include="Content\fonts\summernote\summernote.woff" />
     <Content Include="Content\fonts\summernote\summernote.woff2" />
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService.wsdl" />
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NetspeedServiceReference\NetspeedService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <Content Include="Views\Shared\LayoutParts\Menu.cshtml" />
     <Content Include="Views\Shared\LayoutParts\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\js\12882-green-check.json" />
-    <Content Include="Views\Home\Application.cshtml" />
+    <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Home\ContractAndForm.cshtml" />
     <Content Include="Views\Home\InfrastructureAndInquiry.cshtml" />
     <Content Include="Views\Home\SpeedTest.cshtml" />
@@ -1220,6 +1279,12 @@
     <Content Include="Views\Payment\PaymentBillWithCard.cshtml" />
     <Content Include="Views\ClientPayment\PaymentBillAndResult.cshtml" />
     <Content Include="Views\Shared\LayoutParts\HelpBubModal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\NetspeedServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

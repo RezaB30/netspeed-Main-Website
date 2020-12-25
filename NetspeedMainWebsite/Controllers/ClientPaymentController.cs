@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using NetspeedMainWebsite.Models;
 using NetspeedMainWebsite.Models.ViewModel;
+using NetspeedMainWebsite.NetspeedServiceReference;
 
 namespace NetspeedMainWebsite.Controllers
 {
     public class ClientPaymentController : BaseController
     {
         // GET: PaymentBill
+        Hash hash = new Hash();
+
         [HttpGet]
         public ActionResult PaymentBill()
         {
@@ -20,22 +23,36 @@ namespace NetspeedMainWebsite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentBill(PaymentBillViewModel client)
+        public ActionResult PaymentBill(PaymentBillViewModel clientBill)
         {
             var message = string.Empty;
-            var ClientInfoList = new List<PaymentBillViewModel>();
-
+           
             if (ModelState.IsValid)
             {
-                ClientInfoList.Add(new PaymentBillViewModel()
+                clientBill.PhoneNumber = clientBill.PhoneNumber.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+                NetspeedServiceClient client = new NetspeedServiceClient();
+                var randomKey = Guid.NewGuid().ToString();
+                var username = "elif";
+                var passwordHash = hash.HashCalculate("123456");
+                var genericHash = hash.HashCalculate($"{username}{randomKey}{passwordHash}");
+                var response = client.GetBills(new BaseRequestOfSubscriberGetBillsRequestSHA1O2vOAcMM()
                 {
-                    ClientInfo = client.ClientInfo,
-                    PhoneNumber = client.PhoneNumber
+                    Culture = "tr-tr",
+                    Rand = randomKey,
+                    Hash = genericHash,
+                    Username = username,
+                    Data = new SubscriberGetBillsRequest()
+                    {
+                        SubscriberNo = clientBill.ClientInfo,
+                        PhoneNo = clientBill.PhoneNumber
+                    }
                 });
+                var result = response;
+              
             }
             else
             {
-                return View(client);
+                return View(clientBill);
             }
             return RedirectToAction("PaymentBillAndResult", "PaymentClient");
         }

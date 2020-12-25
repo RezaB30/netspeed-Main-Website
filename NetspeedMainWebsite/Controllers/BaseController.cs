@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using NetspeedMainWebsite.Models.ViewModel;
+using NetspeedMainWebsite.NetspeedServiceReference;
 
 namespace NetspeedMainWebsite.Controllers
 {
@@ -13,19 +16,35 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
+       
+        Hash hash = new Hash();
 
         [HttpPost]
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
         {
             var message = string.Empty;
-            var CallMeList = new List<CallMeViewModel>();
+            //var CallMeList = new List<CallMeViewModel>();
 
             if (ModelState.IsValid)
             {
-                CallMeList.Add(new CallMeViewModel()
+                NetspeedServiceClient client = new NetspeedServiceClient();
+                var randomKey = Guid.NewGuid().ToString();
+                var username = "elif";
+                var passwordHash = hash.HashCalculate("123456");
+                var genericHash = hash.HashCalculate($"{username}{randomKey}{passwordHash}");
+                var response = client.RegisterCustomerContact(new BaseRequestOfCustomerContactRequestSHA1O2vOAcMM()
                 {
-                    FullName = callMe.FullName,
-                    PhoneNumber = callMe.PhoneNumber
+                    Culture = "tr-tr",
+                    Rand = randomKey,
+                    Hash = genericHash,
+                    Username = username,
+                    Data = new CustomerContactRequest()
+                    {
+                        FullName = callMe.FullName,
+                        PhoneNo = callMe.PhoneNumber,
+                        RequestTypeID = 1022,
+                        RequestSubTypeID = 1048
+                    }
                 });
 
                 ViewBag.message = message;

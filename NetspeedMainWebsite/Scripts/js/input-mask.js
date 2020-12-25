@@ -17,7 +17,8 @@ var KTInputmask = function () {
         
         // phone number format
         $("#kt_inputmask_3").inputmask("mask", {
-            "mask": "(999) 999-9999"
+            "mask": "(999) 999-9999",
+
         }); 
 
         // home phone number format
