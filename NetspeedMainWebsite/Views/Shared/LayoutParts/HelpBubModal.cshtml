@@ -1,61 +1,78 @@
 ﻿@*@model NetspeedMainWebsite.Models.ViewModel.CallMeViewModel*@
-    @{ 
-        var callMe = TempData["CallMeModel"] as NetspeedMainWebsite.Models.ViewModel.CallMeViewModel ?? new NetspeedMainWebsite.Models.ViewModel.CallMeViewModel();
-    }
-    
+@{ var callMe = TempData["CallMeModel"] as NetspeedMainWebsite.Models.ViewModel.CallMeViewModel ?? new NetspeedMainWebsite.Models.ViewModel.CallMeViewModel(); }
+
 <!-- Modal-->
 <div class="modal fade" id="exampleModal" tabindex="-0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             @using (Html.BeginForm("CallMe", null, FormMethod.Post, new { @class = "form-group", id = "myModal" }))
             {
-                @Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                @*@Html.AntiForgeryToken()*@
-            <div class="modal-header" style="background:#290b63">
-                
+@Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery) @*@Html.AntiForgeryToken()*@
+                                <div class="modal-header" style="background:#290b63">
 
-                @*@Html.ValidationMessageFor(m => m.FullName)*@
-              @*  @Html.ValidationMessageFor(model=>callMe.Equals)*@
 
-                <i class="fa fas fa-headphones-alt font-size-h2 text-white"></i>
-                <h5 class="modal-title text-white" id="exampleModalLabel">Biz Sizi Arayalım!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
-                </button>
-            </div>
-                  <div class="modal-body bg-secondary">
-                    <div class="form-group fv-plugins-icon-container">
-                        <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="" maxlength="50">
-                        <div class="fv-plugins-message-container">
-                            @(callMe?.FullNameValidationMessage)
-                        </div>
-                       
-                    </div>
+                                    <i class="fa fas fa-headphones-alt font-size-h2 text-white"></i>
+                                    <h5 class="modal-title text-white" id="exampleModalLabel">Biz Sizi Arayalım!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
+                                    </button>
+                                </div>
+                                                <div class="modal-body bg-secondary">
+                                                    <div class="form-group fv-plugins-icon-container">
+                                                       @* <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="" maxlength="50">*@
+                                                        @Html.EditorFor(model => callMe.FullName, new {  htmlAttributes = new {id="FullName", @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
 
-                    <div class="form-group fv-plugins-icon-container">
-                        <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" @*name="gsmno"*@ id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber" @*id="PhoneNumber"*@ @*placeholder="GSM Numaranız"*@ maxlength="14">
-                        <div class="fv-plugins-message-container">
-                            @(callMe?.PhoneNumberValidationMessage)
-                        </div>
-                        <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
-                    </div>
-                    <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
 
-                        <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
-                        <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm" >Beni Arayın</button>
-                    </div>
-                        
-                    </div>
-                    <div class="modal-footer bg-secondary">
-                        <p>
-                            <small>
-                                <span>Başvurunuz esnasında paylaşacağınız GSM numarası, Ad-Soyadı, hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için </span>
-                                <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
-                            </small>
-                        </p>
-                    </div>
-            }
+                                                        <div class="fv-plugins-message-container">
+                                                            <div class="text-danger">
+
+                                                                @(callMe?.FullNameValidationMessage)
+                                                                @if (callMe != null)
+                                                                {
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group fv-plugins-icon-container">
+                                                        <!--<input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6"--> @*name="gsmno"*@ <!--id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber"  maxlength="14">-->
+                                                        @Html.EditorFor(model => callMe.PhoneNumber, new
+                                                   {
+                                                       name = "PhoneNumber",
+
+                                                       htmlAttributes = new
+                                                       {
+                                                           id = "kt_inputmask_3",
+                                                           @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6",
+
+                                                           @autocomplete = "off",
+                                                           placeholder = "GSM Numaranız"
+                                                       }
+                                                   })
+
+                                                        <div class="fv-plugins-message-container">
+                                                            <div class="text-danger">
+                                                                @(callMe?.PhoneNumberValidationMessage)
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
+                                                    </div>
+                                                    <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
+
+                                                        <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
+                                                        <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm" onclick="ShowCallMe()">Beni Arayın</button>
+                                                    </div>
+
+                                                </div>
+                                                                <div class="modal-footer bg-secondary">
+                                                                    <p>
+                                                                        <small>
+                                                                            <span>Başvurunuz esnasında paylaşacağınız GSM numarası, Ad-Soyadı, hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için </span>
+                                                                            <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
+                                                                        </small>
+                                                                    </p>
+                                                                </div>            }
         </div>
     </div>
 </div>

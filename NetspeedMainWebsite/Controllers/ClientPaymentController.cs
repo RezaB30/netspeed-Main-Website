@@ -8,7 +8,7 @@ using NetspeedMainWebsite.Models.ViewModel;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class PaymentClientController : BaseController
+    public class ClientPaymentController : BaseController
     {
         // GET: PaymentBill
         [HttpGet]

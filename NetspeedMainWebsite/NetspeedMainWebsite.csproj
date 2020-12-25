@@ -123,7 +123,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\PaymentClientController.cs" />
+    <Compile Include="Controllers\ClientPaymentController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SpecialOffersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1163,7 +1163,6 @@
     <Content Include="Content\fonts\summernote\summernote.woff" />
     <Content Include="Content\fonts\summernote\summernote.woff2" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\LayoutParts\Header.cshtml" />
     <Content Include="Views\Shared\LayoutParts\Menu.cshtml" />
     <Content Include="Views\Shared\LayoutParts\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1217,9 +1216,9 @@
     <Content Include="Views\Support\FixedPhoneIssue.cshtml" />
     <Content Include="Views\Support\NewModem.cshtml" />
     <Content Include="Views\Support\SubscriptionActive.cshtml" />
-    <Content Include="Views\PaymentClient\PaymentBill.cshtml" />
+    <Content Include="Views\ClientPayment\PaymentBill.cshtml" />
     <Content Include="Views\Payment\PaymentBillWithCard.cshtml" />
-    <Content Include="Views\PaymentClient\PaymentBillAndResult.cshtml" />
+    <Content Include="Views\ClientPayment\PaymentBillAndResult.cshtml" />
     <Content Include="Views\Shared\LayoutParts\HelpBubModal.cshtml" />
   </ItemGroup>
   <PropertyGroup>

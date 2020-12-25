@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Netspeed - Limitsiz Mutluluk</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -15,6 +16,7 @@
 
 
     @RenderBody()
+
     @Html.Partial(partialViewName: "LayoutParts/HelpBubModal", model: null, viewData: new ViewDataDictionary())
     @Html.Partial("LayoutParts/Footer")
 
@@ -35,51 +37,28 @@
     <script src="~/Scripts/js/helpbubscript.js"></script>
     @section Scripts {
         <script>
-            function documentR()
+            function ShowCallMe()
             {
-                $("#exampleModel").show();
-                $(".modal fade").show();
+            //$document.getElementById("example").click();
+                $("Footer").ready(function () {
+                    $('#exampleModal').modal('show');
 
+                    $('#modal').modal('show');
+                    $('#modal').modal('fade').modal('show');
 
-                if (div.myDivClass.display == "none")
-                {
-                    div.myDivClass.display = "block";
-                    div.style.padding = "17px";
-                }
+                    $('#example').modal('show');
+                    $data("bs.modal").modal('show');
+
+                });
+          
             }
         </script>
-        }
+      
+           
+            }
+    
+    
 
-        @*<script>
-        $('#confirm').click(function () {
-            FullName = $('#FullName').val();
-            PhoneNumber = $('#PhoneNumber').val();
-
-            var data = { "FullName": FullName, "PhoneNumber": PhoneNumber };
-            $.ajax({
-                type: "Post",
-                url: "@Url.Action("Validate")",
-                data: data,
-                success: function (response) {
-                    if (response == "True") {
-                        $.ajax({
-                            type: "Post",
-                            url: "@Url.Action("AddCallMe")",
-                            data: data,
-                            success: function (result) {
-                                alert("Verification passed!" + result);
-                                $('#myModal').modal('hide');
-                            }
-                        })
-                    } else {
-                        alert("Verification didnt pass!")
-                    }
-                }
-            })
-        })
-        </script>
-        }*@
-
-        @RenderSection("script", required: false)
-    </body>
+    @RenderSection("script", required: false)
+</body>
 </html>

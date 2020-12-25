@@ -73,7 +73,7 @@
                         </div>
                         <!--end::Title-->
                         <!--begin::Form-->
-                        @using (Html.BeginForm("PaymentBill", "PaymentClient", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
+                        @using (Html.BeginForm("PaymentBill", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                         {
                             @Html.AntiForgeryToken()
                             <div class="d-flex justify-content-center flex-row-fluid ">
@@ -95,11 +95,14 @@
                                             <!--begin::Form group-->
                                             <div class="form-group fv-plugins-icon-container">
                                                 <label class="font-size-h6 font-weight-bolder text-dark">TC. Kimlik NO veya Müşteri No</label>
-                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo" maxlength="11" autocomplete="off">
-                                                <div style="color: #c44311">
-                                                    @Html.ValidationMessageFor(m => m.ClientInfo)
-                                                </div> 
-                                                <div class="fv-plugins-message-container"></div>
+                                                @* <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo" maxlength="11" autocomplete="off">*@
+                                                @Html.EditorFor(m => m.ClientInfo, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", name = "ClientInfo", placeholder = "TC. Kimlik No veya Müşteri No", @autocomplete = "off", @maxlength = 11 } })
+
+                                                <div class="fv-plugins-message-container">
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m => m.ClientInfo)
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!--end::Form group-->
                                             <!--begin::Form group-->
@@ -107,21 +110,24 @@
                                                 <div class="d-flex justify-content-between mt-n5">
                                                     <label class="font-size-h6 font-weight-bolder text-dark pt-5">GSM Numarası</label>
                                                 </div>
-                                                <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg kt_inputmask_3" type="text" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber" autocomplete="off">
-                                                <div style="color: #c44311">
-                                                    @Html.ValidationMessageFor(m => m.PhoneNumber)
-                                                    <div class="fv-plugins-message-container"></div>
+                                               @* <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg kt_inputmask_3" type="text" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber" autocomplete="off">*@
+                                                @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", placeholder = "GSM Numaranız", name = "PhoneNumber", id = "kt_inputmask_3", @autocomplete = "off" } })
+
+                                                <div class="fv-plugins-message-container">
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                                                    </div>
                                                 </div>
                                             </div>
                                             <!--end::Form group-->
                                             <!--begin::Action-->
                                             <div class="pb-lg-0 pb-5">
                                                 @* <a href="/Payment/PaymentBillAndResult" type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Fatura Borcumu Sorgula</a>*@
-                                                
-                                                   @* @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { @class = "btn btn-primary font-weight-bold mr-2" })*@
-                                                
+
+                                                @* @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { @class = "btn btn-primary font-weight-bold mr-2" })*@
+
                                                 <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>
-    <!--end::Action-->
+                                                <!--end::Action-->
 
                                                 <input type="hidden">
                                             </div>

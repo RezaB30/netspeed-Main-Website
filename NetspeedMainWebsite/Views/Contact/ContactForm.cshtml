@@ -52,17 +52,22 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız Soyadınız</label>
-                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName" @*id="FullName"*@  placeholder="Adı Soyadı" maxlength="50">
-                    <div style="color: #c44311">
+                    <!--<input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName"--> @*id="FullName"*@ <!--placeholder="Adı Soyadı" maxlength="50">-->
+                   
+                    @Html.EditorFor(m => m.FullName, new { htmlAttributes = new { @class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", name = "FullName", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
+
+                    <div class="text-danger">
                         @Html.ValidationMessageFor(m => m.FullName)
-                    </div> 
+                    </div>
                 </div>
                 <!--end::Input-->
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">İletişim Numaranız</label>
-                    <input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber" @*id="PhoneNumber"*@ placeholder="Telefon Numarası" id="kt_inputmask_3" im-insert="true">
-                    <div style="color: #c44311">
+                    <!--<input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber"--> @*id="PhoneNumber"*@ <!--placeholder="Telefon Numarası" id="kt_inputmask_3" im-insert="true">-->
+                    @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6",name="PhoneNumber", @autocomplete = "off", placeholder = "Telefon Numarası" ,id = "kt_inputmask_3" @*im - insert = "true"*@ } })
+
+                    <div class="text-danger">
                         @Html.ValidationMessageFor(m => m.PhoneNumber)
                     </div>
                 </div>
@@ -70,8 +75,10 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
-                    <input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress" @*id="EmailAddress"*@ placeholder="E-Posta Adresi" maxlength="50">
-                    <div style="color: #c44311">
+                    <!--<input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress"--> @*id="EmailAddress"*@ <!--placeholder="E-Posta Adresi" maxlength="50">-->
+                    @Html.EditorFor(m => m.EmailAddress, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", name = "EmailAddress", @autocomplete = "off", placeholder = "E-Posta Adresi"} })
+
+                    <div class="text-danger">
                         @Html.ValidationMessageFor(m => m.EmailAddress)
                     </div>
                 </div>
@@ -79,9 +86,12 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark" for="exampleTextarea">Mesajınız</label>
-                    <textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message" @*id="Message"*@ id="exampleTextarea" rows="3" maxlength="1000"></textarea>
+                    <!--<textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message"--> @*id="Message"*@ <!--id="exampleTextarea" rows="3"></textarea>-->
                     <span class="form-text text-muted">Mesajınıza gerekiyorsa 24 saat içerisinde dönüş sağlayacağız.</span>
-                    <div style="color: #c44311">
+                    
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea", @rows = "3", id = "exampleTextarea", htmlAttributes = new {  name = "Message",  @autocomplete = "off",  placeholder = "Mesajınız", @maxlength = "1000" } })
+                  
+                    <div class="text-danger">
                         @Html.ValidationMessageFor(m => m.Message)
                     </div>
                 </div>
