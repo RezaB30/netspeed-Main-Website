@@ -122,7 +122,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Connected Services\NetspeedServiceReference\Reference.cs">
+    <Compile Include="Connected Services\MainSiteServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -132,6 +132,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ClientPaymentController.cs" />
+    <Compile Include="Controllers\InfrastructureInquiryController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SpecialOffersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -139,43 +140,45 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hash.cs" />
+    <Compile Include="HashUtilities.cs" />
     <Compile Include="Models\ViewModel\ApplicationViewModel.cs" />
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
+    <Compile Include="Models\ViewModel\InfrastructureInquiryViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentCardInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\NetspeedServiceReference\configuration91.svcinfo" />
-    <None Include="Connected Services\NetspeedServiceReference\configuration.svcinfo" />
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfAddressDetailsSHA1YRdDhl3A.datasource">
+    <None Include="Connected Services\MainSiteServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\MainSiteServiceReference\configuration.svcinfo" />
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAddressDetailsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1O2vOAcMM.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfArrayOfValueNamePairSHA1O2vOAcMM.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfbooleanSHA1Miy85_SUl.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePaymentVPOSResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfPayBillsResponseSHA1O2vOAcMM.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfServiceAvailabilityResponseSHA1O2vOAcMM.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceServiceAvailabilityResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\NetspeedServiceReference\NetspeedMainWebsite.NetspeedServiceReference.BaseResponseOfSubscriberPayBillsResponseSHA1O2vOAcMM.datasource">
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\NetspeedServiceReference\Reference.svcmap">
+    <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -1122,23 +1125,31 @@
     <Content Include="Content\fonts\line-awesome\la-solid-900.svg" />
     <Content Include="Content\fonts\socicon\socicon.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\js\cookieconsent.min.js" />
-    <Content Include="Scripts\js\form-controls.js" />
-    <Content Include="Scripts\js\helpbubscript.js" />
-    <Content Include="Scripts\js\hide-show-fields-form.js" />
-    <Content Include="Scripts\js\input-mask.js" />
-    <Content Include="Scripts\js\login-general.js" />
-    <Content Include="Scripts\js\lottie-player.js" />
-    <Content Include="Scripts\js\plugins.bundle.js" />
-    <Content Include="Scripts\js\prismjs.bundle.js" />
-    <Content Include="Scripts\js\scripts.bundle.js" />
-    <Content Include="Scripts\js\scripts.bundle.min.js" />
-    <Content Include="Scripts\js\simplebar.min.js" />
-    <Content Include="Scripts\js\theme.min.js" />
-    <Content Include="Scripts\js\toastr.js.map" />
-    <Content Include="Scripts\js\widgets.js" />
-    <Content Include="Scripts\js\wizard5-altyapi.js" />
-    <Content Include="Scripts\js\wizard5-basvur.js" />
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.wsdl" />
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <Content Include="Scripts\js\get-infrastructure.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1150,6 +1161,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1202,35 +1215,15 @@
     <Content Include="Content\fonts\summernote\summernote.ttf" />
     <Content Include="Content\fonts\summernote\summernote.woff" />
     <Content Include="Content\fonts\summernote\summernote.woff2" />
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService.wsdl" />
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\NetspeedServiceReference\NetspeedService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <Content Include="Views\Shared\LayoutParts\Menu.cshtml" />
     <Content Include="Views\Shared\LayoutParts\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\js\12882-green-check.json" />
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Home\ContractAndForm.cshtml" />
-    <Content Include="Views\Home\InfrastructureAndInquiry.cshtml" />
+    <Content Include="Views\InfrastructureInquiry\Test.cshtml" />
     <Content Include="Views\Home\SpeedTest.cshtml" />
-    <Content Include="Views\Home\QuestioningAndConclusion.cshtml" />
+    <Content Include="Views\InfrastructureInquiry\QuestioningAndConclusion.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\SpecialOffers\AdslTariffs.cshtml" />
     <Content Include="Views\SpecialOffers\BringYourFriend.cshtml" />
@@ -1284,7 +1277,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\NetspeedServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\MainSiteServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -19,10 +19,10 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string Locality { get; set; }
         public string Neighborhood { get; set; }
         public string Street { get; set; }
-        public int BuildingNumber { get; set; }
-        public int DoorNumber { get; set; }
-        public int FloorNumber { get; set; }
-        public int Postcode { get; set; }
+        public string BuildingNumber { get; set; }
+        public string DoorNumber { get; set; }
+        public string FloorNumber { get; set; }
+        public long Postcode { get; set; }
         public string TariffPreference { get; set; }
         public string Modem { get; set; }
         public string StaticIp { get; set; }

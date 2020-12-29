@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" />
+  <xs:import schemaLocation="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="NetspeedServiceRegisterCustomerContactResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q1:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegisterCustomerContactResponse" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceRegisterCustomerContactResponse" nillable="true" type="tns:NetspeedServiceRegisterCustomerContactResponse" />
+  <xs:complexType name="NetspeedServiceServiceAvailabilityResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q2:BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ServiceAvailabilityResponse" nillable="true" type="tns:ServiceAvailabilityResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceServiceAvailabilityResponse" nillable="true" type="tns:NetspeedServiceServiceAvailabilityResponse" />
+  <xs:complexType name="ServiceAvailabilityResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdslDistance" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AdslPortState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdslSVUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdslSpeed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BBK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FiberDistance" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FiberPortState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FiberSVUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FiberSpeed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HasInfrastructureAdsl" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasInfrastructureFiber" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasInfrastructureVdsl" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VdslDistance" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="VdslPortState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VdslSVUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VdslSpeed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceAvailabilityResponse" nillable="true" type="tns:ServiceAvailabilityResponse" />
+  <xs:complexType name="NetspeedServiceArrayListResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q3:BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ValueNamePairList" nillable="true" type="tns:ArrayOfValueNamePair" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceArrayListResponse" nillable="true" type="tns:NetspeedServiceArrayListResponse" />
+  <xs:complexType name="ArrayOfValueNamePair">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueNamePair" nillable="true" type="tns:ValueNamePair" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfValueNamePair" nillable="true" type="tns:ArrayOfValueNamePair" />
+  <xs:complexType name="ValueNamePair">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueNamePair" nillable="true" type="tns:ValueNamePair" />
+  <xs:complexType name="NetspeedServiceAddressDetailsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q4:BaseResponseOfAddressDetailsResponseSHA1x9h56FeD">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceAddressDetailsResponse" nillable="true" type="tns:NetspeedServiceAddressDetailsResponse" />
+  <xs:complexType name="NetspeedServiceSubscriberGetBillsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q5:BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SubscriberGetBillsResponse" nillable="true" type="tns:ArrayOfSubscriberGetBillsResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceSubscriberGetBillsResponse" nillable="true" type="tns:NetspeedServiceSubscriberGetBillsResponse" />
+  <xs:complexType name="ArrayOfSubscriberGetBillsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubscriberGetBillsResponse" nillable="true" type="tns:SubscriberGetBillsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubscriberGetBillsResponse" nillable="true" type="tns:ArrayOfSubscriberGetBillsResponse" />
+  <xs:complexType name="SubscriberGetBillsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CanBePaid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasEArchiveBill" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="LastPaymentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:short" />
+      <xs:element minOccurs="0" name="Total" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriberGetBillsResponse" nillable="true" type="tns:SubscriberGetBillsResponse" />
+  <xs:complexType name="NetspeedServicePaymentVPOSResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q6:BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PaymentVPOSResponse" nillable="true" type="tns:PaymentVPOSResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServicePaymentVPOSResponse" nillable="true" type="tns:NetspeedServicePaymentVPOSResponse" />
+  <xs:complexType name="PaymentVPOSResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HtmlForm" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentVPOSResponse" nillable="true" type="tns:PaymentVPOSResponse" />
+  <xs:complexType name="NetspeedServicePayBillsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q7:BaseResponseOfPayBillsResponseSHA1x9h56FeD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PayBillsResponse" nillable="true" type="tns:PayBillsResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServicePayBillsResponse" nillable="true" type="tns:NetspeedServicePayBillsResponse" />
+  <xs:complexType name="PayBillsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PaymentResponse" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PayBillsResponse" nillable="true" type="tns:PayBillsResponse" />
+  <xs:complexType name="NetspeedServiceNewCustomerRegisterResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q8:BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ">
+        <xs:sequence>
+          <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NewCustomerRegisterResponse" nillable="true" type="q9:ArrayOfKeyValueOfstringstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceNewCustomerRegisterResponse" nillable="true" type="tns:NetspeedServiceNewCustomerRegisterResponse" />
+</xs:schema>

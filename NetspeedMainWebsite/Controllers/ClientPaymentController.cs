@@ -5,14 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using NetspeedMainWebsite.Models;
 using NetspeedMainWebsite.Models.ViewModel;
-using NetspeedMainWebsite.NetspeedServiceReference;
+using NetspeedMainWebsite.MainSiteServiceReference;
 
 namespace NetspeedMainWebsite.Controllers
 {
     public class ClientPaymentController : BaseController
     {
         // GET: PaymentBill
-        Hash hash = new Hash();
+        //HashUtilities hash = new HashUtilities();
 
         [HttpGet]
         public ActionResult PaymentBill()
@@ -30,18 +30,18 @@ namespace NetspeedMainWebsite.Controllers
             if (ModelState.IsValid)
             {
                 clientBill.PhoneNumber = clientBill.PhoneNumber.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
-                NetspeedServiceClient client = new NetspeedServiceClient();
+                MainSiteServiceClient client = new MainSiteServiceClient();
                 var randomKey = Guid.NewGuid().ToString();
                 var username = "elif";
-                var passwordHash = hash.HashCalculate("123456");
-                var genericHash = hash.HashCalculate($"{username}{randomKey}{passwordHash}");
-                var response = client.GetBills(new BaseRequestOfSubscriberGetBillsRequestSHA1O2vOAcMM()
+                var passwordHash = HashUtilities.HashCalculate("123456");
+                var genericHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+                var response = client.GetBills(new  NetspeedServiceSubscriberGetBillsRequest()
                 {
                     Culture = "tr-tr",
                     Rand = randomKey,
                     Hash = genericHash,
                     Username = username,
-                    Data = new SubscriberGetBillsRequest()
+                    GetBillParameters = new SubscriberGetBillsRequest()
                     {
                         SubscriberNo = clientBill.ClientInfo,
                         PhoneNo = clientBill.PhoneNumber

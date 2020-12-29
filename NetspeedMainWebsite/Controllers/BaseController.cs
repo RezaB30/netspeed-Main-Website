@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using NetspeedMainWebsite.Models.ViewModel;
-using NetspeedMainWebsite.NetspeedServiceReference;
+using NetspeedMainWebsite.MainSiteServiceReference;
 
 namespace NetspeedMainWebsite.Controllers
 {
@@ -16,8 +16,8 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
-       
-        Hash hash = new Hash();
+
+        //HashUtilities hash = new HashUtilities();
 
         [HttpPost]
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
@@ -27,18 +27,18 @@ namespace NetspeedMainWebsite.Controllers
 
             if (ModelState.IsValid)
             {
-                NetspeedServiceClient client = new NetspeedServiceClient();
+                MainSiteServiceReference.MainSiteServiceClient client = new MainSiteServiceClient();
                 var randomKey = Guid.NewGuid().ToString();
                 var username = "elif";
-                var passwordHash = hash.HashCalculate("123456");
-                var genericHash = hash.HashCalculate($"{username}{randomKey}{passwordHash}");
-                var response = client.RegisterCustomerContact(new BaseRequestOfCustomerContactRequestSHA1O2vOAcMM()
+                var passwordHash = HashUtilities.HashCalculate("123456");
+                var genericHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+                var response = client.RegisterCustomerContact(new NetspeedServiceCustomerContactRequest()
                 {
                     Culture = "tr-tr",
                     Rand = randomKey,
                     Hash = genericHash,
                     Username = username,
-                    Data = new CustomerContactRequest()
+                    CustomerContactParameters = new CustomerContactRequest()
                     {
                         FullName = callMe.FullName,
                         PhoneNo = callMe.PhoneNumber,

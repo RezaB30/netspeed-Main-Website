@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using NetspeedMainWebsite.NetspeedServiceReference;
+using NetspeedMainWebsite.MainSiteServiceReference;
 
 namespace NetspeedMainWebsite.Controllers
 {
@@ -25,10 +25,6 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        public ActionResult InfrastructureAndInquiry()
-        {
-            return View();
-        }
 
         public ActionResult Login()
         {
@@ -45,10 +41,10 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        public ActionResult QuestioningAndConclusion()
-        {
-            return View();
-        }
+        //public ActionResult QuestioningAndConclusion()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Error()
         {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="03a5eb9d-e46f-4da0-9e09-ebb759e0baf6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.1.63:5050/MainSiteService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MainSiteService.xsd" MetadataType="Schema" ID="a3fb7d72-22ce-4739-91f8-d05364857e7d" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd4" />
+    <MetadataFile FileName="MainSiteService1.xsd" MetadataType="Schema" ID="9544a9b2-5ef9-4d26-b780-c7a6b04f3fb9" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd5" />
+    <MetadataFile FileName="MainSiteService2.xsd" MetadataType="Schema" ID="676e3047-ba03-4271-8892-d1b41dfeb616" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MainSiteService3.xsd" MetadataType="Schema" ID="e8ad2abf-4a2a-42e4-b499-a02903eb8237" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MainSiteService4.xsd" MetadataType="Schema" ID="aac05429-ce8f-44f0-a819-255127b5ca5a" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MainSiteService5.xsd" MetadataType="Schema" ID="a51abaaf-22e8-42af-a28a-50fde7933cae" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MainSiteService.wsdl" MetadataType="Wsdl" ID="a3ca583f-f570-42fd-af5d-a9c1510caf25" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
