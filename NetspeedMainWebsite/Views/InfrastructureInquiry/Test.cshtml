@@ -92,8 +92,8 @@
                         <!--begin::Form-->
                         <div class="d-flex justify-content-center flex-row-fluid ">
 
-                            @*@using (Html.BeginForm("Test", "InfrastructureInquiry", FormMethod.Post, new { @class = "pb-5 w-100 w-md-450px w-lg-500px", @id = "kt_form2" }))
-                                {*@
+                            @using (Html.BeginForm("InfrastructureInquiryResult", "InfrastructureInquiry", FormMethod.Post, new { @class = "pb-5 w-100 w-md-450px w-lg-500px", @id = "kt_form2" }))
+                            {
                             <!--begin: Wizard Step 1-->
                             <!--begin::Title-->
                             <div class="pb-10 pb-lg-15">
@@ -181,8 +181,16 @@
                                         <!--end::Form Group-->
                                     </div>
                                 </div>
+
+                                @* @Html.ActionLink("Altyapımı Sorgula", "InfrastructureInquiryResult", "InfrastructureInquiry", new { BBK =Model.ApartmentId }, new { @class = "btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12", @id="submit" })*@
                                 <button type="submit" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12">Altyapımı Sorgula</button>
+
+                                
+
+                                @*<input type="submit" name="Altyapımı Sorgula" value="Model.ApartmentId" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12" />*@
+
                             </div>
+                            }
                         </div>
                     </div>
                 </div>

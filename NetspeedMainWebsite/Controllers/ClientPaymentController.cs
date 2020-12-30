@@ -54,7 +54,7 @@ namespace NetspeedMainWebsite.Controllers
             {
                 return View(clientBill);
             }
-            return RedirectToAction("PaymentBillAndResult", "PaymentClient");
+            return RedirectToAction("PaymentBillAndResult", "ClientPayment");
         }
 
         [HttpGet]

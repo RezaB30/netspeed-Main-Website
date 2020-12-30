@@ -8,7 +8,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class InfrastructureInquiryViewModel
     {
-
+        public string BBK { get; set; }
         public InfrastructureInquiryViewModel()
         {
             Province = new List<SelectListItem>();

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model NetspeedMainWebsite.Models.ViewModel.InfrastructureInquiryResultViewModel
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -93,19 +95,28 @@
                                             <a href="#" class="text-white">Adresinizde Alabileceğiniz Maksimum Hız</a>
                                         </h3>
                                         <div class="header-top">
-                                            <div class="text-warning font-weight-bolder display-3 mb-9 animate__animated animate__fadeIn">35 Mbps</div>
+                                            <div class="text-warning font-weight-bolder display-3 mb-9 animate__animated animate__fadeIn">
+                                                @Html.DisplayFor(m => m.MaxSpeed)
+                                            </div>
+                                            
 
                                             <h3 class="font-weight-bolder font-size-h3 mb-1">
                                                 <a href="#" class="text-white">Santral/Saha Dolabı Tahmini Mesafe</a>
                                             </h3>
                                             <div class="header-top">
-                                                <div class="text-warning font-weight-bolder font-size-h1 font-size-h2 mb-9 animate__animated animate__fadeIn animate__delay-1s">250 Metre</div>
+                                                <div class="text-warning font-weight-bolder font-size-h1 font-size-h2 mb-9 animate__animated animate__fadeIn animate__delay-1s"
+                                                     >@Html.DisplayFor(m => m.Distance)
+                                                </div>
+                                                
 
                                                 <h3 class="font-weight-bolder font-size-h3 mb-3 ">
                                                     <a href="#" class="text-white">Port Durumu</a>
                                                 </h3>
 
-                                                <h2> <span class="badge badge-success animate__animated animate__fadeIn animate__delay-2s">Var</span></h2>
+                                                <h2> <span class="badge badge-success animate__animated animate__fadeIn animate__delay-2s">
+                                                    @Html.DisplayFor(m => m.XDSLType)
+                                                     </span></h2>
+                                               
 
                                                 <!--begin::Info-->
                                                 <hr class="my-6 bg-info">
@@ -114,7 +125,11 @@
                                                     <a href="/" class="mr-0">
                                                         <img alt="Netspeed" src="~/Content/media/logos/bejlogomini.svg" class="max-h-15px mr-3">
                                                     </a>
-                                                    <span class="text-muted font-weight-bold mr-2">Sorgu No : <span class="text-dark-25 font-weight-bold mr-2">45445144</span></span>
+                                                    <span class="text-muted font-weight-bold mr-2">
+                                                        Sorgu No :
+                                                        @Html.DisplayFor(m => m.SVUID)
+                                                        @*<span class="text-dark-25 font-weight-bold mr-2"></span>*@
+                                                    </span>
                                                 </div>
                                                 <!--end::Info-->
                                             </div>
@@ -132,7 +147,7 @@
                                             </button>
                                         </span>
                                         <span>
-                                            <a href="/Home/InfrastructureAndInquiry" type="button" class="btn  font-weight-bolder text-white btn-outline-warning px-12 m-2 btn-hover ">Yeniden Sorgula</a>
+                                            <a href="/InfrastructureInquiry/Test" type="button" class="btn  font-weight-bolder text-white btn-outline-warning px-12 m-2 btn-hover ">Yeniden Sorgula</a>
                                         </span>
                                     </div>
                                     <hr class="my-12 bg-info">

@@ -145,6 +145,7 @@
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
+    <Compile Include="Models\ViewModel\InfrastructureInquiryResultViewModel.cs" />
     <Compile Include="Models\ViewModel\InfrastructureInquiryViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentCardInfo.cs" />
@@ -1223,7 +1224,7 @@
     <Content Include="Views\Home\ContractAndForm.cshtml" />
     <Content Include="Views\InfrastructureInquiry\Test.cshtml" />
     <Content Include="Views\Home\SpeedTest.cshtml" />
-    <Content Include="Views\InfrastructureInquiry\QuestioningAndConclusion.cshtml" />
+    <Content Include="Views\InfrastructureInquiry\InfrastructureInquiryResult.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\SpecialOffers\AdslTariffs.cshtml" />
     <Content Include="Views\SpecialOffers\BringYourFriend.cshtml" />
