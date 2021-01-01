@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<BillInfoViewModel>
 @using NetspeedMainWebsite.Models.ViewModel
 
+@*@model NetspeedMainWebsite.Models.ViewModel.BillInfoViewModel*@
 
 @{
-    var selectedBills = Model.ToArray();
+    //var ClientItems = Model.ToArray();
     Layout = "~/Views/Shared/_Layout.cshtml";
     <title>Fatura Sorgulama ve Ödeme / faturalar - Netspeed</title>
     <meta name="searchTitle" content="Fatura Sorgulama ve Ödeme">
@@ -81,8 +82,10 @@
                         <!--begin::Form-->
                         <div class="d-flex justify-content-center flex-row-fluid ">
 
-                            @using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
+                            @*@using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))*@
+                            @using (Html.BeginForm("PaymentSelectBill", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                             {
+                                @Html.Hidden("SelectedBills")
                                 @Html.AntiForgeryToken()
                                 <!--begin: Wizard Step 1-->
                                 <!--begin::Title-->
@@ -97,6 +100,7 @@
                                                 <span class="text-dark-50 font-weight font-size-h5 mt-5">
                                                     Ödemesini yapmak istediğiniz Fatura veya Faturalarınızı seçiniz.
                                                 </span>
+                                                <span>@ViewBag.message</span>
                                             </div>
                                             <!--begin::Title-->
                                             <!--begin::Table-->
@@ -107,7 +111,7 @@
 
                                                             <th class="pl-0" style="width: 30px">
                                                                 <label class="checkbox checkbox checkbox-inline mr-2">
-                                                                    <input type="checkbox" @*value="1"*@ name="BillId">
+                                                                    <!--<input type="checkbox"--> @*value="1"*@ <!--name="BillCheck">-->
                                                                     <span></span>
                                                                 </label>
                                                             </th>
@@ -132,49 +136,39 @@
                                                         </tr>
                                                     </thead>
 
-
-                                                    @for (int i = 0; i < selectedBills.Length; i++)
+                                                    @foreach (var item in Model)
                                                     {
                                                         <tbody>
                                                             <tr>
                                                                 <td class="pl-0 py-6">
-                                                                    <label class="checkbox checkbox checkbox-inline">
-                                                                        @Html.HiddenFor(model => selectedBills[i].BillId)
-                                                                        @Html.CheckBoxFor(model => selectedBills[i].BillCheck)
-                                                                        @*<input type="checkbox" name="@Model[i].BillCheck"id="@item.BillCheck" attached-value ="@item.BillId" value="true">*@
-
-                                                                        @* @Html.DisplayFor(modelitem => item.BillId)*@
-                                                                        <span></span>
-
-                                                                    </label>
+                                                                    @* <label class="checkbox checkbox checkbox-inline">*@
+                                                                    <span class="text-dark-75 font-weight-bolder text-hover-primary">
+                                                                        @Html.CheckBoxFor(modelItem => item.BillCheck, new { @class = "checkbox checkbox checkbox - inline mr - 2", @data_value = item.BillId })
+                                                                        @Html.HiddenFor(modelItem => item.BillId)
+                                                                    </span>
+                                                                    @* </label>*@
                                                                     <div class="text-danger">
                                                                         @ViewBag.message
                                                                     </div>
                                                                 </td>
                                                                 <td class="pl-0">
-
-
                                                                     <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary">
-                                                                        @Html.DisplayFor(model => selectedBills[i].TariffName)
-                                                                        @Html.HiddenFor(model => selectedBills[i].TariffName)
+                                                                        @Html.DisplayFor(modelItem => item.ServiceName)
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                     <span class="text-dark-75 font-weight-bolder d-block ">
-                                                                        @Html.DisplayFor(model => selectedBills[i].BillDate)
-                                                                        @Html.HiddenFor(model => selectedBills[i].BillDate)
+                                                                        @Html.DisplayFor(modelItem => item.BillDate)
                                                                     </span>
                                                                 </td>
                                                                 <td>
                                                                     <span class="text-info font-weight-bolder d-block ">
-                                                                        @Html.DisplayFor(model => selectedBills[i].ExpiryDate)
-                                                                        @Html.HiddenFor(model => selectedBills[i].ExpiryDate)
+                                                                        @Html.DisplayFor(modelItem => item.LastPaymentDate)
                                                                     </span>
                                                                 </td>
                                                                 <td>
                                                                     <span class="text-dark-75 font-weight-bolder d-block ">
-                                                                        @Html.DisplayFor(model => selectedBills[i].BillAmount)
-                                                                        @Html.HiddenFor(model => selectedBills[i].BillAmount)
+                                                                        @Html.DisplayFor(modelItem => item.Total)
                                                                     </span>
                                                                 </td>
                                                             </tr>
@@ -213,4 +207,42 @@
 @section script{
     <script src="~/Scripts/js/hide-show-fields-form.js"></script>
     <script src="~/Scripts/js/input-mask.js"></script>
+
+    <script>
+        $('form').submit(function (e) {
+            var idList = [];
+            $('input[id="item_BillCheck"]').each(function () {
+                if ($(this).is(":checked")) {
+                    var id = $(this).attr("data-value");
+                    idList.push(id);
+                }
+            });
+            $("input[name='SelectedBills']").val(idList);
+        });
+                    //var arrCheckboxes;
+                    //var checkboxSelector = "input[type='checkbox']";
+                    //$("body").delegate(checkboxSelector, "change", function () {
+                    //    arrCheckboxes = $(checkboxSelector).map(function () {
+                    //        return { name: this.name, val: this.checked };
+                    //    }).get();
+                    //});
+
+
+                    //var arrCheckboxes;
+                    //var arrCheckboxBillId;
+                    //var checkboxSelector = "input[type='checkbox']";
+                    //$("body").delegate(checkboxSelector, "change", function () {
+                    //    arrCheckboxes = $(checkboxSelector).map(function () {
+                    //        if (this.checked == true) {
+                    //            return {
+                    //                name: this.name, val: this.checked
+                    //            };}
+
+                    //    }).get();
+                    //    //arrCheckboxBillId = $(checkboxSelector).map(function () {
+                    //    //    return { name: this.#BillId, val: this.checked};
+                    //    //}).get();
+
+                    //});
+    </script>
 }

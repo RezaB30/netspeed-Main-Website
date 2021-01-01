@@ -78,7 +78,7 @@
   <xs:complexType name="SubscriberGetBillsRequest">
     <xs:sequence>
       <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SubscriberNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCKOrSubscriberNo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubscriberGetBillsRequest" nillable="true" type="tns:SubscriberGetBillsRequest" />
@@ -94,32 +94,25 @@
   <xs:element name="NetspeedServicePaymentVPOSRequest" nillable="true" type="tns:NetspeedServicePaymentVPOSRequest" />
   <xs:complexType name="PaymentVPOSRequest">
     <xs:sequence>
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BillIds" nillable="true" type="q8:ArrayOflong" />
       <xs:element minOccurs="0" name="FailUrl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OkUrl" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PayableAmount" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SubscriberNo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PaymentVPOSRequest" nillable="true" type="tns:PaymentVPOSRequest" />
   <xs:complexType name="NetspeedServicePayBillsRequest">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q8:BaseRequestOfPayBillsRequestSHA13jWQyVaD">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q9:BaseRequestOfArrayOflongSHA1PGu3YCeQ">
         <xs:sequence>
-          <xs:element minOccurs="0" name="PayBillsParameters" nillable="true" type="tns:PayBillsRequest" />
+          <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PayBillsParameters" nillable="true" type="q10:ArrayOflong" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="NetspeedServicePayBillsRequest" nillable="true" type="tns:NetspeedServicePayBillsRequest" />
-  <xs:complexType name="PayBillsRequest">
-    <xs:sequence>
-      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BillIds" nillable="true" type="q9:ArrayOflong" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="PayBillsRequest" nillable="true" type="tns:PayBillsRequest" />
   <xs:complexType name="NetspeedServiceNewCustomerRegisterRequest">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseRequestOfNewCustomerRegisterRequestSHA13jWQyVaD">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseRequestOfNewCustomerRegisterRequestSHA13jWQyVaD">
         <xs:sequence>
           <xs:element minOccurs="0" name="CustomerRegisterParameters" nillable="true" type="tns:NewCustomerRegisterRequest" />
         </xs:sequence>

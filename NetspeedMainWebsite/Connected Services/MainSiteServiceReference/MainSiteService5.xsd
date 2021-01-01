@@ -215,11 +215,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD" />
-  <xs:complexType name="BaseRequestOfPayBillsRequestSHA13jWQyVaD">
+  <xs:complexType name="BaseRequestOfArrayOflongSHA1PGu3YCeQ">
     <xs:annotation>
       <xs:appinfo>
         <GenericType Name="BaseRequestOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="PayBillsRequest" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
+          <GenericParameter Name="ArrayOflong" Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
           <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
         </GenericType>
       </xs:appinfo>
@@ -230,7 +230,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BaseRequestOfPayBillsRequestSHA13jWQyVaD" nillable="true" type="tns:BaseRequestOfPayBillsRequestSHA13jWQyVaD" />
+  <xs:element name="BaseRequestOfArrayOflongSHA1PGu3YCeQ" nillable="true" type="tns:BaseRequestOfArrayOflongSHA1PGu3YCeQ" />
   <xs:complexType name="BaseResponseOfPayBillsResponseSHA1x9h56FeD">
     <xs:annotation>
       <xs:appinfo>

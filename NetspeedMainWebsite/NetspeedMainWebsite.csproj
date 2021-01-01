@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="HashUtilities.cs" />
     <Compile Include="Models\ViewModel\ApplicationViewModel.cs" />
+    <Compile Include="Models\ViewModel\BillIdForBankPaymentViewModel.cs" />
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
@@ -1270,7 +1271,7 @@
     <Content Include="Views\Support\NewModem.cshtml" />
     <Content Include="Views\Support\SubscriptionActive.cshtml" />
     <Content Include="Views\ClientPayment\PaymentBill.cshtml" />
-    <Content Include="Views\Payment\PaymentBillWithCard.cshtml" />
+    <Content Include="Views\ClientPayment\PaymentBillWithCard.cshtml" />
     <Content Include="Views\ClientPayment\PaymentBillAndResult.cshtml" />
     <Content Include="Views\Shared\LayoutParts\HelpBubModal.cshtml" />
   </ItemGroup>

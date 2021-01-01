@@ -27,7 +27,7 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfPaymentVPOSRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePaymentVPOSRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfPayBillsRequestSHA13jWQyVaD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfArrayOflongSHA1PGu3YCeQ))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfNewCustomerRegisterRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterRequest))]
@@ -279,23 +279,23 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfPayBillsRequestSHA13jWQyVaD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfArrayOflongSHA1PGu3YCeQ", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsRequest))]
-    public partial class BaseRequestOfPayBillsRequestSHA13jWQyVaD : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
+    public partial class BaseRequestOfArrayOflongSHA1PGu3YCeQ : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServicePayBillsRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
     [System.SerializableAttribute()]
-    public partial class NetspeedServicePayBillsRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfPayBillsRequestSHA13jWQyVaD {
+    public partial class NetspeedServicePayBillsRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfArrayOflongSHA1PGu3YCeQ {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.PayBillsRequest PayBillsParametersField;
+        private long[] PayBillsParametersField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.PayBillsRequest PayBillsParameters {
+        public long[] PayBillsParameters {
             get {
                 return this.PayBillsParametersField;
             }
@@ -521,7 +521,7 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private string PhoneNoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SubscriberNoField;
+        private string TCKOrSubscriberNoField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -547,14 +547,14 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SubscriberNo {
+        public string TCKOrSubscriberNo {
             get {
-                return this.SubscriberNoField;
+                return this.TCKOrSubscriberNoField;
             }
             set {
-                if ((object.ReferenceEquals(this.SubscriberNoField, value) != true)) {
-                    this.SubscriberNoField = value;
-                    this.RaisePropertyChanged("SubscriberNo");
+                if ((object.ReferenceEquals(this.TCKOrSubscriberNoField, value) != true)) {
+                    this.TCKOrSubscriberNoField = value;
+                    this.RaisePropertyChanged("TCKOrSubscriberNo");
                 }
             }
         }
@@ -579,16 +579,13 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long[] BillIdsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FailUrlField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string OkUrlField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal PayableAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SubscriberNoField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -597,6 +594,19 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long[] BillIds {
+            get {
+                return this.BillIdsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillIdsField, value) != true)) {
+                    this.BillIdsField = value;
+                    this.RaisePropertyChanged("BillIds");
+                }
             }
         }
         
@@ -622,77 +632,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.OkUrlField, value) != true)) {
                     this.OkUrlField = value;
                     this.RaisePropertyChanged("OkUrl");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal PayableAmount {
-            get {
-                return this.PayableAmountField;
-            }
-            set {
-                if ((this.PayableAmountField.Equals(value) != true)) {
-                    this.PayableAmountField = value;
-                    this.RaisePropertyChanged("PayableAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SubscriberNo {
-            get {
-                return this.SubscriberNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SubscriberNoField, value) != true)) {
-                    this.SubscriberNoField = value;
-                    this.RaisePropertyChanged("SubscriberNo");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PayBillsRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
-    [System.SerializableAttribute()]
-    public partial class PayBillsRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long[] BillIdsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long[] BillIds {
-            get {
-                return this.BillIdsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BillIdsField, value) != true)) {
-                    this.BillIdsField = value;
-                    this.RaisePropertyChanged("BillIds");
                 }
             }
         }
@@ -2996,6 +2935,291 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceAddressDetailsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
     [System.SerializableAttribute()]
     public partial class NetspeedServiceAddressDetailsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfAddressDetailsResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.AddressDetailsResponse AddressDetailsResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.AddressDetailsResponse AddressDetailsResponse {
+            get {
+                return this.AddressDetailsResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressDetailsResponseField, value) != true)) {
+                    this.AddressDetailsResponseField = value;
+                    this.RaisePropertyChanged("AddressDetailsResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AddressDetailsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class AddressDetailsResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long AddressNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressTextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long ApartmentIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApartmentNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long DistrictIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DistrictNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long DoorIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DoorNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long NeighbourhoodIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NeighbourhoodNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long ProvinceIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProvinceNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long RuralCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long StreetIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StreetNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long AddressNo {
+            get {
+                return this.AddressNoField;
+            }
+            set {
+                if ((this.AddressNoField.Equals(value) != true)) {
+                    this.AddressNoField = value;
+                    this.RaisePropertyChanged("AddressNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AddressText {
+            get {
+                return this.AddressTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressTextField, value) != true)) {
+                    this.AddressTextField = value;
+                    this.RaisePropertyChanged("AddressText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ApartmentID {
+            get {
+                return this.ApartmentIDField;
+            }
+            set {
+                if ((this.ApartmentIDField.Equals(value) != true)) {
+                    this.ApartmentIDField = value;
+                    this.RaisePropertyChanged("ApartmentID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApartmentNo {
+            get {
+                return this.ApartmentNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApartmentNoField, value) != true)) {
+                    this.ApartmentNoField = value;
+                    this.RaisePropertyChanged("ApartmentNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long DistrictID {
+            get {
+                return this.DistrictIDField;
+            }
+            set {
+                if ((this.DistrictIDField.Equals(value) != true)) {
+                    this.DistrictIDField = value;
+                    this.RaisePropertyChanged("DistrictID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DistrictName {
+            get {
+                return this.DistrictNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DistrictNameField, value) != true)) {
+                    this.DistrictNameField = value;
+                    this.RaisePropertyChanged("DistrictName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long DoorID {
+            get {
+                return this.DoorIDField;
+            }
+            set {
+                if ((this.DoorIDField.Equals(value) != true)) {
+                    this.DoorIDField = value;
+                    this.RaisePropertyChanged("DoorID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DoorNo {
+            get {
+                return this.DoorNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DoorNoField, value) != true)) {
+                    this.DoorNoField = value;
+                    this.RaisePropertyChanged("DoorNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long NeighbourhoodID {
+            get {
+                return this.NeighbourhoodIDField;
+            }
+            set {
+                if ((this.NeighbourhoodIDField.Equals(value) != true)) {
+                    this.NeighbourhoodIDField = value;
+                    this.RaisePropertyChanged("NeighbourhoodID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NeighbourhoodName {
+            get {
+                return this.NeighbourhoodNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NeighbourhoodNameField, value) != true)) {
+                    this.NeighbourhoodNameField = value;
+                    this.RaisePropertyChanged("NeighbourhoodName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ProvinceID {
+            get {
+                return this.ProvinceIDField;
+            }
+            set {
+                if ((this.ProvinceIDField.Equals(value) != true)) {
+                    this.ProvinceIDField = value;
+                    this.RaisePropertyChanged("ProvinceID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProvinceName {
+            get {
+                return this.ProvinceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProvinceNameField, value) != true)) {
+                    this.ProvinceNameField = value;
+                    this.RaisePropertyChanged("ProvinceName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long RuralCode {
+            get {
+                return this.RuralCodeField;
+            }
+            set {
+                if ((this.RuralCodeField.Equals(value) != true)) {
+                    this.RuralCodeField = value;
+                    this.RaisePropertyChanged("RuralCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long StreetID {
+            get {
+                return this.StreetIDField;
+            }
+            set {
+                if ((this.StreetIDField.Equals(value) != true)) {
+                    this.StreetIDField = value;
+                    this.RaisePropertyChanged("StreetID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StreetName {
+            get {
+                return this.StreetNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StreetNameField, value) != true)) {
+                    this.StreetNameField = value;
+                    this.RaisePropertyChanged("StreetName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -3144,9 +3368,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.DateTime BillDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BillNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool CanBePaidField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3186,19 +3407,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((this.BillDateField.Equals(value) != true)) {
                     this.BillDateField = value;
                     this.RaisePropertyChanged("BillDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BillName {
-            get {
-                return this.BillNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BillNameField, value) != true)) {
-                    this.BillNameField = value;
-                    this.RaisePropertyChanged("BillName");
                 }
             }
         }

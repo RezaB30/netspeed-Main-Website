@@ -73,7 +73,7 @@
                         </div>
                         <!--end::Title-->
                         <!--begin::Form-->
-                        @using (Html.BeginForm("PaymentBill", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
+                        @using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                         {
                             @Html.AntiForgeryToken()
                             <div class="d-flex justify-content-center flex-row-fluid ">

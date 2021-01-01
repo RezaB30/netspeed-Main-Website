@@ -13,6 +13,7 @@ namespace NetspeedMainWebsite.Controllers
     {
         // GET: PaymentBill
         //HashUtilities hash = new HashUtilities();
+        MainSiteServiceClient client = new MainSiteServiceClient();
 
         [HttpGet]
         public ActionResult PaymentBill()
@@ -20,115 +21,163 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PaymentBill(PaymentBillViewModel clientBill)
-        {
-            var message = string.Empty;
-           
-            if (ModelState.IsValid)
-            {
-                clientBill.PhoneNumber = clientBill.PhoneNumber.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
-                MainSiteServiceClient client = new MainSiteServiceClient();
-                var randomKey = Guid.NewGuid().ToString();
-                var username = "elif";
-                var passwordHash = HashUtilities.HashCalculate("123456");
-                var genericHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-                var response = client.GetBills(new  NetspeedServiceSubscriberGetBillsRequest()
-                {
-                    Culture = "tr-tr",
-                    Rand = randomKey,
-                    Hash = genericHash,
-                    Username = username,
-                    GetBillParameters = new SubscriberGetBillsRequest()
-                    {
-                        SubscriberNo = clientBill.ClientInfo,
-                        PhoneNo = clientBill.PhoneNumber
-                    }
-                });
-                var result = response;
-              
-            }
-            else
-            {
-                return View(clientBill);
-            }
-            return RedirectToAction("PaymentBillAndResult", "ClientPayment");
-        }
-
         [HttpGet]
+        public ActionResult PaymentBillWithCard()
+        {
+            return View();
+
+        }
         public ActionResult PaymentBillAndResult()
         {
-            DateTime dt = new DateTime(2020, 12, 30);
-            DateTime edt = new DateTime(2021, 12, 30);
-
-            var results = new BillInfoViewModel[]
-            {
-                new BillInfoViewModel()
-                {
-                    BillId = 2,
-                    TariffName = "Fiber Ham Çökelek",
-                    BillDate = dt,
-                    ExpiryDate = edt,
-                    BillAmount = 55
-                },
-                new BillInfoViewModel()
-                {
-                    BillId = 4,
-                    TariffName = "Fiber Ham Çökelek2",
-                    BillDate = dt,
-                    ExpiryDate = edt,
-                    BillAmount = 80.55m
-                }
-
-            };
-            return View(results);
+            var ClientBillList = (List<BillInfoViewModel>)Session["ClientBillList"];
+            return View(ClientBillList);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PaymentBillAndResult(string PhoneNumber, string ClientInfo)
+        {
+            var randomKey = Guid.NewGuid().ToString();
+            var username = "elif";
+            var passwordHash = HashUtilities.HashCalculate("123456");
+            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+
+
+            var response = client.GetBills(new NetspeedServiceSubscriberGetBillsRequest()
+            {
+                Culture = "tr-tr",
+                Rand = randomKey,
+                Hash = serviceRequestHash,
+                Username = username,
+                GetBillParameters = new SubscriberGetBillsRequest
+                {
+                    TCKOrSubscriberNo = ClientInfo,
+                    PhoneNo = PhoneNumber
+                }
+            });
+
+            BillInfoViewModel Bills = new BillInfoViewModel();
+
+            var ClientBillItems = response.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
+            {
+                ServiceName = r.ServiceName,
+                CanBePaid = r.CanBePaid,
+                BillDate = r.BillDate,
+                BillId = r.ID,
+                Total = r.Total,
+                LastPaymentDate = r.LastPaymentDate
+            });
+            var ClientBillList = ClientBillItems.ToList();
+
+            //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
+            Session["ClientBillList"] = ClientBillList;
+            return View(ClientBillList);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentBillAndResult(BillInfoViewModel[] selectedBills)
+        public ActionResult PaymentSelectBill(object SelectedBills)
+        //public ActionResult PaymentBillAndResult(object SelectedBills)
         {
-            var ClientBillList = new List<BillInfoViewModel>();
-            int cb = 0;
             var message = string.Empty;
 
-            for (int l = 0; l < selectedBills.Length; l++)
+            var CurrentSelectedBills = ((string[])SelectedBills)[0].ToString().Split(',');
+            var GetSelectedBills = new List<long>();//selected bills
+            foreach (var item in CurrentSelectedBills)
             {
-                if (selectedBills[l].BillCheck == true)
+                GetSelectedBills.Add(Convert.ToInt64(item));
+            }
+            var BillList = (List<BillInfoViewModel>)Session["ClientBillList"];//all bills
+
+          
+            var selectBills = BillList.Where(bill => GetSelectedBills.Contains(bill.BillId)).ToArray();
+
+            var HasBillList = new List<long>();//correct bills for BillId
+
+            for (int c = 0; c < GetSelectedBills.Count(); c++)
+            {
+                var HasBill = BillList.Select(i => i.BillId).Contains(GetSelectedBills[c]);
+                if (HasBill == true)
                 {
-                    cb++;
+                    HasBillList.Add(GetSelectedBills[c]);
                 }
             }
-            if (cb >= 1)
+
+            DateTime temp;
+
+            for (int i = 0; i < BillList.Count() - 1; i++)//order datetime all billlist
             {
-                for (int i = 0; i < selectedBills.Length; i++)
+                for (int j = i; j < BillList.Count(); j++)
                 {
-                    if (ModelState.IsValid)
                     {
-                        if (selectedBills[i].BillCheck == true)
+                        temp = BillList[j].BillDate;
+                        BillList[j].BillDate = BillList[i].BillDate;
+                        BillList[i].BillDate = temp;
+                    }
+                }
+            }
+
+            var BillIds = new List<long>();
+
+            var PayableBillIdList = new List<long>();
+
+            for (int hasCanBePaid = 0; hasCanBePaid < BillList.Count(); hasCanBePaid++)
+            {
+                if (BillList[hasCanBePaid].CanBePaid == true && HasBillList.Contains(BillList[hasCanBePaid].BillId))
+                {
+                    PayableBillIdList.Add(BillList[hasCanBePaid].BillId);
+
+                    for (int payable = 0; payable < HasBillList.Count(); payable++)
+                    {
+                        if (HasBillList.Contains(BillList[payable].BillId))
                         {
-                            ClientBillList.Add(new BillInfoViewModel()
+                            if (!PayableBillIdList.Contains(BillList[payable].BillId))
                             {
-                                BillId = selectedBills[i].BillId,
-                                TariffName = selectedBills[i].TariffName,
-                                BillAmount = selectedBills[i].BillAmount,
-                                BillDate = selectedBills[i].BillDate,
-                                ExpiryDate = selectedBills[i].ExpiryDate
-                            });
+                                PayableBillIdList.Add(BillList[payable].BillId);
+                            }
                         }
                     }
                 }
-                return View(ClientBillList);
+            }
+            if (PayableBillIdList.Count == 0)
+            {
+                message = "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
+                ViewBag.message = message;
+                return RedirectToAction("PaymentBillAndResult", "ClientPayment");
             }
             else
             {
-                message = "Lütfen Ödenecek Faturayı/Faturaları Seçiniz.";
+                Session["BillIds"] = PayableBillIdList;
+                return RedirectToAction("PaymentVPOS", "ClientPayment");
             }
-            ViewBag.message = message;
 
-            return View(selectedBills);
+
+        }
+        public ActionResult PaymentVPOS(long[] BillIds)
+        {
+
+            var randomKey = Guid.NewGuid().ToString();
+            var username = "elif";
+            var passwordHash = HashUtilities.HashCalculate("123456");
+            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+
+
+            var response = client.SubscriberPaymentVPOS(new NetspeedServicePaymentVPOSRequest()
+            {
+                Culture = "tr-tr",
+                Rand = randomKey,
+                Hash = serviceRequestHash,
+                Username = username,
+                PaymentVPOSParameters = new PaymentVPOSRequest
+                {
+                    BillIds = BillIds,
+                    FailUrl = "/",
+                    OkUrl = "/",//paybills
+                    
+                }
+
+            });
+            return View();
         }
     }
 }
