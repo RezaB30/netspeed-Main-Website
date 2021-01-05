@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -150,7 +151,14 @@
     <Compile Include="Models\ViewModel\InfrastructureInquiryViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentCardInfo.cs" />
+    <Compile Include="Models\ViewModel\VPOSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +188,7 @@
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.wsdl" />
     <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1127,24 +1136,9 @@
     <Content Include="Content\fonts\line-awesome\la-solid-900.svg" />
     <Content Include="Content\fonts\socicon\socicon.svg" />
     <Content Include="Global.asax" />
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.wsdl" />
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService5.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -1152,6 +1146,7 @@
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <Content Include="Scripts\js\get-infrastructure.js" />
+    <Content Include="Scripts\js\get-switchpartial.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1165,12 +1160,23 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
+    <Content Include="Views\ClientPayment\PaymentFail.cshtml" />
+    <Content Include="Views\ClientPayment\PaymentVPOS.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_Gsm.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_SmsVerification.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_ContactInformation.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_AddressAndApplicationInformation.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_TariffsAndPreference.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_IDInformation.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_ApplicationSummary.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_ApplicationConstant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\media\svg\social-icons\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CallMe\" />
+    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\media\bg\debug.log" />
@@ -1250,7 +1256,7 @@
     <Content Include="Views\Support\Index.cshtml" />
     <Content Include="Views\About\Kvkk.cshtml" />
     <Content Include="Views\Support\TransferProcess.cshtml" />
-    <Content Include="Views\Payment\PaymentOk.cshtml" />
+    <Content Include="Views\ClientPayment\PaymentConfirm.cshtml" />
     <Content Include="Views\Support\OperatorConversion.cshtml" />
     <Content Include="Views\Support\AutomaticPaymentInstruction.cshtml" />
     <Content Include="Views\About\CyberSecurity.cshtml" />

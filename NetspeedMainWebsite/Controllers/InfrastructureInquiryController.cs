@@ -68,8 +68,8 @@ namespace NetspeedMainWebsite.Controllers
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
             return Json(DistrictItems, JsonRequestBehavior.AllowGet);
-
         }
+
         [HttpPost]
         public ActionResult GetRegions(long code)
         {
@@ -154,8 +154,6 @@ namespace NetspeedMainWebsite.Controllers
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
             return Json(StreetItems, JsonRequestBehavior.AllowGet);
-
-
         }
         public ActionResult GetBuildings(long code)
         {

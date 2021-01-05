@@ -19,16 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.63:5050/MainSiteService.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.184.3.63:5050/MainSiteService.svc?singleWsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MainSiteService.xsd" MetadataType="Schema" ID="a3fb7d72-22ce-4739-91f8-d05364857e7d" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd4" />
-    <MetadataFile FileName="MainSiteService1.xsd" MetadataType="Schema" ID="9544a9b2-5ef9-4d26-b780-c7a6b04f3fb9" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd5" />
-    <MetadataFile FileName="MainSiteService2.xsd" MetadataType="Schema" ID="676e3047-ba03-4271-8892-d1b41dfeb616" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd0" />
-    <MetadataFile FileName="MainSiteService3.xsd" MetadataType="Schema" ID="e8ad2abf-4a2a-42e4-b499-a02903eb8237" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd1" />
-    <MetadataFile FileName="MainSiteService4.xsd" MetadataType="Schema" ID="aac05429-ce8f-44f0-a819-255127b5ca5a" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd2" />
-    <MetadataFile FileName="MainSiteService5.xsd" MetadataType="Schema" ID="a51abaaf-22e8-42af-a28a-50fde7933cae" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?xsd=xsd3" />
-    <MetadataFile FileName="MainSiteService.wsdl" MetadataType="Wsdl" ID="a3ca583f-f570-42fd-af5d-a9c1510caf25" SourceId="1" SourceUrl="http://192.168.1.63:5050/MainSiteService.svc?wsdl" />
+    <MetadataFile FileName="MainSiteService1.wsdl" MetadataType="Wsdl" ID="d8d1325c-1ae6-4009-a4a3-b953ce1bdb5d" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?singleWsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

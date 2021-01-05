@@ -23,11 +23,5 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
-
-
-        public ActionResult PaymentOk()
-        {
-            return View();
-        }
     }
 }

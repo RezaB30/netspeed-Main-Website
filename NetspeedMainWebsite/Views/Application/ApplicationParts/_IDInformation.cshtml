@@ -1,0 +1,178 @@
+﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
+
+<div class="pb-5" data-wizard-type="step-content">
+
+    <!--begin::Title-->
+    <div class="pb-15 pb-lg-5">
+        <h3 class="font-weight-bolder text-dark font-size-h2">Kimlik Bilgileriniz</h3><hr class="my-4">
+    </div>
+    <!--begin::Title-->
+    <div class="form-group">
+        <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
+        @Html.EditorFor(m=>m.TC, new { @class="form-control h-auto p-4 border-0 rounded-lg font-size-h6"})
+       @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
+    </div>
+    <!--begin::Form Group-->
+
+
+
+    <div class="row">
+        <div class="col-xl-4">
+            <!--begin::Input-->
+            <div class="form-group fv-plugins-icon-container">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
+               @* @Html.DropDownListFor(m=>m.BirthDay, Model.BirthDay,new { @class="form-control h-auto p-3 border-0 rounded-lg font-size-h6"} )*@
+                <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumgun">
+                    <option value="">Ay Seçin</option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+
+                </select>
+                <div class="fv-plugins-message-container"></div>
+            </div>
+            <!--end::Input-->
+        </div>
+
+        <div class="col-xl-4">
+            <!--begin::Input-->
+            <div class="form-group fv-plugins-icon-container">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Ayı </label>
+               @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumay">
+                    <option value="">Ay Seçin</option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <div class="fv-plugins-message-container"></div>
+            </div>
+            <!--end::Input-->
+        </div>
+        <div class="col-xl-4">
+            <!--begin::Input-->
+            <div class="form-group fv-plugins-icon-container">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yılı</label>
+               @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumyili">
+                    <option value="">Yıl Seçin</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2021">2021</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+                <div class="fv-plugins-message-container"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="pb-0 pb-lg-0">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
+                    @Html.EditorFor(m=>m.FatherName,new { @class="form-control h-auto p-3 border-0 rounded-lg font-size-h6"})
+                  
+                </div>
+            </div>
+            <!--end::Form Group-->
+            <!--begin::Form Group-->
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
+                    @Html.EditorFor(m => m.MotherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Form Group-->
+    <!--begin::Form Group-->
+    <div class="pb-0 pb-lg-0">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
+                    @*@Html.DropDownListFor(m => m.Sex, Model.Sex, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                    <select name="cinsiyet" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                        <option value="">Seçiniz</option>
+                        <option value="ER">Erkek</option>
+                        <option value="KD">Kadın</option>
+                    </select>
+                </div>
+            </div>
+            <!--end::Form Group-->
+            <!--begin::Form Group-->
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
+                    @Html.EditorFor(m=>m.BirthPlace,new {@class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                    @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumyeri" placeholder="Doğum yeri" value="">*@
+                </div>
+            </div>
+        </div>
+        <div class="pb-0 pb-lg-5">
+            <div class="row">
+                <!--end::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
+                        @Html.EditorFor(m => m.MotherFirstSurname, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="annekizliksoyad" placeholder="Anne Kızlık Soyadı" value="">*@
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!--end::Form Group-->
+<!--end: Wizard Step 6-->
