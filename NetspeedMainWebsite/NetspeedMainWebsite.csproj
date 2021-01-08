@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
+    </Reference>
+    <Reference Include="RezaB.Mailing, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RezaB.Mailing.1.0.1\lib\net452\RezaB.Mailing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -151,6 +157,7 @@
     <Compile Include="Models\ViewModel\InfrastructureInquiryViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentCardInfo.cs" />
+    <Compile Include="Models\ViewModel\VerificationViewModel.cs" />
     <Compile Include="Models\ViewModel\VPOSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -189,6 +196,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.wsdl" />
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1162,14 +1175,19 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\ClientPayment\PaymentFail.cshtml" />
     <Content Include="Views\ClientPayment\PaymentVPOS.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_Gsm.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_SmsVerification.cshtml" />
+    <Content Include="Views\Application\Verification\_Gsm.cshtml" />
+    <Content Include="Views\Application\Verification\_SmsVerification.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_ContactInformation.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_AddressAndApplicationInformation.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_TariffsAndPreference.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_IDInformation.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_ApplicationSummary.cshtml" />
+    <Content Include="Views\Application\ApplicationSummary.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_ApplicationConstant.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_ApplicationValidation.cshtml" />
+    <Content Include="Views\Application\ApplicationConfirm.cshtml" />
+    <Content Include="Views\Application\GsmVerification.cshtml" />
+    <Content Include="Views\Application\GsmVerificationWithSms.cshtml" />
+    <Content Include="Views\Application\ApplicationFail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

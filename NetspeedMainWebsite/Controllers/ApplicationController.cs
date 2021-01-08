@@ -11,211 +11,56 @@ namespace NetspeedMainWebsite.Controllers
     public class ApplicationController : Controller
     {
         MainSiteServiceClient client = new MainSiteServiceClient();
-        // GET: Application
-        //public ActionResult Index()
+
+
+        //public ActionResult ApplicationSummary()
         //{
         //    return View();
         //}
 
+        //public ActionResult ApplicationSummary(ApplicationViewModel application)
+        //{
 
+        //    return View();
+        //}
 
+        public ActionResult GsmVerification()
 
-        //    [HttpPost]
-        //    public ActionResult Index(ApplicationViewModel application)
-        //    {
+        {
+            return View();
+        }
+        public ActionResult ApplicationConfirm()
 
-        //        var randomKey = Guid.NewGuid().ToString();
-        //        var username = "elif";
-        //        var passwordHash = HashUtilities.HashCalculate("123456");
-        //        var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-
-        //        var response = client.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
-        //        {
-
-        //            Culture = "tr-tr",
-        //            Rand = randomKey,
-        //            Hash = serviceRequestHash,
-        //            Username = username,
-        //            CustomerRegisterParameters = new NewCustomerRegisterRequest()
-        //            {
-        //                SubscriptionInfo = new SubscriptionRegistrationInfo()
-        //                {
-        //                    BillingPeriod = "",//fatura dönemi
-        //                    DomainID = "",//büyük ihtimal sabit
-        //                    ServiceID = "",
-        //                    SetupAddress = new AddressInfo()
-        //                    {
-
-        //                        ProvinceID =,
-        //                        ProvinceName = application.Province,
-        //                        DistrictID = application.DistrictId,
-        //                        DistrictName = application.District,
-        //                        NeighbourhoodID = application.NeighborhoodId,
-        //                        NeighbourhoodName = application.Neighborhood,
-        //                        StreetID = application.StreetId,
-        //                        StreetName = application.Street,
-        //                        ApartmentID = application.AparmentId,
-        //                        ApartmentNo = application.AparmentNo,
-        //                        DoorID = application.DoorId,
-        //                        DoorNo = application.DoorNumber,
-        //                        AddressNo =,
-        //                        AddressText =,
-        //                        Floor =,
-        //                        PostalCode = application.PostalCode,
-        //                        RuralCode =
-        //                        }
-        //                },
-        //                IndividualCustomerInfo = new IndividualCustomerInfo()
-        //                {
-        //                    BirthPlace = application.BirthPlace,
-        //                    FathersName = application.FatherName,
-        //                    MothersMaidenName = application.MotherFirstSurname,
-        //                    MothersName = application.MotherName,
-        //                    Nationality = "",
-        //                    Profession = "",
-        //                    ResidencyAddress =new AddressInfo()
-        //                    {
-        //                        ProvinceID =application.ProvinceId,
-        //                        ProvinceName = application.Province,
-        //                        DistrictID =application.DistrictId,
-        //                        DistrictName = application.District,
-        //                        NeighbourhoodID =application.NeighborhoodId,
-        //                        NeighbourhoodName =application.Neighborhood,
-        //                        StreetID =application.StreetId,
-        //                        StreetName =application.Street,
-        //                        ApartmentID =application.AparmentId,
-        //                        ApartmentNo =application.AparmentNo,
-        //                        DoorID = application.DoorId,
-        //                        DoorNo = application.DoorNumber,
-        //                        AddressNo =,
-        //                        AddressText=,
-        //                        Floor=,
-        //                        PostalCode = application.PostalCode,
-        //                        RuralCode =
-        //                    },
-        //                    Sex = application.Sex
-        //                },
-        //                IDCardInfo = new IDCardInfo()
-        //                {
-        //                    BirthDate="",
-        //                    CardType = "",
-        //                    DateOfIssue = "",
-        //                    District = "",
-        //                    FirstName=application.FirstName,
-        //                    LastName=application.LastName,
-        //                    Neighbourhood = "",
-        //                    PageNo = "",
-        //                    PassportNo = "",
-        //                    PlaceOfIssue = "",
-        //                    Province = "",
-        //                    RowNo = "",
-        //                    SerialNo = "",
-        //                    TCKNo = "",
-        //                    VolumeNo = ""
-        //                },
-        //                CustomerGeneralInfo = new CustomerGeneralInfo()
-        //                {
-        //                    BillingAddress = new AddressInfo()
-        //                    {
-        //                        ProvinceID = application.ProvinceId,
-        //                        ProvinceName = application.Province,
-        //                        DistrictID = application.DistrictId,
-        //                        DistrictName = application.District,
-        //                        NeighbourhoodID = application.NeighborhoodId,
-        //                        NeighbourhoodName = application.Neighborhood,
-        //                        StreetID = application.StreetId,
-        //                        StreetName = application.Street,
-        //                        ApartmentID = application.AparmentId,
-        //                        ApartmentNo = application.AparmentNo,
-        //                        DoorID = application.DoorId,
-        //                        DoorNo = application.DoorNumber,
-        //                        AddressNo =,
-        //                        AddressText =,
-        //                        Floor =,
-        //                        PostalCode = application.PostalCode,
-        //                        RuralCode =
-        //                        },
-        //                    ContactPhoneNo = "",
-        //                    Culture = "",
-        //                    CustomerType = "",
-        //                    Email=application.EmailAddress,
-        //                    OtherPhoneNos = new PhoneNoListItem()
-        //                    { 
-        //                        Number=,
-        //                    }
-        //                },
-        //                CorporateCustomerInfo = new CorporateCustomerInfo()
-        //                {
-        //                    CentralSystemNo = "",
-        //                    ExecutiveMothersMaidenName =,
-        //                    ExecutiveMothersName =,
-        //                    ExecutiveNationality =,
-        //                    ExecutiveProfession =,
-        //                    ExecutiveResidencyAddress =new AddressInfo()
-        //                    {
-        //                        ProvinceID = application.ProvinceId,
-        //                        ProvinceName = application.Province,
-        //                        DistrictID = application.DistrictId,
-        //                        DistrictName = application.District,
-        //                        NeighbourhoodID = application.NeighborhoodId,
-        //                        NeighbourhoodName = application.Neighborhood,
-        //                        StreetID = application.StreetId,
-        //                        StreetName = application.Street,
-        //                        ApartmentID = application.AparmentId,
-        //                        ApartmentNo = application.AparmentNo,
-        //                        DoorID = application.DoorId,
-        //                        DoorNo = application.DoorNumber,
-        //                        AddressNo =,
-        //                        AddressText =,
-        //                        Floor =,
-        //                        PostalCode = application.PostalCode,
-        //                        RuralCode =
-        //                    },
-        //                    ExecutiveSex =,
-        //                    TaxNo =,
-        //                    TaxOffice =,
-        //                    Title =,
-        //                    TradeRegistrationNo =,
-        //                    CompanyAddress =new AddressInfo()
-        //                    {
-        //                        ProvinceID = application.ProvinceId,
-        //                        ProvinceName = application.Province,
-        //                        DistrictID = application.DistrictId,
-        //                        DistrictName = application.District,
-        //                        NeighbourhoodID = application.NeighborhoodId,
-        //                        NeighbourhoodName = application.Neighborhood,
-        //                        StreetID = application.StreetId,
-        //                        StreetName = application.Street,
-        //                        ApartmentID = application.AparmentId,
-        //                        ApartmentNo = application.AparmentNo,
-        //                        DoorID = application.DoorId,
-        //                        DoorNo = application.DoorNumber,
-        //                        AddressNo =,
-        //                        AddressText =,
-        //                        Floor =,
-        //                        PostalCode = application.PostalCode,
-        //                        RuralCode =
-
-        //                    },
-        //                    ExecutiveBirthPlace =,
-        //                    ExecutiveFathersName =,
-        //                },
-        //            }
-
-        //        });
-        //        var k = response.NewCustomerRegisterResponse.Select(r => new 
-        //        { 
-
-        //        });
-
-
-        //        return View();
-        //    }
-
+        {
+            return View();
+        }
 
         public ActionResult Index()
         {
+            List<SelectListItem> Days = new List<SelectListItem>();
+            for (int d = 1; d <= 31; d++)
+            {
+                Days.Add(new SelectListItem { Text = d.ToString(), Value = d.ToString() });
+            }
+
+            ViewBag.Days = Days;
+
+            List<SelectListItem> Months = new List<SelectListItem>();
+            for (int m = 1; m <= 12; m++)
+            {
+                Months.Add(new SelectListItem { Text = m.ToString(), Value = m.ToString() });
+            }
+
+            ViewBag.Months = Months;
+
+            List<SelectListItem> Years = new List<SelectListItem>();
+            for (int y = 1940; y <= 2003; y++)
+            {
+                Years.Add(new SelectListItem { Text = y.ToString(), Value = y.ToString() });
+            }
+            ViewBag.Years = Years;
+
+
             var randomKey = Guid.NewGuid().ToString();
             var username = "elif";
             var passwordHash = HashUtilities.HashCalculate("123456");
@@ -238,6 +83,8 @@ namespace NetspeedMainWebsite.Controllers
             return View(new ApplicationViewModel() { ProvinceList = ProvinceItems });
         }
 
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
@@ -246,7 +93,6 @@ namespace NetspeedMainWebsite.Controllers
             var username = "elif";
             var passwordHash = HashUtilities.HashCalculate("123456");
             var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
 
             var response = client.GetProvinceDistricts(new NetspeedServiceArrayListRequest()
             {
@@ -412,270 +258,336 @@ namespace NetspeedMainWebsite.Controllers
             return Json(BuildingItems, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public ActionResult _ContactInformation(ApplicationViewModel application)
-        //{
-        //    var contactInformationList = new List<ApplicationViewModel>();
 
-
-        //    contactInformationList.Add(new ApplicationViewModel()
-        //    {
-        //        FirstName = application.FirstName,
-        //        LastName = application.LastName,
-        //        EmailAddress = application.EmailAddress
-        //    });
-        //    Session["contactInformationList"] = contactInformationList;
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult _AddressAndApplicationInformation(ApplicationViewModel application)
-        //{
-        //    var addressAndApplicationInformationList = new List<ApplicationViewModel>();
-
-        //    addressAndApplicationInformationList.Add(new ApplicationViewModel()
-        //    {
-        //        ApplicationType=application.ApplicationType,
-        //        HasFixedPhone=application.HasFixedPhone,
-        //        FixedPhoneNumber=application.FixedPhoneNumber,
-        //        ServiceNumber=application.ServiceNumber,
-        //        OperatorName=application.OperatorName,
-        //        ProvinceId = application.ProvinceId,
-        //        Province = application.Province,
-        //        DistrictId = application.DistrictId,
-        //        District = application.District,
-        //        RegionId = application.RegionId,
-        //        Region = application.Region,
-        //        NeighborhoodId = application.NeighborhoodId,
-        //        Neighborhood = application.Neighborhood,
-        //        StreetId = application.StreetId,
-        //        Street = application.Street,
-        //        Floor = application.Floor,
-        //        BuildingId=application.BuildingId,
-        //        Building=application.Building,
-        //        ApartmentId=application.ApartmentId,
-        //        Apartment=application.Apartment,
-        //        PostalCode = application.PostalCode,
-        //    });
-        //    Session["addressAndApplicationInformationList"] = addressAndApplicationInformationList;
-        //    return View();
-        //}
-
-        //public ActionResult _TariffsAndPreference(ApplicationViewModel application)
-        //{
-        //    var tariffsAndPreferencenList = new List<ApplicationViewModel>();
-
-
-        //    tariffsAndPreferencenList.Add(new ApplicationViewModel()
-        //    {
-
-        //    });
-        //    Session["tariffsAndPreferencenList"] = tariffsAndPreferencenList;
-
-        //    return View();
-
-        //}
-        
         [HttpPost]
+        //public ActionResult test1(ApplicationViewModel application)
         public ActionResult Index(ApplicationViewModel application)
+        //public ActionResult Index(ApplicationViewModel application)
         {
+            DateTime dt = new DateTime(1995, 03, 28);
             if (ModelState.IsValid)
             {
 
-                var randomKey = Guid.NewGuid().ToString();
-                var username = "elif";
-                var passwordHash = HashUtilities.HashCalculate("123456");
-                var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+                //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
+                var ApplicationList = new List<ApplicationViewModel>();
 
-
-                var response = client.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
+                ApplicationList.Add(new ApplicationViewModel()
                 {
-
-                    Culture = "tr-tr",
-                    Rand = randomKey,
-                    Hash = serviceRequestHash,
-                    Username = username,
-                    CustomerRegisterParameters = new NewCustomerRegisterRequest()
-                    {
-                        SubscriptionInfo = new SubscriptionRegistrationInfo()
-                        {
-                            BillingPeriod = application.BillingPeriod,
-                            DomainID = application.DomainId,
-                            ServiceID = application.ServiceId,
-                            SetupAddress = new AddressInfo()
-                            {
-
-                                ProvinceID = application.ProvinceId,
-                                //ProvinceName = application.Province,
-                                DistrictID = application.DistrictId,
-                                //DistrictName = application.District,
-                                NeighbourhoodID = application.NeighborhoodId,
-                                //NeighbourhoodName = application.Neighborhood,
-                                StreetID = application.StreetId,
-                                //StreetName = application.Street,
-                                ApartmentID = application.BuildingId,
-                                //ApartmentNo = application.Building,
-                                DoorID = application.ApartmentId,
-                                //DoorNo = application.Apartment,
-                                AddressNo = application.AddressNo,
-                                AddressText = application.AddressText,
-                                Floor = application.Floor,
-                                PostalCode = application.PostalCode,
-                                RuralCode = application.RuralCode
-                            }
-                        },
-                        IndividualCustomerInfo = new IndividualCustomerInfo()
-                        {
-                            BirthPlace = application.BirthPlace,
-                            FathersName = application.FatherName,
-                            MothersMaidenName = application.MotherFirstSurname,
-                            MothersName = application.MotherName,
-                            Nationality = application.Nationality,
-                            Profession = application.Profession,
-                            Sex = application.Sex,
-                            ResidencyAddress = new AddressInfo()
-                            {
-                                ProvinceID = application.ProvinceId,
-                                //ProvinceName = application.Province,
-                                DistrictID = application.DistrictId,
-                                //DistrictName = application.District,
-                                NeighbourhoodID = application.NeighborhoodId,
-                                //NeighbourhoodName = application.Neighborhood,
-                                StreetID = application.StreetId,
-                                //StreetName = application.Street,
-                                ApartmentID = application.BuildingId,
-                                //ApartmentNo = application.Building,
-                                DoorID = application.ApartmentId,
-                                //DoorNo = application.Apartment,
-                                AddressNo = application.AddressNo,
-                                AddressText = application.AddressText,
-                                Floor = application.Floor,
-                                PostalCode = application.PostalCode,
-                                RuralCode = application.RuralCode
-                            }
-
-                        },
-                        IDCardInfo = new IDCardInfo()
-                        {
-                            BirthDate = application.BirthDay,
-                            CardType = application.CardType,
-                            DateOfIssue = application.DateOfIssue,
-                            District = application.District,
-                            FirstName = application.FirstName,
-                            LastName = application.LastName,
-                            Neighbourhood = application.Neighborhood,
-                            PageNo = application.PageNo,
-                            PassportNo = application.PassportNo,
-                            PlaceOfIssue = application.PlaceOfIssue,
-                            //Province = application.Province,
-                            RowNo = application.RowNo,
-                            SerialNo = application.SerialNo,
-                            TCKNo = application.TC,
-                            VolumeNo = application.VolumeNo
-                        },
-                        CustomerGeneralInfo = new CustomerGeneralInfo()
-                        {
-                            BillingAddress = new AddressInfo()
-                            {
-                                ProvinceID = application.ProvinceId,
-                                //ProvinceName = application.Province,
-                                DistrictID = application.DistrictId,
-                                //DistrictName = application.District,
-                                NeighbourhoodID = application.NeighborhoodId,
-                                //NeighbourhoodName = application.Neighborhood,
-                                StreetID = application.StreetId,
-                                //StreetName = application.Street,
-                                ApartmentID = application.BuildingId,
-                                //ApartmentNo = application.Building,
-                                DoorID = application.ApartmentId,
-                                //DoorNo = application.Apartment,
-                                AddressNo = application.AddressNo,
-                                AddressText = application.AddressText,
-                                Floor = application.Floor,
-                                PostalCode = application.PostalCode,
-                                RuralCode = application.RuralCode
-                            },
-                            ContactPhoneNo = application.PhoneNumber,
-                            Culture = application.Culture,
-                            CustomerType = application.CustomerType,
-                            Email = application.EmailAddress,
-                            //OtherPhoneNos=new PhoneNoListItem()
-                            //{
-                            //    //Number=,
-                            //}
-                        },
-                        CorporateCustomerInfo = new CorporateCustomerInfo()
-                        {
-                            CentralSystemNo = application.CentralSystemNo,
-                            ExecutiveMothersMaidenName = application.MotherFirstSurname,
-                            ExecutiveMothersName = application.MotherName,
-                            ExecutiveNationality = application.Nationality,
-                            ExecutiveProfession = application.Profession,
-                            ExecutiveResidencyAddress = new AddressInfo()
-                            {
-                                ProvinceID = application.ProvinceId,
-                                //ProvinceName = application.Province,
-                                DistrictID = application.DistrictId,
-                                //DistrictName = application.District,
-                                NeighbourhoodID = application.NeighborhoodId,
-                                //NeighbourhoodName = application.Neighborhood,
-                                StreetID = application.StreetId,
-                                //StreetName = application.Street,
-                                ApartmentID = application.BuildingId,
-                                //ApartmentNo = application.Building,
-                                DoorID = application.ApartmentId,
-                                //DoorNo = application.Apartment,
-                                AddressNo = application.AddressNo,
-                                AddressText = application.AddressText,
-                                Floor = application.Floor,
-                                PostalCode = application.PostalCode,
-                                RuralCode = application.RuralCode
-                            },
-                            ExecutiveSex = application.Sex,
-                            TaxNo = application.TaxNo,
-                            TaxOffice = application.TaxOffice,
-                            Title = application.Title,
-                            TradeRegistrationNo = application.TradeRegistrationNo,
-                            CompanyAddress = new AddressInfo()
-                            {
-                                ProvinceID = application.ProvinceId,
-                                //ProvinceName = application.Province,
-                                DistrictID = application.DistrictId,
-                                //DistrictName = application.District,
-                                NeighbourhoodID = application.NeighborhoodId,
-                                //NeighbourhoodName = application.Neighborhood,
-                                StreetID = application.StreetId,
-                                //StreetName = application.Street,
-                                ApartmentID = application.BuildingId,
-                                //ApartmentNo = application.Building,
-                                DoorID = application.ApartmentId,
-                                //DoorNo = application.Apartment,
-                                AddressNo = application.AddressNo,
-                                AddressText = application.AddressText,
-                                Floor = application.Floor,
-                                PostalCode = application.PostalCode,
-                                RuralCode = application.RuralCode
-
-                            },
-                            ExecutiveBirthPlace = application.BirthPlace,
-                            ExecutiveFathersName = application.FatherName,
-                        },
-                    }
-
+                    FirstName = application.FirstName,
+                    LastName = application.LastName,
+                    BirthDate = dt,
+                    BirthPlace = application.BirthPlace,
+                    ContactPhoneNo = application.PhoneNumber,
+                    //PhoneNumber = application.PhoneNumber,
+                    TC = "12862964604",
+                    EmailAddress = application.EmailAddress,
+                    MotherName = application.MotherName,
+                    FatherName = application.FatherName,
+                    MotherFirstSurname = application.MotherFirstSurname,
+                    PostalCode = application.PostalCode,
+                    Floor = application.Floor,
+                    ApartmentId = application.ApartmentId,
+                    DistrictId = application.DistrictId,
+                    BuildingId = application.BuildingId,
+                    ProvinceId = application.ProvinceId,
+                    NeighborhoodId = application.NeighborhoodId,
+                    RegionId = application.RegionId,
+                    StreetId = application.StreetId,
                 });
+                var ApplicationItemList = ApplicationList.ToList();
 
-                //var k = response.NewCustomerRegisterResponse.Select(r => new ApplicationViewModel()
-                //{
-
-                //});
-
-                var message = response.ResponseMessage.ErrorMessage;
-                return View();
+                Session["ApplicationItemList"] = ApplicationItemList;
+                return RedirectToAction("GsmVerification", "Application");
 
             }
+            //return PartialView("ApplicationParts/_ApplicationValidation");
+            return View(application);
+        }
+
+        [HttpPost]
+        public ActionResult GsmVerification(ApplicationViewModel application)
+        {
+            var Gsm = string.Empty;
+
+            //Gsm.Add(new ApplicationViewModel()
+            //{
+            //    PhoneNumber = application.PhoneNumber
+            //});
+            Gsm = application.PhoneNumber;
+            //return RedirectToAction("GsmVerificationWithSms", "Application");
+
+            var randomKey = Guid.NewGuid().ToString();
+            var username = "elif";
+            var passwordHash = HashUtilities.HashCalculate("123456");
+            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+
+
+            var response = client.SendGenericSMS(new NetspeedServiceSendGenericSMSRequest()
+            {
+                Culture = "tr-tr",
+                Rand = randomKey,
+                Hash = serviceRequestHash,
+                Username = username,
+                SendGenericSMSParameters = new SendGenericSMSRequest
+                {
+                    CustomerPhoneNo = application.PhoneNumber
+                }
+
+            });
+            Session["Gsm"] = Gsm;
+            //return RedirectToAction("ApplicationGet", "Application");
+            return RedirectToAction("GsmVerificationWithSms", "Application");
+
+        }
+
+        //[HttpPost]
+
+        public ActionResult GsmVerificationWithSms()
+        {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult GsmVerificationWithSms(VerificationViewModel verification)
+        {
+            var message = string.Empty;
+            var Gsm = Session["Gsm"];
+
+            var randomKey = Guid.NewGuid().ToString();
+            var username = "elif";
+            var passwordHash = HashUtilities.HashCalculate("123456");
+            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+
+
+            var response = client.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
+            {
+                Culture = "tr-tr",
+                Rand = randomKey,
+                Hash = serviceRequestHash,
+                Username = username,
+                RegisterSMSValidationParameters = new RegisterSMSValidationRequest
+                {
+                    CustomerPhoneNo = Gsm.ToString(),
+                    Password = verification.Code
+                }
+            });
+            if (response.ResponseMessage.ErrorCode==0)
+            {
+                return RedirectToAction("ApplicationSummary", "Application");
+            }
+            ViewBag.message = "Lütfen Kodu Kontrol Ediniz.";
+
+            return View();
+        }
+
+        public ActionResult ApplicationFail()
+        {
+            return View();
+        }
+
+        public ActionResult ApplicationSummary()
+        {
+            var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
+            var Gsm = Session["Gsm"];
+            string SerialNo = "A25I96170";
+            DateTime dti = new DateTime(2029, 12, 26);
+
+            var randomKey = Guid.NewGuid().ToString();
+            var username = "elif";
+            var passwordHash = HashUtilities.HashCalculate("123456");
+            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+            var getAddress = client.GetApartmentAddress(new NetspeedServiceAddressDetailsRequest()
+            {
+                //BBK = ApplicationItemList[0].BuildingId,
+                BBK = ApplicationItemList[0].ApartmentId,
+                Culture = "tr-tr",
+                Rand = randomKey,
+                Hash = serviceRequestHash,
+                Username = username,
+            });
+            var address = getAddress.AddressDetailsResponse;
+
+            var ConfirmList = new List<ApplicationViewModel>();
+            ConfirmList.Add(new ApplicationViewModel()
+            {
+                FirstName = ApplicationItemList[0].FirstName,
+                LastName = ApplicationItemList[0].LastName,
+                PhoneNumber = ApplicationItemList[0].PhoneNumber,
+                EmailAddress= ApplicationItemList[0].EmailAddress,
+                AddressText = address.AddressText
+
+            });
+            
+
+            return View(ConfirmList);
+        }
+
+
+
+        //[HttpPost]
+        public ActionResult ApplicationGet(ApplicationViewModel application)
+        //public ActionResult Index(ApplicationViewModel application)
+        {
+            var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
+            var Gsm = Session["Gsm"];
+            string SerialNo = "A25I96170";
+            DateTime dti = new DateTime(2029, 12, 26);
+
+            var randomKey = Guid.NewGuid().ToString();
+            var username = "elif";
+            var passwordHash = HashUtilities.HashCalculate("123456");
+            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+            var getAddress = client.GetApartmentAddress(new NetspeedServiceAddressDetailsRequest()
+            {
+                //BBK = ApplicationItemList[0].BuildingId,
+                BBK = ApplicationItemList[0].ApartmentId,
+                Culture = "tr-tr",
+                Rand = randomKey,
+                Hash = serviceRequestHash,
+                Username = username,
+            });
+            var address = getAddress.AddressDetailsResponse;
+            var randomKeyGetApartment = Guid.NewGuid().ToString();
+            //var username = "elif";
+            var passwordHashGetApartment = HashUtilities.HashCalculate("123456");
+            var serviceRequestHashGetApartment = HashUtilities.HashCalculate($"{username}{randomKeyGetApartment}{passwordHashGetApartment}");
+            var response = client.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
+            {
+                Culture = "tr-tr",
+                Rand = randomKeyGetApartment,
+                Hash = serviceRequestHashGetApartment,
+                Username = username,
+                CustomerRegisterParameters = new NewCustomerRegisterRequest()
+                {
+                    SubscriptionInfo = new SubscriptionRegistrationInfo()
+                    {
+                        BillingPeriod = 1,
+                        DomainID = 1,
+                        ServiceID = 1,
+                        SetupAddress = new AddressInfo()
+                        {
+                            ProvinceID = address.ProvinceID,
+                            RuralCode = address.RuralCode,
+                            DistrictID = address.DistrictID,
+                            NeighbourhoodID = address.NeighbourhoodID,
+                            StreetID = address.StreetID,
+                            ApartmentID = address.ApartmentID,
+                            DoorID = address.DoorID,
+                            ProvinceName = address.ProvinceName,
+                            DistrictName = address.DistrictName,
+                            NeighbourhoodName = address.NeighbourhoodName,
+                            StreetName = address.StreetName,
+                            ApartmentNo = address.ApartmentNo,
+                            AddressText = address.AddressText,
+                            DoorNo = address.DoorNo,
+                            Floor = ApplicationItemList[0].Floor,
+                            PostalCode = ApplicationItemList[0].PostalCode,
+                            AddressNo = address.AddressNo,
+
+                        }
+                    },
+                    IndividualCustomerInfo = new IndividualCustomerInfo()
+                    {
+
+                        BirthPlace = ApplicationItemList[0].BirthPlace/*"İZMİR"*/,
+                        FathersName = ApplicationItemList[0].FatherName/*"HÜSEYİN"*/,
+                        MothersMaidenName = ApplicationItemList[0].MotherFirstSurname /*"KALAYCIOĞULLARI"*/,
+                        MothersName = ApplicationItemList[0].MotherName/*"GÜLŞAH"*/,
+                        Nationality = 228,
+                        Profession = 962,
+                        Sex = 2,
+                        ResidencyAddress = new AddressInfo()
+                        {
+                            ProvinceID = address.ProvinceID,
+                            RuralCode = address.RuralCode,
+                            DistrictID = address.DistrictID,
+                            NeighbourhoodID = address.NeighbourhoodID,
+                            StreetID = address.StreetID,
+                            ApartmentID = address.ApartmentID,
+                            DoorID = address.DoorID,
+                            ProvinceName = address.ProvinceName,
+                            DistrictName = address.DistrictName,
+                            NeighbourhoodName = address.NeighbourhoodName,
+                            StreetName = address.StreetName,
+                            ApartmentNo = address.ApartmentNo,
+                            AddressText = address.AddressText,
+                            DoorNo = address.DoorNo,
+                            Floor = ApplicationItemList[0].Floor,
+                            PostalCode = ApplicationItemList[0].PostalCode,
+                            AddressNo = address.AddressNo
+                        },
+                    },
+                    IDCardInfo = new IDCardInfo()
+                    {
+                        BirthDate = new DateTime(1995, 03, 28), //ApplicationItemList[0].BirthDate,
+                        CardType = 1,
+                        FirstName =/* "ELİF",*/ ApplicationItemList[0].FirstName,
+                        LastName = /*"FINDIK",*/ ApplicationItemList[0].LastName,
+                        TCKNo = /*"12862964604",*/ ApplicationItemList[0].TC,
+                        SerialNo = /*"A25I96170",*/SerialNo,
+                        PlaceOfIssue = "İZMİR",/*ApplicationItemList[0].BirthPlace*/
+                        DateOfIssue = new DateTime(2019, 12, 26),
+                    },
+                    CustomerGeneralInfo = new CustomerGeneralInfo()
+                    {
+                        OtherPhoneNos = null,
+                        BillingAddress = new AddressInfo()
+                        {
+                            ProvinceID = address.ProvinceID,
+                            RuralCode = address.RuralCode,
+                            DistrictID = address.DistrictID,
+                            NeighbourhoodID = address.NeighbourhoodID,
+                            StreetID = address.StreetID,
+                            ApartmentID = address.ApartmentID,
+                            DoorID = address.DoorID,
+                            ProvinceName = address.ProvinceName,
+                            DistrictName = address.DistrictName,
+                            NeighbourhoodName = address.NeighbourhoodName,
+                            StreetName = address.StreetName,
+                            ApartmentNo = address.ApartmentNo,
+                            AddressText = address.AddressText,
+                            DoorNo = address.DoorNo,
+                            Floor = ApplicationItemList[0].Floor,
+                            PostalCode = ApplicationItemList[0].PostalCode,
+                            AddressNo = address.AddressNo
+
+                        },
+                        //ContactPhoneNo = ApplicationItemList[0].PhoneNumber,
+                        ContactPhoneNo = Gsm.ToString()/*"5465939624"*/,
+                        Culture = "tr-tr",
+                        //CustomerType = application.CustomerType,
+                        CustomerType = 1,
+                        Email = ApplicationItemList[0].EmailAddress,
+
+                        //OtherPhoneNos=new PhoneNoListItem()
+                        //{
+                        //    //Number=,
+                        //}
+
+                    },
+                    CorporateCustomerInfo = null
+                }
+            });
+
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                return RedirectToAction("ApplicationConfirm", "Application");
+            }
+
+            //var Applist = new List<ApplicationViewModel>();
+            //Applist.Add(new ApplicationViewModel()
+            //{
+            //    FirstName = application.FirstName,
+            //    LastName = application.LastName,
+            //    PhoneNumber = application.PhoneNumber,
+            //    EmailAddress = application.EmailAddress
+            //});
+
+            //Session["Applist"] = Applist;
+
+            //return RedirectToAction("ApplicationSummary", "Application");
+
+            return RedirectToAction("ApplicationFail", "Application");
+        }
     }
 }

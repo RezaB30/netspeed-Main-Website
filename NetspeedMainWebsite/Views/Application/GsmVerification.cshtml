@@ -6,22 +6,17 @@
 }
 
 <style>
-    #ContactInformation {
+
+    #Gsm {
         display: block;
     }
 
-    #AddressAndApplicationInformation {
-        display: none;
-    }
-
-    #TariffsAndPreference {
-        display: none;
-    }
-
-    #IDInformation {
+    #SmsVerification {
         display: none;
     }
 </style>
+
+
 
 <div class="d-flex flex-column-fluid">
     <!--begin::Container-->
@@ -173,31 +168,54 @@
                     <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
 
                         <div class="d-flex justify-content-center flex-row-fluid ">
-                            @using (Html.BeginForm("Index", "Application", FormMethod.Post))
+                            @using (Html.BeginForm("GsmVerification", "Application", FormMethod.Post))
                             {
 
-                                @Html.AntiForgeryToken()
-                                <div id="ContactInformation">
-                                    @Html.Partial("ApplicationParts/_ContactInformation")
-                                    <input id="ButtonSwitch" type="button" value="Click" onclick="switchVisible3();" />
+                                @*@Html.AntiForgeryToken()*@
+
+                                @*<div id = "Gsm">*@
+                                @*@Html.Partial("Verification/_Gsm")*@
+                                @*<input id="ButtonSwitch" type="button" value="Click" onclick="switchVisible();" />*@
+
+
+                                <div class="d-flex justify-content-center flex-row-fluid ">
+                                    <div class="pb-5 w-100 w-md-450px w-lg-500px" novalidate="novalidate" id="kt_form">
+                                        <!--begin: Wizard Step 1-->
+                                        <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                                            <!--begin::Title-->
+                                            <div class="pb-10 pb-lg-15">
+                                                <h3 class="font-weight-bolder text-info font-size-h2">Netspeed Ev İnterneti, Online Başvurusuna Hoş Geldiniz!</h3><hr class="my-4">
+                                                <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvurunuza devam edebilmek ve sizinle başvuru sonrası iletişime geçebilmemiz için lütfen iletişim numaranızı yazınız.</div>
+                                                <div class="text-dark font-weight font-size-h8 mt-5">Ardından Cep Telefonunuza doğrulama kodu içeren bir sms göndereceğiz.</div>
+                                            </div>
+                                            <!--begin::Title-->
+                                            <!--begin::Form Group-->
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Lütfen GSM Numaranızı Yazınız</label>
+                                                @Html.EditorFor(m => m.PhoneNumber, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" })
+                                                <div class="text-danger"> 
+                                                @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                                </div>
+
+                                                @*<input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" name="gsmno" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" />*@
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--end: Wizard Step 1-->
+
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div id="AddressAndApplicationInformation">
-                                    @Html.Partial("ApplicationParts/_AddressAndApplicationInformation")
-                                    <input id="ButtonSwitch" type="button" value="Click" onclick="switchVisible4();" />
-                                </div>
-
-                                <div id="TariffsAndPreference">
-                                    @Html.Partial("ApplicationParts/_TariffsAndPreference")
-                                    <input id="ButtonSwitch" type="button" value="Click" onclick="switchVisible5();" />
-                                </div>
-
-                                <div id="IDInformation">
-                                    @Html.Partial("ApplicationParts/_IDInformation")
-                                    <input type="submit" value="Click" />
-                                </div>
-
+                                <div style="height:4em; width:3em">
+                                <input type="submit" value="Click" />
+                                    </div>
+                                @*</div>*@
                             }
+                            <!--<div id="SmsVerification">-->
+                            @* @Html.Partial("Verification/_SmsVerification")*@
+                            @*<input id="ButtonSwitch" type="button" value="Click" onclick="switchVisible2();" />*@
+                            <!--</div>-->
+
 
                         </div>
 
@@ -214,74 +232,17 @@
 </div>
 
 @section script{
-    @Scripts.Render("~/Scripts/js/get-infrastructure.js")
-
     <script>
-        $('#ProvinceId').change(function () {
-            GetValues('#ProvinceId', '#DistrictId', '/Application/GetDistricts');
-        })
-        $('#DistrictId').change(function () {
-            GetValues('#DistrictId', '#RegionId', '/Application/GetRegions');
-        })
-        $('#RegionId').change(function () {
-            GetValues('#RegionId', '#NeighborhoodId', '/Application/GetNeighborhoods');
-        })
-        $('#NeighborhoodId').change(function () {
-            GetValues('#NeighborhoodId', '#StreetId', '/Application/GetStreets');
-        })
-        $('#StreetId').change(function () {
-            GetValues('#StreetId', '#BuildingId', '/Application/GetBuildings');
-        })
-        $('#BuildingId').change(function () {
-            GetValues('#BuildingId', '#ApartmentId', '/Application/GetApartments');
-        })
-        $('#ApartmentId').change(function () {
-        })
-    </script>
+        function switchVisible() {
+            if (document.getElementById('Gsm')) {
 
-
-    <script>
-        function switchVisible3() {
-            if (document.getElementById('ContactInformation')) {
-
-                if (document.getElementById('ContactInformation').style.display == 'block') {
-                    document.getElementById('ContactInformation').style.display = 'none';
-                    document.getElementById('AddressAndApplicationInformation').style.display = 'block';
+                if (document.getElementById('Gsm').style.display == 'block') {
+                    document.getElementById('Gsm').style.display = 'none';
+                    document.getElementById('SmsVerification').style.display = 'block';
                 }
                 else {
-                    document.getElementById('ContactInformation').style.display = 'block';
-                    document.getElementById('AddressAndApplicationInformation').style.display = 'none';
-                }
-            }
-        }
-    </script>
-
-    <script>
-        function switchVisible4() {
-            if (document.getElementById('AddressAndApplicationInformation')) {
-
-                if (document.getElementById('AddressAndApplicationInformation').style.display == 'block') {
-                    document.getElementById('AddressAndApplicationInformation').style.display = 'none';
-                    document.getElementById('TariffsAndPreference').style.display = 'block';
-                }
-                else {
-                    document.getElementById('AddressAndApplicationInformation').style.display = 'block';
-                    document.getElementById('TariffsAndPreference').style.display = 'none';
-                }
-            }
-        }
-    </script>
-    <script>
-        function switchVisible5() {
-            if (document.getElementById('TariffsAndPreference')) {
-
-                if (document.getElementById('TariffsAndPreference').style.display == 'block') {
-                    document.getElementById('TariffsAndPreference').style.display = 'none';
-                    document.getElementById('IDInformation').style.display = 'block';
-                }
-                else {
-                    document.getElementById('TariffsAndPreference').style.display = 'block';
-                    document.getElementById('IDInformation').style.display = 'none';
+                    document.getElementById('Gsm').style.display = 'block';
+                    document.getElementById('SmsVerification').style.display = 'none';
                 }
             }
         }
@@ -291,3 +252,47 @@
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+@*@section script
+    {
+
+        <script>
+            function switchVisible1() {
+                if (document.getElementById('Gsm')) {
+
+                    if (document.getElementById('Gsm').style.display == 'block') {
+                        document.getElementById('Gsm').style.display = 'none';
+                        document.getElementById('SmsVerification').style.display = 'block';
+                    }
+                    else {
+                        document.getElementById('Gsm').style.display = 'block';
+                        document.getElementById('SmsVerification').style.display = 'none';
+                    }
+                }
+            }
+
+            function switchVisible2() {
+                if (document.getElementById('SmsVerification')) {
+
+                    if (document.getElementById('SmsVerification').style.display == 'block') {
+                        document.getElementById('SmsVerification').style.display = 'none';
+                        document.getElementById('ContactInformation').style.display = 'block';
+                    }
+                    else {
+                        document.getElementById('SmsVerification').style.display = 'block';
+                        document.getElementById('ContactInformation').style.display = 'none';
+                    }
+                }
+            }
+        </script>
+    }*@

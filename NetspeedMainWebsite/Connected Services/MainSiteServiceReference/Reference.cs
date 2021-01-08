@@ -31,6 +31,10 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfNewCustomerRegisterRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfCustomerContactRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceCustomerContactRequest))]
     public partial class BaseRequestOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -334,6 +338,68 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.CustomerRegisterParametersField, value) != true)) {
                     this.CustomerRegisterParametersField = value;
                     this.RaisePropertyChanged("CustomerRegisterParameters");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest))]
+    public partial class BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceSendGenericSMSRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceSendGenericSMSRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.SendGenericSMSRequest SendGenericSMSParametersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.SendGenericSMSRequest SendGenericSMSParameters {
+            get {
+                return this.SendGenericSMSParametersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SendGenericSMSParametersField, value) != true)) {
+                    this.SendGenericSMSParametersField = value;
+                    this.RaisePropertyChanged("SendGenericSMSParameters");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest))]
+    public partial class BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRegisterSMSValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceRegisterSMSValidationRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.RegisterSMSValidationRequest RegisterSMSValidationParametersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.RegisterSMSValidationRequest RegisterSMSValidationParameters {
+            get {
+                return this.RegisterSMSValidationParametersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RegisterSMSValidationParametersField, value) != true)) {
+                    this.RegisterSMSValidationParametersField = value;
+                    this.RaisePropertyChanged("RegisterSMSValidationParameters");
                 }
             }
         }
@@ -2000,8 +2066,116 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SendGenericSMSRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class SendGenericSMSRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerPhoneNoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerPhoneNo {
+            get {
+                return this.CustomerPhoneNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerPhoneNoField, value) != true)) {
+                    this.CustomerPhoneNoField = value;
+                    this.RaisePropertyChanged("CustomerPhoneNo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterSMSValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class RegisterSMSValidationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerPhoneNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerPhoneNo {
+            get {
+                return this.CustomerPhoneNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerPhoneNoField, value) != true)) {
+                    this.CustomerPhoneNoField = value;
+                    this.RaisePropertyChanged("CustomerPhoneNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfNullableOfbooleanSHA1qBRhzOKh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse))]
     public partial class BaseResponseOfNullableOfbooleanSHA1qBRhzOKh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2165,6 +2339,52 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceSendGenericSMSResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceSendGenericSMSResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsSuccessField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsSuccess {
+            get {
+                return this.IsSuccessField;
+            }
+            set {
+                if ((this.IsSuccessField.Equals(value) != true)) {
+                    this.IsSuccessField = value;
+                    this.RaisePropertyChanged("IsSuccess");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRegisterSMSValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceRegisterSMSValidationResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsSuccessField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsSuccess {
+            get {
+                return this.IsSuccessField;
+            }
+            set {
+                if ((this.IsSuccessField.Equals(value) != true)) {
+                    this.IsSuccessField = value;
+                    this.RaisePropertyChanged("IsSuccess");
+                }
             }
         }
     }
@@ -4088,6 +4308,18 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/NewCustomerRegister", ReplyAction="http://tempuri.org/IMainSiteService/NewCustomerRegisterResponse")]
         System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse> NewCustomerRegisterAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/SendGenericSMS", ReplyAction="http://tempuri.org/IMainSiteService/SendGenericSMSResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse SendGenericSMS(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/SendGenericSMS", ReplyAction="http://tempuri.org/IMainSiteService/SendGenericSMSResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse> SendGenericSMSAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation", ReplyAction="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation", ReplyAction="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse> RegisterSMSValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -4227,6 +4459,22 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse> NewCustomerRegisterAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterRequest request) {
             return base.Channel.NewCustomerRegisterAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse SendGenericSMS(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest request) {
+            return base.Channel.SendGenericSMS(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse> SendGenericSMSAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest request) {
+            return base.Channel.SendGenericSMSAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request) {
+            return base.Channel.RegisterSMSValidation(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse> RegisterSMSValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request) {
+            return base.Channel.RegisterSMSValidationAsync(request);
         }
     }
 }

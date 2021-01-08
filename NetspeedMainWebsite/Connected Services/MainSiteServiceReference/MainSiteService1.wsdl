@@ -200,6 +200,34 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="SendGenericSMS">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q29:NetspeedServiceSendGenericSMSRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendGenericSMSResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="SendGenericSMSResult" nillable="true" type="q30:NetspeedServiceSendGenericSMSResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RegisterSMSValidation">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q31:NetspeedServiceRegisterSMSValidationRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RegisterSMSValidationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="RegisterSMSValidationResult" nillable="true" type="q32:NetspeedServiceRegisterSMSValidationResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -479,6 +507,39 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SubscriptionRegistrationInfo" nillable="true" type="tns:SubscriptionRegistrationInfo" />
+      <xs:complexType name="NetspeedServiceSendGenericSMSRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SendGenericSMSParameters" nillable="true" type="tns:SendGenericSMSRequest" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="NetspeedServiceSendGenericSMSRequest" nillable="true" type="tns:NetspeedServiceSendGenericSMSRequest" />
+      <xs:complexType name="SendGenericSMSRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerPhoneNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SendGenericSMSRequest" nillable="true" type="tns:SendGenericSMSRequest" />
+      <xs:complexType name="NetspeedServiceRegisterSMSValidationRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="RegisterSMSValidationParameters" nillable="true" type="tns:RegisterSMSValidationRequest" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="NetspeedServiceRegisterSMSValidationRequest" nillable="true" type="tns:NetspeedServiceRegisterSMSValidationRequest" />
+      <xs:complexType name="RegisterSMSValidationRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerPhoneNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RegisterSMSValidationRequest" nillable="true" type="tns:RegisterSMSValidationRequest" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="BaseRequestOfCustomerContactRequestSHA13jWQyVaD">
@@ -767,6 +828,38 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ" nillable="true" type="tns:BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ" />
+      <xs:complexType name="BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="BaseRequestOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="SendGenericSMSRequest" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
+              <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseRequestOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD" nillable="true" type="tns:BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD" />
+      <xs:complexType name="BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="BaseRequestOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="RegisterSMSValidationRequest" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
+              <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseRequestOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD" nillable="true" type="tns:BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" />
@@ -937,6 +1030,26 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="NetspeedServiceNewCustomerRegisterResponse" nillable="true" type="tns:NetspeedServiceNewCustomerRegisterResponse" />
+      <xs:complexType name="NetspeedServiceSendGenericSMSResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="IsSuccess" nillable="true" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="NetspeedServiceSendGenericSMSResponse" nillable="true" type="tns:NetspeedServiceSendGenericSMSResponse" />
+      <xs:complexType name="NetspeedServiceRegisterSMSValidationResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="IsSuccess" nillable="true" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="NetspeedServiceRegisterSMSValidationResponse" nillable="true" type="tns:NetspeedServiceRegisterSMSValidationResponse" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="ArrayOflong">
@@ -1049,6 +1162,18 @@
   <wsdl:message name="IMainSiteService_NewCustomerRegister_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewCustomerRegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="IMainSiteService_SendGenericSMS_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendGenericSMS" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_SendGenericSMS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendGenericSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_RegisterSMSValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSMSValidation" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_RegisterSMSValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSMSValidationResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMainSiteService">
     <wsdl:operation name="RegisterCustomerContact">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterCustomerContact" message="tns:IMainSiteService_RegisterCustomerContact_InputMessage" />
@@ -1105,6 +1230,14 @@
     <wsdl:operation name="NewCustomerRegister">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/NewCustomerRegister" message="tns:IMainSiteService_NewCustomerRegister_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/NewCustomerRegisterResponse" message="tns:IMainSiteService_NewCustomerRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendGenericSMS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/SendGenericSMS" message="tns:IMainSiteService_SendGenericSMS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/SendGenericSMSResponse" message="tns:IMainSiteService_SendGenericSMS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSMSValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation" message="tns:IMainSiteService_RegisterSMSValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse" message="tns:IMainSiteService_RegisterSMSValidation_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMainSiteService" type="tns:IMainSiteService">
@@ -1228,6 +1361,24 @@
     </wsdl:operation>
     <wsdl:operation name="NewCustomerRegister">
       <soap:operation soapAction="http://tempuri.org/IMainSiteService/NewCustomerRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendGenericSMS">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/SendGenericSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSMSValidation">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/RegisterSMSValidation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

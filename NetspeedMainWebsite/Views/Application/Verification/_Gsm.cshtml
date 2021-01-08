@@ -16,6 +16,8 @@
             <div class="form-group">
                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Lütfen GSM Numaranızı Yazınız</label>
                 @Html.EditorFor(m => m.PhoneNumber, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" })
+            <div class="text-danger"> @Html.ValidationMessageFor(model => model.PhoneNumber)</div>
+               
                 @*<input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" name="gsmno" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" />*@
             </div>
             <!--end::Form Group-->
