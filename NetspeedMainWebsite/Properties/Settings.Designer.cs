@@ -76,5 +76,27 @@ namespace NetspeedMainWebsite.Properties {
                 return ((string)(this["UserName"]));
             }
         }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("elif")]
+        public string WebUserName
+        {
+            get
+            {
+                return ((string)(this["WebUserName"]));
+            }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        public string PasswordForHash
+        {
+            get
+            {
+                return ((string)(this["PasswordForHash"]));
+            }
+        }
     }
 }

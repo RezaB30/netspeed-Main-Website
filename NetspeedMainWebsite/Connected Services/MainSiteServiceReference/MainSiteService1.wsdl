@@ -228,6 +228,62 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="GetNationalities">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q33:NetspeedServiceRequests" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNationalitiesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetNationalitiesResult" nillable="true" type="q34:NetspeedServiceArrayListResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSexes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q35:NetspeedServiceRequests" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSexesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetSexesResult" nillable="true" type="q36:NetspeedServiceArrayListResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProfessions">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q37:NetspeedServiceRequests" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProfessionsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetProfessionsResult" nillable="true" type="q38:NetspeedServiceArrayListResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetIDCardTypes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q39:NetspeedServiceRequests" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetIDCardTypesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetIDCardTypesResult" nillable="true" type="q40:NetspeedServiceArrayListResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -1174,6 +1230,30 @@
   <wsdl:message name="IMainSiteService_RegisterSMSValidation_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterSMSValidationResponse" />
   </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetNationalities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNationalities" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetNationalities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNationalitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetSexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSexes" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetSexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetProfessions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfessions" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetProfessions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfessionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetIDCardTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIDCardTypes" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GetIDCardTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIDCardTypesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMainSiteService">
     <wsdl:operation name="RegisterCustomerContact">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterCustomerContact" message="tns:IMainSiteService_RegisterCustomerContact_InputMessage" />
@@ -1238,6 +1318,22 @@
     <wsdl:operation name="RegisterSMSValidation">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation" message="tns:IMainSiteService_RegisterSMSValidation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse" message="tns:IMainSiteService_RegisterSMSValidation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNationalities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GetNationalities" message="tns:IMainSiteService_GetNationalities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/GetNationalitiesResponse" message="tns:IMainSiteService_GetNationalities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSexes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GetSexes" message="tns:IMainSiteService_GetSexes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/GetSexesResponse" message="tns:IMainSiteService_GetSexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfessions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GetProfessions" message="tns:IMainSiteService_GetProfessions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/GetProfessionsResponse" message="tns:IMainSiteService_GetProfessions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIDCardTypes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GetIDCardTypes" message="tns:IMainSiteService_GetIDCardTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/GetIDCardTypesResponse" message="tns:IMainSiteService_GetIDCardTypes_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMainSiteService" type="tns:IMainSiteService">
@@ -1379,6 +1475,42 @@
     </wsdl:operation>
     <wsdl:operation name="RegisterSMSValidation">
       <soap:operation soapAction="http://tempuri.org/IMainSiteService/RegisterSMSValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNationalities">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/GetNationalities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSexes">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/GetSexes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfessions">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/GetProfessions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIDCardTypes">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/GetIDCardTypes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -7,14 +7,14 @@
 
 @*<style>
 
-    #Gsm {
-        display: block;
-    }
+        #Gsm {
+            display: block;
+        }
 
-    #SmsVerification {
-        display: none;
-    }
-</style>*@
+        #SmsVerification {
+            display: none;
+        }
+    </style>*@
 
 
 
@@ -168,60 +168,60 @@
                     <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
 
                         <div class="d-flex justify-content-center flex-row-fluid ">
-    <!--begin: Wizard Step 2-->
-                            @using (Html.BeginForm("GsmVerificationWithSms","Application",FormMethod.Post)) 
+                            <!--begin: Wizard Step 2-->
+                            @using (Html.BeginForm("GsmVerificationWithSms", "Application", FormMethod.Post))
                             {
-                            <div class="pb-5" data-wizard-type="step-content">
-                                <div class="pb-10 pb-lg-15">
-                                    <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
-                                    <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
-                                </div>
-                                <!--begin::Form Group-->
-                                <div class="form-group">
-                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
-                                      @Html.EditorFor(m => m.Code, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" })
-                                    @*<input class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" id="kt_inputmask_12" name="smscode" placeholder="SMS Doğrulama Kodunuz" value="" />*@
-                                </div>
-                                <div class="separator separator-dashed my-3">
-                                    <br />
-                                    <div class="text-danger">
-                                        @ViewBag.message
+                                <div class="pb-5" data-wizard-type="step-content">
+                                    <div class="pb-10 pb-lg-15">
+                                        <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
+                                        <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
                                     </div>
-                                </div>
+                                    <!--begin::Form Group-->
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
+                                        @Html.EditorFor(m => m.Code, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" })
+                                        @*<input class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" id="kt_inputmask_12" name="smscode" placeholder="SMS Doğrulama Kodunuz" value="" />*@
+                                    </div>
+                                    <div class="separator separator-dashed my-3">
+                                        <br />
+                                        <div class="text-danger">
+                                            @ViewBag.message
+                                        </div>
+                                    </div>
 
-                                <div class="col-xl-12 col-lg-8 ">
+                                    <div class="col-xl-12 col-lg-8 ">
 
 
-                                </div>
-                                <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
-                                <div style="width:7em; height:3em">
-                                    <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
-                                        Sonraki
-                                        <span class="svg-icon svg-icon-md ml-1">
-                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                </g>
-                                            </svg>
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                    </button>
-                                </div>
+                                    </div>
+                                    <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
+                                    <div style="width:7em; height:3em">
+                                        <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
+                                            Sonraki
+                                            <span class="svg-icon svg-icon-md ml-1">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                        </button>
+                                    </div>
 
-                            </div>}
+                                </div>}
 
                         </div>
-                      
+
                         <!--end::Form-->
                     </div>
-                   
+
 
                     <!--end::Content-->
                 </div>
-                
+
 
             </div>
         </div>
@@ -229,3 +229,18 @@
 </div>
 
 
+@section script{
+    <sript>
+        function countdown()
+        {
+        window.location.href="@Url.Action("Index", "Application")";
+        }
+
+        setTimeout(
+        function()
+        { 
+        countdown();
+        }, 
+        3000);
+    </sript>
+}

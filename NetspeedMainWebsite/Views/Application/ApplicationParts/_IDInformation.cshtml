@@ -1,5 +1,9 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 
+@*@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+    @Html.Partial("ApplicationParts/_ApplicationConstant")*@
+
 <div class="pb-5" data-wizard-type="step-content">
 
     <!--begin::Title-->
@@ -8,205 +12,294 @@
     </div>
     <!--begin::Title-->
     <div class="form-group">
-        <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
-        @Html.EditorFor(m => m.TC, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
-        @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
-    </div>
-    <div class="fv-plugins-message-container">
-        <div class="text-danger">@Html.ValidationMessageFor(model => model.TC)</div>
-        
-    </div>
-    <!--begin::Form Group-->
+        <div class="col-lg-6 col-md-6">
+            <label class="font-size-h6 font-weight-bolder text-dark">Kimlik Kart Tipi</label>
 
+           @* @Html.EnumDropDownListFor(m => m.IDCardTypes, "SEÇİNİZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })*@
+            @Html.DropDownListFor(m => m.IDCardType,Model.IDCardTypeList, "SEÇİNİZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
 
-    <div class="row">
-        <div class="col-xl-4">
-            <!--begin::Input-->
-            <div class="form-group fv-plugins-icon-container">
-                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yılı</label>
-                @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                @*  @Html.DropDownListFor(m => m.BirthYear, new SelectList(ViewBag.Years, "Value", "Text"), "Yıl Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                  @*  @Html.DropDownListFor(m => m.BirthYear, new SelectList(ViewBag.Years, "Value", "Text"), "Yıl Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-
-                <div class="fv-plugins-message-container">
-                  @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthYear)</div>*@
-                </div>
-                <div class="fv-plugins-message-container"></div>
-            </div>
+            @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
         </div>
-
-        <div class="col-xl-4">
-            <!--begin::Input-->
-            <div class="form-group fv-plugins-icon-container">
-                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Ayı </label>
-                @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                @*  @Html.DropDownListFor(m => m.BirthMonth, new SelectList(ViewBag.Months, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                <div class="fv-plugins-message-container">
-                  @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthMonth)</div>*@
-                </div>
-            </div>
-            <!--end::Input-->
-        </div>
-        <div class="col-xl-4">
-            <!--begin::Input-->
-            <div class="form-group fv-plugins-icon-container">
-                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
-               @*   @Html.DropDownListFor(m => m.BirthDay, new SelectList(ViewBag.Days, "Value", "Text"), "Gün Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-
-                <div class="fv-plugins-message-container">
-                    @*<div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthDay)</div>*@
-
-                </div>
-            </div>
-            <!--end::Input-->
-        </div>
-
-    </div>
-
-
-
-
-    <div class="pb-0 pb-lg-0">
+        @*<div class="form-group">*@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
-                    @Html.EditorFor(m => m.FatherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Uyruk</label>
 
-                </div>
-                <div class="text-danger">
-                    @Html.ValidationMessageFor(model => model.FatherName)
+                   @* @Html.EnumDropDownListFor(m => m.CountryCodes, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                    @Html.DropDownListFor(m=>m.Nationality,Model.NationalityList,"SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
                 </div>
             </div>
-            <!--end::Form Group-->
-            <!--begin::Form Group-->
             <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
-                    @Html.EditorFor(m => m.MotherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-                </div>
-                <div class="text-danger">
-                    @Html.ValidationMessageFor(model => model.MotherName)
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
+                <div class="form-control h-auto p-4 border-0 rounded-lg font-size-h6">
+                    @Html.EditorFor(m => m.TC, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
                 </div>
             </div>
+            @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
+
         </div>
-    </div>
-    <!--end::Form Group-->
-    <!--begin::Form Group-->
-    <div class="pb-0 pb-lg-0">
+        <div class="fv-plugins-message-container">
+            <div class="text-danger">
+               @* @Html.ValidationMessageFor(model => model.CountryCodes)*@
+            </div>
+
+
+        </div>
+        <!--begin::Form Group-->
+
+
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
-                    @*@Html.DropDownListFor(m => m.Sex, Model.Sex, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                    <select name="cinsiyet" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
-                        <option value="">Seçiniz</option>
-                        <option value="ER">Erkek</option>
-                        <option value="KD">Kadın</option>
-                    </select>
+            <div class="col-xl-4">
+                <!--begin::Input-->
+                <div class="form-group fv-plugins-icon-container">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yılı</label>
+                    @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                    @* @Html.DropDownListFor(m => m.BirthYear, new SelectList(ViewBag.Years, "Value", "Text"), "Yıl Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+
+                    @*   @Html.DropDownListFor(m => m.BirthYear, "Yıl Seçin", new SelectList(, "value", "text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "yearElem" })*@
+                    @Html.DropDownListFor(m => m.BirthYear, new SelectList(ViewBag.Years, "Value", "Text"), "Yıl Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                    <div class="fv-plugins-message-container">
+                        @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthYear)</div>*@
+                    </div>
+                    <div class="fv-plugins-message-container"></div>
                 </div>
             </div>
-            <!--end::Form Group-->
-            <!--begin::Form Group-->
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
-                    @Html.EditorFor(m => m.BirthPlace, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-                    @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumyeri" placeholder="Doğum yeri" value="">*@
 
+            <div class="col-xl-4">
+                <!--begin::Input-->
+                <div class="form-group fv-plugins-icon-container">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Ayı </label>
+                    @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                    @Html.DropDownListFor(m => m.BirthMonth, Model.BirthMonthList, "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthMonth" })
+                    <div class="fv-plugins-message-container">
+                        @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthMonth)</div>*@
+                    </div>
                 </div>
-                <div class="text-danger">
-                    @Html.ValidationMessageFor(model => model.BirthPlace)
+                <!--end::Input-->
+            </div>
+            <div class="col-xl-4">
+                <!--begin::Input-->
+                <div class="form-group fv-plugins-icon-container">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
+                    @Html.DropDownListFor(m => m.BirthDay, Model.BirthDayList, "Gün Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthDay" })
+
+                    <div class="fv-plugins-message-container">
+                        @*<div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthDay)</div>*@
+
+                    </div>
                 </div>
+                <!--end::Input-->
             </div>
         </div>
-        <div class="pb-0 pb-lg-5">
+
+        <div class="pb-0 pb-lg-0">
             <div class="row">
-                <!--end::Form Group-->
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
+                        @Html.EditorFor(m => m.FatherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
-                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
-                        @Html.EditorFor(m => m.MotherFirstSurname, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-                        @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="annekizliksoyad" placeholder="Anne Kızlık Soyadı" value="">*@
                     </div>
                     <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.MotherFirstSurname)
+                        @Html.ValidationMessageFor(model => model.FatherName)
                     </div>
                 </div>
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
+                        @Html.EditorFor(m => m.MotherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
+                    </div>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.MotherName)
+                    </div>
+                </div>
             </div>
 
         </div>
 
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
+                        @Html.EditorFor(m => m.BirthPlace, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                    </div>
+                    <div class="text-danger">
+                        @* @Html.ValidationMessageFor(model => model.FatherName)*@
+                    </div>
+                </div>
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
+                        @Html.EditorFor(m => m.SerialNo, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                    </div>
+                    <div class="text-danger">
+                        @* @Html.ValidationMessageFor(model => model.MotherName)*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--end::Form Group-->
+        <!--begin::Form Group-->
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
+                        @Html.EditorFor(m => m.PlaceOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                    </div>
+                    <div class="text-danger">
+                        @* @Html.ValidationMessageFor(model => model.FatherName)*@
+                    </div>
+                </div>
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    @*<div class="form-group">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
+                            @Html.EditorFor(m => m.DateOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                        </div>*@
+                    <div class="text-danger">
+                        @* @Html.ValidationMessageFor(model => model.MotherName)*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="pb-0 pb-lg-5">
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
+                        @Html.EditorFor(m => m.DateOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
+
+                        @Html.DropDownListFor(m => m.Sex,Model.SexList, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                    </div>
+                </div>
+
+
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+
+            </div>
+            <div class="pb-0 pb-lg-5">
+                <div class="row">
+                    <!--end::Form Group-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
+                            @Html.EditorFor(m => m.MotherFirstSurname, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                            @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="annekizliksoyad" placeholder="Anne Kızlık Soyadı" value="">*@
+                        </div>
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.MotherFirstSurname)
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    @*</div>*@
+    <!--end::Form Group-->
+    <!--end: Wizard Step 6-->
 
-</div>
-<!--end::Form Group-->
-<!--end: Wizard Step 6-->
+    @section script{
 
-@section script{
-    <script>
-        $(document).ready(function () {
-            const monthNames = ["Ocak", "Subat", "Mart", "Nisan", "Mayıs", "Haziran",
-                "Temmuz", "Agustos", "Eylul", "Ekim", "Kasim", "Aralik"
-            ];
-            let qntYears = 4;
-            let selectYear = $("#BirthYear");
-            let selectMonth = $("#BirthMont");
-            let selectDay = $("#BirthDay");
-            let currentYear = new Date().getFullYear();
+        @Scripts.Render("~/Scripts/js/get-birthdate.js")
+        <script>
+            $('#BirthYear').change(function () {
+                GetValues('#BirthYear', '#BirthMonth', '/Application/GetDays');
+            })
+            $('#BirthDay').change(function () {
+            })
+        </script>
 
-            for (var y = 0; y < qntYears; y++) {
-                let date = new Date(currentYear);
-                let yearElem = document.createElement("option");
-                yearElem.value = currentYear
-                yearElem.textContent = currentYear;
-                selectYear.append(yearElem);
-                currentYear--;
-            }
 
-            for (var m = 0; m < 12; m++) {
-                let BirthMont = monthNames[m];
-                let monthElem = document.createElement("option");
-                monthElem.value = m;
-                monthElem.textContent = BirthMont;
-                selectMonth.append(monthElem);
-            }
 
-            var d = new Date();
-            var BirthMont = d.getMonth();
-            var BirthYear = d.getFullYear();
-            var BirthDay = d.getDate();
 
-            selectYear.val(BirthYear);
-            selectYear.on("change", AdjustDays);
-            selectMonth.val(BirthMont);
-            selectMonth.on("change", AdjustDays);
+        <script>
+                    //$(document).ready(function () {
+                    //    const monthNames = ["Ocak", "Subat", "Mart", "Nisan", "Mayıs", "Haziran",
+                    //        "Temmuz", "Agustos", "Eylul", "Ekim", "Kasim", "Aralik"
+                    //    ];
+                    //    let qntYears = 4;
+                    //    let selectYear = $("#BirthYear");
+                    //    let selectMonth = $("#BirthMont");
+                    //    let selectDay = $("#BirthDay");
+                    //    let currentYear = new Date().getFullYear();
 
-            AdjustDays();
-            selectDay.val(BirthDay)
+                    //    for (var y = 0; y < qntYears; y++) {
+                    //        let date = new Date(currentYear);
+                    //        let yearElem = document.createElement("option");
+                    //        yearElem.value = currentYear
+                    //        yearElem.textContent = currentYear;
+                    //        selectYear.append(yearElem);
+                    //        currentYear--;
+                    //    }
 
-            function AdjustDays() {
-                var year = selectYear.val();
-                var month = parseInt(selectMonth.val()) + 1;
-                selectDay.empty();
+                    //    for (var m = 0; m < 12; m++) {
+                    //        let BirthMont = monthNames[m];
+                    //        let monthElem = document.createElement("option");
+                    //        monthElem.value = m;
+                    //        monthElem.textContent = BirthMont;
+                    //        selectMonth.append(monthElem);
+                    //    }
 
-                //get the last day, so the number of days in that month
-                var days = new Date(BirthYear, BirthMont, 0).getDate();
+                    //    var d = new Date();
+                    //    var BirthMont = d.getMonth();
+                    //    var BirthYear = d.getFullYear();
+                    //    var BirthDay = d.getDate();
 
-                //lets create the days of that month
-                for (var d = 1; d <= days; d++) {
-                    var dayElem = document.createElement("option");
-                    dayElem.value = d;
-                    dayElem.textContent = d;
-                    selectDay.append(dayElem);
-                }
-            }
-        });
+                    //    selectYear.val(BirthYear);
+                    //    selectYear.on("change", AdjustDays);
+                    //    selectMonth.val(BirthMont);
+                    //    selectMonth.on("change", AdjustDays);
 
-    </script>
+                    //    AdjustDays();
+                    //    selectDay.val(BirthDay)
+
+                    //    function AdjustDays() {
+                    //        var year = selectYear.val();
+                    //        var month = parseInt(selectMonth.val()) + 1;
+                    //        selectDay.empty();
+
+
+                    //        var days = new Date(BirthYear, BirthMont, 0).getDate();
+                    //        for (var d = 1; d <= days; d++) {
+                    //            var dayElem = document.createElement("option");
+                    //            dayElem.value = d;
+                    //            dayElem.textContent = d;
+                    //            selectDay.append(dayElem);
+                    //        }
+                    //    }
+                    //});
+
+        </script>
 
     }

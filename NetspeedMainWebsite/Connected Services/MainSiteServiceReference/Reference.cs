@@ -4320,6 +4320,30 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation", ReplyAction="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse")]
         System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse> RegisterSMSValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetNationalities", ReplyAction="http://tempuri.org/IMainSiteService/GetNationalitiesResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetNationalities(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetNationalities", ReplyAction="http://tempuri.org/IMainSiteService/GetNationalitiesResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetNationalitiesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetSexes", ReplyAction="http://tempuri.org/IMainSiteService/GetSexesResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetSexes(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetSexes", ReplyAction="http://tempuri.org/IMainSiteService/GetSexesResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetSexesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetProfessions", ReplyAction="http://tempuri.org/IMainSiteService/GetProfessionsResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetProfessions(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetProfessions", ReplyAction="http://tempuri.org/IMainSiteService/GetProfessionsResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetProfessionsAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetIDCardTypes", ReplyAction="http://tempuri.org/IMainSiteService/GetIDCardTypesResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetIDCardTypes(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetIDCardTypes", ReplyAction="http://tempuri.org/IMainSiteService/GetIDCardTypesResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetIDCardTypesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -4475,6 +4499,38 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse> RegisterSMSValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request) {
             return base.Channel.RegisterSMSValidationAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetNationalities(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetNationalities(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetNationalitiesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetNationalitiesAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetSexes(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetSexes(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetSexesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetSexesAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetProfessions(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetProfessions(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetProfessionsAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetProfessionsAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetIDCardTypes(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetIDCardTypes(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetIDCardTypesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
+            return base.Channel.GetIDCardTypesAsync(request);
         }
     }
 }
