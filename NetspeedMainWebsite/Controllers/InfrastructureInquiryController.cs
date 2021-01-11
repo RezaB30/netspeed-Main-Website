@@ -11,52 +11,24 @@ namespace NetspeedMainWebsite.Controllers
     public class InfrastructureInquiryController : Controller
     {
         //GET: InfrastructureInquiry
-        MainSiteServiceClient client = new MainSiteServiceClient();
-
+        //MainSiteServiceClient client = new MainSiteServiceClient();
+        WebSeviceWrapper client = new WebSeviceWrapper();
         public ActionResult Test()
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var genericHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-            var response = client.GetProvinces(new NetspeedServiceRequests()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = genericHash,
-                Username = username,
-            });
-
+            var response = client.GetProvinces();
             var ProvinceItems = response.ValueNamePairList.Select(r => new SelectListItem()
             {
                 Text = r.Name,
                 Value = r.Code.ToString()
             });
 
-            //ViewBag.ProvinceList = new SelectList(ProvinceItems, "Value", "Text");
-            //var DistrictItems = new SelectList("", "");
-            //ViewBag.DistrictList = DistrictItems;
             return View(new InfrastructureInquiryViewModel() { Province = ProvinceItems });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-
-            var response = client.GetProvinceDistricts(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
+            var response = client.GetProvinceDistricts(code);
 
             var DistrictItems = response.ValueNamePairList.Select(r => new
             {
@@ -73,20 +45,7 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetRegions(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-
-            var response = client.GetDistrictRuralRegions(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
+            var response = client.GetDistrictRuralRegions(code);
 
             var RegionItems = response.ValueNamePairList.Select(r => new
             {
@@ -101,21 +60,8 @@ namespace NetspeedMainWebsite.Controllers
         }
         public ActionResult GetNeighborhoods(long code)
         {
+            var response = client.GetRuralRegionNeighbourhoods(code);
 
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-
-            var response = client.GetRuralRegionNeighbourhoods(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
             var NeighborhoodsItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
@@ -130,20 +76,7 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult GetStreets(long code)
         {
 
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-            var response = client.GetNeighbourhoodStreets(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
-
+            var response = client.GetNeighbourhoodStreets(code);
             var StreetItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
@@ -157,19 +90,7 @@ namespace NetspeedMainWebsite.Controllers
         }
         public ActionResult GetBuildings(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-            var response = client.GetStreetBuildings(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
+            var response = client.GetStreetBuildings(code);
 
             var BuildingItems = response.ValueNamePairList.Select(r => new
             {
@@ -185,19 +106,8 @@ namespace NetspeedMainWebsite.Controllers
 
         public ActionResult GetApartments(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+            var response = client.GetBuildingApartments(code);
 
-            var response = client.GetBuildingApartments(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
             var BuildingItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
@@ -220,22 +130,7 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult InfrastructureInquiryResult(string ApartmentId)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-            var response = client.ServiceAvailability(new NetspeedServiceServiceAvailabilityRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ServiceAvailabilityParameters = new ServiceAvailabilityRequest
-                {
-                    bbk = ApartmentId
-                }
-            });
+            var response = client.ServiceAvailability(ApartmentId);
             //var InfrastructureItems = response.
 
             InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();

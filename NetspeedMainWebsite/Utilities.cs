@@ -8,15 +8,13 @@ namespace NetspeedMainWebsite
 {
     static class Utilities
     {
-        public static string ClientUtilities(string randomKeyx, string usernamex, string pass)
-        {
-            MainSiteServiceClient client = new MainSiteServiceClient();
-           
-            var username = Properties.Settings.Default.WebUserName;
-            var passwordHash = HashUtilities.HashCalculate(pass);
-            var genericHash = HashUtilities.HashCalculate($"{usernamex}{randomKeyx}{passwordHash}");
+        //public static string ClientUtilities(string randomKeyx, string usernamex, string pass)
+        //{
+        //    var username = Properties.Settings.Default.WebUserName;
+        //    var passwordHash = HashUtilities.HashCalculate(pass);
+        //    var genericHash = HashUtilities.HashCalculate($"{usernamex}{randomKeyx}{passwordHash}");
 
-            return genericHash;
-        }
+        //    return genericHash;
+        //}
     }
 }

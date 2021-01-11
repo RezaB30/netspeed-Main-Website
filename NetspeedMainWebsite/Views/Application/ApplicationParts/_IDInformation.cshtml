@@ -72,7 +72,7 @@
                 <div class="form-group fv-plugins-icon-container">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Ayı </label>
                     @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                    @Html.DropDownListFor(m => m.BirthMonth, Model.BirthMonthList, "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthMonth" })
+                    @Html.DropDownListFor(m => m.BirthMonth, new SelectList(ViewBag.Months, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthMonth" })
                     <div class="fv-plugins-message-container">
                         @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthMonth)</div>*@
                     </div>
@@ -229,77 +229,3 @@
     <!--end::Form Group-->
     <!--end: Wizard Step 6-->
 
-    @section script{
-
-        @Scripts.Render("~/Scripts/js/get-birthdate.js")
-        <script>
-            $('#BirthYear').change(function () {
-                GetValues('#BirthYear', '#BirthMonth', '/Application/GetDays');
-            })
-            $('#BirthDay').change(function () {
-            })
-        </script>
-
-
-
-
-        <script>
-                    //$(document).ready(function () {
-                    //    const monthNames = ["Ocak", "Subat", "Mart", "Nisan", "Mayıs", "Haziran",
-                    //        "Temmuz", "Agustos", "Eylul", "Ekim", "Kasim", "Aralik"
-                    //    ];
-                    //    let qntYears = 4;
-                    //    let selectYear = $("#BirthYear");
-                    //    let selectMonth = $("#BirthMont");
-                    //    let selectDay = $("#BirthDay");
-                    //    let currentYear = new Date().getFullYear();
-
-                    //    for (var y = 0; y < qntYears; y++) {
-                    //        let date = new Date(currentYear);
-                    //        let yearElem = document.createElement("option");
-                    //        yearElem.value = currentYear
-                    //        yearElem.textContent = currentYear;
-                    //        selectYear.append(yearElem);
-                    //        currentYear--;
-                    //    }
-
-                    //    for (var m = 0; m < 12; m++) {
-                    //        let BirthMont = monthNames[m];
-                    //        let monthElem = document.createElement("option");
-                    //        monthElem.value = m;
-                    //        monthElem.textContent = BirthMont;
-                    //        selectMonth.append(monthElem);
-                    //    }
-
-                    //    var d = new Date();
-                    //    var BirthMont = d.getMonth();
-                    //    var BirthYear = d.getFullYear();
-                    //    var BirthDay = d.getDate();
-
-                    //    selectYear.val(BirthYear);
-                    //    selectYear.on("change", AdjustDays);
-                    //    selectMonth.val(BirthMont);
-                    //    selectMonth.on("change", AdjustDays);
-
-                    //    AdjustDays();
-                    //    selectDay.val(BirthDay)
-
-                    //    function AdjustDays() {
-                    //        var year = selectYear.val();
-                    //        var month = parseInt(selectMonth.val()) + 1;
-                    //        selectDay.empty();
-
-
-                    //        var days = new Date(BirthYear, BirthMont, 0).getDate();
-                    //        for (var d = 1; d <= days; d++) {
-                    //            var dayElem = document.createElement("option");
-                    //            dayElem.value = d;
-                    //            dayElem.textContent = d;
-                    //            selectDay.append(dayElem);
-                    //        }
-                    //    }
-                    //});
-
-        </script>
-
-    }

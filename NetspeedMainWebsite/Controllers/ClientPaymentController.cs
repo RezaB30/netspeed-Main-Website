@@ -14,8 +14,8 @@ namespace NetspeedMainWebsite.Controllers
     {
         // GET: PaymentBill
         //HashUtilities hash = new HashUtilities();
-        MainSiteServiceClient client = new MainSiteServiceClient();
-
+        //MainSiteServiceClient client = new MainSiteServiceClient();
+        WebSeviceWrapper client = new WebSeviceWrapper();
 
 
         [HttpGet]
@@ -58,26 +58,10 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult PaymentBillAndResult(string PhoneNumber, string ClientInfo)
         {
             if (ModelState.IsValid)
-            {
-                MainSiteServiceClient client = new MainSiteServiceClient();
-                var randomKey = Guid.NewGuid().ToString();
-                var username = "elif";
-                var passwordHash = HashUtilities.HashCalculate("123456");
-                var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+            {  
+                var response = client.GetBills(PhoneNumber,ClientInfo);
 
-
-                var response = client.GetBills(new NetspeedServiceSubscriberGetBillsRequest()
-                {
-                    Culture = "tr-tr",
-                    Rand = randomKey,
-                    Hash = serviceRequestHash,
-                    Username = username,
-                    GetBillParameters = new SubscriberGetBillsRequest
-                    {
-                        TCKOrSubscriberNo = ClientInfo,
-                        PhoneNo = PhoneNumber
-                    }
-                });
+             
                 //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
                 //if (response.ResponseMessage.ErrorMessage ==)
                 //{
@@ -211,30 +195,13 @@ namespace NetspeedMainWebsite.Controllers
             }
             
             MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(15));
-            
+
             //cacheToken.Remove(Key);
 
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+            var response = client.SubscriberPaymentVPOS(BillList, Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme), 
+                Url.Action("PaymentConfirm", "ClientPayment", new { id = Key }, Request.Url.Scheme));
 
-            var response = client.SubscriberPaymentVPOS(new NetspeedServicePaymentVPOSRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                PaymentVPOSParameters = new PaymentVPOSRequest
-                {
-                    BillIds = BillList,
-                    FailUrl = Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme),
-                    OkUrl = Url.Action("PaymentConfirm", "ClientPayment", new { id = Key }, Request.Url.Scheme),
-                }
-            });
-
-
-            ViewBag.VPOSForm = response.PaymentVPOSResponse.HtmlForm;
+           ViewBag.VPOSForm = response.PaymentVPOSResponse.HtmlForm;
             return View();
         }
 
@@ -242,19 +209,7 @@ namespace NetspeedMainWebsite.Controllers
         {
             var billIds = MemoryCache.Default.Get(id) as long[];
 
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-            var response = client.PayBills(new NetspeedServicePayBillsRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                PayBillsParameters = billIds
-            });
+            var response = client.PayBills(billIds);
 
             MemoryCache.Default.Remove(id);
             return View();

@@ -12,6 +12,7 @@ namespace NetspeedMainWebsite.Controllers
 {
     public class BaseController : Controller
     {
+        WebSeviceWrapper client = new WebSeviceWrapper();
         public ActionResult OnException()
         {
             return View();
@@ -27,26 +28,8 @@ namespace NetspeedMainWebsite.Controllers
 
             if (ModelState.IsValid)
             {
-                MainSiteServiceReference.MainSiteServiceClient client = new MainSiteServiceClient();
-                var randomKey = Guid.NewGuid().ToString();
-                var username = "elif";
-                var passwordHash = HashUtilities.HashCalculate("123456");
-                var genericHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-                var response = client.RegisterCustomerContact(new NetspeedServiceCustomerContactRequest()
-                {
-                    Culture = "tr-tr",
-                    Rand = randomKey,
-                    Hash = genericHash,
-                    Username = username,
-                    CustomerContactParameters = new CustomerContactRequest()
-                    {
-                        FullName = callMe.FullName,
-                        PhoneNo = callMe.PhoneNumber,
-                        RequestTypeID = 1022,
-                        RequestSubTypeID = 1048
-                    }
-                });
-
+                var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
+                
                 ViewBag.message = message;
                 return Redirect(returnUrl);
             }

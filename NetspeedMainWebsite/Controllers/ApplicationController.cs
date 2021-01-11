@@ -10,7 +10,7 @@ namespace NetspeedMainWebsite.Controllers
 {
     public class ApplicationController : Controller
     {
-        MainSiteServiceClient client = new MainSiteServiceClient();
+        WebSeviceWrapper client = new WebSeviceWrapper();
 
 
         //public ActionResult ApplicationSummary()
@@ -28,7 +28,8 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
-        public ActionResult GsmVerification(){
+        public ActionResult GsmVerification()
+        {
             return View();
         }
         public ActionResult ApplicationConfirm()
@@ -38,7 +39,7 @@ namespace NetspeedMainWebsite.Controllers
         }
         public ActionResult Index()
         {
-            int NowYear ;
+            int NowYear;
             int NowMonth;
             int NowDay;
             NowYear = DateTime.Now.Year;
@@ -46,15 +47,23 @@ namespace NetspeedMainWebsite.Controllers
             NowDay = DateTime.Now.Day;
 
             int DaysInMonth = DateTime.DaysInMonth(NowYear, 2);
-          
+
+            var responseProvince = client.GetProvinces();
+            var ProvinceItems = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
+            {
+                Text = p.Name,
+                Value = p.Code.ToString()
+
+            });
+
 
             List<SelectListItem> Years = new List<SelectListItem>();
             for (int y = 1940; y <= NowYear; y++)
             {
                 Years.Add(new SelectListItem { Text = y.ToString(), Value = y.ToString() });
             }
-            ViewBag.Years = Years; 
-            
+            ViewBag.Years = Years;
+
             List<SelectListItem> Months = new List<SelectListItem>();
             for (int m = 1; m <= 12; m++)
             {
@@ -62,130 +71,48 @@ namespace NetspeedMainWebsite.Controllers
             }
 
             ViewBag.Months = Months;
-            
+
             List<SelectListItem> Days = new List<SelectListItem>();
             for (int d = 0; d < DaysInMonth; d++)
             {
                 Days.Add(new SelectListItem { Text = d.ToString(), Value = d.ToString() });
             }
-            
+
             ViewBag.Days = Days;
 
 
-            var randomKeyIDCard = Guid.NewGuid().ToString();
-            var serviceRequestHashIDCard= Utilities.ClientUtilities(randomKeyIDCard, Properties.Settings.Default.WebUserName,Properties.Settings.Default.PasswordForHash);
-           
-            var responseIDCard = client.GetIDCardTypes(new NetspeedServiceRequests()
+            var responseIDCard = client.GetIDCardTypes();
+
+            var IDCardItems = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
             {
-                Culture = "tr-tr", //burada veriyoruz zaten
-                Rand = randomKeyIDCard, //gönder
-                Hash = serviceRequestHashIDCard, //sonucu al
-                Username = Properties.Settings.Default.WebUserName
+                Text = c.Name,
+                Value = c.Code.ToString()
             });
-            var IDCardItems = responseIDCard.ValueNamePairList.Select(s => new SelectListItem()
+            
+            var responseNat = client.GetNationalities();
+            var NatItems = responseNat.ValueNamePairList.Select(n => new SelectListItem()
             {
-                Text = s.Name,
-                Value = s.Code.ToString()
+                Text = n.Name,
+                Value = n.Code.ToString()
             });
 
-
-
-            var randomKeySex = Guid.NewGuid().ToString();
-            var serviceRequestHashSex = Utilities.ClientUtilities(randomKeySex, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var responseSex = client.GetSexes(new NetspeedServiceRequests()
-            {
-                Culture = "tr-tr",
-                Rand = randomKeySex,
-                Hash = serviceRequestHashSex,
-                Username = Properties.Settings.Default.WebUserName
-            });
+            var responseSex = client.GetSexes();
             var SexItems = responseSex.ValueNamePairList.Select(s => new SelectListItem()
             {
                 Text = s.Name,
                 Value = s.Code.ToString()
             });
 
-            var randomKeyNat = Guid.NewGuid().ToString();
-            var serviceRequestHashNat = Utilities.ClientUtilities(randomKeyNat, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var responseNat = client.GetNationalities(new NetspeedServiceRequests()
-            {
-                Culture = "tr-tr",
-                Rand = randomKeyNat,
-                Hash = serviceRequestHashNat,
-                Username = Properties.Settings.Default.WebUserName
-            });
-            var NatItems = responseNat.ValueNamePairList.Select(s => new SelectListItem()
-            {
-                Text = s.Name,
-                Value = s.Code.ToString()
-            });
-
-            var randomKeyPro = Guid.NewGuid().ToString();
-            var serviceRequestHashPro = Utilities.ClientUtilities(randomKeyPro, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var response = client.GetProvinces(new NetspeedServiceRequests()
-            {
-                Culture = "tr-tr",
-                Rand = randomKeyPro,
-                Hash = serviceRequestHashPro,
-                Username = Properties.Settings.Default.WebUserName
-            });
-
-            var ProvinceItems = response.ValueNamePairList.Select(r => new SelectListItem()
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-                
-            });
-
-            return View(new ApplicationViewModel() { ProvinceList = ProvinceItems, SexList = SexItems, NationalityList= NatItems, IDCardTypeList= IDCardItems });
+           
+            return View(new ApplicationViewModel() { ProvinceList = ProvinceItems, SexList = SexItems, NationalityList = NatItems, IDCardTypeList = IDCardItems });
         }
 
 
-        //public ActionResult k()
-        //{
-        //    var randomKey = Guid.NewGuid().ToString();
-        //    var username = "elif";
-        //    var passwordHash = HashUtilities.HashCalculate("123456");
-        //    var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-        //    var response = client.GetSexes(new NetspeedServiceRequests()
-        //    {
-        //        Culture = "tr-tr",
-        //        Rand = randomKey,
-        //        Hash = serviceRequestHash,
-        //        Username = username
-        //    });
-        //    var SexItems=response.ValueNamePairList.Select(s => new SelectListItem()
-        //    { 
-        //        Text=s.Name,
-        //        Value=s.Code.ToString()
-        //    });
-
-        //    return View(new ApplicationViewModel() { SexList = SexItems });
-        //}
-       
-
-            [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
-
-            var response = client.GetProvinceDistricts(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = username,
-                ItemCode = code
-            });
-
+            var response = client.GetProvinceDistricts(code);
             var DistrictItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
@@ -201,17 +128,7 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetRegions(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var response = client.GetDistrictRuralRegions(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-                ItemCode = code
-            });
+            var response = client.GetDistrictRuralRegions(code);
 
             var RegionItems = response.ValueNamePairList.Select(r => new
             {
@@ -227,17 +144,8 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetNeighborhoods(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
+            var response = client.GetRuralRegionNeighbourhoods(code);
 
-            var response = client.GetRuralRegionNeighbourhoods(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-                ItemCode = code
-            });
             var NeighborhoodsItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
@@ -252,19 +160,7 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetStreets(long code)
         {
-
-          
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var response = client.GetNeighbourhoodStreets(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-                ItemCode = code
-            });
+            var response = client.GetNeighbourhoodStreets(code);
 
             var StreetItems = response.ValueNamePairList.Select(r => new
             {
@@ -280,17 +176,7 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetBuildings(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var response = client.GetStreetBuildings(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-                ItemCode = code
-            });
+            var response = client.GetStreetBuildings(code);
 
             var BuildingItems = response.ValueNamePairList.Select(r => new
             {
@@ -306,18 +192,8 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetApartments(long code)
         {
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
+            var response = client.GetBuildingApartments(code);
 
-
-            var response = client.GetBuildingApartments(new NetspeedServiceArrayListRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-                ItemCode = code
-            });
             var BuildingItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
@@ -334,12 +210,6 @@ namespace NetspeedMainWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult GetDays(int year, int month)
         {
-            //int NowYear;
-            //int NowMonth;
-            //int NowDay;
-            //NowYear = DateTime.Now.Year;
-            //NowMonth = DateTime.Now.Month;
-            //NowDay = DateTime.Now.Day;
             int DaysInMonth = DateTime.DaysInMonth(year, month);
 
             List<SelectListItem> Days = new List<SelectListItem>();
@@ -347,18 +217,6 @@ namespace NetspeedMainWebsite.Controllers
             {
                 Days.Add(new SelectListItem { Text = d.ToString(), Value = d.ToString() });
             }
-
-            //ViewBag.Days = Days;
-
-            //return View(new ApplicationViewModel() { BirthDayList = Days });
-
-
-
-            //var DistrictItems = response.ValueNamePairList.Select(r => new
-            //{
-            //    Text = r.Name,
-            //    Value = r.Code.ToString()
-            //});
 
             if (Days == null)
             {
@@ -376,7 +234,6 @@ namespace NetspeedMainWebsite.Controllers
             DateTime dt = new DateTime(1995, 03, 28);
             if (ModelState.IsValid)
             {
-
                 //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
                 var ApplicationList = new List<ApplicationViewModel>();
 
@@ -403,10 +260,10 @@ namespace NetspeedMainWebsite.Controllers
                     RegionId = application.RegionId,
                     StreetId = application.StreetId,
                     SerialNo = application.SerialNo.ToUpper(),
-                    IDCardType=application.IDCardType,
-                    Nationality=application.Nationality,
-                    Sex=application.Sex
-                    
+                    IDCardType = application.IDCardType,
+                    Nationality = application.Nationality,
+                    Sex = application.Sex
+
                 });
                 var ApplicationItemList = ApplicationList.ToList();
 
@@ -421,25 +278,9 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GsmVerification(ApplicationViewModel application)
         {
-            var Gsm = string.Empty;
+            string Gsm = application.PhoneNumber;
 
-            Gsm = application.PhoneNumber;
-
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var response = client.SendGenericSMS(new NetspeedServiceSendGenericSMSRequest()
-            {
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-                SendGenericSMSParameters = new SendGenericSMSRequest
-                {
-                    CustomerPhoneNo = application.PhoneNumber
-                }
-
-            });
+            var response = client.SendGenericSMS(application.PhoneNumber);
             Session["Gsm"] = Gsm;
             //return RedirectToAction("ApplicationGet", "Application");
             return RedirectToAction("GsmVerificationWithSms", "Application");
@@ -450,40 +291,29 @@ namespace NetspeedMainWebsite.Controllers
 
         public ActionResult GsmVerificationWithSms()
         {
-           return View();
+            return View();
         }
 
         [HttpPost]
-        public ActionResult GsmVerificationWithSms(VerificationViewModel verification)
+        public ActionResult GsmVerificationWithSms(VerificationViewModel smsCode)
         {
             var message = string.Empty;
-            var Gsm = Session["Gsm"];
+            string Gsm = Session["Gsm"].ToString();
 
-            var randomKey = Guid.NewGuid().ToString();
-            var username = "elif";
-            var passwordHash = HashUtilities.HashCalculate("123456");
-            var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
+            //var randomKey = Guid.NewGuid().ToString();
+            //var username = "elif";
+            //var passwordHash = HashUtilities.HashCalculate("123456");
+            //var serviceRequestHash = HashUtilities.HashCalculate($"{username}{randomKey}{passwordHash}");
 
             if (Session["Action"] == null || (DateTime.Now - (DateTime)(Session["Action"])).Minutes > 3)
             {
-                var response = client.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
-                {
-                    Culture = "tr-tr",
-                    Rand = randomKey,
-                    Hash = serviceRequestHash,
-                    Username = Properties.Settings.Default.WebUserName,
-                    RegisterSMSValidationParameters = new RegisterSMSValidationRequest
-                    {
-                        CustomerPhoneNo = Gsm.ToString(),
-                        Password = verification.Code
-                    }
-                });
+                var response = client.RegisterSMSValidation(Gsm, smsCode.ToString());//buraya dön
+
                 Session["Action"] = DateTime.Now;
                 if (response.ResponseMessage.ErrorCode == 0)
                 {
                     return RedirectToAction("ApplicationSummary", "Application");
                 }
-               
             }
             else
             {
@@ -491,7 +321,7 @@ namespace NetspeedMainWebsite.Controllers
             }
             return View();
 
-            
+
             ViewBag.message = "Lütfen Kodu Kontrol Ediniz.";
 
             return View();
@@ -509,18 +339,7 @@ namespace NetspeedMainWebsite.Controllers
             string SerialNo = "A25I96170";
             DateTime dti = new DateTime(2029, 12, 26);
 
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
-
-            var getAddress = client.GetApartmentAddress(new NetspeedServiceAddressDetailsRequest()
-            {
-                //BBK = ApplicationItemList[0].BuildingId,
-                BBK = ApplicationItemList[0].ApartmentId,
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName
-            });
+            var getAddress = client.GetApartmentAddress(ApplicationItemList[0].ApartmentId);
             var address = getAddress.AddressDetailsResponse;
 
             var ConfirmList = new List<ApplicationViewModel>();
@@ -529,18 +348,15 @@ namespace NetspeedMainWebsite.Controllers
                 FirstName = ApplicationItemList[0].FirstName,
                 LastName = ApplicationItemList[0].LastName,
                 PhoneNumber = ApplicationItemList[0].PhoneNumber,
-                EmailAddress= ApplicationItemList[0].EmailAddress,
+                EmailAddress = ApplicationItemList[0].EmailAddress,
                 AddressText = address.AddressText
 
             });
-            
-
             return View(ConfirmList);
         }
 
 
-
-        //[HttpPost]
+        [HttpPost]
         public ActionResult ApplicationGet(ApplicationViewModel application)
         //public ActionResult Index(ApplicationViewModel application)
         {
@@ -549,148 +365,31 @@ namespace NetspeedMainWebsite.Controllers
             string SerialNo = "A25I96170";
             DateTime dti = new DateTime(2029, 12, 26);
 
-            var randomKey = Guid.NewGuid().ToString();
-            var serviceRequestHash = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
 
-            var getAddress = client.GetApartmentAddress(new NetspeedServiceAddressDetailsRequest()
-            {
-                //BBK = ApplicationItemList[0].BuildingId,
-                BBK = ApplicationItemList[0].ApartmentId,
-                Culture = "tr-tr",
-                Rand = randomKey,
-                Hash = serviceRequestHash,
-                Username = Properties.Settings.Default.WebUserName,
-            });
+            var getAddress = client.GetApartmentAddress(ApplicationItemList[0].ApartmentId);
+
             var address = getAddress.AddressDetailsResponse;
 
-            var randomKeyGetApartment = Guid.NewGuid().ToString();
-            var serviceRequestHashGetApartment = Utilities.ClientUtilities(randomKey, Properties.Settings.Default.WebUserName, Properties.Settings.Default.PasswordForHash);
 
 
-            var response = client.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
+            var response = client.NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+                address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
+                  address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, ApplicationItemList[0].Floor,
+                ApplicationItemList[0].PostalCode, ApplicationItemList[0].BirthPlace, ApplicationItemList[0].FatherName,
+               ApplicationItemList[0].MotherFirstSurname, ApplicationItemList[0].MotherName, (int)ApplicationItemList[0].Nationality, 962,
+               (int)ApplicationItemList[0].Sex, new DateTime(1995, 03, 28), (int)ApplicationItemList[0].IDCardType, ApplicationItemList[0].FirstName,
+               ApplicationItemList[0].LastName, ApplicationItemList[0].TC, ApplicationItemList[0].SerialNo, ApplicationItemList[0].PlaceOfIssue,
+               new DateTime(2019, 12, 26), null, Gsm.ToString(), "tr-tr", 1, ApplicationItemList[0].EmailAddress
+               );
             {
-                Culture = "tr-tr",
-                Rand = randomKeyGetApartment,
-                Hash = serviceRequestHashGetApartment,
-                Username = Properties.Settings.Default.WebUserName,
-                CustomerRegisterParameters = new NewCustomerRegisterRequest()
+
+                if (response.ResponseMessage.ErrorCode == 0)
                 {
-                    SubscriptionInfo = new SubscriptionRegistrationInfo()
-                    {
-                        BillingPeriod = 1,
-                        DomainID = 1,
-                        ServiceID = 1,
-                        SetupAddress = new AddressInfo()
-                        {
-                            ProvinceID = address.ProvinceID,
-                            RuralCode = address.RuralCode,
-                            DistrictID = address.DistrictID,
-                            NeighbourhoodID = address.NeighbourhoodID,
-                            StreetID = address.StreetID,
-                            ApartmentID = address.ApartmentID,
-                            DoorID = address.DoorID,
-                            ProvinceName = address.ProvinceName,
-                            DistrictName = address.DistrictName,
-                            NeighbourhoodName = address.NeighbourhoodName,
-                            StreetName = address.StreetName,
-                            ApartmentNo = address.ApartmentNo,
-                            AddressText = address.AddressText,
-                            DoorNo = address.DoorNo,
-                            Floor = ApplicationItemList[0].Floor,
-                            PostalCode = ApplicationItemList[0].PostalCode,
-                            AddressNo = address.AddressNo,
-
-                        }
-                    },
-                    IndividualCustomerInfo = new IndividualCustomerInfo()
-                    {
-
-                        BirthPlace = ApplicationItemList[0].BirthPlace/*"İZMİR"*/,
-                        FathersName = ApplicationItemList[0].FatherName/*"HÜSEYİN"*/,
-                        MothersMaidenName = ApplicationItemList[0].MotherFirstSurname /*"KALAYCIOĞULLARI"*/,
-                        MothersName = ApplicationItemList[0].MotherName/*"GÜLŞAH"*/,
-                        Nationality = (int)ApplicationItemList[0].Nationality,
-                        Profession = 962,
-                        Sex = (int)ApplicationItemList[0].Sex,
-                        ResidencyAddress = new AddressInfo()
-                        {
-                            ProvinceID = address.ProvinceID,
-                            RuralCode = address.RuralCode,
-                            DistrictID = address.DistrictID,
-                            NeighbourhoodID = address.NeighbourhoodID,
-                            StreetID = address.StreetID,
-                            ApartmentID = address.ApartmentID,
-                            DoorID = address.DoorID,
-                            ProvinceName = address.ProvinceName,
-                            DistrictName = address.DistrictName,
-                            NeighbourhoodName = address.NeighbourhoodName,
-                            StreetName = address.StreetName,
-                            ApartmentNo = address.ApartmentNo,
-                            AddressText = address.AddressText,
-                            DoorNo = address.DoorNo,
-                            Floor = ApplicationItemList[0].Floor,
-                            PostalCode = ApplicationItemList[0].PostalCode,
-                            AddressNo = address.AddressNo
-                        },
-                    },
-                    IDCardInfo = new IDCardInfo()
-                    {
-                        BirthDate = new DateTime(1995, 03, 28), //ApplicationItemList[0].BirthDate,
-                        CardType = (int)ApplicationItemList[0].IDCardType,
-                        FirstName =/* "ELİF",*/ ApplicationItemList[0].FirstName,
-                        LastName = /*"FINDIK",*/ ApplicationItemList[0].LastName,
-                        TCKNo = /*"12862964604",*/ ApplicationItemList[0].TC,
-                        SerialNo = /*"A25I96170",*/ApplicationItemList[0].SerialNo,
-                        PlaceOfIssue = /*"İZMİR",*/ApplicationItemList[0].PlaceOfIssue,
-                        DateOfIssue = new DateTime(2019, 12, 26),
-                    },
-                    CustomerGeneralInfo = new CustomerGeneralInfo()
-                    {
-                        OtherPhoneNos = null,
-                        BillingAddress = new AddressInfo()
-                        {
-                            ProvinceID = address.ProvinceID,
-                            RuralCode = address.RuralCode,
-                            DistrictID = address.DistrictID,
-                            NeighbourhoodID = address.NeighbourhoodID,
-                            StreetID = address.StreetID,
-                            ApartmentID = address.ApartmentID,
-                            DoorID = address.DoorID,
-                            ProvinceName = address.ProvinceName,
-                            DistrictName = address.DistrictName,
-                            NeighbourhoodName = address.NeighbourhoodName,
-                            StreetName = address.StreetName,
-                            ApartmentNo = address.ApartmentNo,
-                            AddressText = address.AddressText,
-                            DoorNo = address.DoorNo,
-                            Floor = ApplicationItemList[0].Floor,
-                            PostalCode = ApplicationItemList[0].PostalCode,
-                            AddressNo = address.AddressNo
-
-                        },
-                        //ContactPhoneNo = ApplicationItemList[0].PhoneNumber,
-                        ContactPhoneNo = Gsm.ToString()/*"5465939624"*/,
-                        Culture = "tr-tr",
-                        //CustomerType = application.CustomerType,
-                        CustomerType = 1,
-                        Email = ApplicationItemList[0].EmailAddress,
-
-                        //OtherPhoneNos=new PhoneNoListItem()
-                        //{
-                        //    //Number=,
-                        //}
-
-                    },
-                    CorporateCustomerInfo = null
+                    return RedirectToAction("ApplicationConfirm", "Application");
                 }
-            });
 
-            if (response.ResponseMessage.ErrorCode == 0)
-            {
-                return RedirectToAction("ApplicationConfirm", "Application");
+                return RedirectToAction("ApplicationFail", "Application");
             }
-
-            return RedirectToAction("ApplicationFail", "Application");
         }
     }
 }

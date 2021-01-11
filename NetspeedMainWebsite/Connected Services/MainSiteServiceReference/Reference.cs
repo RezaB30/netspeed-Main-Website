@@ -4344,6 +4344,12 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetIDCardTypes", ReplyAction="http://tempuri.org/IMainSiteService/GetIDCardTypesResponse")]
         System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetIDCardTypesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetKeyFragment", ReplyAction="http://tempuri.org/IMainSiteService/GetKeyFragmentResponse")]
+        string GetKeyFragment(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetKeyFragment", ReplyAction="http://tempuri.org/IMainSiteService/GetKeyFragmentResponse")]
+        System.Threading.Tasks.Task<string> GetKeyFragmentAsync(string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -4531,6 +4537,14 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse> GetIDCardTypesAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {
             return base.Channel.GetIDCardTypesAsync(request);
+        }
+        
+        public string GetKeyFragment(string username) {
+            return base.Channel.GetKeyFragment(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetKeyFragmentAsync(string username) {
+            return base.Channel.GetKeyFragmentAsync(username);
         }
     }
 }

@@ -35,67 +35,63 @@ namespace NetspeedMainWebsite.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("FQgb65L0")]
-        public string Password {
+        public string MailPassword {
             get {
-                return ((string)(this["Password"]));
+                return ((string)(this["MailPassword"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UseSSL {
+        public bool MailUseSSL {
             get {
-                return ((bool)(this["UseSSL"]));
+                return ((bool)(this["MailUseSSL"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("587")]
-        public int HostPort {
+        public int MailHostPort {
             get {
-                return ((int)(this["HostPort"]));
+                return ((int)(this["MailHostPort"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("mail.netspeed.com.tr")]
-        public string HostName {
+        public string MailHostName {
             get {
-                return ((string)(this["HostName"]));
+                return ((string)(this["MailHostName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("elif.findik@netspeed.com.tr")]
-        public string UserName {
+        public string MailUserName {
             get {
-                return ((string)(this["UserName"]));
+                return ((string)(this["MailUserName"]));
             }
         }
-
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("elif")]
-        public string WebUserName
-        {
-            get
-            {
-                return ((string)(this["WebUserName"]));
+        public string WebServiceUsername {
+            get {
+                return ((string)(this["WebServiceUsername"]));
             }
         }
-
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("123456")]
-        public string PasswordForHash
-        {
-            get
-            {
-                return ((string)(this["PasswordForHash"]));
+        public string WebServicePasswordHash {
+            get {
+                return ((string)(this["WebServicePasswordHash"]));
             }
         }
     }

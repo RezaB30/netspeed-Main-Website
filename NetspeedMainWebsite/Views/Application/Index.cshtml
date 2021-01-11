@@ -219,6 +219,17 @@
 
 @section script{
     @Scripts.Render("~/Scripts/js/get-infrastructure.js")
+    @Scripts.Render("~/Scripts/js/get-birthdate.js")
+
+    <script>
+        $('#BirthMonth').change(function ()
+        {
+            GetValues('#BirthYear', '#BirthMonth', '#BirthDay', '/Application/GetDays');
+        })
+        $('#BirthYear').change(function () {           
+            GetValues('#BirthYear', '#BirthMonth', '#BirthDay', '/Application/GetDays');
+        })
+    </script>
 
     <script>
         $('#ProvinceId').change(function () {
@@ -290,8 +301,6 @@
             }
         }
     </script>
-
-
 
 
 }

@@ -1,18 +1,20 @@
-﻿function GetValues(requestId, responseId, url) {
-    var ID = $(requestId).val();
+﻿function GetValues(requestIdYear, requestIdMonth, responseId, url) {
+    var IDYear = $(requestIdYear).val();
+    var IDMonth = $(requestIdMonth).val();
     var token = $("[name='__RequestVerificationToken']").val();
     ClearList(responseId);
     $(responseId).trigger('change');
-    if (ID == '') {
+    if (IDYear == '' || IDMonth == '') {
 
     }
+
     else {
         DisableSelectList();
         $.ajax({
             dataType: 'json',
             method: 'POST',
             url: url,
-            data: { code: ID, __RequestVerificationToken: token },
+            data: { year: IDYear, month: IDMonth, __RequestVerificationToken: token },
             complete: function (data, status) {
                 if (status == "success") {
                     var results = data.responseJSON;
