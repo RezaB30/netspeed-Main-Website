@@ -94,5 +94,14 @@ namespace NetspeedMainWebsite.Properties {
                 return ((string)(this["WebServicePasswordHash"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:02:00")]
+        public global::System.TimeSpan SMSValidationDuration {
+            get {
+                return ((global::System.TimeSpan)(this["SMSValidationDuration"]));
+            }
+        }
     }
 }

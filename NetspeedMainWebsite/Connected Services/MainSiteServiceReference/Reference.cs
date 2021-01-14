@@ -33,8 +33,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfCustomerContactRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceCustomerContactRequest))]
     public partial class BaseRequestOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -369,37 +367,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.SendGenericSMSParametersField, value) != true)) {
                     this.SendGenericSMSParametersField = value;
                     this.RaisePropertyChanged("SendGenericSMSParameters");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest))]
-    public partial class BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRegisterSMSValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceRegisterSMSValidationRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.RegisterSMSValidationRequest RegisterSMSValidationParametersField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.RegisterSMSValidationRequest RegisterSMSValidationParameters {
-            get {
-                return this.RegisterSMSValidationParametersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RegisterSMSValidationParametersField, value) != true)) {
-                    this.RegisterSMSValidationParametersField = value;
-                    this.RaisePropertyChanged("RegisterSMSValidationParameters");
                 }
             }
         }
@@ -1641,6 +1608,9 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.Nullable<int> DomainIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.ReferralDiscountInfo ReferralDiscountInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> ServiceIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1678,6 +1648,19 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((this.DomainIDField.Equals(value) != true)) {
                     this.DomainIDField = value;
                     this.RaisePropertyChanged("DomainID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.ReferralDiscountInfo ReferralDiscountInfo {
+            get {
+                return this.ReferralDiscountInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReferralDiscountInfoField, value) != true)) {
+                    this.ReferralDiscountInfoField = value;
+                    this.RaisePropertyChanged("ReferralDiscountInfo");
                 }
             }
         }
@@ -2066,6 +2049,35 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReferralDiscountInfo", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class ReferralDiscountInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SendGenericSMSRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
     [System.SerializableAttribute()]
     public partial class SendGenericSMSRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2111,73 +2123,27 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterSMSValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfSHA1o_Pr6u_PMh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
-    public partial class RegisterSMSValidationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CustomerPhoneNoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CustomerPhoneNo {
-            get {
-                return this.CustomerPhoneNoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CustomerPhoneNoField, value) != true)) {
-                    this.CustomerPhoneNoField = value;
-                    this.RaisePropertyChanged("CustomerPhoneNo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfNullableOfbooleanSHA1qBRhzOKh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceServiceAvailabilityResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfAddressDetailsResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAddressDetailsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePaymentVPOSResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfPayBillsResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfstringSHA1Miy85_SUl))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse))]
-    public partial class BaseResponseOfNullableOfbooleanSHA1qBRhzOKh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class BaseResponseOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -2345,181 +2311,10 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceSendGenericSMSResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceSendGenericSMSResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> IsSuccessField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> IsSuccess {
-            get {
-                return this.IsSuccessField;
-            }
-            set {
-                if ((this.IsSuccessField.Equals(value) != true)) {
-                    this.IsSuccessField = value;
-                    this.RaisePropertyChanged("IsSuccess");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRegisterSMSValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceRegisterSMSValidationResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> IsSuccessField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> IsSuccess {
-            get {
-                return this.IsSuccessField;
-            }
-            set {
-                if ((this.IsSuccessField.Equals(value) != true)) {
-                    this.IsSuccessField = value;
-                    this.RaisePropertyChanged("IsSuccess");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRegisterCustomerContactResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceRegisterCustomerContactResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> RegisterCustomerContactResponseField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> RegisterCustomerContactResponse {
-            get {
-                return this.RegisterCustomerContactResponseField;
-            }
-            set {
-                if ((this.RegisterCustomerContactResponseField.Equals(value) != true)) {
-                    this.RegisterCustomerContactResponseField = value;
-                    this.RaisePropertyChanged("RegisterCustomerContactResponse");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceServiceAvailabilityResponse))]
-    public partial class BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
+    public partial class BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2540,6 +2335,254 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.ServiceAvailabilityResponseField, value) != true)) {
                     this.ServiceAvailabilityResponseField = value;
                     this.RaisePropertyChanged("ServiceAvailabilityResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse))]
+    public partial class BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceArrayListResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceArrayListResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.ValueNamePair[] ValueNamePairListField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.ValueNamePair[] ValueNamePairList {
+            get {
+                return this.ValueNamePairListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueNamePairListField, value) != true)) {
+                    this.ValueNamePairListField = value;
+                    this.RaisePropertyChanged("ValueNamePairList");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfAddressDetailsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAddressDetailsResponse))]
+    public partial class BaseResponseOfAddressDetailsResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceAddressDetailsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceAddressDetailsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfAddressDetailsResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.AddressDetailsResponse AddressDetailsResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.AddressDetailsResponse AddressDetailsResponse {
+            get {
+                return this.AddressDetailsResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressDetailsResponseField, value) != true)) {
+                    this.AddressDetailsResponseField = value;
+                    this.RaisePropertyChanged("AddressDetailsResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsResponse))]
+    public partial class BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceSubscriberGetBillsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceSubscriberGetBillsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.SubscriberGetBillsResponse[] SubscriberGetBillsResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.SubscriberGetBillsResponse[] SubscriberGetBillsResponse {
+            get {
+                return this.SubscriberGetBillsResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubscriberGetBillsResponseField, value) != true)) {
+                    this.SubscriberGetBillsResponseField = value;
+                    this.RaisePropertyChanged("SubscriberGetBillsResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePaymentVPOSResponse))]
+    public partial class BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServicePaymentVPOSResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServicePaymentVPOSResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.PaymentVPOSResponse PaymentVPOSResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.PaymentVPOSResponse PaymentVPOSResponse {
+            get {
+                return this.PaymentVPOSResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentVPOSResponseField, value) != true)) {
+                    this.PaymentVPOSResponseField = value;
+                    this.RaisePropertyChanged("PaymentVPOSResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfPayBillsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsResponse))]
+    public partial class BaseResponseOfPayBillsResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServicePayBillsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServicePayBillsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfPayBillsResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.PayBillsResponse PayBillsResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.PayBillsResponse PayBillsResponse {
+            get {
+                return this.PayBillsResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PayBillsResponseField, value) != true)) {
+                    this.PayBillsResponseField = value;
+                    this.RaisePropertyChanged("PayBillsResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse))]
+    public partial class BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceNewCustomerRegisterResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceNewCustomerRegisterResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<string, string> NewCustomerRegisterResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<string, string> NewCustomerRegisterResponse {
+            get {
+                return this.NewCustomerRegisterResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewCustomerRegisterResponseField, value) != true)) {
+                    this.NewCustomerRegisterResponseField = value;
+                    this.RaisePropertyChanged("NewCustomerRegisterResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfstringSHA1Miy85_SUl", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse))]
+    public partial class BaseResponseOfstringSHA1Miy85_SUl : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceSendGenericSMSResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceSendGenericSMSResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfstringSHA1Miy85_SUl {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SMSCodeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SMSCode {
+            get {
+                return this.SMSCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SMSCodeField, value) != true)) {
+                    this.SMSCodeField = value;
+                    this.RaisePropertyChanged("SMSCode");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfNullableOfbooleanSHA1qBRhzOKh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse))]
+    public partial class BaseResponseOfNullableOfbooleanSHA1qBRhzOKh : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRegisterCustomerContactResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceRegisterCustomerContactResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> RegisterCustomerContactResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> RegisterCustomerContactResponse {
+            get {
+                return this.RegisterCustomerContactResponseField;
+            }
+            set {
+                if ((this.RegisterCustomerContactResponseField.Equals(value) != true)) {
+                    this.RegisterCustomerContactResponseField = value;
+                    this.RaisePropertyChanged("RegisterCustomerContactResponse");
                 }
             }
         }
@@ -2848,139 +2891,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse))]
-    public partial class BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceArrayListResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceArrayListResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ValueNamePair[] ValueNamePairListField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ValueNamePair[] ValueNamePairList {
-            get {
-                return this.ValueNamePairListField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ValueNamePairListField, value) != true)) {
-                    this.ValueNamePairListField = value;
-                    this.RaisePropertyChanged("ValueNamePairList");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ValueNamePair", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
     [System.SerializableAttribute()]
     public partial class ValueNamePair : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -3036,139 +2946,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfAddressDetailsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAddressDetailsResponse))]
-    public partial class BaseResponseOfAddressDetailsResponseSHA1x9h56FeD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceAddressDetailsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceAddressDetailsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfAddressDetailsResponseSHA1x9h56FeD {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.AddressDetailsResponse AddressDetailsResponseField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.AddressDetailsResponse AddressDetailsResponse {
-            get {
-                return this.AddressDetailsResponseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressDetailsResponseField, value) != true)) {
-                    this.AddressDetailsResponseField = value;
-                    this.RaisePropertyChanged("AddressDetailsResponse");
-                }
             }
         }
     }
@@ -3444,139 +3221,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsResponse))]
-    public partial class BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceSubscriberGetBillsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceSubscriberGetBillsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.SubscriberGetBillsResponse[] SubscriberGetBillsResponseField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.SubscriberGetBillsResponse[] SubscriberGetBillsResponse {
-            get {
-                return this.SubscriberGetBillsResponseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SubscriberGetBillsResponseField, value) != true)) {
-                    this.SubscriberGetBillsResponseField = value;
-                    this.RaisePropertyChanged("SubscriberGetBillsResponse");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SubscriberGetBillsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
     [System.SerializableAttribute()]
     public partial class SubscriberGetBillsResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -3734,139 +3378,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePaymentVPOSResponse))]
-    public partial class BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServicePaymentVPOSResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServicePaymentVPOSResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.PaymentVPOSResponse PaymentVPOSResponseField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.PaymentVPOSResponse PaymentVPOSResponse {
-            get {
-                return this.PaymentVPOSResponseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PaymentVPOSResponseField, value) != true)) {
-                    this.PaymentVPOSResponseField = value;
-                    this.RaisePropertyChanged("PaymentVPOSResponse");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PaymentVPOSResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
     [System.SerializableAttribute()]
     public partial class PaymentVPOSResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -3912,139 +3423,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfPayBillsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServicePayBillsResponse))]
-    public partial class BaseResponseOfPayBillsResponseSHA1x9h56FeD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServicePayBillsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServicePayBillsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfPayBillsResponseSHA1x9h56FeD {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.PayBillsResponse PayBillsResponseField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.PayBillsResponse PayBillsResponse {
-            get {
-                return this.PayBillsResponseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PayBillsResponseField, value) != true)) {
-                    this.PayBillsResponseField = value;
-                    this.RaisePropertyChanged("PayBillsResponse");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PayBillsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
     [System.SerializableAttribute()]
     public partial class PayBillsResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -4084,139 +3462,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse))]
-    public partial class BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CultureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RandField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Culture {
-            get {
-                return this.CultureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CultureField, value) != true)) {
-                    this.CultureField = value;
-                    this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
-            get {
-                return this.HashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashField, value) != true)) {
-                    this.HashField = value;
-                    this.RaisePropertyChanged("Hash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Rand {
-            get {
-                return this.RandField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RandField, value) != true)) {
-                    this.RandField = value;
-                    this.RaisePropertyChanged("Rand");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NetspeedMainWebsite.MainSiteServiceReference.ServiceResponse ResponseMessage {
-            get {
-                return this.ResponseMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseMessageField, value) != true)) {
-                    this.ResponseMessageField = value;
-                    this.RaisePropertyChanged("ResponseMessage");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceNewCustomerRegisterResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
-    [System.SerializableAttribute()]
-    public partial class NetspeedServiceNewCustomerRegisterResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.Dictionary<string, string> NewCustomerRegisterResponseField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.Dictionary<string, string> NewCustomerRegisterResponse {
-            get {
-                return this.NewCustomerRegisterResponseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NewCustomerRegisterResponseField, value) != true)) {
-                    this.NewCustomerRegisterResponseField = value;
-                    this.RaisePropertyChanged("NewCustomerRegisterResponse");
-                }
             }
         }
     }
@@ -4314,12 +3559,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/SendGenericSMS", ReplyAction="http://tempuri.org/IMainSiteService/SendGenericSMSResponse")]
         System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse> SendGenericSMSAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation", ReplyAction="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse")]
-        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation", ReplyAction="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse")]
-        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse> RegisterSMSValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetNationalities", ReplyAction="http://tempuri.org/IMainSiteService/GetNationalitiesResponse")]
         NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetNationalities(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request);
@@ -4497,14 +3736,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse> SendGenericSMSAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest request) {
             return base.Channel.SendGenericSMSAsync(request);
-        }
-        
-        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request) {
-            return base.Channel.RegisterSMSValidation(request);
-        }
-        
-        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationResponse> RegisterSMSValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterSMSValidationRequest request) {
-            return base.Channel.RegisterSMSValidationAsync(request);
         }
         
         public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceArrayListResponse GetNationalities(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests request) {

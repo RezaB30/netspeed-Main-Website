@@ -1,8 +1,9 @@
-﻿@model NetspeedMainWebsite.Models.ViewModel.VerificationViewModel
+﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 @using NetspeedMainWebsite.Models.ViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
 }
 
 @*<style>
@@ -19,228 +20,351 @@
 
 
 <div class="d-flex flex-column-fluid">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card card-custom">
-            <!--begin::Card Body-->
-            <div class="card-body p-0">
-                <!--begin::Wizard 5-->
-                <div class="wizard wizard-5 d-flex flex-column flex-lg-row flex-row-fluid" id="kt_wizard">
-                    <!--begin::Aside-->
-                    <div class="wizard-aside bg-white d-flex flex-column flex-row-auto w-100 w-lg-300px w-xl-400px w-xxl-450px">
-                        <!--begin::Aside Top-->
-                        <div class="d-flex offcanvas-mobile flex-column-fluid flex-column px-xxl-20 px-10">
-                            <!--begin: Wizard Nav-->
-                            <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
-                                <!--begin::Wizard Steps-->
-                                <div class="wizard-steps">
+    @Html.AntiForgeryToken()
+<!--begin::Container-->
+<div class="container">
+    <!--begin::Card-->
+    <div class="card card-custom">
+        <!--begin::Card Body-->
+        <div class="card-body p-0">
+            <!--begin::Wizard 5-->
+            <div class="wizard wizard-5 d-flex flex-column flex-lg-row flex-row-fluid" id="kt_wizard">
+                <!--begin::Aside-->
+                <div class="wizard-aside bg-white d-flex flex-column flex-row-auto w-100 w-lg-300px w-xl-400px w-xxl-450px">
+                    <!--begin::Aside Top-->
+                    <div class="d-flex offcanvas-mobile flex-column-fluid flex-column px-xxl-20 px-10">
+                        <!--begin: Wizard Nav-->
+                        <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
+                            <!--begin::Wizard Steps-->
+                            <div class="wizard-steps">
 
-                                    <!--begin::Wizard Step 1 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">
-                                                    <span class="svg-icon svg-icon-info svg-icon-2x">
-                                                        <!--begin::Svg Icon-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24" height="24" />
-                                                                <rect fill="#000000" opacity="0.3" x="2" y="2" width="20" height="20" rx="10" />
-                                                                <path d="M6.16794971,14.5547002 C5.86159725,14.0951715 5.98577112,13.4743022 6.4452998,13.1679497 C6.90482849,12.8615972 7.52569784,12.9857711 7.83205029,13.4452998 C8.9890854,15.1808525 10.3543313,16 12,16 C13.6456687,16 15.0109146,15.1808525 16.1679497,13.4452998 C16.4743022,12.9857711 17.0951715,12.8615972 17.5547002,13.1679497 C18.0142289,13.4743022 18.1384028,14.0951715 17.8320503,14.5547002 C16.3224187,16.8191475 14.3543313,18 12,18 C9.64566871,18 7.67758127,16.8191475 6.16794971,14.5547002 Z" fill="#000000" />
-                                                            </g>
-                                                        </svg><!--end::Svg Icon-->
-                                                    </span>
+                                <!--begin::Wizard Step 1 Nav-->
+                                <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">
+                                                <span class="svg-icon svg-icon-info svg-icon-2x">
+                                                    <!--begin::Svg Icon-->
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <rect fill="#000000" opacity="0.3" x="2" y="2" width="20" height="20" rx="10" />
+                                                            <path d="M6.16794971,14.5547002 C5.86159725,14.0951715 5.98577112,13.4743022 6.4452998,13.1679497 C6.90482849,12.8615972 7.52569784,12.9857711 7.83205029,13.4452998 C8.9890854,15.1808525 10.3543313,16 12,16 C13.6456687,16 15.0109146,15.1808525 16.1679497,13.4452998 C16.4743022,12.9857711 17.0951715,12.8615972 17.5547002,13.1679497 C18.0142289,13.4743022 18.1384028,14.0951715 17.8320503,14.5547002 C16.3224187,16.8191475 14.3543313,18 12,18 C9.64566871,18 7.67758127,16.8191475 6.16794971,14.5547002 Z" fill="#000000" />
+                                                        </g>
+                                                    </svg><!--end::Svg Icon-->
                                                 </span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Hoşgeldiniz</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 1 Nav-->
-                                    <!--begin::Wizard Step 2 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">1</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">SMS Doğrulama</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 2 Nav-->
-                                    <!--begin::Wizard Step 3 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">2</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">İletişim Bilgileriniz</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 3 Nav-->
-                                    <!--begin::Wizard Step 4 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">3</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Adres ve Başvuru Bilgisi</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 4 Nav-->
-                                    <!--begin::Wizard Step 5 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">4</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Tarife ve Tercihler</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 5 Nav-->
-                                    <!--begin::Wizard Step 6 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">5</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Kimlik Bilgileri</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 6 Nav-->
-                                    <!--begin::Wizard Step 6 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">
-                                                    <span class="svg-icon svg-icon-gray svg-icon-2x">
-                                                        <!--begin::Svg Icon-->
-
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24" height="24"></rect>
-                                                                <path d="M9,10 L9,19 L10.1525987,19.3841996 C11.3761964,19.7920655 12.6575468,20 13.9473319,20 L17.5405883,20 C18.9706314,20 20.2018758,18.990621 20.4823303,17.5883484 L21.231529,13.8423552 C21.5564648,12.217676 20.5028146,10.6372006 18.8781353,10.3122648 C18.6189212,10.260422 18.353992,10.2430672 18.0902299,10.2606513 L14.5,10.5 L14.8641964,6.49383981 C14.9326895,5.74041495 14.3774427,5.07411874 13.6240179,5.00562558 C13.5827848,5.00187712 13.5414031,5 13.5,5 L13.5,5 C12.5694044,5 11.7070439,5.48826024 11.2282564,6.28623939 L9,10 Z" fill="#000000"></path>
-                                                                <rect fill="#000000" opacity="0.3" x="2" y="9" width="5" height="11" rx="1"></rect>
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Tamamlandı!</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 6 Nav-->
-
-                                </div>
-                                <!--end::Wizard Steps-->
-                            </div>
-                            <!--end: Wizard Nav-->
-                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(assets/media/bg/ecovered.svg)"></div><br>
-                        </div>
-                        <!--end::Aside Top-->
-
-                    </div>
-                    <!--begin::Aside-->
-                    <!--begin::Content-->
-
-
-                    <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
-
-                        <div class="d-flex justify-content-center flex-row-fluid ">
-                            <!--begin: Wizard Step 2-->
-                            @using (Html.BeginForm("GsmVerificationWithSms", "Application", FormMethod.Post))
-                            {
-                                <div class="pb-5" data-wizard-type="step-content">
-                                    <div class="pb-10 pb-lg-15">
-                                        <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
-                                        <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
-                                    </div>
-                                    <!--begin::Form Group-->
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
-                                        @Html.EditorFor(m => m.Code, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" })
-                                        @*<input class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" id="kt_inputmask_12" name="smscode" placeholder="SMS Doğrulama Kodunuz" value="" />*@
-                                    </div>
-                                    <div class="separator separator-dashed my-3">
-                                        <br />
-                                        <div class="text-danger">
-                                            @ViewBag.message
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-12 col-lg-8 ">
-
-
-                                    </div>
-                                    <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
-                                    <div style="width:7em; height:3em">
-                                        <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
-                                            Sonraki
-                                            <span class="svg-icon svg-icon-md ml-1">
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                    </g>
-                                                </svg>
-                                                <!--end::Svg Icon-->
                                             </span>
-                                        </button>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">Hoşgeldiniz</h3>
+                                        </div>
                                     </div>
+                                </div>
+                                <!--end::Wizard Step 1 Nav-->
+                                <!--begin::Wizard Step 2 Nav-->
+                                <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">1</span>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">SMS Doğrulama</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 2 Nav-->
+                                <!--begin::Wizard Step 3 Nav-->
+                                <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">2</span>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">İletişim Bilgileriniz</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 3 Nav-->
+                                <!--begin::Wizard Step 4 Nav-->
+                                <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">3</span>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">Adres ve Başvuru Bilgisi</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 4 Nav-->
+                                <!--begin::Wizard Step 5 Nav-->
+                                <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">4</span>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">Tarife ve Tercihler</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 5 Nav-->
+                                <!--begin::Wizard Step 6 Nav-->
+                                <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">5</span>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">Kimlik Bilgileri</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 6 Nav-->
+                                <!--begin::Wizard Step 6 Nav-->
+                                <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-wrapper">
+                                        <div class="wizard-icon">
+                                            <i class="wizard-check ki ki-check"></i>
+                                            <span class="wizard-number">
+                                                <span class="svg-icon svg-icon-gray svg-icon-2x">
+                                                    <!--begin::Svg Icon-->
 
-                                </div>}
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24"></rect>
+                                                            <path d="M9,10 L9,19 L10.1525987,19.3841996 C11.3761964,19.7920655 12.6575468,20 13.9473319,20 L17.5405883,20 C18.9706314,20 20.2018758,18.990621 20.4823303,17.5883484 L21.231529,13.8423552 C21.5564648,12.217676 20.5028146,10.6372006 18.8781353,10.3122648 C18.6189212,10.260422 18.353992,10.2430672 18.0902299,10.2606513 L14.5,10.5 L14.8641964,6.49383981 C14.9326895,5.74041495 14.3774427,5.07411874 13.6240179,5.00562558 C13.5827848,5.00187712 13.5414031,5 13.5,5 L13.5,5 C12.5694044,5 11.7070439,5.48826024 11.2282564,6.28623939 L9,10 Z" fill="#000000"></path>
+                                                            <rect fill="#000000" opacity="0.3" x="2" y="9" width="5" height="11" rx="1"></rect>
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="wizard-label">
+                                            <h3 class="wizard-title font-weight font-size-h4">Tamamlandı!</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Wizard Step 6 Nav-->
 
+                            </div>
+                            <!--end::Wizard Steps-->
                         </div>
+                        <!--end: Wizard Nav-->
+                        <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(assets/media/bg/ecovered.svg)"></div><br>
+                    </div>
+                    <!--end::Aside Top-->
 
-                        <!--end::Form-->
+                </div>
+                <!--begin::Aside-->
+                <!--begin::Content-->
+
+
+                <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
+
+                    <div class="d-flex justify-content-center flex-row-fluid ">
+                        <!--begin: Wizard Step 2-->
+                        @using (Html.BeginForm("GsmVerificationWithSms", "Application", FormMethod.Post))
+                        {@Html.AntiForgeryToken()
+                        <div class="pb-5" data-wizard-type="step-content">
+                            <div class="pb-10 pb-lg-15">
+                                <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
+                                <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
+                            </div>
+                            <!--begin::Form Group-->
+                            <div class="form-group">
+                                <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
+                                @Html.EditorFor(m => m.SMSCode, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" })
+                                @*<input class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" id="kt_inputmask_12" name="smscode" placeholder="SMS Doğrulama Kodunuz" value="" />*@
+                            </div>
+                            <div class="separator separator-dashed my-3">
+                                <br />
+
+                                <div class="text-danger">
+                                    @ViewBag.message
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 " style="margin:3em; font-size:1.2em">
+                                    Kalan Süre
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div id="app"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12 col-lg-8 ">
+
+
+                            </div>
+                            <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
+                            <div style="width:7em; height:3em">
+                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
+                                    Sonraki
+                                    <span class="svg-icon svg-icon-md ml-1">
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon points="0 0 24 0 24 24 0 24" />
+                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                </button>
+                            </div>
+
+                        </div>}
+
                     </div>
 
-
-                    <!--end::Content-->
+                    <!--end::Form-->
                 </div>
 
 
+                <!--end::Content-->
             </div>
+
+
         </div>
     </div>
 </div>
+</div>
+
+
 
 
 @section script{
-    <sript>
-        function countdown()
-        {
-        window.location.href="@Url.Action("Index", "Application")";
+
+    <script>
+
+        const FULL_DASH_ARRAY = 283;
+        const WARNING_THRESHOLD = 10;
+        const ALERT_THRESHOLD = 5;
+
+        const COLOR_CODES = {
+            info: {
+                color: "green"
+            },
+            warning: {
+                color: "orange",
+                threshold: WARNING_THRESHOLD
+            },
+            alert: {
+                color: "red",
+                threshold: ALERT_THRESHOLD
+            }
+        };
+
+        const TIME_LIMIT = @ViewBag.exTime;
+      //  const TIME_LIMIT = 120;
+        let timePassed = 0;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval = null;
+        let remainingPathColor = COLOR_CODES.info.color;
+
+        document.getElementById("app").innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">${formatTime(
+            timeLeft
+        )}</span>
+</div>
+`;
+
+        startTimer();
+
+        function onTimesUp() {
+            clearInterval(timerInterval);
         }
 
-        setTimeout(
-        function()
-        { 
-        countdown();
-        }, 
-        3000);
-    </sript>
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timePassed = timePassed += 1;
+                timeLeft = TIME_LIMIT - timePassed;
+                document.getElementById("base-timer-label").innerHTML = formatTime(
+                    timeLeft
+                );
+                setCircleDasharray();
+                setRemainingPathColor(timeLeft);
+
+                if (timeLeft === 0) {
+                    onTimesUp();
+                }
+            }, 1000);
+        }
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            if (time == 1) {
+                alert("Zamanınız Dolmuştur");
+                 window.location.href = "@Url.Action("Index","Application")";
+
+            }
+            let seconds = time % 60;
+
+            if (seconds < 10) {
+                seconds = `0${seconds}`;
+            }
+
+            return `${minutes}:${seconds}`;
+        }
+
+        function setRemainingPathColor(timeLeft) {
+            const { alert, warning, info } = COLOR_CODES;
+            if (timeLeft <= alert.threshold) {
+                document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.remove(warning.color);
+                document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.add(alert.color);
+            } else if (timeLeft <= warning.threshold) {
+                document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.remove(info.color);
+                document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.add(warning.color);
+            }
+        }
+
+        function calculateTimeFraction() {
+            const rawTimeFraction = timeLeft / TIME_LIMIT;
+            return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+        }
+
+        function setCircleDasharray() {
+            const circleDasharray = `${(
+                calculateTimeFraction() * FULL_DASH_ARRAY
+            ).toFixed(0)} 283`;
+            document
+                .getElementById("basDateTimeateTimeateTimeateTime-timer-path-remaining")
+                .setAttribute("stroke-dasharray", circleDasharray);
+        }
+    </script>
 }

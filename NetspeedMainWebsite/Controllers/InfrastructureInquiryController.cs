@@ -12,7 +12,7 @@ namespace NetspeedMainWebsite.Controllers
     {
         //GET: InfrastructureInquiry
         //MainSiteServiceClient client = new MainSiteServiceClient();
-        WebSeviceWrapper client = new WebSeviceWrapper();
+        WebServiceWrapper client = new WebServiceWrapper();
         public ActionResult Test()
         {
             var response = client.GetProvinces();

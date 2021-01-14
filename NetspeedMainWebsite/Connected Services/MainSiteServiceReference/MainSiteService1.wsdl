@@ -214,73 +214,59 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="RegisterSMSValidation">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q31:NetspeedServiceRegisterSMSValidationRequest" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="RegisterSMSValidationResponse">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="RegisterSMSValidationResult" nillable="true" type="q32:NetspeedServiceRegisterSMSValidationResponse" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="GetNationalities">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q33:NetspeedServiceRequests" />
+            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q31:NetspeedServiceRequests" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetNationalitiesResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetNationalitiesResult" nillable="true" type="q34:NetspeedServiceArrayListResponse" />
+            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetNationalitiesResult" nillable="true" type="q32:NetspeedServiceArrayListResponse" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetSexes">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q35:NetspeedServiceRequests" />
+            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q33:NetspeedServiceRequests" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetSexesResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetSexesResult" nillable="true" type="q36:NetspeedServiceArrayListResponse" />
+            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetSexesResult" nillable="true" type="q34:NetspeedServiceArrayListResponse" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetProfessions">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q37:NetspeedServiceRequests" />
+            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q35:NetspeedServiceRequests" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetProfessionsResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetProfessionsResult" nillable="true" type="q38:NetspeedServiceArrayListResponse" />
+            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetProfessionsResult" nillable="true" type="q36:NetspeedServiceArrayListResponse" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetIDCardTypes">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q39:NetspeedServiceRequests" />
+            <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q37:NetspeedServiceRequests" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="GetIDCardTypesResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetIDCardTypesResult" nillable="true" type="q40:NetspeedServiceArrayListResponse" />
+            <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="GetIDCardTypesResult" nillable="true" type="q38:NetspeedServiceArrayListResponse" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -572,11 +558,16 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="BillingPeriod" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="DomainID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ReferralDiscountInfo" nillable="true" type="tns:ReferralDiscountInfo" />
           <xs:element minOccurs="0" name="ServiceID" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="SetupAddress" nillable="true" type="tns:AddressInfo" />
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SubscriptionRegistrationInfo" nillable="true" type="tns:SubscriptionRegistrationInfo" />
+      <xs:complexType name="ReferralDiscountInfo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:element name="ReferralDiscountInfo" nillable="true" type="tns:ReferralDiscountInfo" />
       <xs:complexType name="NetspeedServiceSendGenericSMSRequest">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD">
@@ -593,23 +584,6 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="SendGenericSMSRequest" nillable="true" type="tns:SendGenericSMSRequest" />
-      <xs:complexType name="NetspeedServiceRegisterSMSValidationRequest">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="RegisterSMSValidationParameters" nillable="true" type="tns:RegisterSMSValidationRequest" />
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="NetspeedServiceRegisterSMSValidationRequest" nillable="true" type="tns:NetspeedServiceRegisterSMSValidationRequest" />
-      <xs:complexType name="RegisterSMSValidationRequest">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="CustomerPhoneNo" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="RegisterSMSValidationRequest" nillable="true" type="tns:RegisterSMSValidationRequest" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="BaseRequestOfCustomerContactRequestSHA13jWQyVaD">
@@ -655,6 +629,21 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="BaseResponseOfNullableOfbooleanSHA1qBRhzOKh" nillable="true" type="tns:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh" />
+      <xs:complexType name="BaseResponseOfSHA1o_Pr6u_PMh">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="BaseResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
         <xs:sequence>
           <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
@@ -663,7 +652,7 @@
           <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="BaseResponseOfNullableOfbooleanSHA1qBRhzOKh" nillable="true" type="tns:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh" />
+      <xs:element name="BaseResponseOfSHA1o_Pr6u_PMh" nillable="true" type="tns:BaseResponseOfSHA1o_Pr6u_PMh" />
       <xs:complexType name="ServiceResponse">
         <xs:sequence>
           <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
@@ -696,13 +685,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD" />
       <xs:complexType name="BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD">
@@ -714,13 +701,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD" />
       <xs:complexType name="BaseRequestOfNullableOflongSHA1qBRhzOKh">
@@ -750,13 +735,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfAddressDetailsResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfAddressDetailsResponseSHA1x9h56FeD" />
       <xs:complexType name="BaseRequestOfSubscriberGetBillsRequestSHA13jWQyVaD">
@@ -784,13 +767,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfArrayOfSubscriberGetBillsResponseSHA1x9h56FeD" />
       <xs:complexType name="BaseRequestOfPaymentVPOSRequestSHA13jWQyVaD">
@@ -818,13 +799,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfPaymentVPOSResponseSHA1x9h56FeD" />
       <xs:complexType name="BaseRequestOfArrayOflongSHA1PGu3YCeQ">
@@ -852,13 +831,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfPayBillsResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfPayBillsResponseSHA1x9h56FeD" />
       <xs:complexType name="BaseRequestOfNewCustomerRegisterRequestSHA13jWQyVaD">
@@ -889,13 +866,11 @@
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Rand" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="ResponseMessage" nillable="true" type="tns:ServiceResponse" />
-          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-        </xs:sequence>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ" nillable="true" type="tns:BaseResponseOfArrayOfKeyValueOfstringstringSHA1PGu3YCeQ" />
       <xs:complexType name="BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD">
@@ -914,22 +889,22 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD" nillable="true" type="tns:BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD" />
-      <xs:complexType name="BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD">
+      <xs:complexType name="BaseResponseOfstringSHA1Miy85_SUl">
         <xs:annotation>
           <xs:appinfo>
-            <GenericType Name="BaseRequestOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-              <GenericParameter Name="RegisterSMSValidationRequest" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
+            <GenericType Name="BaseResponseOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
               <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
             </GenericType>
           </xs:appinfo>
         </xs:annotation>
         <xs:complexContent mixed="false">
-          <xs:extension base="tns:BaseRequestOfSHA1o_Pr6u_PMh">
+          <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
             <xs:sequence />
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <xs:element name="BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD" nillable="true" type="tns:BaseRequestOfRegisterSMSValidationRequestSHA13jWQyVaD" />
+      <xs:element name="BaseResponseOfstringSHA1Miy85_SUl" nillable="true" type="tns:BaseResponseOfstringSHA1Miy85_SUl" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" />
@@ -1102,24 +1077,14 @@
       <xs:element name="NetspeedServiceNewCustomerRegisterResponse" nillable="true" type="tns:NetspeedServiceNewCustomerRegisterResponse" />
       <xs:complexType name="NetspeedServiceSendGenericSMSResponse">
         <xs:complexContent mixed="false">
-          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh">
+          <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfstringSHA1Miy85_SUl">
             <xs:sequence>
-              <xs:element minOccurs="0" name="IsSuccess" nillable="true" type="xs:boolean" />
+              <xs:element minOccurs="0" name="SMSCode" nillable="true" type="xs:string" />
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="NetspeedServiceSendGenericSMSResponse" nillable="true" type="tns:NetspeedServiceSendGenericSMSResponse" />
-      <xs:complexType name="NetspeedServiceRegisterSMSValidationResponse">
-        <xs:complexContent mixed="false">
-          <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseResponseOfNullableOfbooleanSHA1qBRhzOKh">
-            <xs:sequence>
-              <xs:element minOccurs="0" name="IsSuccess" nillable="true" type="xs:boolean" />
-            </xs:sequence>
-          </xs:extension>
-        </xs:complexContent>
-      </xs:complexType>
-      <xs:element name="NetspeedServiceRegisterSMSValidationResponse" nillable="true" type="tns:NetspeedServiceRegisterSMSValidationResponse" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="ArrayOflong">
@@ -1238,12 +1203,6 @@
   <wsdl:message name="IMainSiteService_SendGenericSMS_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendGenericSMSResponse" />
   </wsdl:message>
-  <wsdl:message name="IMainSiteService_RegisterSMSValidation_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterSMSValidation" />
-  </wsdl:message>
-  <wsdl:message name="IMainSiteService_RegisterSMSValidation_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterSMSValidationResponse" />
-  </wsdl:message>
   <wsdl:message name="IMainSiteService_GetNationalities_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNationalities" />
   </wsdl:message>
@@ -1334,10 +1293,6 @@
     <wsdl:operation name="SendGenericSMS">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/SendGenericSMS" message="tns:IMainSiteService_SendGenericSMS_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/SendGenericSMSResponse" message="tns:IMainSiteService_SendGenericSMS_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RegisterSMSValidation">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterSMSValidation" message="tns:IMainSiteService_RegisterSMSValidation_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/RegisterSMSValidationResponse" message="tns:IMainSiteService_RegisterSMSValidation_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetNationalities">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GetNationalities" message="tns:IMainSiteService_GetNationalities_InputMessage" />
@@ -1490,15 +1445,6 @@
     </wsdl:operation>
     <wsdl:operation name="SendGenericSMS">
       <soap:operation soapAction="http://tempuri.org/IMainSiteService/SendGenericSMS" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RegisterSMSValidation">
-      <soap:operation soapAction="http://tempuri.org/IMainSiteService/RegisterSMSValidation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

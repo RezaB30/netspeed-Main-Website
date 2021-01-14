@@ -15,7 +15,7 @@ namespace NetspeedMainWebsite.Controllers
         // GET: PaymentBill
         //HashUtilities hash = new HashUtilities();
         //MainSiteServiceClient client = new MainSiteServiceClient();
-        WebSeviceWrapper client = new WebSeviceWrapper();
+        WebServiceWrapper client = new WebServiceWrapper();
 
 
         [HttpGet]

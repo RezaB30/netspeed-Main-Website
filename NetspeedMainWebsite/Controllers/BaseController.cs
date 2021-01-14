@@ -12,7 +12,7 @@ namespace NetspeedMainWebsite.Controllers
 {
     public class BaseController : Controller
     {
-        WebSeviceWrapper client = new WebSeviceWrapper();
+        WebServiceWrapper client = new WebServiceWrapper();
         public ActionResult OnException()
         {
             return View();

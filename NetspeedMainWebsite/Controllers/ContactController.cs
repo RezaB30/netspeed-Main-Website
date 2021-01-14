@@ -22,82 +22,42 @@ namespace NetspeedMainWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ContactForm(ContactViewModel contact)
         {
-            //var mailClient = new RezaB.Mailing.Client.MailClient(Properties.Settings.Default.HostName, Properties.Settings.Default.HostPort, Properties.Settings.Default.UseSSL, Properties.Settings.Default.UserName, Properties.Settings.Default.Password);
+            var mailClient = new RezaB.Mailing.Client.MailClient(Properties.Settings.Default.MailHostName, Properties.Settings.Default.MailHostPort, Properties.Settings.Default.MailUseSSL, Properties.Settings.Default.MailUserName, Properties.Settings.Default.MailPassword);
 
-            //var ContactList = new List<ContactViewModel>();
+            var ContactList = new List<ContactViewModel>();
+            var ContactMessageList = new List<ContactViewModel>();
+            if (ModelState.IsValid)
+            {
+                ContactList.Add(new ContactViewModel()
+                {
+                    FullName = contact.FullName,
+                    PhoneNumber = contact.PhoneNumber,
+                    EmailAddress = contact.EmailAddress,
+                    Message = contact.Message
+                });
 
-            //ContactList.Add(new ContactViewModel()
-            //{
-            //    FullName = contact.FullName,
-            //    PhoneNumber = contact.PhoneNumber,
-            //    EmailAddress = contact.EmailAddress,
-            //    Message = contact.Message
-            //});
+                var body = string.Join("\n", new[] {  "Ad Soyad:", contact.FullName, "Telefon Numarası:", contact.PhoneNumber, "E-Posta Adresi:" , contact.EmailAddress,"Mesaj:", contact.Message });
 
-            //var Message = string.Empty;
+                //string body = contact.FullName  + contact.PhoneNumber + contact.EmailAddress + contact.Message;
 
-            //if (ModelState.IsValid)
-            //{
-            //    string[] mailTo = { Properties.Settings.Default.UserName }; // customer mail
-            //    string[] mailCc = null;
-            //    string[] mailBc = null;
-            //    IEnumerable<MailFileAttachment> mailAttachment = Enumerable.Empty<MailFileAttachment>();
+                var Message = string.Empty;
 
-            //    var mailMessage = new StandardMailMessage(new MailAddress(mailClient.Username, "Test DisplayName"), mailTo, mailCc, mailBc, "Müşteri İletişim Formu", contact.Message, null, mailAttachment);
+                string[] mailTo = { Properties.Settings.Default.MailUserName };
+                string[] mailCc = null;
+                string[] mailBc = null;
+                IEnumerable<MailFileAttachment> mailAttachment = Enumerable.Empty<MailFileAttachment>();
 
-            //    mailClient.SendMail(mailMessage);
+                var mailMessage = new StandardMailMessage(new MailAddress(mailClient.Username, "Netspeed Contact Form"), mailTo, mailCc, mailBc, "Müşteri İletişim Formu", body, null, mailAttachment);
 
-            //    Message = "Mesajınız İletilmiştir. En Kısa Sürede Size Dönüş Yapılacaktır.";
+                mailClient.SendMail(mailMessage);
 
-            //    ViewBag.Message = Message;
-            //    return View();
-            //}
+                Message = "Mesajınız İletilmiştir. En Kısa Sürede Size Dönüş Yapılacaktır.";
 
-            
+                ViewBag.Message = Message;
+                return View();
+            }
 
-            //if (ModelState.IsValid)
-            //{
-
-
-            //    client.SendMail(clientMessage);
-            //}
-
-
-            //var k = StandardMailMessage(new StandardMailMessage()
-            //{ 
-            //    Body=contact.Message,
-
-            //});
-
-            //var contactMessage = client.SendMail(new StandardMailMessage()
-            //{
-            //    Body=contact.Message,
-
-            //});
-
-            //client.SendMail(contact.Message);
-
-
-            //var message = string.Empty;
-            //var ContactList = new List<ContactViewModel>();
-
-            //if (ModelState.IsValid)
-            //{
-            //    ContactList.Add(new ContactViewModel()
-            //    {
-            //        FullName = contact.FullName,
-            //        PhoneNumber = contact.PhoneNumber,
-            //        EmailAddress = contact.EmailAddress,
-            //        Message = contact.Message
-            //    });
-            //    message = "Message is successful";
-            //}
-            //else
-            //{
-            //    message = "Message isn't successful";
-            //}
-            ////ViewBag.message = message;
-            return View(contact);
+            return View();
         }
     }
 }

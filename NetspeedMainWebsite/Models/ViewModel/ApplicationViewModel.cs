@@ -77,8 +77,8 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string LastName { get; set; }
         [Required(ErrorMessage = "EmailAddress is Required")]
         public string EmailAddress { get; set; }
-        public int Nationality { get; set; }
-        public int IDCardType { get; set; }
+        public long Nationality { get; set; }
+        public long IDCardType { get; set; }
         
 
         [Required(ErrorMessage = "PostalCode is Required")]
@@ -112,15 +112,11 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "Floor is Required")]
         public string Floor { get; set; }
         public string ReferenceCode { get; set; }
-      
-
         public string PlaceOfIssue { get; set; }
         public string DateOfIssue { get; set; }
-
-       
         public string ContactPhoneNo { get; set; }
-
-     
+        public string SMSCode { get; set; }
+        public DateTime ExpirationDate { get; set; }
 
     }
 }

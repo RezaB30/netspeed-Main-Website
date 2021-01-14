@@ -18,6 +18,7 @@
         <div class="text-danger">
             @Html.ValidationMessageFor(model => model.FirstName)
         </div>
+        @Html.HiddenFor(m => m.FirstName)
     </div>
     <!--end::Form Group-->
     <!--begin::Form Group-->
@@ -31,6 +32,7 @@
         <div class="text-danger">
             @Html.ValidationMessageFor(model => model.LastName)
         </div>
+        @Html.HiddenFor(m => m.LastName)
     </div>
     <!--end::Form Group-->
     <!--begin::Form Group-->
@@ -44,6 +46,7 @@
         <div class="text-danger">
             @Html.ValidationMessageFor(model => model.EmailAddress)
         </div>
+        @Html.HiddenFor(m => m.EmailAddress)
 
 
         <div class="text-muted font-size-h8 m-2">Lütfen geçerli bir E-Posta adres yazınız. Bilgilerinizi bu e-posta adresinize göndereceğiz.</div>

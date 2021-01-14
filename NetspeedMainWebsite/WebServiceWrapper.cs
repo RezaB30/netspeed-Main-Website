@@ -7,7 +7,7 @@ using System.Web;
 
 namespace NetspeedMainWebsite
 {
-    public class WebSeviceWrapper
+    public class WebServiceWrapper
     {
         private readonly string Username;
 
@@ -19,7 +19,7 @@ namespace NetspeedMainWebsite
 
         private readonly MainSiteServiceClient InternalClient;
 
-        public WebSeviceWrapper()
+        public WebServiceWrapper()
         {
             Username = Properties.Settings.Default.WebServiceUsername;
             PasswordHash = HashUtilities.HashCalculate(Properties.Settings.Default.WebServicePasswordHash);
@@ -198,7 +198,7 @@ namespace NetspeedMainWebsite
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int Nationality, int Profession, int Sex,
             DateTime? BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, DateTime? DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
-            string Culture, int? CustomerType, string Email/*, string[] CorporateCustomerInfo*/)
+            string Culture, int? CustomerType, string Email/*, string[] CorporateCustomerInfo*/, string ReferenceCode)
         {
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
             {
@@ -210,6 +210,7 @@ namespace NetspeedMainWebsite
                 {
                     SubscriptionInfo = new SubscriptionRegistrationInfo()
                     {
+                        //ReferralDiscountInfo=ReferenceCode,
                         BillingPeriod = BillingPeriod,
                         DomainID = DomainID,
                         ServiceID = ServiceID,
@@ -231,12 +232,12 @@ namespace NetspeedMainWebsite
                             DoorID = DoorId,
                             DoorNo = DoorNo,
                             Floor = Floor,
-                            PostalCode = PostalCode,
+                            PostalCode = PostalCode
                         }
                     },
                     IndividualCustomerInfo = new IndividualCustomerInfo()
                     {
-
+                        
                         BirthPlace = BirthPlace,
                         FathersName = FathersName/*"HÜSEYİN"*/,
                         MothersMaidenName = MothersMaidenName /*"KALAYCIOĞULLARI"*/,
@@ -298,7 +299,7 @@ namespace NetspeedMainWebsite
                             DoorNo = DoorNo,
                             Floor = Floor,
                             PostalCode = PostalCode,
-
+                           
                         },
                         //ContactPhoneNo = ApplicationItemList[0].PhoneNumber,
                         ContactPhoneNo = ContactPhoneNo/*"5465939624"*/,
@@ -306,7 +307,7 @@ namespace NetspeedMainWebsite
                         //CustomerType = application.CustomerType,
                         CustomerType = 1,
                         Email = Email,
-
+                        
                         //OtherPhoneNos=new PhoneNoListItem()
                         //{
                         //    //Number=,
@@ -331,7 +332,7 @@ namespace NetspeedMainWebsite
                         ExtensionData = null
                     }
                 }
-            }); ;
+            }); 
 
         }
 
@@ -365,22 +366,40 @@ namespace NetspeedMainWebsite
             });
         }
 
-        public NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(string phoneNumber, string password)
-        {
-            return InternalClient.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
-            {
-                Username = Username,
-                Rand = Rand,
-                Hash = CalculateHash(),
-                Culture = Culture,
-                RegisterSMSValidationParameters = new RegisterSMSValidationRequest
-                {
-                    CustomerPhoneNo = phoneNumber,
-                    Password = password
-                }
+        //public NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(string phoneNumber, string password)
+        //{
+        //    return InternalClient.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
+        //    {
+        //        Username = Username,
+        //        Rand = Rand,
+        //        Hash = CalculateHash(),
+        //        Culture = Culture,
+        //        RegisterSMSValidationParameters = new RegisterSMSValidationRequest
+        //        {
+        //            CustomerPhoneNo = phoneNumber,
+        //            Password = password
+        //        }
 
-            });
-        }
+        //    });
+        //}
+
+
+        //public NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(string phoneNumber, string password)
+        //{
+        //    return InternalClient.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
+        //    {
+        //        Username = Username,
+        //        Rand = Rand,
+        //        Hash = CalculateHash(),
+        //        Culture = Culture,
+        //        RegisterSMSValidationParameters = new RegisterSMSValidationRequest
+        //        {
+        //            CustomerPhoneNo = phoneNumber,
+        //            Password = password
+        //        }
+
+        //    });
+        //}
 
         public NetspeedServiceSendGenericSMSResponse SendGenericSMS(string phoneNumber)
         {
@@ -392,7 +411,8 @@ namespace NetspeedMainWebsite
                 Culture = Culture,
                 SendGenericSMSParameters = new SendGenericSMSRequest
                 {
-                    CustomerPhoneNo = phoneNumber
+                    CustomerPhoneNo = phoneNumber,
+                    
                 }
             });
         }

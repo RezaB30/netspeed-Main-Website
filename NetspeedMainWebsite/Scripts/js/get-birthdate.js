@@ -1,4 +1,4 @@
-﻿function GetValues(requestIdYear, requestIdMonth, responseId, url) {
+﻿function GetValueDays(requestIdYear, requestIdMonth, responseId, url) {
     var IDYear = $(requestIdYear).val();
     var IDMonth = $(requestIdMonth).val();
     var token = $("[name='__RequestVerificationToken']").val();
