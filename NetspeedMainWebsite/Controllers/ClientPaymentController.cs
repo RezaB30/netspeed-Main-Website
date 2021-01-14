@@ -58,18 +58,16 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult PaymentBillAndResult(string PhoneNumber, string ClientInfo)
         {
             if (ModelState.IsValid)
-            {  
-                var response = client.GetBills(PhoneNumber,ClientInfo);
+            {
+                var response = client.GetBills(PhoneNumber, ClientInfo);
 
-             
+
                 //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
-                //if (response.ResponseMessage.ErrorMessage ==)
-                //{
-
-                //Redirect();
-                //} 
-               
-
+                if (response.ResponseMessage.ErrorCode == 7)
+                {
+                    return RedirectToAction("AlreadyHaveCustomer", "Application");
+                }
+                
                 BillInfoViewModel Bills = new BillInfoViewModel();
                 //modelstate.isvalid
                 var ClientBillItems = response.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
@@ -167,7 +165,7 @@ namespace NetspeedMainWebsite.Controllers
             }
             if (PayableBillIdList.Count == 0)
             {
-                TempData["message"]= "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
+                TempData["message"] = "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
                 //message = "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
                 //ViewBag.message = message;
                 //tempdata
@@ -187,21 +185,21 @@ namespace NetspeedMainWebsite.Controllers
 
 
             var Key = Guid.NewGuid().ToString();
-            var Value = BillList;  
-            
+            var Value = BillList;
+
             if (BillList.Count() == 0)
             {
                 Url.Action("PaymentFail", "ClientPayment", new { id = Key });
             }
-            
+
             MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(15));
 
             //cacheToken.Remove(Key);
 
-            var response = client.SubscriberPaymentVPOS(BillList, Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme), 
+            var response = client.SubscriberPaymentVPOS(BillList, Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme),
                 Url.Action("PaymentConfirm", "ClientPayment", new { id = Key }, Request.Url.Scheme));
 
-           ViewBag.VPOSForm = response.PaymentVPOSResponse.HtmlForm;
+            ViewBag.VPOSForm = response.PaymentVPOSResponse.HtmlForm;
             return View();
         }
 

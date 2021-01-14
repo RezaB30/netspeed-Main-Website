@@ -2056,6 +2056,9 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReferenceNoField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -2063,6 +2066,19 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReferenceNo {
+            get {
+                return this.ReferenceNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReferenceNoField, value) != true)) {
+                    this.ReferenceNoField = value;
+                    this.RaisePropertyChanged("ReferenceNo");
+                }
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,19 +31,19 @@ namespace NetspeedMainWebsite.Models.ViewModel
             IDCardTypeList = new List<SelectListItem>();
 
         }
-        [Required(ErrorMessage = "Province is Required")]
+        [Required(ErrorMessage = "*İl Alanı Gerekli")]
         public long ProvinceId { get; set; }
-        [Required(ErrorMessage = "District is Required")]
+        [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
         public long DistrictId { get; set; }
-        [Required(ErrorMessage = "Region is Required")]
+        [Required(ErrorMessage = "*Semt Alanı Gerekli")]
         public long RegionId { get; set; }
-        [Required(ErrorMessage = "Neighborhood is Required")]
+        [Required(ErrorMessage = "*Mahalle Alanı Gerekli")]
         public long NeighborhoodId { get; set; }
-        [Required(ErrorMessage = "Street is Required")]
+        [Required(ErrorMessage = "*Cadde/Sokak Alanı Gerekli")]
         public long StreetId { get; set; }
-        [Required(ErrorMessage = "Apartment is Required")]
+        [Required(ErrorMessage = "*Apartman Alanı Gerekli")]
         public long BuildingId { get; set; }
-        [Required(ErrorMessage = "DoorNo is Required")]
+        [Required(ErrorMessage = "*Kapı Numarası Alanı Gerekli")]
         public long ApartmentId { get; set; }
 
         //public string Province { get; set; }
@@ -68,53 +69,242 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public IEnumerable<SelectListItem> NationalityList { get; set; }
         public IEnumerable<SelectListItem> IDCardTypeList { get; set; }
 
-        //[Required(ErrorMessage = "PhoneNumber is Required")]
+        [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
         public string PhoneNumber { get; set; }
-        //public int SmsCode { get; set; }
-        [Required(ErrorMessage = "FirstName is Required")]
-        public string FirstName { get; set; }
-        [Required(ErrorMessage = "LastName is Required")]
-        public string LastName { get; set; }
-        [Required(ErrorMessage = "EmailAddress is Required")]
-        public string EmailAddress { get; set; }
-        public long Nationality { get; set; }
-        public long IDCardType { get; set; }
-        
 
-        [Required(ErrorMessage = "PostalCode is Required")]
+        [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
+
+        private string _FirstName;
+        public string FirstName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_FirstName))
+                {
+                    return _FirstName;
+                }
+                return _FirstName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _FirstName = value;
+            }
+        }
+
+
+        [Required(ErrorMessage = "*Soyad Alanı Gerekli ")]
+        
+        private string _LastName;
+        public string LastName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_LastName))
+                {
+                    return _LastName;
+                }
+                return _LastName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _LastName = value;
+            }
+        }
+
+
+        [Required(ErrorMessage = "*E-Posta Alanı Gerekli ")]
+        public string EmailAddress { get; set; }
+        [Required(ErrorMessage = "*Uyruk Alanı Gerekli ")]
+        public int Nationality { get; set; }
+        [Required(ErrorMessage = "*Kart Tipi Alanı Gerekli ")]
+        public int IDCardType { get; set; }
+
+        [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
         public int PostalCode { get; set; }
-       
-        [Required(ErrorMessage = "TC is Required")]
+
+        [Required(ErrorMessage = "*T.C Kimlik Numarası Alanı Gerekli ")]
         public string TC { get; set; }
-      
+        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
         public DateTime BirthDate { get; set; }
 
-        public int BirthDay { get; set; }
+        //public int BirthDay { get; set; }
+        //public int BirthYear { get; set; }
+        //public int BirthMonth { get; set; }
 
-        public int BirthMonth { get; set; }
+        [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
         public int Sex { get; set; }
 
+        
+       
+        private string _FatherName;
+        [Required(ErrorMessage = "*Baba Adı Alanı Gerekli ")]
+        public string FatherName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_FatherName))
+                {
+                    return _FatherName;
+                }
+                return _FatherName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _FatherName = value;
+            }
+        }
 
-        public int BirthYear { get; set; }
-        [Required(ErrorMessage = "FatherName is Required")]
-        public string FatherName { get; set; }
-        [Required(ErrorMessage = "MotherName is Required")]
-        public string MotherName { get; set; }
-      
-        [Required(ErrorMessage = "BirthPlace is Required")]
-        public string BirthPlace { get; set; }
-        [Required(ErrorMessage = "MotherFirstSurname is Required")]
-        public string MotherFirstSurname { get; set; }
 
-        [Required(ErrorMessage = "SeriNo is Required")]
-        public string SerialNo { get; set; }
+
+
+        
+       
+        private string _MotherName;
+        [Required(ErrorMessage = "*Anne Adı Alanı Gerekli ")]
+        public string MotherName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_MotherName))
+                {
+                    return _MotherName;
+                }
+                return _MotherName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _MotherName = value;
+            }
+        }
+
+
+
+
+        
      
-        [Required(ErrorMessage = "Floor is Required")]
+        private string _BirthPlace;
+        [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
+        public string BirthPlace
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_BirthPlace))
+                {
+                    return _BirthPlace;
+                }
+                return _BirthPlace.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _BirthPlace = value;
+            }
+        }
+
+
+
+
+
+       
+      
+        private string _MotherFirstSurname;
+        [Required(ErrorMessage = "*Anne Kızlık Soyadı Alanı Gerekli ")]
+        public string MotherFirstSurname
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_MotherFirstSurname))
+                {
+                    return _MotherFirstSurname;
+                }
+                return _MotherFirstSurname.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _MotherFirstSurname = value;
+            }
+        }
+
+
+
+
+
+
+       
+        //public string SerialNo { get; set; }
+        private string _SerialNo; 
+        [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
+        public string SerialNo
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_SerialNo))
+                {
+                    return _SerialNo;
+                }
+                return _SerialNo.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _SerialNo = value;
+            }
+        }
+
+
+
+
+
+
+        [Required(ErrorMessage = "*Kat No Alanı Gerekli ")]
         public string Floor { get; set; }
-        public string ReferenceCode { get; set; }
-        public string PlaceOfIssue { get; set; }
-        public string DateOfIssue { get; set; }
+        
+
+        private string _ReferenceCode;
+        public string ReferenceCode
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_ReferenceCode))
+                {
+                    return _ReferenceCode;
+                }
+                return _ReferenceCode.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _ReferenceCode = value;
+            }
+        }
+
+
+
+
+        
+     
+
+        private string _PlaceOfIssue;
+        [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
+        public string PlaceOfIssue
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_PlaceOfIssue))
+                {
+                    return _PlaceOfIssue;
+                }
+                return _PlaceOfIssue.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            }
+            set
+            {
+                _PlaceOfIssue = value;
+            }
+        }
+
+
+
+        [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
+        public DateTime DateOfIssue { get; set; }
         public string ContactPhoneNo { get; set; }
+        [Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
 

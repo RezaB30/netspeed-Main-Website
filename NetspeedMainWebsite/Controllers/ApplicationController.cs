@@ -2,6 +2,7 @@
 using NetspeedMainWebsite.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Web;
@@ -19,11 +20,10 @@ namespace NetspeedMainWebsite.Controllers
         //    return View();
         //}
 
-        //public ActionResult ApplicationSummary(ApplicationViewModel application)
-        //{
-
-        //    return View();
-        //}
+        public ActionResult AlreadyHaveCustomer()
+        {
+            return View();
+        }
 
         public ActionResult _IDInformation()
         {
@@ -33,6 +33,7 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
+
         public ActionResult ApplicationConfirm()
 
         {
@@ -234,23 +235,23 @@ namespace NetspeedMainWebsite.Controllers
             //var exTime = new DateTime();
 
 
-            if (/*ModelState.IsValid*/true)
+            if (ModelState.IsValid)
             {
                 //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
                 var ApplicationList = new List<ApplicationViewModel>();
 
                 var result = new ApplicationViewModel()
                 {
-                    FirstName = application.FirstName.ToUpper(),
-                    LastName = application.LastName.ToUpper(),
-                    BirthPlace = application.BirthPlace.ToUpper(),
+                    FirstName = application.FirstName.ToUpper(new CultureInfo("tr-TR", false)),
+                    LastName = application.LastName,
+                    BirthPlace = application.BirthPlace.ToUpper(new CultureInfo("tr-TR", false)),
                     //ContactPhoneNo = application.PhoneNumber,
                     PhoneNumber = application.PhoneNumber,
                     TC = application.TC,
                     EmailAddress = application.EmailAddress,
-                    MotherName = application.MotherName.ToUpper(),
-                    FatherName = application.FatherName.ToUpper(),
-                    MotherFirstSurname = application.MotherFirstSurname.ToUpper(),
+                    MotherName = application.MotherName.ToUpper(new CultureInfo("tr-TR", false)),
+                    FatherName = application.FatherName.ToUpper(new CultureInfo("tr-TR", false)),
+                    MotherFirstSurname = application.MotherFirstSurname.ToUpper(new CultureInfo("tr-TR", false)),
                     PostalCode = application.PostalCode,
                     Floor = application.Floor,
                     ApartmentId = application.ApartmentId,
@@ -260,15 +261,16 @@ namespace NetspeedMainWebsite.Controllers
                     NeighborhoodId = application.NeighborhoodId,
                     RegionId = application.RegionId,
                     StreetId = application.StreetId,
-                    SerialNo = application.SerialNo.ToUpper(),
+                    SerialNo = application.SerialNo.ToUpper(new CultureInfo("tr-TR", false)),
                     IDCardType = application.IDCardType,
                     ReferenceCode = application.ReferenceCode,
                     Nationality = application.Nationality,
                     Sex = application.Sex,
-                    BirthYear = application.BirthYear,
-                    BirthMonth = application.BirthMonth,
-                    BirthDay = application.BirthDay,
-                    BirthDate = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay),
+                    //BirthYear = application.BirthYear,
+                    //BirthMonth = application.BirthMonth,
+                    //BirthDay = application.BirthDay,
+                    //BirthDate = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay),
+                    BirthDate=application.BirthDate,
                     DateOfIssue = application.DateOfIssue,
                     SMSCode = application.SMSCode
                 };
@@ -280,6 +282,15 @@ namespace NetspeedMainWebsite.Controllers
                 var expirationDate = DateTime.Now + Properties.Settings.Default.SMSValidationDuration;
 
                 var Key = application.PhoneNumber;
+
+                List<ApplicationViewModel> valuelist = new List<ApplicationViewModel>();
+
+                //valuelist.Add (new ApplicationViewModel()
+                //{
+                //    SMSCode = response.SMSCode,//true sms code
+                //    ExpirationDate = expirationDate //expiration date for sms code  
+                //});
+
                 var Value = new ApplicationViewModel()
                 {
                     SMSCode = response.SMSCode,//true sms code
@@ -293,12 +304,12 @@ namespace NetspeedMainWebsite.Controllers
 
                 var exTime = (Value.ExpirationDate - DateTime.Now).Seconds;
                 ViewBag.exTime = exTime;
-                Session["p"]= application.PhoneNumber;
-               
-                return View(viewName: "GsmVerificationWithSms",  model : application );
+                //Session["smscode"] = response.SMSCode;
+
+                return View(viewName: "GsmVerificationWithSms", model: result);
                 //return Url.Action("GsmVerificationWithSms", "Application",new { id=Value, new ApplicationViewModel()});
 
-                
+
 
                 //return Url.Action("GsmVerificationWithSms", "Application",new { id=Key} );
             }
@@ -307,32 +318,45 @@ namespace NetspeedMainWebsite.Controllers
 
 
 
-        [HttpPost]
+
         [ValidateAntiForgeryToken]
-        public ActionResult GsmVerificationWithSms(ApplicationViewModel application)
+        [HttpPost]
+        public ActionResult GsmVerificationWithSms(ApplicationViewModel result)
         {
             var message = string.Empty;
 
-            var p = Session["p"] as string;
-            var smsCode = MemoryCache.Default.Get(p)  ;//NULL GELİYOR
-            
-            var smsCode2= MemoryCache.Default.Get(application.PhoneNumber);
-           
-           
-            if (smsCode == application.SMSCode)//Is true sms code?
+            //var smscode = Session["smscode"] as string;
+            var Value = MemoryCache.Default.Get(result.PhoneNumber) as ApplicationViewModel;
+
+
+            //var smsCode2= MemoryCache.Default.Get(result.PhoneNumber);
+
+            //if (ModelState.IsValid)
+            //{
+            if (Value.ExpirationDate>DateTime.Now)
             {
-                //return View(viewName: "GsmVerification", model: result);
-                return View(viewName: "ApplicationSummary", model: application);
+                if (Value.SMSCode == result.SMSCode)//Is true sms code?
+                {
+                    //return View(viewName: "GsmVerification", model: result);
+                    return View(viewName: "ApplicationSummary", model: result);
+
+                }
+                else
+                {
+                    message = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
+                    ViewBag.message = "message";
+                    //customers have 2 minutes
+                    return View(viewName: "GsmVerificationWithSms", model: result);
+                    //return PartialView("~/Views/Application/ApplicationParts/_SMSValidation.cshtml" , model: result);
+                }
             }
             else
             {
-                message = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
-                ViewBag.message = "message";
-                //customers have 2 minutes
-                return View(viewName: "GsmVerificationWithSms", model: application);
-                //return PartialView("~/Views/Application/ApplicationParts/_SMSValidation.cshtml" , model: result);
+                return RedirectToAction("Index","Application");
             }
-
+                
+            //}
+            //return View(result);
         }
 
 
@@ -421,70 +445,107 @@ namespace NetspeedMainWebsite.Controllers
 
         //    return View();
         //}
+
+       
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult ApplicationSummary(ApplicationViewModel result)
+        {
+            //var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
+            //var Gsm = Session["Gsm"];
+            //string SerialNo = "A25I96170";
+            //DateTime dti = new DateTime(2029, 12, 26);
+
+            WebServiceWrapper client = new WebServiceWrapper();
+            var getAddress = client.GetApartmentAddress(result.ApartmentId);
+            var address = getAddress.AddressDetailsResponse;
+
+            //var ConfirmList = new List<ApplicationViewModel>();
+
+            var Confirm = new ApplicationViewModel()
+            {
+                FirstName = result.FirstName,
+                LastName = result.LastName,
+                PhoneNumber = result.PhoneNumber,
+                EmailAddress = result.EmailAddress,
+                AddressText = address.AddressText
+
+            };
+            //return View(Confirm);
+
+
+            //string SerialNo = "A25I96170";
+            //DateTime dti = new DateTime(2029, 12, 26);
+            //WebServiceWrapper clientAddress = new WebServiceWrapper();
+            //var getAddress = clientAddress.GetApartmentAddress(result.ApartmentId);
+
+            //var address = getAddress.AddressDetailsResponse;
+
+            var response = new WebServiceWrapper().NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+                address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
+                  address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
+                result.PostalCode, result.BirthPlace, result.FatherName,
+               result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
+               result.Sex, result.BirthDate, result.IDCardType, result.FirstName,
+               result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
+               result.DateOfIssue, null, result.PhoneNumber, "tr-tr", 1, result.EmailAddress, result.ReferenceCode
+               );
+          
+
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                return RedirectToAction("ApplicationConfirm", "Application");
+            }
+
+            if (response.ResponseMessage.ErrorCode == 7)
+            {
+                return RedirectToAction("AlreadyHaveCustomer", "Application");
+            }
+
+            return RedirectToAction("ApplicationFail", "Application");
+
+
+        }
+
+        //[ValidateAntiForgeryToken]
         public ActionResult ApplicationFail()
         {
             return View();
         }
 
-        [ValidateAntiForgeryToken]
-        public ActionResult ApplicationSummary()
-        {
-            var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
-            var Gsm = Session["Gsm"];
-            //string SerialNo = "A25I96170";
-            //DateTime dti = new DateTime(2029, 12, 26);
 
-            WebServiceWrapper client = new WebServiceWrapper();
-            var getAddress = client.GetApartmentAddress(ApplicationItemList[0].ApartmentId);
-            var address = getAddress.AddressDetailsResponse;
+        //[ValidateAntiForgeryToken]
+        //[HttpPost]
+        //public ActionResult ApplicationGet(ApplicationViewModel application)
+        ////public ActionResult Index(ApplicationViewModel application)
+        //{
+        //    //var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
+        //    //var Gsm = Session["Gsm"];
+        //    //string SerialNo = "A25I96170";
+        //    ////DateTime dti = new DateTime(2029, 12, 26);
+        //    //WebServiceWrapper clientAddress = new WebServiceWrapper();
+        //    //var getAddress = clientAddress.GetApartmentAddress(application.ApartmentId);
 
-            var ConfirmList = new List<ApplicationViewModel>();
+        //    //var address = getAddress.AddressDetailsResponse;
 
-            ConfirmList.Add(new ApplicationViewModel()
-            {
-                FirstName = ApplicationItemList[0].FirstName,
-                LastName = ApplicationItemList[0].LastName,
-                PhoneNumber = ApplicationItemList[0].PhoneNumber,
-                EmailAddress = ApplicationItemList[0].EmailAddress,
-                AddressText = address.AddressText
+        //    //var response = new WebServiceWrapper().NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+        //    //    address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
+        //    //      address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, application.Floor,
+        //    //    application.PostalCode, application.BirthPlace, application.FatherName,
+        //    //   application.MotherFirstSurname, application.MotherName, (int)application.Nationality, 962,
+        //    //   application.Sex, application.BirthDate, (int)application.IDCardType, application.FirstName,
+        //    //   application.LastName, application.TC, application.SerialNo, application.PlaceOfIssue,
+        //    //   new DateTime(2019, 12, 26), null, application.PhoneNumber, "tr-tr", 1, application.EmailAddress, application.ReferenceCode
+        //    //   );
 
-            });
-            return View(ConfirmList);
-        }
 
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public ActionResult ApplicationGet(ApplicationViewModel application)
-        //public ActionResult Index(ApplicationViewModel application)
-        {
-            var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
-            var Gsm = Session["Gsm"];
-            string SerialNo = "A25I96170";
-            DateTime dti = new DateTime(2029, 12, 26);
-            WebServiceWrapper clientAddress = new WebServiceWrapper();
-            var getAddress = clientAddress.GetApartmentAddress(ApplicationItemList[0].ApartmentId);
+        //    //    if (response.ResponseMessage.ErrorCode == 0)
+        //    //    {
+        //    //        return RedirectToAction("ApplicationConfirm", "Application");
+        //    //    }
 
-            var address = getAddress.AddressDetailsResponse;
+        //    //    return RedirectToAction("ApplicationFail", "Application");
 
-            var response = new WebServiceWrapper().NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
-                address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
-                  address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, ApplicationItemList[0].Floor,
-                ApplicationItemList[0].PostalCode, ApplicationItemList[0].BirthPlace, ApplicationItemList[0].FatherName,
-               ApplicationItemList[0].MotherFirstSurname, ApplicationItemList[0].MotherName, (int)ApplicationItemList[0].Nationality, 962,
-               (int)ApplicationItemList[0].Sex, ApplicationItemList[0].BirthDate, (int)ApplicationItemList[0].IDCardType, ApplicationItemList[0].FirstName,
-               ApplicationItemList[0].LastName, ApplicationItemList[0].TC, ApplicationItemList[0].SerialNo, ApplicationItemList[0].PlaceOfIssue,
-               new DateTime(2019, 12, 26), null, Gsm.ToString(), "tr-tr", 1, ApplicationItemList[0].EmailAddress, ApplicationItemList[0].ReferenceCode
-               );
-            {
-
-                if (response.ResponseMessage.ErrorCode == 0)
-                {
-                    return RedirectToAction("ApplicationConfirm", "Application");
-                }
-
-                return RedirectToAction("ApplicationFail", "Application");
-            }
-        }
+        //}
     }
 }

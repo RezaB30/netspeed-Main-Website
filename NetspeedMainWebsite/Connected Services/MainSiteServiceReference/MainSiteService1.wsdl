@@ -565,7 +565,9 @@
       </xs:complexType>
       <xs:element name="SubscriptionRegistrationInfo" nillable="true" type="tns:SubscriptionRegistrationInfo" />
       <xs:complexType name="ReferralDiscountInfo">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReferenceNo" nillable="true" type="xs:string" />
+        </xs:sequence>
       </xs:complexType>
       <xs:element name="ReferralDiscountInfo" nillable="true" type="tns:ReferralDiscountInfo" />
       <xs:complexType name="NetspeedServiceSendGenericSMSRequest">

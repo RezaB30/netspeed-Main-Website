@@ -1,0 +1,123 @@
+﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
+
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <!--begin::Page Heading-->
+    <div class="d-flex align-items-baseline flex-wrap my-5 mr-5">
+
+    </div>
+    <!--end::Toolbar-->
+</div>
+
+<!--end::Subheader-->
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    @Html.AntiForgeryToken()
+    <!--begin::Container-->
+    <div class="container">
+       
+
+        <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
+
+
+            <!--begin::Title-->
+            <div class="text-right mb-lg-4 mb-15 mr-xxl-10">
+
+            </div>
+            <!--end::Title-->
+            <!--begin::Form-->
+            <div class="d-flex justify-content-center flex-row-fluid ">
+                <div class="pb-5 w-100 w-md-450px w-lg-500px" novalidate="novalidate" id="kt_form">
+
+                    <div class="pb-5 w-100 w-md-550px w-lg-600px" id="kt_form2">
+                        <!--begin: Wizard Step 1-->
+                        <!--begin::Title-->
+                        <div class="pb-10 pb-lg-15">
+                            <h3 class="font-weight-bolder text-info font-size-h2">Kayıtlı Müşteri</h3><hr class="my-8">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-between text-white position-relative ml-auto p-7">
+                                <!--begin::Shape-->
+                                <div class="row">
+
+                                    @*<div class="col-lg-7 col-md-7">*@
+
+                                    <div class="position-absolute opacity-30 top-0 right-0">
+                                        <span class="svg-icon svg-icon-2x svg-logo-white svg-icon-flip">
+                                            <!--begin::Svg Icon | path:assets/media/svg/shapes/abstract-8.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="176" height="165" viewBox="0 0 176 165" fill="none">
+                                                <g clip-path="url(#clip0)">
+                                                    <path d="M-10.001 135.168C-10.001 151.643 3.87924 165.001 20.9985 165.001C38.1196 165.001 51.998 151.643 51.998 135.168C51.998 118.691 38.1196 105.335 20.9985 105.335C3.87924 105.335 -10.001 118.691 -10.001 135.168Z" fill="#AD84FF"></path>
+                                                    <path d="M28.749 64.3117C28.749 78.7296 40.8927 90.4163 55.8745 90.4163C70.8563 90.4163 83 78.7296 83 64.3117C83 49.8954 70.8563 38.207 55.8745 38.207C40.8927 38.207 28.749 49.8954 28.749 64.3117Z" fill="#AD84FF"></path>
+                                                    <path d="M82.9996 120.249C82.9996 144.964 103.819 165 129.501 165C155.181 165 176 144.964 176 120.249C176 95.5342 155.181 75.5 129.501 75.5C103.819 75.5 82.9996 95.5342 82.9996 120.249Z" fill="#AD84FF"></path>
+                                                    <path d="M98.4976 23.2928C98.4976 43.8887 115.848 60.5856 137.249 60.5856C158.65 60.5856 176 43.8887 176 23.2928C176 2.69692 158.65 -14 137.249 -14C115.848 -14 98.4976 2.69692 98.4976 23.2928Z" fill="#AD84FF"></path>
+                                                    <path d="M-10.0011 8.37466C-10.0011 20.7322 0.409554 30.7493 13.2503 30.7493C26.0911 30.7493 36.5 20.7322 36.5 8.37466C36.5 -3.98287 26.0911 -14 13.2503 -14C0.409554 -14 -10.0011 -3.98287 -10.0011 8.37466Z" fill="#AD84FF"></path>
+                                                    <path d="M-2.24881 82.9565C-2.24881 87.0757 1.22081 90.4147 5.50108 90.4147C9.78135 90.4147 13.251 87.0757 13.251 82.9565C13.251 78.839 9.78135 75.5 5.50108 75.5C1.22081 75.5 -2.24881 78.839 -2.24881 82.9565Z" fill="#AD84FF"></path>
+                                                    <path d="M55.8744 12.1044C55.8744 18.2841 61.0788 23.2926 67.5001 23.2926C73.9196 23.2926 79.124 18.2841 79.124 12.1044C79.124 5.92653 73.9196 0.917969 67.5001 0.917969C61.0788 0.917969 55.8744 5.92653 55.8744 12.1044Z" fill="#AD84FF"></path>
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                    </div>
+                                    <!--end::Shape-->
+                                    <h3 class="font-weight-bolder text-dark font-size-h4">İşlemlerinizi Yapmak İçin Lütfen Netspeed Online İşlem Merkezini Ziyaret Ediniz. </h3>
+                                    <div class="text-right d-flex flex-column">
+                                        <script src="~/Scripts/js/lottie-player.js"></script>
+                                    </div>
+                                    @*</div>*@
+                                   
+                                    @*<div class="col-lg-5 col-md-5">*@
+
+                                    <div @*style="width:7em; height:3em"*@>
+                                        <button type="submit" class="btn btn-dark font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
+                                            Online İşlem Merkezine Git
+                                            <span class="svg-icon svg-icon-md ml-1">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    @*</div>*@
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!--end: Wizard Actions-->
+    </div>
+</div>
+<!--end::Form-->
+        </div>
+<!--end::Content-->
+    </div>
+</div>
+    </div>
+</div>
+
+
+
+

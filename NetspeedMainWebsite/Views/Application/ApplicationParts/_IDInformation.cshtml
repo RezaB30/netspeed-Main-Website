@@ -33,7 +33,7 @@
             <div class="col-lg-6 col-md-6">
                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
                 <div class="form-control h-auto p-4 border-0 rounded-lg font-size-h6">
-                    @Html.EditorFor(m => m.TC, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
+                    @Html.EditorFor(m => m.TC, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "T.C Kimlik Numaranız" } })
                 </div>
             </div>
             @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
@@ -58,13 +58,13 @@
                     @* @Html.DropDownListFor(m => m.BirthYear, new SelectList(ViewBag.Years, "Value", "Text"), "Yıl Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
 
                     @*   @Html.DropDownListFor(m => m.BirthYear, "Yıl Seçin", new SelectList(, "value", "text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "yearElem" })*@
-                    @Html.DropDownListFor(m => m.BirthYear, new SelectList(ViewBag.Years, "Value", "Text"), "Yıl Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                   @* @Html.DropDownListFor(m => m.BirthYear, (IEnumerable<SelectListItem>)ViewBag.Years))*@
 
                     <div class="fv-plugins-message-container">
                         @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthYear)</div>*@
                     </div>
                     <div class="fv-plugins-message-container"></div>
-                    @Html.HiddenFor(m => m.BirthYear)
+                  @*  @Html.HiddenFor(m => m.BirthYear)*@
                 </div>
             </div>
 
@@ -73,11 +73,11 @@
                 <div class="form-group fv-plugins-icon-container">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Ayı </label>
                     @* @Html.DropDownListFor(m => m.BirthDay, Model.BirthDay, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                    @Html.DropDownListFor(m => m.BirthMonth, new SelectList(ViewBag.Months, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthMonth" })
+                   @* @Html.DropDownListFor(m => m.BirthMonth, new SelectList(ViewBag.Months, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthMonth" })*@
                     <div class="fv-plugins-message-container">
                         @*  <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthMonth)</div>*@
                     </div>
-                    @Html.HiddenFor(m => m.BirthYear)
+                  @*  @Html.HiddenFor(m => m.BirthYear)*@
                 </div>
                 <!--end::Input-->
             </div>
@@ -85,13 +85,17 @@
                 <!--begin::Input-->
                 <div class="form-group fv-plugins-icon-container">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
-                    @Html.DropDownListFor(m => m.BirthDay, Model.BirthDayList, "Gün Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthDay" })
+                  @*  @Html.DropDownListFor(m => m.BirthDay, Model.BirthDayList, "Gün Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "BirthDay" })*@
 
+                    <br />
+                    <br />
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
+                    @Html.EditorFor(m => m.BirthDate, new {htmlAttributes=new { @class= "datepicker", @placeholder = "Doğum Tarihi" } })
                     <div class="fv-plugins-message-container">
-                        @*<div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthDay)</div>*@
+                        <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthDate)</div>
 
                     </div>
-                    @Html.HiddenFor(m => m.BirthYear)
+                   @* @Html.HiddenFor(m => m.BirthYear)*@
                 </div>
                 <!--end::Input-->
             </div>
@@ -102,26 +106,26 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
-                        @Html.EditorFor(m => m.FatherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı" } })
 
                     </div>
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.FatherName)
                     </div>
-                    @Html.HiddenFor(m => m.BirthYear)
+                    @Html.HiddenFor(m => m.FatherName)
                 </div>
                 <!--end::Form Group-->
                 <!--begin::Form Group-->
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
-                        @Html.EditorFor(m => m.MotherName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @Html.EditorFor(m => m.MotherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Adı" } })
 
                     </div>
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.MotherName)
                     </div>
-                    @Html.HiddenFor(m => m.BirthYear)
+                    @Html.HiddenFor(m => m.MotherName)
                 </div>
             </div>
 
@@ -132,7 +136,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
-                        @Html.EditorFor(m => m.BirthPlace, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Doğum Yeri" } })
 
                     </div>
                     <div class="text-danger">
@@ -145,7 +149,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
-                        @Html.EditorFor(m => m.SerialNo, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No" } })
 
                     </div>
                     <div class="text-danger">
@@ -165,7 +169,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
-                        @Html.EditorFor(m => m.PlaceOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer" } })
 
                     </div>
                     <div class="text-danger">
@@ -196,7 +200,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
-                        @Html.EditorFor(m => m.DateOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                        @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })
 
                     </div>
 
@@ -223,7 +227,7 @@
                         <div class="form-group">
 
                             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
-                            @Html.EditorFor(m => m.MotherFirstSurname, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                            @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", } })
 
                             @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="annekizliksoyad" placeholder="Anne Kızlık Soyadı" value="">*@
                         </div>
@@ -235,6 +239,26 @@
                     </div>
                 </div>
             </div>
+
+
+
+            <!--<input type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next"  value="Sonraki"/>
+          
+            <span class="svg-icon svg-icon-md ml-1">-->
+                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                <!--<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                    </g>
+                </svg>-->
+                <!--end::Svg Icon-->
+            <!--</span>-->
+
+
+
+
         </div>
     </div>
      </div>

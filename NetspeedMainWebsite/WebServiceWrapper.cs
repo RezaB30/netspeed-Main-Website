@@ -210,7 +210,10 @@ namespace NetspeedMainWebsite
                 {
                     SubscriptionInfo = new SubscriptionRegistrationInfo()
                     {
-                        //ReferralDiscountInfo=ReferenceCode,
+                        ReferralDiscountInfo=new ReferralDiscountInfo()
+                        { 
+                            ReferenceNo=ReferenceCode
+                        },
                         BillingPeriod = BillingPeriod,
                         DomainID = DomainID,
                         ServiceID = ServiceID,
@@ -307,30 +310,30 @@ namespace NetspeedMainWebsite
                         //CustomerType = application.CustomerType,
                         CustomerType = 1,
                         Email = Email,
-                        
-                        //OtherPhoneNos=new PhoneNoListItem()
+
+                        //OtherPhoneNos = new PhoneNoListItem()
                         //{
-                        //    //Number=,
+                        //    Number=
                         //}
 
                     },
-                    CorporateCustomerInfo = new CorporateCustomerInfo
-                    {
-                        CentralSystemNo = null,
-                        CompanyAddress = null,
-                        ExecutiveBirthPlace = null,
-                        ExecutiveFathersName = null,
-                        ExecutiveMothersMaidenName = null,
-                        ExecutiveNationality = null,
-                        ExecutiveMothersName = null,
-                        ExecutiveProfession = null,
-                        ExecutiveResidencyAddress = null,
-                        ExecutiveSex = null,
-                        TaxNo = null,
-                        TaxOffice = null,
-                        Title = null,
-                        ExtensionData = null
-                    }
+                    CorporateCustomerInfo =null /*new CorporateCustomerInfo*/
+                    //{
+                        //CentralSystemNo = null,
+                        //CompanyAddress = null,
+                        //ExecutiveBirthPlace = null,
+                        //ExecutiveFathersName = null,
+                        //ExecutiveMothersMaidenName = null,
+                        //ExecutiveNationality = null,
+                        //ExecutiveMothersName = null,
+                        //ExecutiveProfession = null,
+                        //ExecutiveResidencyAddress = null,
+                        //ExecutiveSex = null,
+                        //TaxNo = null,
+                        //TaxOffice = null,
+                        //Title = null,
+                        //ExtensionData = null
+                    //}
                 }
             }); 
 
