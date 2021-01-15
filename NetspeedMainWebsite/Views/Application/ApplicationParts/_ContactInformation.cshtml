@@ -11,7 +11,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız</label>
-            @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "Adınız" } })
+            @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "Adınız" , @maxlength = 50 } })
             @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="firstname" placeholder="Adınız" value="" />*@
 
         </div>
@@ -25,7 +25,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Soyadınız</label>
-            @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "Soyadınız" } })
+            @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "Soyadınız", @maxlength = 50} })
             @*  <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="lastname" placeholder="Soyadınız" value="" />*@
 
         </div>
@@ -39,7 +39,7 @@
     <div class="col-lg-12 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
-            @Html.EditorFor(m => m.EmailAddress, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "E-Posta Adresi" } })
+            @Html.EditorFor(m => m.EmailAddress, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "E-Posta Adresi", @maxlength = 50 } })
             @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="email" placeholder="E-Posta Adresiniz" value="" />*@
 
         </div>

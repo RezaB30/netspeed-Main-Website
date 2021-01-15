@@ -13,19 +13,18 @@ namespace NetspeedMainWebsite.Controllers
     public class ClientPaymentController : BaseController
     {
         // GET: PaymentBill
-        //HashUtilities hash = new HashUtilities();
-        //MainSiteServiceClient client = new MainSiteServiceClient();
-        WebServiceWrapper client = new WebServiceWrapper();
+
+        //WebServiceWrapper client = new WebServiceWrapper();
 
 
         [HttpGet]
-        public ActionResult PaymentBill()
+        public ActionResult BillPaymentLogin()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult PaymentBill(PaymentBillViewModel payment, string PhoneNumber, string ClientInfo)
+        public ActionResult BillPaymentLogin(PaymentBillViewModel payment, string PhoneNumber, string ClientInfo)
         {
             var ClientInfoList = new List<PaymentBillViewModel>();
 
@@ -42,7 +41,6 @@ namespace NetspeedMainWebsite.Controllers
         }
 
 
-
         [HttpGet]
         public ActionResult PaymentBillWithCard()
         {
@@ -57,19 +55,34 @@ namespace NetspeedMainWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PaymentBillAndResult(string PhoneNumber, string ClientInfo)
         {
+            var message = string.Empty;
             if (ModelState.IsValid)
             {
-                var response = client.GetBills(PhoneNumber, ClientInfo);
-
+                WebServiceWrapper clientsBills = new WebServiceWrapper();
+                var response = clientsBills.GetBills(PhoneNumber, ClientInfo);
 
                 //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
-                if (response.ResponseMessage.ErrorCode == 7)
+
+
+                if (response.ResponseMessage.ErrorCode == 2)
+                {                    
+                    TempData["message"] = "Kayıtlı Abone Bulunamadı.";
+                    return RedirectToAction("BillPaymentLogin", "ClientPayment");
+                }
+
+                if (response.ResponseMessage.ErrorCode == 4)
+                {
+                    TempData["message"] = "Fatura Bulunamadı.";
+                    return RedirectToAction("BillPaymentLogin", "ClientPayment");
+                }
+
+                if (response.ResponseMessage.ErrorCode == 5)
                 {
                     return RedirectToAction("AlreadyHaveCustomer", "Application");
                 }
-                
+
                 BillInfoViewModel Bills = new BillInfoViewModel();
-                //modelstate.isvalid
+
                 var ClientBillItems = response.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
                 {
                     ServiceName = r.ServiceName,
@@ -93,20 +106,13 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult PaymentSelectBill(object SelectedBills)
-        //public ActionResult PaymentBillAndResult(object SelectedBills)
         {
             var message = string.Empty;
 
             var CurrentSelectedBills = ((string[])SelectedBills)[0].ToString().Split(',');
             var GetSelectedBills = new List<long>();//selected bills
 
-            //if (PayableBillIdList.Count == 0)
-            //{
-            //    message = "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
-            //    ViewBag.message = message;
-            //    //tempdata
-            //    return RedirectToAction("PaymentBillAndResult", "ClientPayment");
-            //}
+
             foreach (var item in CurrentSelectedBills)
             {
                 GetSelectedBills.Add(Convert.ToInt64(item));
@@ -166,9 +172,6 @@ namespace NetspeedMainWebsite.Controllers
             if (PayableBillIdList.Count == 0)
             {
                 TempData["message"] = "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
-                //message = "Eski Tarihli Faturalarınızı Ödemeden Diğer Faturalarınızı Ödeyemezsiniz. Lütfen Eski Tarihli Faturalarınızı Seçin.";
-                //ViewBag.message = message;
-                //tempdata
                 return RedirectToAction("PaymentBillAndResult", "ClientPayment");
             }
             else
@@ -183,7 +186,6 @@ namespace NetspeedMainWebsite.Controllers
             var BillList = (long[])Session["BillIds"];
             //long[] BillListt = new long[10];
 
-
             var Key = Guid.NewGuid().ToString();
             var Value = BillList;
 
@@ -195,8 +197,8 @@ namespace NetspeedMainWebsite.Controllers
             MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(15));
 
             //cacheToken.Remove(Key);
-
-            var response = client.SubscriberPaymentVPOS(BillList, Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme),
+            WebServiceWrapper clientVPOS = new WebServiceWrapper();
+            var response = clientVPOS.SubscriberPaymentVPOS(BillList, Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme),
                 Url.Action("PaymentConfirm", "ClientPayment", new { id = Key }, Request.Url.Scheme));
 
             ViewBag.VPOSForm = response.PaymentVPOSResponse.HtmlForm;
@@ -207,7 +209,8 @@ namespace NetspeedMainWebsite.Controllers
         {
             var billIds = MemoryCache.Default.Get(id) as long[];
 
-            var response = client.PayBills(billIds);
+            WebServiceWrapper clientsPayBills = new WebServiceWrapper();
+            var response = clientsPayBills.PayBills(billIds);
 
             MemoryCache.Default.Remove(id);
             return View();

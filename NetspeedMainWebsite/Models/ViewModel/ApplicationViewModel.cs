@@ -20,17 +20,14 @@ namespace NetspeedMainWebsite.Models.ViewModel
             StreetList = new List<SelectListItem>();
             BuildingList = new List<SelectListItem>();
             ApartmentList = new List<SelectListItem>();
-            //DayList = new List<SelectListItem>();
-            //MonthList= new List<SelectListItem>();
-            //YearList= new List<SelectListItem>();
             BirthDayList = new List<SelectListItem>();
             BirthMonthList = new List<SelectListItem>();
             BirthYearList = new List<SelectListItem>();
             SexList = new List<SelectListItem>();
             NationalityList = new List<SelectListItem>();
             IDCardTypeList = new List<SelectListItem>();
-
         }
+
         [Required(ErrorMessage = "*İl Alanı Gerekli")]
         public long ProvinceId { get; set; }
         [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
@@ -43,16 +40,9 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public long StreetId { get; set; }
         [Required(ErrorMessage = "*Apartman Alanı Gerekli")]
         public long BuildingId { get; set; }
+
         [Required(ErrorMessage = "*Kapı Numarası Alanı Gerekli")]
         public long ApartmentId { get; set; }
-
-        //public string Province { get; set; }
-        //public string District { get; set; }
-        //public string Region { get; set; }
-        //public string Neighborhood { get; set; }
-        //public string Street { get; set; }
-        //public string Building { get; set; }
-        //public string Apartment { get; set; }
         public string AddressText { get; set; }
 
         public IEnumerable<SelectListItem> ProvinceList { get; set; }
@@ -69,12 +59,15 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public IEnumerable<SelectListItem> NationalityList { get; set; }
         public IEnumerable<SelectListItem> IDCardTypeList { get; set; }
 
+
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "*Lütfen Telefon Numaranızı Doğru Giriniz.")]
         [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
 
         private string _FirstName;
+        [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
         public string FirstName
         {
             get
@@ -91,10 +84,9 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
         [Required(ErrorMessage = "*Soyad Alanı Gerekli ")]
-        
         private string _LastName;
+        [Required(ErrorMessage = "*Soyad Alanı Gerekli ")]
         public string LastName
         {
             get
@@ -111,31 +103,64 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
         [Required(ErrorMessage = "*E-Posta Alanı Gerekli ")]
         public string EmailAddress { get; set; }
+
         [Required(ErrorMessage = "*Uyruk Alanı Gerekli ")]
         public int Nationality { get; set; }
+
         [Required(ErrorMessage = "*Kart Tipi Alanı Gerekli ")]
         public int IDCardType { get; set; }
 
-        [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
-        public int PostalCode { get; set; }
+        [Required(ErrorMessage = "*Posta Kodu Alanı Gerekli ")]
+        //public int PostalCode { get; set; }
+
+        public string PostalCode
+        {
+            get
+            {
+                return _PostalCode.HasValue ? _PostalCode.Value.ToString() : null;
+            }
+            set
+            {
+                int PostalCode;
+                if (int.TryParse(value, out PostalCode))
+                {
+                    _PostalCode = PostalCode;
+                }
+            }
+        }
+        public int? _PostalCode { get; set; }
 
         [Required(ErrorMessage = "*T.C Kimlik Numarası Alanı Gerekli ")]
+        [RegularExpression(@"^([1-9]{1}[0-9]{9}[02468]{1})$", ErrorMessage = "*Lütfen T.C Kimlik Numaranızı Doğru Giriniz.")]
+        [MaxLength(11), MinLength(11)]
         public string TC { get; set; }
-        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        public DateTime BirthDate { get; set; }
 
-        //public int BirthDay { get; set; }
-        //public int BirthYear { get; set; }
-        //public int BirthMonth { get; set; }
+        //public DateTime BirthDate { get; set; }
+
+
+        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
+        public DateTime? _BirthDate;
+        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
+        public string BirthDate
+        {
+            get
+            {
+                return _BirthDate.HasValue ? _BirthDate.Value.Date.ToString() : null;
+            }
+            set
+            {
+                //DateTime BirthDate;
+                _BirthDate = Convert.ToDateTime(BirthDate);
+            }
+        }
+
 
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
         public int Sex { get; set; }
 
-        
-       
+        [Required(ErrorMessage = "*Baba Adı Alanı Gerekli ")]
         private string _FatherName;
         [Required(ErrorMessage = "*Baba Adı Alanı Gerekli ")]
         public string FatherName
@@ -154,11 +179,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
-
-
-        
-       
+        [Required(ErrorMessage = "*Anne Adı Alanı Gerekli ")]
         private string _MotherName;
         [Required(ErrorMessage = "*Anne Adı Alanı Gerekli ")]
         public string MotherName
@@ -177,11 +198,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
-
-
-        
-     
+        [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         private string _BirthPlace;
         [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         public string BirthPlace
@@ -200,14 +217,10 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
-
-
-
-       
-      
+        [Required(ErrorMessage = "*Anne Kızlık Soyadı Alanı Gerekli ")]
         private string _MotherFirstSurname;
         [Required(ErrorMessage = "*Anne Kızlık Soyadı Alanı Gerekli ")]
+
         public string MotherFirstSurname
         {
             get
@@ -224,14 +237,9 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
-
-
-
-
-       
+        [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
         //public string SerialNo { get; set; }
-        private string _SerialNo; 
+        private string _SerialNo;
         [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
         public string SerialNo
         {
@@ -249,14 +257,8 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
-
-
-
-
         [Required(ErrorMessage = "*Kat No Alanı Gerekli ")]
         public string Floor { get; set; }
-        
 
         private string _ReferenceCode;
         public string ReferenceCode
@@ -276,11 +278,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         }
 
 
-
-
-        
-     
-
+        [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
         private string _PlaceOfIssue;
         [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
         public string PlaceOfIssue
@@ -300,11 +298,36 @@ namespace NetspeedMainWebsite.Models.ViewModel
         }
 
 
-
-        [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
         public DateTime DateOfIssue { get; set; }
+
+        //[Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
+        //public DateTime? _DateOfIssue;
+        //[Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
+        //public string DateOfIssue
+        //{
+        //    get
+        //    {
+        //        return _DateOfIssue.HasValue ? _DateOfIssue.Value.Date.ToString() : null;
+        //    }
+        //    set
+        //    {
+        //        //DateTime BirthDate;
+        //        _BirthDate = Convert.ToDateTime(DateOfIssue);
+        //    }
+        //}
+
+
+
+
+
+
+
+
+
+
+
         public string ContactPhoneNo { get; set; }
-        [Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
+        //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
 

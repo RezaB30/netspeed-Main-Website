@@ -49,6 +49,9 @@
     <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
     </Reference>
+    <Reference Include="RezaB.Data, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RezaB.Data.1.0.1\lib\net452\RezaB.Data.dll</HintPath>
+    </Reference>
     <Reference Include="RezaB.Mailing, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RezaB.Mailing.1.0.1\lib\net452\RezaB.Mailing.dll</HintPath>
     </Reference>
@@ -1202,6 +1205,7 @@
     <Content Include="Scripts\js\CountDown.js" />
     <Content Include="Scripts\js\get-birthdate.js" />
     <Content Include="Scripts\js\get-infrastructure.js" />
+    <Content Include="Scripts\js\get-nextPrevButton.js" />
     <Content Include="Scripts\js\get-switchpartial.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1234,6 +1238,8 @@
     <Content Include="Views\Application\ApplicationParts\_GSMValidation.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_SMSValidation.cshtml" />
     <Content Include="Views\Application\AlreadyHaveCustomer.cshtml" />
+    <Content Include="Views\Application\InfrastructureInquiryForApplication.cshtml" />
+    <Content Include="Views\Application\InfrastructureAndTariffs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1293,7 +1299,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Home\ContractAndForm.cshtml" />
-    <Content Include="Views\InfrastructureInquiry\Test.cshtml" />
+    <Content Include="Views\InfrastructureInquiry\Index.cshtml" />
     <Content Include="Views\Home\SpeedTest.cshtml" />
     <Content Include="Views\InfrastructureInquiry\InfrastructureInquiryResult.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
@@ -1340,7 +1346,7 @@
     <Content Include="Views\Support\FixedPhoneIssue.cshtml" />
     <Content Include="Views\Support\NewModem.cshtml" />
     <Content Include="Views\Support\SubscriptionActive.cshtml" />
-    <Content Include="Views\ClientPayment\PaymentBill.cshtml" />
+    <Content Include="Views\ClientPayment\BillPaymentLogin.cshtml" />
     <Content Include="Views\ClientPayment\PaymentBillWithCard.cshtml" />
     <Content Include="Views\ClientPayment\PaymentBillAndResult.cshtml" />
     <Content Include="Views\Shared\LayoutParts\HelpBubModal.cshtml" />

@@ -13,7 +13,7 @@ namespace NetspeedMainWebsite.Controllers
         //GET: InfrastructureInquiry
         //MainSiteServiceClient client = new MainSiteServiceClient();
         WebServiceWrapper client = new WebServiceWrapper();
-        public ActionResult Test()
+        public ActionResult Index()
         {
             var response = client.GetProvinces();
             var ProvinceItems = response.ValueNamePairList.Select(r => new SelectListItem()
@@ -135,40 +135,79 @@ namespace NetspeedMainWebsite.Controllers
 
             InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();
 
-            if (response.ServiceAvailabilityResponse.FiberSpeed > 0 )
+            var Fiber = response.ServiceAvailabilityResponse.FIBER;
+            var Vdsl = response.ServiceAvailabilityResponse.VDSL;
+            var Adsl = response.ServiceAvailabilityResponse.ADSL;
+
+
+
+            if (Fiber.HasInfrastructureFiber)
             {
-                InfrastructureResult.Distance = response.ServiceAvailabilityResponse.FiberDistance.ToString();
-                InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
-                InfrastructureResult.XDSLType = response.ServiceAvailabilityResponse.HasInfrastructureFiber.ToString(); //"fiber"
-                InfrastructureResult.PortState = response.ServiceAvailabilityResponse.FiberPortState.ToString();
-                InfrastructureResult.SVUID = response.ServiceAvailabilityResponse.FiberSVUID.ToString();
+                //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FIBER.FiberSpeed.Value) * 1024, true);
+
+                var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
+                InfrastructureResult.Distance = Fiber.FiberDistance.ToString();
+                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
+                InfrastructureResult.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
+                InfrastructureResult.XDSLType = Fiber.HasInfrastructureFiber.ToString(); //"fiber"
+                InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
+                InfrastructureResult.SVUID = Fiber.FiberSVUID.ToString();
                 return View(InfrastructureResult);
             }
-            if (response.ServiceAvailabilityResponse.VdslSpeed != 0 && response.ServiceAvailabilityResponse.VdslSpeed > response.ServiceAvailabilityResponse.AdslSpeed)
+
+            if (Vdsl.HasInfrastructureVdsl  && Vdsl.VdslSpeed > Adsl.AdslSpeed)
             {
-                InfrastructureResult.Distance = response.ServiceAvailabilityResponse.VdslDistance.ToString();
-                InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
-                InfrastructureResult.XDSLType = response.ServiceAvailabilityResponse.HasInfrastructureVdsl.ToString(); //"vdsl"
-                InfrastructureResult.PortState = response.ServiceAvailabilityResponse.VdslPortState.ToString();
-                InfrastructureResult.SVUID = response.ServiceAvailabilityResponse.VdslSVUID.ToString();
+                var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
+                InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
+
+                InfrastructureResult.Distance = Vdsl.VdslDistance.ToString();
+                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
+                InfrastructureResult.XDSLType = Vdsl.HasInfrastructureVdsl.ToString(); //"vdsl"
+                InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
+                InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
                 return View(InfrastructureResult);
             }
-            if (response.ServiceAvailabilityResponse.AdslSpeed != 0 && response.ServiceAvailabilityResponse.AdslSpeed > response.ServiceAvailabilityResponse.VdslSpeed)
+
+
+            if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
             {
-                InfrastructureResult.Distance = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
-                InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
-                InfrastructureResult.XDSLType = response.ServiceAvailabilityResponse.HasInfrastructureAdsl.ToString(); //"adsl"
-                InfrastructureResult.PortState = response.ServiceAvailabilityResponse.VdslPortState.ToString();
-                InfrastructureResult.SVUID = response.ServiceAvailabilityResponse.AdslSVUID.ToString();
+                //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
+                var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
+                InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
+
+
+                InfrastructureResult.Distance = Adsl.AdslDistance.ToString();
+                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
+                InfrastructureResult.XDSLType = Adsl.HasInfrastructureAdsl.ToString(); //"adsl"
+                InfrastructureResult.PortState = Adsl.AdslPortState.ToString();
+                InfrastructureResult.SVUID = Adsl.AdslSVUID.ToString();
                 return View(InfrastructureResult);
             }
+
+
+
+            //if (response.ServiceAvailabilityResponse.AdslSpeed != 0 && response.ServiceAvailabilityResponse.AdslSpeed > response.ServiceAvailabilityResponse.VdslSpeed)
+            //{
+            //    //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
+            //    var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.AdslSpeed) * 1024, true);
+            //    InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
+
+
+            //    InfrastructureResult.Distance = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
+            //    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
+            //    InfrastructureResult.XDSLType = response.ServiceAvailabilityResponse.HasInfrastructureAdsl.ToString(); //"adsl"
+            //    InfrastructureResult.PortState = response.ServiceAvailabilityResponse.VdslPortState.ToString();
+            //    InfrastructureResult.SVUID = response.ServiceAvailabilityResponse.AdslSVUID.ToString();
+            //    return View(InfrastructureResult);
+            //}
 
 
             InfrastructureResult.Message = response.ResponseMessage.ErrorMessage;
-            InfrastructureResult.Distance = "??";
-            InfrastructureResult.MaxSpeed = "??";
-            InfrastructureResult.XDSLType = "??";
-            InfrastructureResult.PortState = "??";
+            InfrastructureResult.Distance = "-";
+            InfrastructureResult.MaxSpeed = "Sorguladığınız haneye ait altyapı bilgisi bulunamadı.";
+            InfrastructureResult.XDSLType = "";
+            InfrastructureResult.PortState = "Yok";
+
 
             return View(InfrastructureResult);
 

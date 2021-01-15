@@ -225,6 +225,7 @@ namespace NetspeedMainWebsite.Controllers
         }
 
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult test1(ApplicationViewModel application)
@@ -270,7 +271,7 @@ namespace NetspeedMainWebsite.Controllers
                     //BirthMonth = application.BirthMonth,
                     //BirthDay = application.BirthDay,
                     //BirthDate = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay),
-                    BirthDate=application.BirthDate,
+                    BirthDate = application.BirthDate,
                     DateOfIssue = application.DateOfIssue,
                     SMSCode = application.SMSCode
                 };
@@ -309,8 +310,6 @@ namespace NetspeedMainWebsite.Controllers
                 return View(viewName: "GsmVerificationWithSms", model: result);
                 //return Url.Action("GsmVerificationWithSms", "Application",new { id=Value, new ApplicationViewModel()});
 
-
-
                 //return Url.Action("GsmVerificationWithSms", "Application",new { id=Key} );
             }
             return View(application);
@@ -333,7 +332,7 @@ namespace NetspeedMainWebsite.Controllers
 
             //if (ModelState.IsValid)
             //{
-            if (Value.ExpirationDate>DateTime.Now)
+            if (Value.ExpirationDate > DateTime.Now)
             {
                 if (Value.SMSCode == result.SMSCode)//Is true sms code?
                 {
@@ -352,9 +351,9 @@ namespace NetspeedMainWebsite.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Application");
+                return RedirectToAction("Index", "Application");
             }
-                
+
             //}
             //return View(result);
         }
@@ -446,7 +445,7 @@ namespace NetspeedMainWebsite.Controllers
         //    return View();
         //}
 
-       
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult ApplicationSummary(ApplicationViewModel result)
@@ -484,13 +483,13 @@ namespace NetspeedMainWebsite.Controllers
             var response = new WebServiceWrapper().NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
                 address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
-                result.PostalCode, result.BirthPlace, result.FatherName,
+                result._PostalCode, result.BirthPlace, result.FatherName,
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
-               result.Sex, result.BirthDate, result.IDCardType, result.FirstName,
+               result.Sex, result._BirthDate, result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
                result.DateOfIssue, null, result.PhoneNumber, "tr-tr", 1, result.EmailAddress, result.ReferenceCode
                );
-          
+
 
             if (response.ResponseMessage.ErrorCode == 0)
             {
@@ -501,6 +500,12 @@ namespace NetspeedMainWebsite.Controllers
             {
                 return RedirectToAction("AlreadyHaveCustomer", "Application");
             }
+
+            if (response.ResponseMessage.ErrorCode == 200)
+            {
+                return RedirectToAction("Index", "Application");
+            }
+
 
             return RedirectToAction("ApplicationFail", "Application");
 
@@ -514,38 +519,31 @@ namespace NetspeedMainWebsite.Controllers
         }
 
 
-        //[ValidateAntiForgeryToken]
+
         //[HttpPost]
-        //public ActionResult ApplicationGet(ApplicationViewModel application)
-        ////public ActionResult Index(ApplicationViewModel application)
-        //{
-        //    //var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
-        //    //var Gsm = Session["Gsm"];
-        //    //string SerialNo = "A25I96170";
-        //    ////DateTime dti = new DateTime(2029, 12, 26);
-        //    //WebServiceWrapper clientAddress = new WebServiceWrapper();
-        //    //var getAddress = clientAddress.GetApartmentAddress(application.ApartmentId);
+        public ActionResult InfrastructureInquiryForApplication()
+        {
+            WebServiceWrapper clientProvince = new WebServiceWrapper();
 
-        //    //var address = getAddress.AddressDetailsResponse;
+            var response = clientProvince.GetProvinces();
+            var ProvinceItems = response.ValueNamePairList.Select(r => new SelectListItem()
+            {
+                Text = r.Name,
+                Value = r.Code.ToString()
+            });
 
-        //    //var response = new WebServiceWrapper().NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
-        //    //    address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
-        //    //      address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, application.Floor,
-        //    //    application.PostalCode, application.BirthPlace, application.FatherName,
-        //    //   application.MotherFirstSurname, application.MotherName, (int)application.Nationality, 962,
-        //    //   application.Sex, application.BirthDate, (int)application.IDCardType, application.FirstName,
-        //    //   application.LastName, application.TC, application.SerialNo, application.PlaceOfIssue,
-        //    //   new DateTime(2019, 12, 26), null, application.PhoneNumber, "tr-tr", 1, application.EmailAddress, application.ReferenceCode
-        //    //   );
+            return View(new ApplicationViewModel() { ProvinceList = ProvinceItems });
+        }
 
+        [HttpPost]
+        public ActionResult InfrastructureAndTariffs(string ApartmentId)
+        {
+            WebServiceWrapper clientBBK = new WebServiceWrapper();
 
-        //    //    if (response.ResponseMessage.ErrorCode == 0)
-        //    //    {
-        //    //        return RedirectToAction("ApplicationConfirm", "Application");
-        //    //    }
+            var response = clientBBK.ServiceAvailability(ApartmentId);
+         
 
-        //    //    return RedirectToAction("ApplicationFail", "Application");
-
-        //}
+            return View();
+        }
     }
 }

@@ -194,7 +194,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(int? BillingPeriod, int? DomainID, int? ServiceID, long? ProvinceId, string ProvinceName,
             long? DistrictId, string DistrictName, long? RegionId, long? NeighbourhoodId, string NeighbourhoodName, long? StreetId, string StreetName, long? ApartmentId,
-            string ApartmentNo, string AddressText, long? AddressNo, long? DoorId, string DoorNo, string Floor, int PostalCode,
+            string ApartmentNo, string AddressText, long? AddressNo, long? DoorId, string DoorNo, string Floor, int? PostalCode,
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int Nationality, int Profession, int Sex,
             DateTime? BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, DateTime? DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,

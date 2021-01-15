@@ -91,10 +91,11 @@
                     <br />
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
                     @Html.EditorFor(m => m.BirthDate, new {htmlAttributes=new { @class= "datepicker", @placeholder = "Doğum Tarihi" } })
-                    <div class="fv-plugins-message-container">
-                        <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthDate)</div>
+                <div class="fv-plugins-message-container">
+                    @Html.HiddenFor(m => m.BirthDate)
+                    <div class="text-danger"> @Html.ValidationMessageFor(model => model.BirthDate)</div>
 
-                    </div>
+                </div>
                    @* @Html.HiddenFor(m => m.BirthYear)*@
                 </div>
                 <!--end::Input-->
@@ -200,7 +201,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
-                        @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })
+                        @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })
 
                     </div>
 

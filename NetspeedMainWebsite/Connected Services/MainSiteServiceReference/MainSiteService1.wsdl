@@ -933,26 +933,44 @@
       <xs:element name="NetspeedServiceServiceAvailabilityResponse" nillable="true" type="tns:NetspeedServiceServiceAvailabilityResponse" />
       <xs:complexType name="ServiceAvailabilityResponse">
         <xs:sequence>
+          <xs:element minOccurs="0" name="ADSL" nillable="true" type="tns:ServiceAvailabilityResponse.ADSLInfo" />
+          <xs:element minOccurs="0" name="BBK" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FIBER" nillable="true" type="tns:ServiceAvailabilityResponse.FIBERInfo" />
+          <xs:element minOccurs="0" name="VDSL" nillable="true" type="tns:ServiceAvailabilityResponse.VDSLInfo" />
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ServiceAvailabilityResponse" nillable="true" type="tns:ServiceAvailabilityResponse" />
+      <xs:complexType name="ServiceAvailabilityResponse.ADSLInfo">
+        <xs:sequence>
           <xs:element minOccurs="0" name="AdslDistance" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="AdslPortState" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="AdslSVUID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="AdslSpeed" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="BBK" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasInfrastructureAdsl" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ServiceAvailabilityResponse.ADSLInfo" nillable="true" type="tns:ServiceAvailabilityResponse.ADSLInfo" />
+      <xs:complexType name="ServiceAvailabilityResponse.FIBERInfo">
+        <xs:sequence>
           <xs:element minOccurs="0" name="FiberDistance" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="FiberPortState" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="FiberSVUID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="FiberSpeed" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="HasInfrastructureAdsl" type="xs:boolean" />
           <xs:element minOccurs="0" name="HasInfrastructureFiber" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ServiceAvailabilityResponse.FIBERInfo" nillable="true" type="tns:ServiceAvailabilityResponse.FIBERInfo" />
+      <xs:complexType name="ServiceAvailabilityResponse.VDSLInfo">
+        <xs:sequence>
           <xs:element minOccurs="0" name="HasInfrastructureVdsl" type="xs:boolean" />
           <xs:element minOccurs="0" name="VdslDistance" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="VdslPortState" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="VdslSVUID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="VdslSpeed" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="ServiceAvailabilityResponse" nillable="true" type="tns:ServiceAvailabilityResponse" />
+      <xs:element name="ServiceAvailabilityResponse.VDSLInfo" nillable="true" type="tns:ServiceAvailabilityResponse.VDSLInfo" />
       <xs:complexType name="NetspeedServiceArrayListResponse">
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q3:BaseResponseOfArrayOfValueNamePairSHA1x9h56FeD">

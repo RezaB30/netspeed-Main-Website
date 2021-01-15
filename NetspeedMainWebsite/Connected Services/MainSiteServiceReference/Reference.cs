@@ -2614,52 +2614,16 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AdslDistanceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AdslPortStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AdslSVUIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AdslSpeedField;
+        private NetspeedMainWebsite.MainSiteServiceReference.ServiceAvailabilityResponse.ADSLInfo ADSLField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string BBKField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> FiberDistanceField;
+        private NetspeedMainWebsite.MainSiteServiceReference.ServiceAvailabilityResponse.FIBERInfo FIBERField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FiberPortStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FiberSVUIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> FiberSpeedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool HasInfrastructureAdslField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool HasInfrastructureFiberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool HasInfrastructureVdslField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> VdslDistanceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string VdslPortStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string VdslSVUIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> VdslSpeedField;
+        private NetspeedMainWebsite.MainSiteServiceReference.ServiceAvailabilityResponse.VDSLInfo VDSLField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string addressField;
@@ -2675,53 +2639,14 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AdslDistance {
+        public NetspeedMainWebsite.MainSiteServiceReference.ServiceAvailabilityResponse.ADSLInfo ADSL {
             get {
-                return this.AdslDistanceField;
+                return this.ADSLField;
             }
             set {
-                if ((this.AdslDistanceField.Equals(value) != true)) {
-                    this.AdslDistanceField = value;
-                    this.RaisePropertyChanged("AdslDistance");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AdslPortState {
-            get {
-                return this.AdslPortStateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AdslPortStateField, value) != true)) {
-                    this.AdslPortStateField = value;
-                    this.RaisePropertyChanged("AdslPortState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AdslSVUID {
-            get {
-                return this.AdslSVUIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AdslSVUIDField, value) != true)) {
-                    this.AdslSVUIDField = value;
-                    this.RaisePropertyChanged("AdslSVUID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AdslSpeed {
-            get {
-                return this.AdslSpeedField;
-            }
-            set {
-                if ((this.AdslSpeedField.Equals(value) != true)) {
-                    this.AdslSpeedField = value;
-                    this.RaisePropertyChanged("AdslSpeed");
+                if ((object.ReferenceEquals(this.ADSLField, value) != true)) {
+                    this.ADSLField = value;
+                    this.RaisePropertyChanged("ADSL");
                 }
             }
         }
@@ -2740,144 +2665,27 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> FiberDistance {
+        public NetspeedMainWebsite.MainSiteServiceReference.ServiceAvailabilityResponse.FIBERInfo FIBER {
             get {
-                return this.FiberDistanceField;
+                return this.FIBERField;
             }
             set {
-                if ((this.FiberDistanceField.Equals(value) != true)) {
-                    this.FiberDistanceField = value;
-                    this.RaisePropertyChanged("FiberDistance");
+                if ((object.ReferenceEquals(this.FIBERField, value) != true)) {
+                    this.FIBERField = value;
+                    this.RaisePropertyChanged("FIBER");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FiberPortState {
+        public NetspeedMainWebsite.MainSiteServiceReference.ServiceAvailabilityResponse.VDSLInfo VDSL {
             get {
-                return this.FiberPortStateField;
+                return this.VDSLField;
             }
             set {
-                if ((object.ReferenceEquals(this.FiberPortStateField, value) != true)) {
-                    this.FiberPortStateField = value;
-                    this.RaisePropertyChanged("FiberPortState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FiberSVUID {
-            get {
-                return this.FiberSVUIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FiberSVUIDField, value) != true)) {
-                    this.FiberSVUIDField = value;
-                    this.RaisePropertyChanged("FiberSVUID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> FiberSpeed {
-            get {
-                return this.FiberSpeedField;
-            }
-            set {
-                if ((this.FiberSpeedField.Equals(value) != true)) {
-                    this.FiberSpeedField = value;
-                    this.RaisePropertyChanged("FiberSpeed");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasInfrastructureAdsl {
-            get {
-                return this.HasInfrastructureAdslField;
-            }
-            set {
-                if ((this.HasInfrastructureAdslField.Equals(value) != true)) {
-                    this.HasInfrastructureAdslField = value;
-                    this.RaisePropertyChanged("HasInfrastructureAdsl");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasInfrastructureFiber {
-            get {
-                return this.HasInfrastructureFiberField;
-            }
-            set {
-                if ((this.HasInfrastructureFiberField.Equals(value) != true)) {
-                    this.HasInfrastructureFiberField = value;
-                    this.RaisePropertyChanged("HasInfrastructureFiber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasInfrastructureVdsl {
-            get {
-                return this.HasInfrastructureVdslField;
-            }
-            set {
-                if ((this.HasInfrastructureVdslField.Equals(value) != true)) {
-                    this.HasInfrastructureVdslField = value;
-                    this.RaisePropertyChanged("HasInfrastructureVdsl");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> VdslDistance {
-            get {
-                return this.VdslDistanceField;
-            }
-            set {
-                if ((this.VdslDistanceField.Equals(value) != true)) {
-                    this.VdslDistanceField = value;
-                    this.RaisePropertyChanged("VdslDistance");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string VdslPortState {
-            get {
-                return this.VdslPortStateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.VdslPortStateField, value) != true)) {
-                    this.VdslPortStateField = value;
-                    this.RaisePropertyChanged("VdslPortState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string VdslSVUID {
-            get {
-                return this.VdslSVUIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.VdslSVUIDField, value) != true)) {
-                    this.VdslSVUIDField = value;
-                    this.RaisePropertyChanged("VdslSVUID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> VdslSpeed {
-            get {
-                return this.VdslSpeedField;
-            }
-            set {
-                if ((this.VdslSpeedField.Equals(value) != true)) {
-                    this.VdslSpeedField = value;
-                    this.RaisePropertyChanged("VdslSpeed");
+                if ((object.ReferenceEquals(this.VDSLField, value) != true)) {
+                    this.VDSLField = value;
+                    this.RaisePropertyChanged("VDSL");
                 }
             }
         }
@@ -2901,6 +2709,330 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+        
+        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="ServiceAvailabilityResponse.ADSLInfo", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+        [System.SerializableAttribute()]
+        public partial class ADSLInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+            
+            [System.NonSerializedAttribute()]
+            private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private System.Nullable<int> AdslDistanceField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string AdslPortStateField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string AdslSVUIDField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private System.Nullable<int> AdslSpeedField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private bool HasInfrastructureAdslField;
+            
+            public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+                get {
+                    return this.extensionDataField;
+                }
+                set {
+                    this.extensionDataField = value;
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public System.Nullable<int> AdslDistance {
+                get {
+                    return this.AdslDistanceField;
+                }
+                set {
+                    if ((this.AdslDistanceField.Equals(value) != true)) {
+                        this.AdslDistanceField = value;
+                        this.RaisePropertyChanged("AdslDistance");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string AdslPortState {
+                get {
+                    return this.AdslPortStateField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.AdslPortStateField, value) != true)) {
+                        this.AdslPortStateField = value;
+                        this.RaisePropertyChanged("AdslPortState");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string AdslSVUID {
+                get {
+                    return this.AdslSVUIDField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.AdslSVUIDField, value) != true)) {
+                        this.AdslSVUIDField = value;
+                        this.RaisePropertyChanged("AdslSVUID");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public System.Nullable<int> AdslSpeed {
+                get {
+                    return this.AdslSpeedField;
+                }
+                set {
+                    if ((this.AdslSpeedField.Equals(value) != true)) {
+                        this.AdslSpeedField = value;
+                        this.RaisePropertyChanged("AdslSpeed");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public bool HasInfrastructureAdsl {
+                get {
+                    return this.HasInfrastructureAdslField;
+                }
+                set {
+                    if ((this.HasInfrastructureAdslField.Equals(value) != true)) {
+                        this.HasInfrastructureAdslField = value;
+                        this.RaisePropertyChanged("HasInfrastructureAdsl");
+                    }
+                }
+            }
+            
+            public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+            
+            protected void RaisePropertyChanged(string propertyName) {
+                System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+                if ((propertyChanged != null)) {
+                    propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                }
+            }
+        }
+        
+        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="ServiceAvailabilityResponse.FIBERInfo", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+        [System.SerializableAttribute()]
+        public partial class FIBERInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+            
+            [System.NonSerializedAttribute()]
+            private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private System.Nullable<int> FiberDistanceField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string FiberPortStateField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string FiberSVUIDField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private System.Nullable<int> FiberSpeedField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private bool HasInfrastructureFiberField;
+            
+            public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+                get {
+                    return this.extensionDataField;
+                }
+                set {
+                    this.extensionDataField = value;
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public System.Nullable<int> FiberDistance {
+                get {
+                    return this.FiberDistanceField;
+                }
+                set {
+                    if ((this.FiberDistanceField.Equals(value) != true)) {
+                        this.FiberDistanceField = value;
+                        this.RaisePropertyChanged("FiberDistance");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string FiberPortState {
+                get {
+                    return this.FiberPortStateField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.FiberPortStateField, value) != true)) {
+                        this.FiberPortStateField = value;
+                        this.RaisePropertyChanged("FiberPortState");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string FiberSVUID {
+                get {
+                    return this.FiberSVUIDField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.FiberSVUIDField, value) != true)) {
+                        this.FiberSVUIDField = value;
+                        this.RaisePropertyChanged("FiberSVUID");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public System.Nullable<int> FiberSpeed {
+                get {
+                    return this.FiberSpeedField;
+                }
+                set {
+                    if ((this.FiberSpeedField.Equals(value) != true)) {
+                        this.FiberSpeedField = value;
+                        this.RaisePropertyChanged("FiberSpeed");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public bool HasInfrastructureFiber {
+                get {
+                    return this.HasInfrastructureFiberField;
+                }
+                set {
+                    if ((this.HasInfrastructureFiberField.Equals(value) != true)) {
+                        this.HasInfrastructureFiberField = value;
+                        this.RaisePropertyChanged("HasInfrastructureFiber");
+                    }
+                }
+            }
+            
+            public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+            
+            protected void RaisePropertyChanged(string propertyName) {
+                System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+                if ((propertyChanged != null)) {
+                    propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                }
+            }
+        }
+        
+        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="ServiceAvailabilityResponse.VDSLInfo", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+        [System.SerializableAttribute()]
+        public partial class VDSLInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+            
+            [System.NonSerializedAttribute()]
+            private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private bool HasInfrastructureVdslField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private System.Nullable<int> VdslDistanceField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string VdslPortStateField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string VdslSVUIDField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private System.Nullable<int> VdslSpeedField;
+            
+            public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+                get {
+                    return this.extensionDataField;
+                }
+                set {
+                    this.extensionDataField = value;
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public bool HasInfrastructureVdsl {
+                get {
+                    return this.HasInfrastructureVdslField;
+                }
+                set {
+                    if ((this.HasInfrastructureVdslField.Equals(value) != true)) {
+                        this.HasInfrastructureVdslField = value;
+                        this.RaisePropertyChanged("HasInfrastructureVdsl");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public System.Nullable<int> VdslDistance {
+                get {
+                    return this.VdslDistanceField;
+                }
+                set {
+                    if ((this.VdslDistanceField.Equals(value) != true)) {
+                        this.VdslDistanceField = value;
+                        this.RaisePropertyChanged("VdslDistance");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string VdslPortState {
+                get {
+                    return this.VdslPortStateField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.VdslPortStateField, value) != true)) {
+                        this.VdslPortStateField = value;
+                        this.RaisePropertyChanged("VdslPortState");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string VdslSVUID {
+                get {
+                    return this.VdslSVUIDField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.VdslSVUIDField, value) != true)) {
+                        this.VdslSVUIDField = value;
+                        this.RaisePropertyChanged("VdslSVUID");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public System.Nullable<int> VdslSpeed {
+                get {
+                    return this.VdslSpeedField;
+                }
+                set {
+                    if ((this.VdslSpeedField.Equals(value) != true)) {
+                        this.VdslSpeedField = value;
+                        this.RaisePropertyChanged("VdslSpeed");
+                    }
+                }
+            }
+            
+            public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+            
+            protected void RaisePropertyChanged(string propertyName) {
+                System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+                if ((propertyChanged != null)) {
+                    propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                }
             }
         }
     }
