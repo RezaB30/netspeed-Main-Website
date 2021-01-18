@@ -79,7 +79,7 @@ namespace NetspeedMainWebsite.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("elif")]
+        [global::System.Configuration.DefaultSettingValueAttribute("testwebservice")]
         public string WebServiceUsername {
             get {
                 return ((string)(this["WebServiceUsername"]));
@@ -88,7 +88,7 @@ namespace NetspeedMainWebsite.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        [global::System.Configuration.DefaultSettingValueAttribute("12345678")]
         public string WebServicePasswordHash {
             get {
                 return ((string)(this["WebServicePasswordHash"]));

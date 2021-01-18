@@ -151,6 +151,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HashUtilities.cs" />
+    <Compile Include="Controllers\InfrastructureWrapper.cs" />
     <Compile Include="Models\ViewModel\ApplicationViewModel.cs" />
     <Compile Include="Models\ViewModel\BillIdForBankPaymentViewModel.cs" />
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
@@ -198,10 +199,31 @@
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSubscriberGetBillsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.wsdl" />
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.wsdl" />
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1205,6 +1227,7 @@
     <Content Include="Scripts\js\CountDown.js" />
     <Content Include="Scripts\js\get-birthdate.js" />
     <Content Include="Scripts\js\get-infrastructure.js" />
+    <Content Include="Scripts\js\get-ServiceAvailability.js" />
     <Content Include="Scripts\js\get-nextPrevButton.js" />
     <Content Include="Scripts\js\get-switchpartial.js" />
     <Content Include="Web.config" />
@@ -1238,8 +1261,9 @@
     <Content Include="Views\Application\ApplicationParts\_GSMValidation.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_SMSValidation.cshtml" />
     <Content Include="Views\Application\AlreadyHaveCustomer.cshtml" />
-    <Content Include="Views\Application\InfrastructureInquiryForApplication.cshtml" />
-    <Content Include="Views\Application\InfrastructureAndTariffs.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_InfrastructureInquiryForApplication.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_InfrastructureAndTariffs.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_TariffCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

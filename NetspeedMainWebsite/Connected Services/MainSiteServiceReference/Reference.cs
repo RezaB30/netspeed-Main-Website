@@ -18,6 +18,7 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfSHA1o_Pr6u_PMh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfServiceAvailabilityRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceServiceAvailabilityRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfNullableOflongSHA1qBRhzOKh))]
@@ -129,6 +130,13 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceRequests", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
     [System.SerializableAttribute()]
     public partial class NetspeedServiceRequests : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceExternalTariffRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceExternalTariffRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1060,9 +1068,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private string CultureField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CustomerTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1113,19 +1118,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.CultureField, value) != true)) {
                     this.CultureField = value;
                     this.RaisePropertyChanged("Culture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CustomerType {
-            get {
-                return this.CustomerTypeField;
-            }
-            set {
-                if ((this.CustomerTypeField.Equals(value) != true)) {
-                    this.CustomerTypeField = value;
-                    this.RaisePropertyChanged("CustomerType");
                 }
             }
         }
@@ -1602,9 +1594,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> BillingPeriodField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> DomainIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1623,19 +1612,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> BillingPeriod {
-            get {
-                return this.BillingPeriodField;
-            }
-            set {
-                if ((this.BillingPeriodField.Equals(value) != true)) {
-                    this.BillingPeriodField = value;
-                    this.RaisePropertyChanged("BillingPeriod");
-                }
             }
         }
         
@@ -2157,6 +2133,8 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfstringSHA1Miy85_SUl))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfExternalTariffResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse))]
     public partial class BaseResponseOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2568,6 +2546,37 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.SMSCodeField, value) != true)) {
                     this.SMSCodeField = value;
                     this.RaisePropertyChanged("SMSCode");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfArrayOfExternalTariffResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse))]
+    public partial class BaseResponseOfArrayOfExternalTariffResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceExternalTariffResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceExternalTariffResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfExternalTariffResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.ExternalTariffResponse[] ExternalTariffListField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.ExternalTariffResponse[] ExternalTariffList {
+            get {
+                return this.ExternalTariffListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExternalTariffListField, value) != true)) {
+                    this.ExternalTariffListField = value;
+                    this.RaisePropertyChanged("ExternalTariffList");
                 }
             }
         }
@@ -3614,6 +3623,147 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExternalTariffResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class ExternalTariffResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DisplayNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DomainIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasFiberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasXDSLField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SpeedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TariffIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DisplayName {
+            get {
+                return this.DisplayNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DisplayNameField, value) != true)) {
+                    this.DisplayNameField = value;
+                    this.RaisePropertyChanged("DisplayName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DomainID {
+            get {
+                return this.DomainIDField;
+            }
+            set {
+                if ((this.DomainIDField.Equals(value) != true)) {
+                    this.DomainIDField = value;
+                    this.RaisePropertyChanged("DomainID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasFiber {
+            get {
+                return this.HasFiberField;
+            }
+            set {
+                if ((this.HasFiberField.Equals(value) != true)) {
+                    this.HasFiberField = value;
+                    this.RaisePropertyChanged("HasFiber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasXDSL {
+            get {
+                return this.HasXDSLField;
+            }
+            set {
+                if ((this.HasXDSLField.Equals(value) != true)) {
+                    this.HasXDSLField = value;
+                    this.RaisePropertyChanged("HasXDSL");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Speed {
+            get {
+                return this.SpeedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SpeedField, value) != true)) {
+                    this.SpeedField = value;
+                    this.RaisePropertyChanged("Speed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TariffID {
+            get {
+                return this.TariffIDField;
+            }
+            set {
+                if ((this.TariffIDField.Equals(value) != true)) {
+                    this.TariffIDField = value;
+                    this.RaisePropertyChanged("TariffID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainSiteServiceReference.IMainSiteService")]
     public interface IMainSiteService {
@@ -3737,6 +3887,12 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GetKeyFragment", ReplyAction="http://tempuri.org/IMainSiteService/GetKeyFragmentResponse")]
         System.Threading.Tasks.Task<string> GetKeyFragmentAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/ExternalTariffList", ReplyAction="http://tempuri.org/IMainSiteService/ExternalTariffListResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse ExternalTariffList(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/ExternalTariffList", ReplyAction="http://tempuri.org/IMainSiteService/ExternalTariffListResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse> ExternalTariffListAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3924,6 +4080,14 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<string> GetKeyFragmentAsync(string username) {
             return base.Channel.GetKeyFragmentAsync(username);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse ExternalTariffList(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest request) {
+            return base.Channel.ExternalTariffList(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse> ExternalTariffListAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest request) {
+            return base.Channel.ExternalTariffListAsync(request);
         }
     }
 }

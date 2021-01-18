@@ -187,18 +187,30 @@ namespace NetspeedMainWebsite
                 Culture = Culture
             });
         }
-
+         public NetspeedServiceExternalTariffResponse GetTariffList()
+        {
+            return InternalClient.ExternalTariffList(new NetspeedServiceExternalTariffRequest()
+            {
+                Username = Username,
+                Rand = Rand,
+                Hash = CalculateHash(),
+                Culture = Culture
+                
+            });
+            //domainId-
+            //service-tarife
+        }
 
         
 
 
-        public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(int? BillingPeriod, int? DomainID, int? ServiceID, long? ProvinceId, string ProvinceName,
+        public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(/*int? BillingPeriod,*/ int? DomainID, int? ServiceID, long? ProvinceId, string ProvinceName,
             long? DistrictId, string DistrictName, long? RegionId, long? NeighbourhoodId, string NeighbourhoodName, long? StreetId, string StreetName, long? ApartmentId,
             string ApartmentNo, string AddressText, long? AddressNo, long? DoorId, string DoorNo, string Floor, int? PostalCode,
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int Nationality, int Profession, int Sex,
             DateTime? BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, DateTime? DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
-            string Culture, int? CustomerType, string Email/*, string[] CorporateCustomerInfo*/, string ReferenceCode)
+            string Culture, /*int? CustomerType, */string Email/*, string[] CorporateCustomerInfo*/, string ReferenceCode)
         {
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
             {
@@ -214,9 +226,9 @@ namespace NetspeedMainWebsite
                         { 
                             ReferenceNo=ReferenceCode
                         },
-                        BillingPeriod = BillingPeriod,
-                        DomainID = DomainID,
-                        ServiceID = ServiceID,
+                        //BillingPeriod = BillingPeriod,
+                        DomainID = DomainID,//tarifler al
+                        ServiceID = ServiceID,//tarifelerden al
                         SetupAddress = new AddressInfo()
                         {
                             ProvinceID = ProvinceId,
@@ -239,8 +251,7 @@ namespace NetspeedMainWebsite
                         }
                     },
                     IndividualCustomerInfo = new IndividualCustomerInfo()
-                    {
-                        
+                    {                        
                         BirthPlace = BirthPlace,
                         FathersName = FathersName/*"HÜSEYİN"*/,
                         MothersMaidenName = MothersMaidenName /*"KALAYCIOĞULLARI"*/,
@@ -308,7 +319,7 @@ namespace NetspeedMainWebsite
                         ContactPhoneNo = ContactPhoneNo/*"5465939624"*/,
                         Culture = "tr-tr",
                         //CustomerType = application.CustomerType,
-                        CustomerType = 1,
+                        //CustomerType = 1,
                         Email = Email,
 
                         //OtherPhoneNos = new PhoneNoListItem()

@@ -127,19 +127,18 @@ namespace NetspeedMainWebsite.Controllers
         }
 
 
+
+
         [HttpPost]
         public ActionResult InfrastructureInquiryResult(string ApartmentId)
         {
             var response = client.ServiceAvailability(ApartmentId);
-            //var InfrastructureItems = response.
-
+        
             InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();
 
             var Fiber = response.ServiceAvailabilityResponse.FIBER;
             var Vdsl = response.ServiceAvailabilityResponse.VDSL;
             var Adsl = response.ServiceAvailabilityResponse.ADSL;
-
-
 
             if (Fiber.HasInfrastructureFiber)
             {
@@ -159,7 +158,6 @@ namespace NetspeedMainWebsite.Controllers
             {
                 var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
                 InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
-
                 InfrastructureResult.Distance = Vdsl.VdslDistance.ToString();
                 //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
                 InfrastructureResult.XDSLType = Vdsl.HasInfrastructureVdsl.ToString(); //"vdsl"
@@ -168,14 +166,11 @@ namespace NetspeedMainWebsite.Controllers
                 return View(InfrastructureResult);
             }
 
-
             if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
             {
                 //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
                 var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
                 InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
-
-
                 InfrastructureResult.Distance = Adsl.AdslDistance.ToString();
                 //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
                 InfrastructureResult.XDSLType = Adsl.HasInfrastructureAdsl.ToString(); //"adsl"
@@ -184,35 +179,13 @@ namespace NetspeedMainWebsite.Controllers
                 return View(InfrastructureResult);
             }
 
-
-
-            //if (response.ServiceAvailabilityResponse.AdslSpeed != 0 && response.ServiceAvailabilityResponse.AdslSpeed > response.ServiceAvailabilityResponse.VdslSpeed)
-            //{
-            //    //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
-            //    var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.AdslSpeed) * 1024, true);
-            //    InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
-
-
-            //    InfrastructureResult.Distance = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
-            //    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
-            //    InfrastructureResult.XDSLType = response.ServiceAvailabilityResponse.HasInfrastructureAdsl.ToString(); //"adsl"
-            //    InfrastructureResult.PortState = response.ServiceAvailabilityResponse.VdslPortState.ToString();
-            //    InfrastructureResult.SVUID = response.ServiceAvailabilityResponse.AdslSVUID.ToString();
-            //    return View(InfrastructureResult);
-            //}
-
-
             InfrastructureResult.Message = response.ResponseMessage.ErrorMessage;
             InfrastructureResult.Distance = "-";
             InfrastructureResult.MaxSpeed = "Sorguladığınız haneye ait altyapı bilgisi bulunamadı.";
             InfrastructureResult.XDSLType = "";
             InfrastructureResult.PortState = "Yok";
 
-
             return View(InfrastructureResult);
-
-
-
         }
     }
 }

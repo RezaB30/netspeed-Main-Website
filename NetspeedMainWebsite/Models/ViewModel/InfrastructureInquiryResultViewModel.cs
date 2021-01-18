@@ -8,7 +8,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
     public class InfrastructureInquiryResultViewModel
     {
         public string BBK { get; set; }
-        public string  Distance { get; set; }
+        public string Distance { get; set; }
         public string MaxSpeed { get; set; }
         public string XDSLType { get; set; }
         public string PortState { get; set; }

@@ -319,17 +319,25 @@ namespace NetspeedMainWebsite.Models.ViewModel
 
 
 
-
-
-
-
-
-
-
         public string ContactPhoneNo { get; set; }
         //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
+
+
+        public string Distance { get; set; }
+        public string MaxSpeed { get; set; }
+        public string XDSLType { get; set; }
+        public string PortState { get; set; }
+        public string SVUID { get; set; }
+        public string Message { get; set; }
+        public int DomainId { get; set; }
+        public int ServiceId { get; set; }
+        public int TariffId { get; set; }
+        public string DisplayName { get; set; }
+        public bool HasXDSL { get; set; }
+        public bool HasFiber { get; set; }
+
 
     }
 }
