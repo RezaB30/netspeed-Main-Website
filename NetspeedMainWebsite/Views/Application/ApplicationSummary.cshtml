@@ -214,7 +214,7 @@
 
                             @Html.HiddenFor(m => m.PostalCode)
                             @Html.HiddenFor(m => m.BirthPlace)
-                         
+
                             @Html.HiddenFor(m => m.FatherName)
 
                             @Html.HiddenFor(m => m.MotherName)
@@ -222,7 +222,7 @@
                             @Html.HiddenFor(m => m.Nationality)
                             @Html.HiddenFor(m => m.Sex)
                             @Html.HiddenFor(m => m.BirthDate)
-                         
+
                             @Html.HiddenFor(m => m.IDCardType)
 
                             @Html.HiddenFor(m => m.TC)
@@ -231,7 +231,9 @@
                             @Html.HiddenFor(m => m.DateOfIssue)
 
                             @Html.HiddenFor(m => m.ReferenceCode)
-                            @Html.HiddenFor(m => m.Floor)//30
+                            @Html.HiddenFor(m => m.Floor)
+                       
+                            @Html.HiddenFor(m => m.TariffId)
 
                             <div> @Html.DisplayFor(m => m.FirstName)</div>
                             <div> @Html.DisplayFor(m => m.LastName)</div>
@@ -256,17 +258,12 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Section-->
-                        <h4 class="font-weight-bolder mb-3">Başvuru Türü:</h4>
-                        <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
-                            <div>Diğer Operatörden Geçiş</div>
-                            <div>Mevcut Operatör Hizmet No:882154541</div>
-                            <div>Geçiş Yapılacak Operatör : TTNET</div>
-                        </div>
+                      
                         <!--end::Section-->
                         <!--begin::Section-->
                         <h4 class="font-weight-bolder mb-3">Tarife ve Tercihler:</h4>
                         <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
-
+                            @Html.DisplayFor(m=>m.DisplayName)
                         </div>
                         <!--end::Section-->
                         <div class="separator separator-dashed my-5"></div>
@@ -281,7 +278,10 @@
                                 <div class="checkbox-inline">
 
                                     <label class="checkbox">
-                                        <input name="cccvv" type="checkbox" class="is-invalid">
+                                        @* <input name="cccvv" type="checkbox" class="is-invalid">*@
+                                        @Html.CheckBoxFor(m => m.SubscriptionAgreementCheck, new { @class = "checkbox checkbox checkbox - inline mr - 2" })
+                                        @Html.HiddenFor(m => m.SubscriptionAgreementCheck)
+                                        @Html.ValidationMessageFor(m => m.SubscriptionAgreementCheck)
                                         <span></span><a href="https://netspeed.com.tr/sozlesme/basvuruformuvesozlesme.pdf" target="_blank" class="text-primary font-weight-bolder">Abonelik Sözleşmesini Okudum</a>
                                     </label>
                                     <label class="checkbox">

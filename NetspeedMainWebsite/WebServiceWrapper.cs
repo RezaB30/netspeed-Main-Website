@@ -197,14 +197,12 @@ namespace NetspeedMainWebsite
                 Culture = Culture
                 
             });
-            //domainId-
-            //service-tarife
         }
 
         
 
 
-        public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(/*int? BillingPeriod,*/ int? DomainID, int? ServiceID, long? ProvinceId, string ProvinceName,
+        public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(/*int? BillingPeriod,*/ /*int? DomainID,*/ int? ServiceID, long? ProvinceId, string ProvinceName,
             long? DistrictId, string DistrictName, long? RegionId, long? NeighbourhoodId, string NeighbourhoodName, long? StreetId, string StreetName, long? ApartmentId,
             string ApartmentNo, string AddressText, long? AddressNo, long? DoorId, string DoorNo, string Floor, int? PostalCode,
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int Nationality, int Profession, int Sex,
@@ -227,7 +225,6 @@ namespace NetspeedMainWebsite
                             ReferenceNo=ReferenceCode
                         },
                         //BillingPeriod = BillingPeriod,
-                        DomainID = DomainID,//tarifler al
                         ServiceID = ServiceID,//tarifelerden al
                         SetupAddress = new AddressInfo()
                         {

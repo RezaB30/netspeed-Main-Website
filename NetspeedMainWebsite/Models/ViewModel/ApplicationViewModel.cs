@@ -10,7 +10,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class ApplicationViewModel
     {
-
         public ApplicationViewModel()
         {
             ProvinceList = new List<SelectListItem>();
@@ -137,24 +136,24 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(11), MinLength(11)]
         public string TC { get; set; }
 
-        //public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
 
-        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        public DateTime? _BirthDate;
-        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        public string BirthDate
-        {
-            get
-            {
-                return _BirthDate.HasValue ? _BirthDate.Value.Date.ToString() : null;
-            }
-            set
-            {
-                //DateTime BirthDate;
-                _BirthDate = Convert.ToDateTime(BirthDate);
-            }
-        }
+        //[Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
+        //public DateTime? _BirthDate;
+        //[Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
+        //public string BirthDate
+        //{
+        //    get
+        //    {
+        //        return _BirthDate.HasValue ? _BirthDate.Value.Date.ToString() : null;
+        //    }
+        //    set
+        //    {
+        //        //DateTime BirthDate;
+        //        _BirthDate = Convert.ToDateTime(BirthDate);
+        //    }
+        //}
 
 
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
@@ -297,47 +296,39 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
+        public DateTime? DateOfIssue { get; set; }
 
-        public DateTime DateOfIssue { get; set; }
 
         //[Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        //public DateTime? _DateOfIssue;
+        //public string _DateOfIssue;
         //[Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        //public string DateOfIssue
+        //public DateTime DateOfIssue
         //{
         //    get
         //    {
-        //        return _DateOfIssue.HasValue ? _DateOfIssue.Value.Date.ToString() : null;
+        //        return DateOfIssue;
         //    }
         //    set
         //    {
         //        //DateTime BirthDate;
-        //        _BirthDate = Convert.ToDateTime(DateOfIssue);
+        //        DateOfIssue = Convert.ToDateTime(_DateOfIssue);
         //    }
         //}
-
-
 
 
         public string ContactPhoneNo { get; set; }
         //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
-
-
-        public string Distance { get; set; }
-        public string MaxSpeed { get; set; }
-        public string XDSLType { get; set; }
-        public string PortState { get; set; }
-        public string SVUID { get; set; }
-        public string Message { get; set; }
-        public int DomainId { get; set; }
-        public int ServiceId { get; set; }
+        [Required(ErrorMessage = "*Tarife Seçimi Gerekli ")]
         public int TariffId { get; set; }
+        //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
+        //public int SubscriptionAgreement { get; set; }
+        //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur.")]
+        [Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
+        public bool SubscriptionAgreementCheck { get; set; }
+
         public string DisplayName { get; set; }
-        public bool HasXDSL { get; set; }
-        public bool HasFiber { get; set; }
-
-
     }
 }

@@ -12,23 +12,12 @@ namespace NetspeedMainWebsite.Controllers
 {
     public class ApplicationController : Controller
     {
-        //WebServiceWrapper client = new WebServiceWrapper();
-
-
-        //public ActionResult ApplicationSummary()
-        //{
-        //    return View();
-        //}
-
+       
         public ActionResult AlreadyHaveCustomer()
         {
             return View();
         }
 
-        public ActionResult _IDInformation()
-        {
-            return View();
-        }
         public ActionResult GsmVerification()
         {
             return View();
@@ -156,11 +145,25 @@ namespace NetspeedMainWebsite.Controllers
             return Json(BuildingItems);
         }
 
+        //[HttpPost]
+        //public ActionResult GetServiceAvailability()
+        //{
+        //    var addressMessage = string.Empty;
+        //    addressMessage = "Lütfen Adresinizi Giriniz";
+        //    TempData["addressMessage"] = addressMessage;
+
+        //    //return PartialView("~/Views/Application/ApplicationParts/_InfrastructureInquiryForApplication.cshtml");
+        //    return PartialView("~/Views/Application/ApplicationParts/_HasNotInfrastructure.cshtml");
+        //}
+
         [HttpPost]
         public ActionResult GetServiceAvailability(long apartmentId)
         {
-            ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
+            var message = string.Empty;
 
+            //ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
+            var applicationTariff = new ApplicationViewModel();
+            var infrastructureTariff = new InfrastructureTariffViewModel();
             WebServiceWrapper clientAddres = new WebServiceWrapper();
             var getAddress = clientAddres.ServiceAvailability(apartmentId.ToString());
 
@@ -171,118 +174,96 @@ namespace NetspeedMainWebsite.Controllers
             var Vdsl = getAddress.ServiceAvailabilityResponse.VDSL;
             var Adsl = getAddress.ServiceAvailabilityResponse.ADSL;
 
-
-            var TariffList = new List<ApplicationViewModel>();
-            object tariffs;//bu olmayacak bunu değiştir
-
-
-            if (Fiber.HasInfrastructureFiber)
+            if (ModelState.IsValid)
             {
-                var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
-                InfrastructureResult.Distance = Fiber.FiberDistance.ToString();
-                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
-                InfrastructureResult.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
-                InfrastructureResult.XDSLType = "FİBER";
-                InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
-                InfrastructureResult.SVUID = Fiber.FiberSVUID.ToString();
-
-                tariffs = getTariff.ExternalTariffList.Where(f => f.HasFiber == true).Select(t => new 
+                if (Fiber.HasInfrastructureFiber)
                 {
-                    TariffId = t.TariffID,
-                    HasFiber = t.HasFiber,
-                    HasXDSL = t.HasXDSL,
-                    DomainId = t.DomainID,
-                    DisplayName = t.DisplayName
-                });
-            }
-            else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed > Adsl.AdslSpeed)
-            {
-                var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
-                InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
-                InfrastructureResult.Distance = Vdsl.VdslDistance.ToString();
-                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
-                InfrastructureResult.XDSLType = "VDSL";
-                InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
-                InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
-                //return View(InfrastructureResult);
-                tariffs = getTariff.ExternalTariffList.Where(f => f.HasFiber == false).Select(t => new ApplicationViewModel()
+                    var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
+                    infrastructureTariff.Distance = Fiber.FiberDistance.ToString();
+                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
+                    infrastructureTariff.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
+                    infrastructureTariff.XDSLType = "FİBER";
+                    infrastructureTariff.PortState = Fiber.FiberPortState.ToString();
+                    infrastructureTariff.SVUID = Fiber.FiberSVUID.ToString();
+
+                    var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasFiber == true).Select(t => new TariffsViewModel
+                    {
+                        TariffID = t.TariffID,                     
+                        DisplayName = t.DisplayName,
+                        Price = t.Price,
+                        Speed = t.Speed,
+                    });
+                    infrastructureTariff.TariffList = TariffItems.ToArray();
+                }
+                else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed > Adsl.AdslSpeed)
                 {
-                    TariffId = t.TariffID,
-                    HasFiber = t.HasFiber,
-                    HasXDSL = t.HasXDSL,
-                    DomainId = t.DomainID,
-                    DisplayName = t.DisplayName
-                });
-            }
-            else if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
-            {
-                //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
-                var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
-                InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
-                InfrastructureResult.Distance = Adsl.AdslDistance.ToString();
-                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
-                InfrastructureResult.XDSLType = "ADSL";
-                InfrastructureResult.PortState = Adsl.AdslPortState.ToString();
-                InfrastructureResult.SVUID = Adsl.AdslSVUID.ToString();
-                //return View(InfrastructureResult);
-                tariffs = getTariff.ExternalTariffList.Where(f => f.HasFiber == false).Select(t => new ApplicationViewModel()
+                    var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
+                    infrastructureTariff.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
+                    infrastructureTariff.Distance = Vdsl.VdslDistance.ToString();
+                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
+                    infrastructureTariff.XDSLType = "VDSL";
+                    infrastructureTariff.PortState = Vdsl.VdslPortState.ToString();
+                    infrastructureTariff.SVUID = Vdsl.VdslSVUID.ToString();
+                    //return View(InfrastructureResult);
+
+                    var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
+                    {
+                        TariffID = t.TariffID,
+                        DisplayName = t.DisplayName,
+                        Price = t.Price,
+                        Speed = t.Speed,
+                    });
+                    infrastructureTariff.TariffList = TariffItems.ToArray();
+                }
+                else if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
                 {
-                    TariffId = t.TariffID,
-                    HasFiber = t.HasFiber,
-                    HasXDSL = t.HasXDSL,
-                    DomainId = t.DomainID,
-                    DisplayName = t.DisplayName
-                });
-            }
-
-            else//DÜZENLE
-            {
-                return Json(new
+                    //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
+                    var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
+                    infrastructureTariff.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
+                    infrastructureTariff.Distance = Adsl.AdslDistance.ToString();
+                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
+                    infrastructureTariff.XDSLType = "ADSL";
+                    infrastructureTariff.PortState = Adsl.AdslPortState.ToString();
+                    infrastructureTariff.SVUID = Adsl.AdslSVUID.ToString();
+                    //return View(InfrastructureResult);
+                    var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
+                    {
+                        TariffID = t.TariffID,
+                        DisplayName = t.DisplayName,
+                        Price = t.Price,
+                        Speed = t.Speed,
+                    });
+                    infrastructureTariff.TariffList = TariffItems.ToArray();
+                }
+                else//DÜZENLE
                 {
-                    maxSpeed = "Haneye Ait Altyapı Bulunamamıştır.",
-                    distance = "-",
-                    XDSLType = "-",
-                    portState = "-",
-                    SVUID = "-"
-                });
+                    //message = "Haneye Ait Altyapı Bulunamadığından Başvuruya Devam Edemezsiniz.";
+                    //TempData["message"]=message;
+                    //ViewBag.message = message;
+                    //return RedirectToAction("Index", "Application");
+                    
+                    message = "altyapiyok";
+                    TempData["message"] = "messsage";
+                    return PartialView("ApplicationParts/_HasNotInfrastructure");
+                }
+            }
+            else
+            {
+                return PartialView("~/Views/Application/ApplicationParts/_HasNotInfrastructure.cshtml");
             }
 
-            TariffList = tariffs as List<ApplicationViewModel>;
+            return PartialView("~/Views/Application/ApplicationParts/_InfrastructureAndTariffs.cshtml", model:infrastructureTariff);
+            //return Json(new
+            //{
+            //    tariffs = tariffs.ToArray(),
+            //    maxSpeed = InfrastructureResult.MaxSpeed,
+            //    distance = InfrastructureResult.Distance,
+            //    XDSLType = InfrastructureResult.XDSLType,
+            //    portState = InfrastructureResult.PortState,
+            //    SVUID = InfrastructureResult.SVUID,
+            //});
 
-            return Json(new
-            {
-
-                maxSpeed = InfrastructureResult.MaxSpeed,
-                distance = InfrastructureResult.Distance,
-                XDSLType = InfrastructureResult.XDSLType,
-                portState = InfrastructureResult.PortState,
-                SVUID = InfrastructureResult.SVUID,
-
-                
-            });
         }
-
-
-
-
-        [HttpPost]
-        public ActionResult GeTariffList()
-        {
-            WebServiceWrapper clientTariff = new WebServiceWrapper();
-            var response = clientTariff.GetTariffList();
-
-
-
-
-            var TariffItems = response.ExternalTariffList.Select(t => new SelectListItem()
-            {
-
-            });
-
-
-            return Json(new { });
-        }
-
 
         [HttpPost]
         public ActionResult GetApartments(long code)
@@ -322,19 +303,10 @@ namespace NetspeedMainWebsite.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Index(ApplicationViewModel application)
         {
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
-
-            //var dsl = new ApplicationViewModel()
-            //{
-            //    MaxSpeed = getAddress.ServiceAvailabilityResponse.FIBER.FiberSpeed.ToString(),
-            //    Distance= getAddress.ServiceAvailabilityResponse.FIBER.FiberSpeed.ToString(),
-            //    //XDSLType=getAddress.
-            //};
-
-
+                       
             if (ModelState.IsValid)
             {
                 //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
@@ -366,13 +338,12 @@ namespace NetspeedMainWebsite.Controllers
                     ReferenceCode = application.ReferenceCode,
                     Nationality = application.Nationality,
                     Sex = application.Sex,
-                    //BirthYear = application.BirthYear,
-                    //BirthMonth = application.BirthMonth,
-                    //BirthDay = application.BirthDay,
-                    //BirthDate = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay),
                     BirthDate = application.BirthDate,
                     DateOfIssue = application.DateOfIssue,
-                    SMSCode = application.SMSCode
+                    SMSCode = application.SMSCode,
+                    TariffId=application.TariffId,
+                    DisplayName=application.DisplayName
+
                 };
 
                 var message = string.Empty;
@@ -393,7 +364,7 @@ namespace NetspeedMainWebsite.Controllers
 
                 MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(Properties.Settings.Default.SMSValidationDuration.Minutes));
 
-                var exTime = (Value.ExpirationDate - DateTime.Now).Seconds;
+                var exTime = (Value.ExpirationDate - DateTime.Now).Seconds*2;
                 ViewBag.exTime = exTime;
                 //Session["smscode"] = response.SMSCode;
 
@@ -419,12 +390,17 @@ namespace NetspeedMainWebsite.Controllers
                 if (Value.SMSCode == result.SMSCode)//Is true sms code?
                 {
                     //return View(viewName: "GsmVerification", model: result);
+                    WebServiceWrapper clientGetAddress = new WebServiceWrapper();
+                    var getAddress = clientGetAddress.GetApartmentAddress(result.ApartmentId);
+                    var address = getAddress.AddressDetailsResponse;
+                    result.AddressText=getAddress.AddressDetailsResponse.AddressText;
                     return View(viewName: "ApplicationSummary", model: result);
                 }
                 else
                 {
                     message = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
-                    ViewBag.message = "message";
+                    TempData["message"]="message";
+                   
                     //customers have 2 minutes
                     return View(viewName: "GsmVerificationWithSms", model: result);
                     //return PartialView("~/Views/Application/ApplicationParts/_SMSValidation.cshtml" , model: result);
@@ -528,11 +504,6 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult ApplicationSummary(ApplicationViewModel result)
         {
-            //var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
-            //var Gsm = Session["Gsm"];
-            //string SerialNo = "A25I96170";
-            //DateTime dti = new DateTime(2029, 12, 26);
-
             WebServiceWrapper client = new WebServiceWrapper();
             var getAddress = client.GetApartmentAddress(result.ApartmentId);
             var address = getAddress.AddressDetailsResponse;
@@ -546,24 +517,14 @@ namespace NetspeedMainWebsite.Controllers
                 PhoneNumber = result.PhoneNumber,
                 EmailAddress = result.EmailAddress,
                 AddressText = address.AddressText
-
             };
-            //return View(Confirm);
 
-
-            //string SerialNo = "A25I96170";
-            //DateTime dti = new DateTime(2029, 12, 26);
-            //WebServiceWrapper clientAddress = new WebServiceWrapper();
-            //var getAddress = clientAddress.GetApartmentAddress(result.ApartmentId);
-
-            //var address = getAddress.AddressDetailsResponse;
-
-            var response = new WebServiceWrapper().NewCustomerRegister(/*1,*/ 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+            var response = new WebServiceWrapper().NewCustomerRegister(/*1,*//* 1,*/ 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
                 address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
                 result._PostalCode, result.BirthPlace, result.FatherName,
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
-               result.Sex, result._BirthDate, result.IDCardType, result.FirstName,
+               result.Sex, result.BirthDate, result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
                result.DateOfIssue, null, result.PhoneNumber, "tr-tr", /*1,*/ result.EmailAddress, result.ReferenceCode
                );
@@ -584,9 +545,7 @@ namespace NetspeedMainWebsite.Controllers
                 return RedirectToAction("Index", "Application");
             }
 
-
             return RedirectToAction("ApplicationFail", "Application");
-
 
         }
 
@@ -600,66 +559,7 @@ namespace NetspeedMainWebsite.Controllers
 
 
 
-        [HttpPost]
-        public ActionResult InfrastructureInquiryResult(string ApartmentId)
-        {
-            WebServiceWrapper clientApartment = new WebServiceWrapper();
-            var response = clientApartment.ServiceAvailability(ApartmentId);
-
-            InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();
-
-            var Fiber = response.ServiceAvailabilityResponse.FIBER;
-            var Vdsl = response.ServiceAvailabilityResponse.VDSL;
-            var Adsl = response.ServiceAvailabilityResponse.ADSL;
-
-            if (Fiber.HasInfrastructureFiber)
-            {
-                //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FIBER.FiberSpeed.Value) * 1024, true);
-
-                var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
-                InfrastructureResult.Distance = Fiber.FiberDistance.ToString();
-                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
-                InfrastructureResult.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
-                InfrastructureResult.XDSLType = Fiber.HasInfrastructureFiber.ToString(); //"fiber"
-                InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
-                InfrastructureResult.SVUID = Fiber.FiberSVUID.ToString();
-                return View(InfrastructureResult);
-            }
-
-            if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed > Adsl.AdslSpeed)
-            {
-                var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
-                InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
-                InfrastructureResult.Distance = Vdsl.VdslDistance.ToString();
-                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
-                InfrastructureResult.XDSLType = Vdsl.HasInfrastructureVdsl.ToString(); //"vdsl"
-                InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
-                InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
-                return View(InfrastructureResult);
-            }
-
-            if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
-            {
-                //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
-                var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
-                InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
-                InfrastructureResult.Distance = Adsl.AdslDistance.ToString();
-                //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
-                InfrastructureResult.XDSLType = Adsl.HasInfrastructureAdsl.ToString(); //"adsl"
-                InfrastructureResult.PortState = Adsl.AdslPortState.ToString();
-                InfrastructureResult.SVUID = Adsl.AdslSVUID.ToString();
-                return View(InfrastructureResult);
-            }
-
-            InfrastructureResult.Message = response.ResponseMessage.ErrorMessage;
-            InfrastructureResult.Distance = "-";
-            InfrastructureResult.MaxSpeed = "Sorguladığınız haneye ait altyapı bilgisi bulunamadı.";
-            InfrastructureResult.XDSLType = "";
-            InfrastructureResult.PortState = "Yok";
-
-            return View(InfrastructureResult);
-        }
-
+    
 
 
         //[ValidateAntiForgeryToken]

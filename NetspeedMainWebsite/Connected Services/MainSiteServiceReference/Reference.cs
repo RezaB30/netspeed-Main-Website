@@ -1594,9 +1594,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> DomainIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NetspeedMainWebsite.MainSiteServiceReference.ReferralDiscountInfo ReferralDiscountInfoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1612,19 +1609,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> DomainID {
-            get {
-                return this.DomainIDField;
-            }
-            set {
-                if ((this.DomainIDField.Equals(value) != true)) {
-                    this.DomainIDField = value;
-                    this.RaisePropertyChanged("DomainID");
-                }
             }
         }
         
@@ -3636,9 +3620,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private string DisplayNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DomainIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool HasFiberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3672,19 +3653,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.DisplayNameField, value) != true)) {
                     this.DisplayNameField = value;
                     this.RaisePropertyChanged("DisplayName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DomainID {
-            get {
-                return this.DomainIDField;
-            }
-            set {
-                if ((this.DomainIDField.Equals(value) != true)) {
-                    this.DomainIDField = value;
-                    this.RaisePropertyChanged("DomainID");
                 }
             }
         }

@@ -153,7 +153,6 @@
     <Compile Include="HashUtilities.cs" />
     <Compile Include="Controllers\InfrastructureWrapper.cs" />
     <Compile Include="Models\ViewModel\ApplicationViewModel.cs" />
-    <Compile Include="Models\ViewModel\BillIdForBankPaymentViewModel.cs" />
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
@@ -161,6 +160,7 @@
     <Compile Include="Models\ViewModel\InfrastructureInquiryViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentCardInfo.cs" />
+    <Compile Include="Models\ViewModel\TariffsViewModel.cs" />
     <Compile Include="Models\ViewModel\VerificationViewModel.cs" />
     <Compile Include="Models\ViewModel\VPOSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1218,6 +1218,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\cookieconsent.min.js" />
+    <Content Include="Scripts\form-controls.js" />
+    <Content Include="Scripts\helpbubscript.js" />
+    <Content Include="Scripts\hide-show-fields-form.js" />
+    <Content Include="Scripts\input-mask.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -1230,6 +1235,13 @@
     <Content Include="Scripts\js\get-ServiceAvailability.js" />
     <Content Include="Scripts\js\get-nextPrevButton.js" />
     <Content Include="Scripts\js\get-switchpartial.js" />
+    <Content Include="Scripts\login-general.js" />
+    <Content Include="Scripts\lottie-player.js" />
+    <Content Include="Scripts\simplebar.min.js" />
+    <Content Include="Scripts\theme.min.js" />
+    <Content Include="Scripts\widgets.js" />
+    <Content Include="Scripts\wizard5-altyapi.js" />
+    <Content Include="Scripts\wizard5-basvur.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1264,6 +1276,7 @@
     <Content Include="Views\Application\ApplicationParts\_InfrastructureInquiryForApplication.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_InfrastructureAndTariffs.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_TariffCard.cshtml" />
+    <Content Include="Views\Application\ApplicationParts\_HasNotInfrastructure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
