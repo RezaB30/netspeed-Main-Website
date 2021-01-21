@@ -5,13 +5,12 @@
 
 
 <div class="row">
-
     @foreach (var item in Model)
     {
         <div class="col-xl-12 ml-2">
             <!--begin::Stats Widget 4-->
             <div class="text-danger">
-                @Html.ValidationMessageFor(model => item.TariffID)
+                @Html.ValidationMessageFor(m => item.TariffID)
             </div>
             <div class="card card-custom gutter-b" style="background:#ffffff; box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);-moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);">
                 <!--begin::Body-->
@@ -24,7 +23,7 @@
                                     @*@Html.RadioButtonFor(m => item.TariffSelect,"SEÇ",Model.)*@
                                     @*@Html.RadioButtonFor(m => item.TariffID, item.TariffID)*@
                                     @Html.RadioButton("TariffId", item.TariffID)
-                                    @Html.HiddenFor(m=>item.DisplayName)
+                                    @*@Html.HiddenFor(m=>item.DisplayName)*@
                                     @*@Html.LabelFor(m=> item.TariffID,item.DisplayName)*@
 
                                     @*@Html.HiddenFor(m => item.TariffID)*@
@@ -36,9 +35,7 @@
                                 <span class="option-head">
                                     <span class="option-title font-size-h6 font-weight-bolder m-1 text-dark">
                                         <label id="tariffName"></label>
-
                                         @Html.DisplayFor(m => item.DisplayName)
-
                                     </span>
                                     <span class="font-size-h6 font-weight-bolder m-1 text-info ">
                                         <label id="price"></label>

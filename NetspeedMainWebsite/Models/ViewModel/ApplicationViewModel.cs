@@ -27,21 +27,22 @@ namespace NetspeedMainWebsite.Models.ViewModel
             IDCardTypeList = new List<SelectListItem>();
         }
 
+     
         [Required(ErrorMessage = "*İl Alanı Gerekli")]
-        public long ProvinceId { get; set; }
+        public long? ProvinceId { get; set; }
         [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
-        public long DistrictId { get; set; }
+        public long? DistrictId { get; set; }
         [Required(ErrorMessage = "*Semt Alanı Gerekli")]
-        public long RegionId { get; set; }
+        public long? RegionId { get; set; }
         [Required(ErrorMessage = "*Mahalle Alanı Gerekli")]
-        public long NeighborhoodId { get; set; }
+        public long? NeighborhoodId { get; set; }
         [Required(ErrorMessage = "*Cadde/Sokak Alanı Gerekli")]
-        public long StreetId { get; set; }
+        public long? StreetId { get; set; }
         [Required(ErrorMessage = "*Apartman Alanı Gerekli")]
-        public long BuildingId { get; set; }
+        public long? BuildingId { get; set; }
 
         [Required(ErrorMessage = "*Kapı Numarası Alanı Gerekli")]
-        public long ApartmentId { get; set; }
+        public long? ApartmentId { get; set; }
         public string AddressText { get; set; }
 
         public IEnumerable<SelectListItem> ProvinceList { get; set; }
@@ -106,10 +107,12 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string EmailAddress { get; set; }
 
         [Required(ErrorMessage = "*Uyruk Alanı Gerekli ")]
-        public int Nationality { get; set; }
+        [Range(1, 255, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
+        public int? Nationality { get; set; }
 
         [Required(ErrorMessage = "*Kart Tipi Alanı Gerekli ")]
-        public int IDCardType { get; set; }
+        [Range(1, 22, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
+        public int? IDCardType { get; set; }
 
         [Required(ErrorMessage = "*Posta Kodu Alanı Gerekli ")]
         //public int PostalCode { get; set; }
@@ -136,28 +139,13 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(11), MinLength(11)]
         public string TC { get; set; }
 
+        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
         public DateTime? BirthDate { get; set; }
 
 
-        //[Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        //public DateTime? _BirthDate;
-        //[Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        //public string BirthDate
-        //{
-        //    get
-        //    {
-        //        return _BirthDate.HasValue ? _BirthDate.Value.Date.ToString() : null;
-        //    }
-        //    set
-        //    {
-        //        //DateTime BirthDate;
-        //        _BirthDate = Convert.ToDateTime(BirthDate);
-        //    }
-        //}
-
-
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
-        public int Sex { get; set; }
+        [Range(1, 2, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
+        public int? Sex { get; set; }
 
         [Required(ErrorMessage = "*Baba Adı Alanı Gerekli ")]
         private string _FatherName;
@@ -295,40 +283,21 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 _PlaceOfIssue = value;
             }
         }
-
+        [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
         public DateTime? DateOfIssue { get; set; }
-
-
-        //[Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        //public string _DateOfIssue;
-        //[Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        //public DateTime DateOfIssue
-        //{
-        //    get
-        //    {
-        //        return DateOfIssue;
-        //    }
-        //    set
-        //    {
-        //        //DateTime BirthDate;
-        //        DateOfIssue = Convert.ToDateTime(_DateOfIssue);
-        //    }
-        //}
-
-
-        public string ContactPhoneNo { get; set; }
+     
         //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
         [Required(ErrorMessage = "*Tarife Seçimi Gerekli ")]
-        public int TariffId { get; set; }
+        public int? TariffId { get; set; }
         //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
         //public int SubscriptionAgreement { get; set; }
         //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
         //[Range(typeof(bool), "true", "true", ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur.")]
-        [Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
-        public bool SubscriptionAgreementCheck { get; set; }
-
+        //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur.")]
+    
         public string DisplayName { get; set; }
     }
 }

@@ -1,81 +1,6 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 @using NetspeedMainWebsite.Models.ViewModel
 
-@*<div class="pb-10 pb-lg-8">
-    <h3 class="font-weight-bolder text-dark font-size-h2">Başvuru Bilgileri</h3><hr class="my-4">
-    <div class="text-dark-50 font-weight font-size-h5 mt-5">
-        Hizmet almak istediğiniz adres bilgileri ve Başvuru türü
-    </div>
-</div>*@
-<!--end::Title-->
-<!--begin::Form Group-->
-
-<!--<div class="form-group">
-    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Başvuru Türü</label>-->
-    @* @Html.DropDownList(m=>m, new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })*@
-    <!--<select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" id="seeAnotherFieldGroup">
-        <option value="">Seçim Yapınız</option>
-        <option value="no">Yeni Abonelik</option>
-        <option value="yes">Diğer Operatörden Geçiş</option>
-    </select>
-</div>-->
-
-
-<!--<div class="form-group" id="otherFieldGroupDiv">
-
-    <div class="alert alert-custom alert-outline-primary fade show mb-5" role="alert">
-        <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
-        <div class="alert-text">10 Haneli Hizmet Numaranızı mevcut operatörünüzün faturasından veya online işlem merkezine giriş yaparak öğrenebilirsiniz. </div>
-        <div class="alert-close">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="ki ki-close"></i></span>
-            </button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6 col-md-6">
-
-            <label for="otherField1" class="font-size-h6 font-weight-bolder m-2 text-dark">Hizmet Numarası</label>-->
-            @*  @Html.EditorFor(m => m.ServiceNumber, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" })*@
-            @*<input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" id="kt_inputmask_15" im-insert="true" name="hizmetnosu">*@
-        <!--</div>
-
-        <div class="col-lg-6 col-md-6">
-            <label for="otherField2" class="font-size-h6 font-weight-bolder m-2 text-dark">Mevcut Operatör Adı</label>-->
-            @*   @Html.EditorFor(m => m.OperatorName, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100", id = "otherField2" })*@
-            @* <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" id="otherField2">*@
-        <!--</div>
-    </div>
-</div>-->
-
-<!--end::Form Group-->
-<!--begin::Form Group-->
-
-<!--<div class="form-group">
-    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Ev Telefonunuz Var mı?</label>-->
-    @* @Html.DropDownList(m => m.HasFixedPhone,Model.HasFixedPhone, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", id = "otherField2" })*@
-    <!--<select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" id="tseeAnotherFieldGroup">
-        <option value="">Seçim Yapınız</option>
-        <option value="no">Hayır</option>
-        <option value="yes">Evet</option>
-    </select>
-</div>-->
-
-<!--<div class="form-group" id="totherFieldGroupDiv">
-    <div class="row">
-        <div class="col-lg-6 col-md-6">
-            <label for="totherField1" class="font-size-h6 font-weight-bolder m-2 text-dark">Ev Telefon Numaranız</label>-->
-            @*   @Html.EditorFor(m => m.FixedPhoneNumber, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" })*@
-            @* <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" placeholder="Ev Telefon No" name="evtelno" id="kt_inputmask_14" im-insert="true">*@
-
-
-        <!--</div>
-
-    </div>
-</div>-->
-
-<!--begin::Form Group-->
 
 <div class="separator separator-dashed my-3"></div>
 <div class="pb-10 pb-lg-5">
@@ -86,7 +11,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Şehir</label>
             @*@Html.DropDownListFor(m => m.ProvinceId, new SelectList(ViewBag.ProvinceList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.ProvinceId, Model.ProvinceList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.ProvinceId, (SelectList)ViewBag.ProvinceItems, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
             <div class="text-danger"> @Html.ValidationMessageFor(model => model.ProvinceId)</div>
             @Html.HiddenFor(m=>m.ProvinceId)
 
@@ -100,7 +25,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
             @*@Html.DropDownListFor(m => m.DistrictId, new SelectList(ViewBag.DistrictList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.DistrictId, Model.DistrictList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.DistrictId, (SelectList)ViewBag.DistrictList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
             <div class="text-danger"> @Html.ValidationMessageFor(model => model.DistrictId)</div>
             @Html.HiddenFor(m => m.DistrictId)
@@ -115,7 +40,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
             @*@Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.RegionId, Model.RegionList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.RegionId, (SelectList)ViewBag.RegionList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
             <div class="text-danger"> @Html.ValidationMessageFor(model => model.RegionId)</div>
             @Html.HiddenFor(m => m.RegionId)
@@ -128,7 +53,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
             @*@Html.DropDownListFor(m => m.NeighborhoodId, new SelectList(ViewBag.NeighborhoodList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.NeighborhoodId, Model.NeighborhoodList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.NeighborhoodId, (SelectList)ViewBag.NeighborhoodList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
             <div class="text-danger"> @Html.ValidationMessageFor(model => model.NeighborhoodId)</div>
             @Html.HiddenFor(m => m.NeighborhoodId)
@@ -143,7 +68,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
             @*@Html.DropDownListFor(m => m.StreetId, new SelectList(ViewBag.StreetList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.StreetId, Model.StreetList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.StreetId, (SelectList)ViewBag.StreetList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
             <div class="text-danger"> @Html.ValidationMessageFor(model => model.StreetId)</div>
             @Html.HiddenFor(m => m.StreetId)
 
@@ -156,7 +81,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
             @*@Html.DropDownListFor(m => m.BuildingId, new SelectList(ViewBag.BuildingList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.BuildingId, Model.BuildingList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.BuildingId, (SelectList)ViewBag.BuildingList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
             <div class="text-danger">@Html.ValidationMessageFor(model => model.BuildingId)</div>
             @Html.HiddenFor(m => m.BuildingId)
         </div>
@@ -170,7 +95,7 @@
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
             @*@Html.DropDownListFor(m => m.ApartmentId, new SelectList(ViewBag.ApartmentList, "Value", "Text"), "Ay Seçin", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-            @Html.DropDownListFor(m => m.ApartmentId, Model.ApartmentList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.ApartmentId, (SelectList)ViewBag.ApartmentList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
         </div>
         <div class="text-danger"> @Html.ValidationMessageFor(model => model.ApartmentId)</div>

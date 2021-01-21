@@ -7,18 +7,14 @@
     <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
 }
 
-@*<style>
+<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <!--begin::Page Heading-->
+    <div class="d-flex align-items-baseline flex-wrap my-5 mr-5">
 
-        #Gsm {
-            display: block;
-        }
-
-        #SmsVerification {
-            display: none;
-        }
-    </style>*@
-
-
+    </div>
+    <!--end::Toolbar-->
+</div>
 
 <div class="d-flex flex-column-fluid">
     @Html.AntiForgeryToken()
@@ -38,7 +34,6 @@
                             <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
                                 <!--begin::Wizard Steps-->
                                 <div class="wizard-steps">
-
                                     <!--begin::Wizard Step 1 Nav-->
                                     <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
                                         <div class="wizard-wrapper">
@@ -64,6 +59,8 @@
                                     </div>
                                     <!--end::Wizard Step 1 Nav-->
                                     <!--begin::Wizard Step 2 Nav-->
+                                    <!--end::Wizard Step 2 Nav-->
+                                    <!--begin::Wizard Step 3 Nav-->
                                     <div class="wizard-step" data-wizard-type="step">
                                         <div class="wizard-wrapper">
                                             <div class="wizard-icon">
@@ -71,20 +68,7 @@
                                                 <span class="wizard-number">1</span>
                                             </div>
                                             <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">SMS Doğrulama</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 2 Nav-->
-                                    <!--begin::Wizard Step 3 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">2</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">İletişim Bilgileriniz</h3>
+                                                <h3 class="wizard-title font-weight font-size-h4">Adres ve Başvuru Bilgisi</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -94,10 +78,11 @@
                                         <div class="wizard-wrapper">
                                             <div class="wizard-icon">
                                                 <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">3</span>
+                                                <span class="wizard-number">2</span>
                                             </div>
                                             <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Adres ve Başvuru Bilgisi</h3>
+                                                <h3 class="wizard-title font-weight font-size-h4">Tarife ve Tercihler</h3>
+
                                             </div>
                                         </div>
                                     </div>
@@ -107,10 +92,10 @@
                                         <div class="wizard-wrapper">
                                             <div class="wizard-icon">
                                                 <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">4</span>
+                                                <span class="wizard-number">3</span>
                                             </div>
                                             <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Tarife ve Tercihler</h3>
+                                                <h3 class="wizard-title font-weight font-size-h4">İletişim Bilgileriniz</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +105,7 @@
                                         <div class="wizard-wrapper">
                                             <div class="wizard-icon">
                                                 <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">5</span>
+                                                <span class="wizard-number">4</span>
                                             </div>
                                             <div class="wizard-label">
                                                 <h3 class="wizard-title font-weight font-size-h4">Kimlik Bilgileri</h3>
@@ -129,6 +114,19 @@
                                     </div>
                                     <!--end::Wizard Step 6 Nav-->
                                     <!--begin::Wizard Step 6 Nav-->
+
+                                    <div class="wizard-step" data-wizard-type="step">
+                                        <div class="wizard-wrapper">
+                                            <div class="wizard-icon">
+                                                <i class="wizard-check ki ki-check"></i>
+                                                <span class="wizard-number">5</span>
+                                            </div>
+                                            <div class="wizard-label">
+                                                <h3 class="wizard-title font-weight font-size-h4">SMS Doğrulama</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Wizard Step 6 Nav-->
                                     <div class="wizard-step" data-wizard-type="step">
                                         <div class="wizard-wrapper">
                                             <div class="wizard-icon">
@@ -153,20 +151,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--end::Wizard Step 6 Nav-->
-
                                 </div>
                                 <!--end::Wizard Steps-->
                             </div>
                             <!--end: Wizard Nav-->
-                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(assets/media/bg/ecovered.svg)"></div><br>
+                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(../../Content/media/bg/ecovered.svg)"></div><br>
                         </div>
                         <!--end::Aside Top-->
-
                     </div>
                     <!--begin::Aside-->
                     <!--begin::Content-->
-
 
                     <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
 
@@ -184,34 +178,25 @@
                                 @Html.HiddenFor(m => m.NeighborhoodId)
                                 @Html.HiddenFor(m => m.StreetId)
                                 @Html.HiddenFor(m => m.RegionId)
-
                                 @Html.HiddenFor(m => m.BuildingId)
-
                                 @Html.HiddenFor(m => m.ApartmentId)
                                 @Html.HiddenFor(m => m.AddressText)
-
-
                                 @Html.HiddenFor(m => m.PostalCode)
                                 @Html.HiddenFor(m => m.BirthPlace)
-
                                 @Html.HiddenFor(m => m.FatherName)
-
                                 @Html.HiddenFor(m => m.MotherName)
                                 @Html.HiddenFor(m => m.MotherFirstSurname)
                                 @Html.HiddenFor(m => m.Nationality)
                                 @Html.HiddenFor(m => m.Sex)
                                 @Html.HiddenFor(m => m.BirthDate)
-
                                 @Html.HiddenFor(m => m.IDCardType)
-
                                 @Html.HiddenFor(m => m.TC)
                                 @Html.HiddenFor(m => m.SerialNo)
                                 @Html.HiddenFor(m => m.PlaceOfIssue)
                                 @Html.HiddenFor(m => m.DateOfIssue)
-
                                 @Html.HiddenFor(m => m.ReferenceCode)
                                 @Html.HiddenFor(m => m.Floor)
-                              
+                                @Html.HiddenFor(m => m.TariffId)
 
 
                                 <div class="pb-5" data-wizard-type="step-content">
@@ -221,16 +206,17 @@
                                     </div>
                                     <!--begin::Form Group-->
                                     <div class="form-group">
+                                        <div class="text-danger mr-10">
+                                            @TempData["SmsValidationMessage"]
+                                        </div>
+
                                         <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
                                         @Html.EditorFor(m => m.SMSCode, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6", @placeholder = "SMS Doğrulama Kodu" } })
                                         @*<input class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" id="kt_inputmask_12" name="smscode" placeholder="SMS Doğrulama Kodunuz" value="" />*@
                                     </div>
                                     <div class="separator separator-dashed my-3">
                                         <br />
-
-                                        <div class="text-danger">
-                                           @TempData["message"]
-                                        </div>
+                                                                              
                                     </div>
 
                                     <div class="row">
@@ -243,7 +229,6 @@
                                     </div>
 
                                     <div class="col-xl-12 col-lg-8 ">
-
 
                                     </div>
                                     <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
@@ -263,24 +248,18 @@
                                             </span>
                                         </button>
                                     </div>
-
                                 </div>
                             }
                         </div>
-
                         <!--end::Form-->
                     </div>
-
-
                     <!--end::Content-->
                 </div>
-
 
             </div>
         </div>
     </div>
 </div>
-
 
 
 
@@ -306,7 +285,7 @@
             }
         };
 
-        const TIME_LIMIT = @ViewBag.exTime;
+        const TIME_LIMIT =@TempData["exTime"];
       //  const TIME_LIMIT = 120;
         let timePassed = 0;
         let timeLeft = TIME_LIMIT;

@@ -12,7 +12,7 @@ namespace NetspeedMainWebsite.Controllers
 {
     public class ApplicationController : Controller
     {
-       
+
         public ActionResult AlreadyHaveCustomer()
         {
             return View();
@@ -22,30 +22,36 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
+        public ActionResult ApplicationSummary()
+        {
+            return View();
+        }
 
         public ActionResult ApplicationConfirm()
-
         {
             return View();
         }
 
         public ActionResult Index()
         {
+                    
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
-
-            var IDCardItems = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
-            {
-                Text = c.Name,
-                Value = c.Code.ToString()
+            var IDCardItems = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
+            { 
+                Text=p.Name,
+                Value=p.Code.ToString()
             });
 
+            ViewBag.IDCardItems = IDCardItems;
+                    
             var responseProvince = new WebServiceWrapper().GetProvinces();
-            var ProvinceItems = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
+            var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
             {
                 Text = p.Name,
                 Value = p.Code.ToString()
-
             });
+
+            ViewBag.ProvinceList = ProvinceList;
 
             var responseNat = new WebServiceWrapper().GetNationalities();
             var NatItems = responseNat.ValueNamePairList.Select(n => new SelectListItem()
@@ -54,13 +60,32 @@ namespace NetspeedMainWebsite.Controllers
                 Value = n.Code.ToString()
             });
 
+            ViewBag.NatItems = NatItems;
+
             var responseSex = new WebServiceWrapper().GetSexes();
             var SexItems = responseSex.ValueNamePairList.Select(s => new SelectListItem()
             {
                 Text = s.Name,
                 Value = s.Code.ToString()
             });
-            return View(new ApplicationViewModel() { ProvinceList = ProvinceItems, IDCardTypeList = IDCardItems, NationalityList = NatItems, SexList = SexItems, });
+
+            ViewBag.SexItems = SexItems;
+
+            var DistrictList = new SelectListItem();
+            var RegionList = new SelectListItem();
+            var NeighborhoodList = new SelectListItem();
+            var StreetList = new SelectListItem();
+            var BuildingList = new SelectListItem();
+            var ApartmentList = new SelectListItem();
+
+            ViewBag.DistrictList = DistrictList;
+            ViewBag.RegionList = RegionList;
+            ViewBag.NeighborhoodList = NeighborhoodList;
+            ViewBag.StreetList = StreetList;
+            ViewBag.BuildingList = BuildingList;
+            ViewBag.ApartmentList = ApartmentList;
+
+            return View();
         }
 
 
@@ -156,6 +181,15 @@ namespace NetspeedMainWebsite.Controllers
         //    return PartialView("~/Views/Application/ApplicationParts/_HasNotInfrastructure.cshtml");
         //}
 
+        //[HttpPost]
+        //public ActionResult GetServiceAvailability()
+        //{
+        //    var hasNotAddressMessage = string.Empty;
+        //    hasNotAddressMessage = "Adres Bilgilerinizi Tamamlamadan Başvuruya Devam Edemezsiniz";
+        //    TempData["hasNotAddressMessage"] = hasNotAddressMessage;
+        //    return PartialView("ApplicationParts/_HasNotInfrastructure");
+        //}
+
         [HttpPost]
         public ActionResult GetServiceAvailability(long apartmentId)
         {
@@ -188,7 +222,7 @@ namespace NetspeedMainWebsite.Controllers
 
                     var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasFiber == true).Select(t => new TariffsViewModel
                     {
-                        TariffID = t.TariffID,                     
+                        TariffID = t.TariffID,
                         DisplayName = t.DisplayName,
                         Price = t.Price,
                         Speed = t.Speed,
@@ -241,7 +275,7 @@ namespace NetspeedMainWebsite.Controllers
                     //TempData["message"]=message;
                     //ViewBag.message = message;
                     //return RedirectToAction("Index", "Application");
-                    
+
                     message = "altyapiyok";
                     TempData["message"] = "messsage";
                     return PartialView("ApplicationParts/_HasNotInfrastructure");
@@ -249,10 +283,10 @@ namespace NetspeedMainWebsite.Controllers
             }
             else
             {
-                return PartialView("~/Views/Application/ApplicationParts/_HasNotInfrastructure.cshtml");
+                return PartialView("~ApplicationParts/_HasNotInfrastructure");
             }
 
-            return PartialView("~/Views/Application/ApplicationParts/_InfrastructureAndTariffs.cshtml", model:infrastructureTariff);
+            return PartialView("ApplicationParts/_InfrastructureAndTariffs", model: infrastructureTariff);
             //return Json(new
             //{
             //    tariffs = tariffs.ToArray(),
@@ -306,7 +340,7 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult Index(ApplicationViewModel application)
         {
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
-                       
+
             if (ModelState.IsValid)
             {
                 //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
@@ -341,8 +375,8 @@ namespace NetspeedMainWebsite.Controllers
                     BirthDate = application.BirthDate,
                     DateOfIssue = application.DateOfIssue,
                     SMSCode = application.SMSCode,
-                    TariffId=application.TariffId,
-                    DisplayName=application.DisplayName
+                    TariffId = application.TariffId,
+                    DisplayName = application.DisplayName
 
                 };
 
@@ -364,15 +398,48 @@ namespace NetspeedMainWebsite.Controllers
 
                 MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(Properties.Settings.Default.SMSValidationDuration.Minutes));
 
-                var exTime = (Value.ExpirationDate - DateTime.Now).Seconds*2;
-                ViewBag.exTime = exTime;
+                var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
+                //ViewBag.exTime = exTime;
+                TempData["exTime"] = exTime;
                 //Session["smscode"] = response.SMSCode;
 
                 return View(viewName: "GsmVerificationWithSms", model: result);
             }
+
+            var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
+            var IDCardItems = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
+            {
+                Text = c.Name,
+                Value = c.Code.ToString()
+            });
+
+            var responseProvince = new WebServiceWrapper().GetProvinces();
+            var ProvinceItems = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
+            {
+                Text = p.Name,
+                Value = p.Code.ToString()
+
+            });
+
+            var responseNat = new WebServiceWrapper().GetNationalities();
+            var NatItems = responseNat.ValueNamePairList.Select(n => new SelectListItem()
+            {
+                Text = n.Name,
+                Value = n.Code.ToString()
+            });
+
+            var responseSex = new WebServiceWrapper().GetSexes();
+            var SexItems = responseSex.ValueNamePairList.Select(s => new SelectListItem()
+            {
+                Text = s.Name,
+                Value = s.Code.ToString()
+            });
+            application.IDCardTypeList = IDCardItems;
+            application.ProvinceList = ProvinceItems;
+            application.NationalityList = NatItems;
+            application.SexList = SexItems;
             return View(application);
         }
-
 
 
 
@@ -380,7 +447,7 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GsmVerificationWithSms(ApplicationViewModel result)
         {
-            var message = string.Empty;
+            var SmsValidationMessage = string.Empty;
 
             //var smscode = Session["smscode"] as string;
             var Value = MemoryCache.Default.Get(result.PhoneNumber) as ApplicationViewModel;
@@ -393,17 +460,26 @@ namespace NetspeedMainWebsite.Controllers
                     WebServiceWrapper clientGetAddress = new WebServiceWrapper();
                     var getAddress = clientGetAddress.GetApartmentAddress(result.ApartmentId);
                     var address = getAddress.AddressDetailsResponse;
-                    result.AddressText=getAddress.AddressDetailsResponse.AddressText;
+                    result.AddressText = getAddress.AddressDetailsResponse.AddressText;
+
+                    WebServiceWrapper clientGetTariff = new WebServiceWrapper();
+                    var getTariff = clientGetTariff.GetTariffList();
+
+                    var clientSelectTariff = getTariff.ExternalTariffList.Where(f => f.TariffID == result.TariffId).First().DisplayName;
+
+                    result.DisplayName = clientSelectTariff;
+
                     return View(viewName: "ApplicationSummary", model: result);
                 }
                 else
-                {
-                    message = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
-                    TempData["message"]="message";
-                   
+                {                 
+                    
+                    TempData["SmsValidationMessage"] = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
+                    var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
+                    //ViewBag.exTime = exTime;
+                    TempData["exTime"] = exTime;
                     //customers have 2 minutes
                     return View(viewName: "GsmVerificationWithSms", model: result);
-                    //return PartialView("~/Views/Application/ApplicationParts/_SMSValidation.cshtml" , model: result);
                 }
             }
             else
@@ -411,93 +487,6 @@ namespace NetspeedMainWebsite.Controllers
                 return RedirectToAction("Index", "Application");
             }
         }
-
-
-        //[HttpPost]
-        //public ActionResult GsmVerification(ApplicationViewModel application, string smsCode)
-        //{
-        //    string Gsm = application.PhoneNumber;
-        //    var client = new WebServiceWrapper();
-        //    var response = client.SendGenericSMS(application.PhoneNumber);
-        //    if (response.SMSCode == smsCode)
-        //    {
-
-        //    }
-
-        //    return View(viewName: "GsmVerificationWithSms", model: application);
-        //    //return RedirectToAction("ApplicationGet", "Application");
-        //    return RedirectToAction("GsmVerificationWithSms", "Application");
-
-        //}
-
-        //[HttpPost]
-
-        //public ActionResult GsmVerificationWithSms(string phoneNo, string smsCode)
-        //{
-        //    //var Key = Guid.NewGuid().ToString();
-        //    //var Value = DateTime.Now;
-
-        //var client = new WebServiceWrapper();
-        //var response = client.SendGenericSMS(phoneNo);
-
-        //if (response.SMSCode == smsCode)
-        //{
-
-        //}
-        //var expirationDate = DateTime.Now + Properties.Settings.Default.SMSValidationDuration;
-        //MemoryCache.Default.Set($"{phoneNo}_{}")
-        //var AlertValue = Value + 2;
-
-
-        //MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(2));
-
-        //if (DateTime.Now.Minute - Value > 2)
-        //{
-        //    RedirectToAction("Index", "Application", new { id = Key });
-        //}
-
-        //if (DateTime.Now.Minute - Value < 2)
-        //{
-        //    Url.Action("GsmVerificationWithSms", "Application", new { id = Key });
-        //}
-
-        //var RemainingTime = AlertValue - DateTime.Now.Minute;
-
-        //ViewBag.RemainingTime = RemainingTime;
-
-        //    return View();
-        //}
-
-        ////[HttpPost]
-        //public ActionResult GsmVerificationWithSms(string phoneNo, VerificationViewModel smsCode)
-        //{
-
-        //    var message = string.Empty;
-        //    string Gsm = Session["Gsm"].ToString();
-
-        //    //Session["Action"] = DateTime.Now.Minute;
-
-        //    //if (Session["Action"] == null || (DateTime.Now - (DateTime)(Session["Action"])).Minutes < 2)
-        //    //{
-        //    //var response = new WebServiceWrapper().RegisterSMSValidation(Gsm, smsCode.Code);//buraya dön
-
-        //    Session["Action"] = DateTime.Now;
-        //    //if (response.ResponseMessage.ErrorCode == 0)
-        //    {
-        //        return RedirectToAction("ApplicationSummary", "Application");
-        //    }
-        //    //}
-        //    //else
-        //    //{
-        //    return View();
-        //    //}
-        //    //return View();
-
-
-        //    ViewBag.message = "Lütfen Kodu Kontrol Ediniz.";
-
-        //    return View();
-        //}
 
 
         [ValidateAntiForgeryToken]
@@ -526,7 +515,7 @@ namespace NetspeedMainWebsite.Controllers
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
                result.Sex, result.BirthDate, result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
-               result.DateOfIssue, null, result.PhoneNumber, "tr-tr", /*1,*/ result.EmailAddress, result.ReferenceCode
+               result.DateOfIssue, null, result.PhoneNumber, "tr-tr", /*1,*/ result.EmailAddress, result.ReferenceCode, result.TariffId
                );
 
 
@@ -555,45 +544,5 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-
-
-
-
-    
-
-
-        //[ValidateAntiForgeryToken]
-        //[HttpPost]
-        //public ActionResult ApplicationGet(ApplicationViewModel application)
-        ////public ActionResult Index(ApplicationViewModel application)
-        //{
-        //    //var ApplicationItemList = (List<ApplicationViewModel>)Session["ApplicationItemList"];
-        //    //var Gsm = Session["Gsm"];
-        //    //string SerialNo = "A25I96170";
-        //    ////DateTime dti = new DateTime(2029, 12, 26);
-        //    //WebServiceWrapper clientAddress = new WebServiceWrapper();
-        //    //var getAddress = clientAddress.GetApartmentAddress(application.ApartmentId);
-
-        //    //var address = getAddress.AddressDetailsResponse;
-
-        //    //var response = new WebServiceWrapper().NewCustomerRegister(1, 1, 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
-        //    //    address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
-        //    //      address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, application.Floor,
-        //    //    application.PostalCode, application.BirthPlace, application.FatherName,
-        //    //   application.MotherFirstSurname, application.MotherName, (int)application.Nationality, 962,
-        //    //   application.Sex, application.BirthDate, (int)application.IDCardType, application.FirstName,
-        //    //   application.LastName, application.TC, application.SerialNo, application.PlaceOfIssue,
-        //    //   new DateTime(2019, 12, 26), null, application.PhoneNumber, "tr-tr", 1, application.EmailAddress, application.ReferenceCode
-        //    //   );
-
-
-        //    //    if (response.ResponseMessage.ErrorCode == 0)
-        //    //    {
-        //    //        return RedirectToAction("ApplicationConfirm", "Application");
-        //    //    }
-
-        //    //    return RedirectToAction("ApplicationFail", "Application");
-
-        //}
     }
 }

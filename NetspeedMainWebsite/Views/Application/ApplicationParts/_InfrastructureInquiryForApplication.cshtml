@@ -29,7 +29,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">İl</label>
-            @Html.DropDownListFor(m => m.ProvinceId, Model.ProvinceList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.ProvinceId,new SelectList(ViewBag.ProvinceList,"Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
             <div class="text-danger"> @Html.ValidationMessageFor(m => m.ProvinceId)</div>
             @Html.HiddenFor(m => m.ProvinceId)
         </div>
@@ -40,7 +40,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
-            @Html.DropDownListFor(m => m.DistrictId, Model.DistrictList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.DistrictId, new SelectList(ViewBag.DistrictList, "Value", "Text"),"SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
             <div class="text-danger"> @Html.ValidationMessageFor(m => m.DistrictId)</div>
             @Html.HiddenFor(m => m.DistrictId)
@@ -54,7 +54,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
-            @Html.DropDownListFor(m => m.RegionId, Model.RegionList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
             <div class="text-danger"> @Html.ValidationMessageFor(m => m.RegionId)</div>
             @Html.HiddenFor(m => m.RegionId)
@@ -66,7 +66,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
-            @Html.DropDownListFor(m => m.NeighborhoodId, Model.NeighborhoodList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.NeighborhoodId, new SelectList(ViewBag.NeighborhoodList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
             <div class="text-danger"> @Html.ValidationMessageFor(m => m.NeighborhoodId)</div>
             @Html.HiddenFor(m => m.NeighborhoodId)
@@ -80,7 +80,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
-            @Html.DropDownListFor(m => m.StreetId, Model.StreetList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.StreetId, new SelectList(ViewBag.StreetList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
             <div class="text-danger">
                 @Html.ValidationMessageFor(m => m.StreetId)
             </div>
@@ -93,7 +93,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
-            @Html.DropDownListFor(m => m.BuildingId, Model.BuildingList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.BuildingId, new SelectList(ViewBag.BuildingList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
             <div class="text-danger">
                 @Html.ValidationMessageFor(m => m.BuildingId)
             </div>
@@ -108,7 +108,7 @@
     <div class="col-lg-6 col-md-6">
         <div class="form-group">
             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
-            @Html.DropDownListFor(m => m.ApartmentId, Model.ApartmentList, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+            @Html.DropDownListFor(m => m.ApartmentId, new SelectList(ViewBag.ApartmentList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
         </div>
         <div class="text-danger">
             @Html.ValidationMessageFor(m => m.ApartmentId)

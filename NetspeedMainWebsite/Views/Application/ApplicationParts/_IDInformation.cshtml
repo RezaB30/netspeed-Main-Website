@@ -10,9 +10,14 @@
     <!--begin::Title-->
     <div class="form-group">
         <div class="col-lg-6 col-md-6">
-            <label class="font-size-h6 font-weight-bolder text-dark">Kimlik Kart Tipi</label>
-            @Html.DropDownListFor(m => m.IDCardType, Model.IDCardTypeList, "SEÇİNİZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
-            @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
+            <div class="form-group">
+                <label class="font-size-h6 font-weight-bolder text-dark">Kimlik Kart Tipi</label>
+                @Html.DropDownListFor(m => m.IDCardType, Model.IDCardTypeList, "SEÇİNİZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
+                @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
+            </div>
+            <div class="text-danger">
+                @Html.ValidationMessageFor(model => model.IDCardType)
+            </div>
         </div>
         @*<div class="form-group">*@
         <div class="row">
@@ -21,11 +26,17 @@
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Uyruk</label>
                     @Html.DropDownListFor(m => m.Nationality, Model.NationalityList, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
                 </div>
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.Nationality)
+                </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
                 <div class="form-control h-auto p-4 border-0 rounded-lg font-size-h6">
                     @Html.EditorFor(m => m.TC, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "T.C Kimlik Numaranız" } })
+                </div>
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.TC)
                 </div>
             </div>
         </div>
@@ -100,85 +111,88 @@
                 @Html.HiddenFor(m => m.BirthDate)
             </div>
             <div class="col-lg-6 col-md-6">
-                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
-                @Html.DropDownListFor(m => m.Sex, Model.SexList, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-            </div>
-            <div class="text-danger">
-                @Html.ValidationMessageFor(model => model.Sex)
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
+                    @Html.DropDownListFor(m => m.Sex, Model.SexList, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                </div>
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.Sex)
+                </div>
             </div>
         </div>
         @Html.HiddenFor(m => m.Sex)
-    </div>
-            <!--end::Form Group-->
-            <!--begin::Form Group-->
-           @* <div class="pb-0 pb-lg-0">*@
-<div class="row">
-    <div class="col-lg-6 col-md-6">
-        <div class="form-group">
-            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
-            @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
-            @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker", @placeholder = "Verildiği Tarih" } })
-        </div>
+        @*</div>*@
+        <!--end::Form Group-->
+        <!--begin::Form Group-->
+        @* <div class="pb-0 pb-lg-0">*@
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
+                    @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
+                    @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker", @placeholder = "Verildiği Tarih" } })
+                </div>
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.DateOfIssue)
+                </div>
 
-        @Html.HiddenFor(m => m.DateOfIssue)
-        @Html.ValidationMessageFor(model => model.DateOfIssue)
-
-    </div>
-    <div class="col-lg-6 col-md-6">
-        <div class="form-group">
-            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
-            @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer" } })
-
-        </div>
-        <div class="text-danger">
-            @Html.ValidationMessageFor(model => model.PlaceOfIssue)
-        </div>
-    </div>
-    @Html.HiddenFor(m => m.PlaceOfIssue)
-    <!--end::Form Group-->
-    <!--begin::Form Group-->
-    
-</div>
-            @*</div>*@
-
-            <div class="pb-0 pb-lg-5">
-                <div class="row">
-                    <!--<div class="col-lg-6 col-md-6">
-                        <div class="form-group">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>-->
-                            @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
-                            <!--@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker", @placeholder = "Verildiği Tarih" } })
-                        </div>
-
-                        @Html.HiddenFor(m => m.DateOfIssue)
-                        @Html.ValidationMessageFor(model => model.DateOfIssue)
-
-                       </div>-->
+                @Html.HiddenFor(m => m.DateOfIssue)
 
 
-                    <!--end::Form Group-->
-                    <!--begin::Form Group-->
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
+                    @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer" } })
 
                 </div>
-                <div class="pb-0 pb-lg-5">
-                    <div class="row">
-                        <!--end::Form Group-->
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
-                                @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", } })
-                            </div>
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.MotherFirstSurname)
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.PlaceOfIssue)
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.PlaceOfIssue)
+            <!--end::Form Group-->
+            <!--begin::Form Group-->
 
-                            </div>
-                            @Html.HiddenFor(m => m.MotherFirstSurname)
+        </div>
+        @*</div>*@
+
+        <div class="pb-0 pb-lg-5">
+            <div class="row">
+                <!--<div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>-->
+                @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
+                <!--@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker", @placeholder = "Verildiği Tarih" } })
+                 </div>
+
+                 @Html.HiddenFor(m => m.DateOfIssue)
+                 @Html.ValidationMessageFor(model => model.DateOfIssue)
+
+                </div>-->
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+
+            </div>
+            <div class="pb-0 pb-lg-5">
+                <div class="row">
+                    <!--end::Form Group-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
+                            @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", } })
                         </div>
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.MotherFirstSurname)
+
+                        </div>
+                        @Html.HiddenFor(m => m.MotherFirstSurname)
                     </div>
                 </div>
             </div>
         </div>
- 
+    </div>
+</div>
 @*</div>*@
 <!--end::Form Group-->
 <!--end: Wizard Step 6-->
