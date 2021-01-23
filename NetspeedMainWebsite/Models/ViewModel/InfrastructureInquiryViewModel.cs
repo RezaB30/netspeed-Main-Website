@@ -32,7 +32,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
         //public IEnumerable<SelectListItem> Neighborhood { get; set; }
         //public IEnumerable<SelectListItem> Street { get; set; }
         //public IEnumerable<SelectListItem> Building { get; set; }
-        //public IEnumerable<SelectListItem> Apartment { get; set; }
-     
+        //public IEnumerable<SelectListItem> Apartment { get; set; }     
     }
 }

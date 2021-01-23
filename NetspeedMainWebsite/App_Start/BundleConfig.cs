@@ -10,9 +10,26 @@ namespace NetspeedMainWebsite
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/helpbubscript.js",
-                        "~/Scripts/input-mask.js"));
-           
+                         //"~/Scripts/jquery-ui-{version}.js",
+                         "~/Scripts/jquery-ui-1.12.1.min.js",
+                         "~/Scripts/inputmask/jquery.inputmask.js",
+                         "~/Scripts/jquery.validate.js",
+                        "~/Scripts/jquery.validate.unobtrusive.js"
+                        
+
+
+                        //"~/Scripts/jquery-ui-1.12.1.min.js"
+                        //"~/Scripts/jquery.validate.js",
+                        //"~/Scripts/jquery.validate.unobtrusive.js",
+                        //"~/Scripts/helpbubscript.js",                        
+                        //"~/Scripts/inputmask/inputmask.js",
+                        //"~/Scripts/inputmask/jquery.inputmask.js",
+                        //"~/Scripts/inputmask/bindings/inputmask.binding.js"
+                        ));
+
+
+            //bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+            //            "~/Scripts/inputmask/jquery.inputmask.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
             //            "~/Scripts/jquery.validate*"));
@@ -33,7 +50,5 @@ namespace NetspeedMainWebsite
                       "~/Content/style.bundle.css",
                       "~/Content/wizard5-basvuru.css"));
         }
-
-
     }
 }

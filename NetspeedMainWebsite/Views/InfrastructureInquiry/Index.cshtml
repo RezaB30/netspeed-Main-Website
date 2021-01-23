@@ -91,112 +91,113 @@
                         <!--end::Title-->
                         <!--begin::Form-->
                         <div class="d-flex justify-content-center flex-row-fluid ">
+                            @TempData["message"]
 
                             @using (Html.BeginForm("InfrastructureInquiryResult", "InfrastructureInquiry", FormMethod.Post, new { @class = "pb-5 w-100 w-md-450px w-lg-500px", @id = "kt_form2" }))
                             {
-                            <!--begin: Wizard Step 1-->
-                            <!--begin::Title-->
-                            <div class="pb-10 pb-lg-15">
+                                <!--begin: Wizard Step 1-->
+                                <!--begin::Title-->
+                                <div class="pb-10 pb-lg-15">
 
-                                <h3 class="font-weight-bolder text-info font-size-h2">Netspeed Altyapı Sorgulama</h3><hr class="my-0">
-                                <div class="text-dark-50 font-weight font-size-h5 my-6 mt-2">Altyapı port ve alabileceğiniz hız durumunu sorgulayabilmek için adres bilgilerinizi dikkatli bir şekilde seçerek <strong>Altyapımı Sorgula </strong> butonuna basınız.</div>
+                                    <h3 class="font-weight-bolder text-info font-size-h2">Netspeed Altyapı Sorgulama</h3><hr class="my-0">
+                                    <div class="text-dark-50 font-weight font-size-h5 my-6 mt-2">Altyapı port ve alabileceğiniz hız durumunu sorgulayabilmek için adres bilgilerinizi dikkatli bir şekilde seçerek <strong>Altyapımı Sorgula </strong> butonuna basınız.</div>
 
-                                <!--begin::Form Group-->
-                                <div class="row">
-
-                                    <div class="separator separator-dashed mt-5 my-3"></div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <h3 class="font-weight-bolder text-dark-50 font-size-h3">Adres Bilgileriniz</h3><hr>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Şehir</label>
-
-                                            @Html.DropDownListFor(m => m.ProvinceId, new SelectList(ViewBag.ProvinceList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
-                                        </div>
-                                    </div>
-                                    <!--end::Form Group-->
                                     <!--begin::Form Group-->
+                                    <div class="row">
 
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
-                                            @Html.DropDownListFor(m => m.DistrictId, new SelectList(ViewBag.DistrictList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                        <div class="separator separator-dashed mt-5 my-3"></div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <h3 class="font-weight-bolder text-dark-50 font-size-h3">Adres Bilgileriniz</h3><hr>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Şehir</label>
+
+                                                @Html.DropDownListFor(m => m.ProvinceId, new SelectList(ViewBag.ProvinceList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
 
-                                            @* @Html.DropDownListFor(m => m.DistrictId, Model.District, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                                            </div>
                                         </div>
                                         <!--end::Form Group-->
-                                    </div>
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
+                                                @Html.DropDownListFor(m => m.DistrictId, new SelectList(ViewBag.DistrictList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
 
-                                    <!--begin::Form Group-->
-
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
-                                            @*@Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.DistrictList, "Value", "Text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
-                                            @Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
+                                                @* @Html.DropDownListFor(m => m.DistrictId, Model.District, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                                            </div>
+                                            <!--end::Form Group-->
                                         </div>
-                                    </div>
-                                    <!--end::Form Group-->
-                                    <!--begin::Form Group-->
-
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
-                                            @Html.DropDownListFor(m => m.NeighborhoodId, new SelectList(ViewBag.NeighborhoodList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
 
-                                        </div>
-                                        <!--end::Form Group-->
-                                    </div>
+                                        <!--begin::Form Group-->
 
-                                    <!--begin::Form Group-->
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
+                                                @*@Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.DistrictList, "Value", "Text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                                                @Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
-                                            @Html.DropDownListFor(m => m.StreetId, new SelectList(ViewBag.StreetList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
-                                        </div>
-                                    </div>
-                                    <!--end::Form Group-->
-                                    <!--begin::Form Group-->
-
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
-                                            @Html.DropDownListFor(m => m.BuildingId, new SelectList(ViewBag.BuildingList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
-                                        </div>
-                                    </div>
-                                    <!--end::Form Group--><!--begin::Form Group-->
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
-                                            @Html.DropDownListFor(m => m.ApartmentId, new SelectList(ViewBag.ApartmentList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
+                                            </div>
                                         </div>
                                         <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
+                                                @Html.DropDownListFor(m => m.NeighborhoodId, new SelectList(ViewBag.NeighborhoodList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+
+                                            </div>
+                                            <!--end::Form Group-->
+                                        </div>
+
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
+                                                @Html.DropDownListFor(m => m.StreetId, new SelectList(ViewBag.StreetList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+
+                                            </div>
+                                        </div>
+                                        <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
+                                                @Html.DropDownListFor(m => m.BuildingId, new SelectList(ViewBag.BuildingList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+
+                                            </div>
+                                        </div>
+                                        <!--end::Form Group--><!--begin::Form Group-->
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
+                                                @Html.DropDownListFor(m => m.ApartmentId, new SelectList(ViewBag.ApartmentList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+
+                                            </div>
+                                            <!--end::Form Group-->
+                                        </div>
                                     </div>
+
+                                    @* @Html.ActionLink("Altyapımı Sorgula", "InfrastructureInquiryResult", "InfrastructureInquiry", new { BBK =Model.ApartmentId }, new { @class = "btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12", @id="submit" })*@
+                                    <button type="submit" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12">Altyapımı Sorgula</button>
+
+
+
+                                    @*<input type="submit" name="Altyapımı Sorgula" value="Model.ApartmentId" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12" />*@
+
                                 </div>
-
-                                @* @Html.ActionLink("Altyapımı Sorgula", "InfrastructureInquiryResult", "InfrastructureInquiry", new { BBK =Model.ApartmentId }, new { @class = "btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12", @id="submit" })*@
-                                <button type="submit" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12">Altyapımı Sorgula</button>
-
-                                
-
-                                @*<input type="submit" name="Altyapımı Sorgula" value="Model.ApartmentId" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12" />*@
-
-                            </div>
                             }
                         </div>
                     </div>
@@ -219,22 +220,22 @@
 
     <script>
         $('#ProvinceId').change(function () {
-            GetValues('#ProvinceId', '#DistrictId', '/InfrastructureInquiry/GetDistricts');
+            GetValues('#ProvinceId', '#DistrictId', '@Url.Action("GetDistricts", "InfrastructureInquiry")');
         })
         $('#DistrictId').change(function () {
-            GetValues('#DistrictId', '#RegionId', '/InfrastructureInquiry/GetRegions');
+            GetValues('#DistrictId', '#RegionId','@Url.Action("GetRegions", "InfrastructureInquiry")');
         })
         $('#RegionId').change(function () {
-            GetValues('#RegionId', '#NeighborhoodId', '/InfrastructureInquiry/GetNeighborhoods');
+            GetValues('#RegionId', '#NeighborhoodId', '@Url.Action("GetNeighborhoods", "InfrastructureInquiry")');
         })
         $('#NeighborhoodId').change(function () {
-            GetValues('#NeighborhoodId', '#StreetId', '/InfrastructureInquiry/GetStreets');
+            GetValues('#NeighborhoodId', '#StreetId','@Url.Action("GetStreets", "InfrastructureInquiry")');
         })
         $('#StreetId').change(function () {
-            GetValues('#StreetId', '#BuildingId', '/InfrastructureInquiry/GetBuildings');
+            GetValues('#StreetId', '#BuildingId', '@Url.Action("GetBuildings", "InfrastructureInquiry")');
         })
         $('#BuildingId').change(function () {
-            GetValues('#BuildingId', '#ApartmentId', '/InfrastructureInquiry/GetApartments');
+            GetValues('#BuildingId', '#ApartmentId', '@Url.Action("GetApartments", "InfrastructureInquiry")');
         })
         $('#ApartmentId').change(function () {
         })

@@ -73,6 +73,8 @@ namespace NetspeedMainWebsite.Controllers
             }
             return Json(RegionItems, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
         public ActionResult GetNeighborhoods(long code)
         {
             var response = client.GetRuralRegionNeighbourhoods(code);
@@ -88,6 +90,8 @@ namespace NetspeedMainWebsite.Controllers
             }
             return Json(NeighborhoodsItems, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
         public ActionResult GetStreets(long code)
         {
 
@@ -158,7 +162,9 @@ namespace NetspeedMainWebsite.Controllers
             var Fiber = getAddress.ServiceAvailabilityResponse.FIBER;
             var Vdsl = getAddress.ServiceAvailabilityResponse.VDSL;
             var Adsl = getAddress.ServiceAvailabilityResponse.ADSL;
-         
+
+           
+
             if (Fiber.HasInfrastructureFiber)
             {
                 var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
@@ -226,9 +232,14 @@ namespace NetspeedMainWebsite.Controllers
                 InfrastructureResult.XDSLType = "";
                 InfrastructureResult.PortState = "Yok";
             }
-
-
-
+            //}
+            //else
+            //{
+            //    var message = string.Empty;
+            //    message = "Lütfen Tüm Alanları Doldurunuz.";
+            //    TempData["message"] = message;
+            //    return RedirectToAction("Index", "InfrastructureInquiry");
+            //}
             return View(InfrastructureResult);
         }
     }

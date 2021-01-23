@@ -69,15 +69,7 @@ namespace NetspeedMainWebsite.Controllers
                 Value = s.Code.ToString()
             });
 
-            ViewBag.SexList = SexList;
-
-            //var DistrictList = new SelectListItem();
-            //var RegionList = new SelectListItem();
-            //var NeighborhoodList = new SelectListItem();
-            //var StreetList = new SelectListItem();
-            //var BuildingList = new SelectListItem();
-            //var ApartmentList = new SelectListItem();
-
+            ViewBag.SexList = SexList;                     
 
             var DistrictList = new List<SelectListItem>();
             var RegionList = new List<SelectListItem>();
@@ -85,10 +77,6 @@ namespace NetspeedMainWebsite.Controllers
             var StreetList = new List<SelectListItem>();
             var BuildingList = new List<SelectListItem>();
             var ApartmentList = new List<SelectListItem>();
-
-            //var SexList = new List<SelectListItem>();
-            //var NationalityList = new List<SelectListItem>();
-            //var IDCardTypeList = new List<SelectListItem>();
 
             ViewBag.DistrictList = DistrictList;
             ViewBag.RegionList = RegionList;
@@ -105,106 +93,122 @@ namespace NetspeedMainWebsite.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult GetDistricts(long code)
-        {
-            var response = new WebServiceWrapper().GetProvinceDistricts(code);
-            var DistrictItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (DistrictItems == null)
-            {
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(DistrictItems, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        public ActionResult GetRegions(long code)
-        {
-            var response = new WebServiceWrapper().GetDistrictRuralRegions(code);
-
-            var RegionItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (RegionItems == null)
-            {
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(RegionItems, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        public ActionResult GetNeighborhoods(long code)
-        {
-            var response = new WebServiceWrapper().GetRuralRegionNeighbourhoods(code);
-
-            var NeighborhoodsItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (NeighborhoodsItems == null)
-            {
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(NeighborhoodsItems, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        public ActionResult GetStreets(long code)
-        {
-            var response = new WebServiceWrapper().GetNeighbourhoodStreets(code);
-
-            var StreetItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (StreetItems == null)
-            {
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(StreetItems, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        public ActionResult GetBuildings(long code)
-        {
-            var response = new WebServiceWrapper().GetStreetBuildings(code);
-
-            var BuildingItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (BuildingItems == null)
-            {
-                return Json(new { });
-            }
-            return Json(BuildingItems);
-        }
-
         //[HttpPost]
-        //public ActionResult GetServiceAvailability()
+        //[ValidateAntiForgeryToken]
+        //public ActionResult GetDistricts(long code)
         //{
-        //    var addressMessage = string.Empty;
-        //    addressMessage = "Lütfen Adresinizi Giriniz";
-        //    TempData["addressMessage"] = addressMessage;
+        //    var response = new WebServiceWrapper().GetProvinceDistricts(code);
+        //    var DistrictItems = response.ValueNamePairList.Select(r => new
+        //    {
+        //        Text = r.Name,
+        //        Value = r.Code.ToString()
+        //    });
+        //    if (DistrictItems == null)
+        //    {
+        //        return Json(new { }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(DistrictItems, JsonRequestBehavior.AllowGet);
+        //}
+        //[HttpPost]
+        //public ActionResult GetRegions(long code)
+        //{
+        //    var response = new WebServiceWrapper().GetDistrictRuralRegions(code);
 
-        //    //return PartialView("~/Views/Application/ApplicationParts/_InfrastructureInquiryForApplication.cshtml");
-        //    return PartialView("~/Views/Application/ApplicationParts/_HasNotInfrastructure.cshtml");
+        //    var RegionItems = response.ValueNamePairList.Select(r => new
+        //    {
+        //        Text = r.Name,
+        //        Value = r.Code.ToString()
+        //    });
+        //    if (RegionItems == null)
+        //    {
+        //        return Json(new { }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(RegionItems, JsonRequestBehavior.AllowGet);
+        //}
+        //[HttpPost]
+        //public ActionResult GetNeighborhoods(long code)
+        //{
+        //    var response = new WebServiceWrapper().GetRuralRegionNeighbourhoods(code);
+
+        //    var NeighborhoodsItems = response.ValueNamePairList.Select(r => new
+        //    {
+        //        Text = r.Name,
+        //        Value = r.Code.ToString()
+        //    });
+        //    if (NeighborhoodsItems == null)
+        //    {
+        //        return Json(new { }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(NeighborhoodsItems, JsonRequestBehavior.AllowGet);
+        //}
+        //[HttpPost]
+        //public ActionResult GetStreets(long code)
+        //{
+        //    var response = new WebServiceWrapper().GetNeighbourhoodStreets(code);
+
+        //    var StreetItems = response.ValueNamePairList.Select(r => new
+        //    {
+        //        Text = r.Name,
+        //        Value = r.Code.ToString()
+        //    });
+        //    if (StreetItems == null)
+        //    {
+        //        return Json(new { }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(StreetItems, JsonRequestBehavior.AllowGet);
+        //}
+        //[HttpPost]
+        //public ActionResult GetBuildings(long code)
+        //{
+        //    var response = new WebServiceWrapper().GetStreetBuildings(code);
+
+        //    var BuildingItems = response.ValueNamePairList.Select(r => new
+        //    {
+        //        Text = r.Name,
+        //        Value = r.Code.ToString()
+        //    });
+        //    if (BuildingItems == null)
+        //    {
+        //        return Json(new { });
+        //    }
+        //    return Json(BuildingItems);
+        ////}
+        //[HttpPost]
+        //public ActionResult GetApartments(long code)
+        //{
+        //    var response = new WebServiceWrapper().GetBuildingApartments(code);
+
+        //    var BuildingItems = response.ValueNamePairList.Select(r => new
+        //    {
+        //        Text = r.Name,
+        //        Value = r.Code.ToString()
+        //    });
+        //    if (BuildingItems == null)
+        //    {
+        //        return Json(new { }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(BuildingItems, JsonRequestBehavior.AllowGet);
         //}
 
         //[HttpPost]
-        //public ActionResult GetServiceAvailability()
+        //[ValidateAntiForgeryToken]
+        //public ActionResult GetDays(int year, int month)
         //{
-        //    var hasNotAddressMessage = string.Empty;
-        //    hasNotAddressMessage = "Adres Bilgilerinizi Tamamlamadan Başvuruya Devam Edemezsiniz";
-        //    TempData["hasNotAddressMessage"] = hasNotAddressMessage;
-        //    return PartialView("ApplicationParts/_HasNotInfrastructure");
+        //    int DaysInMonth = DateTime.DaysInMonth(year, month);
+
+        //    List<SelectListItem> Days = new List<SelectListItem>();
+        //    for (int d = 1; d <= DaysInMonth; d++)
+        //    {
+        //        Days.Add(new SelectListItem { Text = d.ToString(), Value = d.ToString() });
+        //    }
+
+        //    if (Days == null)
+        //    {
+        //        return Json(new { }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(Days, JsonRequestBehavior.AllowGet);
         //}
+
 
         [HttpPost]
         public ActionResult GetServiceAvailability(long apartmentId)
@@ -315,41 +319,7 @@ namespace NetspeedMainWebsite.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult GetApartments(long code)
-        {
-            var response = new WebServiceWrapper().GetBuildingApartments(code);
-
-            var BuildingItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (BuildingItems == null)
-            {
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(BuildingItems, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult GetDays(int year, int month)
-        {
-            int DaysInMonth = DateTime.DaysInMonth(year, month);
-
-            List<SelectListItem> Days = new List<SelectListItem>();
-            for (int d = 1; d <= DaysInMonth; d++)
-            {
-                Days.Add(new SelectListItem { Text = d.ToString(), Value = d.ToString() });
-            }
-
-            if (Days == null)
-            {
-                return Json(new { }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(Days, JsonRequestBehavior.AllowGet);
-        }
+   
 
 
         [HttpPost]
@@ -503,8 +473,7 @@ namespace NetspeedMainWebsite.Controllers
                     return View(viewName: "ApplicationSummary", model: result);
                 }
                 else
-                {                 
-                    
+                {
                     TempData["SmsValidationMessage"] = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
                     var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
                     //ViewBag.exTime = exTime;
@@ -546,7 +515,7 @@ namespace NetspeedMainWebsite.Controllers
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
                result.Sex, result.BirthDate, result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
-               result.DateOfIssue, null, result.PhoneNumber, "tr-tr", /*1,*/ result.EmailAddress, result.ReferenceCode, result.TariffId
+               result.DateOfIssue, null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId
                );
 
 

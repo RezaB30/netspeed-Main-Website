@@ -60,7 +60,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         //public IEnumerable<SelectListItem> IDCardTypeList { get; set; }
 
 
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "*Lütfen Telefon Numaranızı Doğru Giriniz.")]
+        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "*Lütfen Telefon Numaranızı Doğru Giriniz.")]
         [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
         public string PhoneNumber { get; set; }
 

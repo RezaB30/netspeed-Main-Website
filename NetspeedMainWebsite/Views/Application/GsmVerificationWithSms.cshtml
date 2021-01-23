@@ -216,7 +216,7 @@
                                     </div>
                                     <div class="separator separator-dashed my-3">
                                         <br />
-                                                                              
+
                                     </div>
 
                                     <div class="row">
@@ -264,6 +264,14 @@
 
 
 @section script{
+
+
+    <script>
+        $(function () {
+            $('#SMSCode').inputmask({ "mask": "______", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+
+        });
+    </script>
 
     <script>
 
@@ -387,4 +395,8 @@
                 .setAttribute("stroke-dasharray", circleDasharray);
         }
     </script>
+
+
+
+
 }

@@ -395,7 +395,7 @@
 
                                         <div class="col-lg-3 col-md-3">
                                             <div @*style="width:7em; height:3em"*@>
-                                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next" @*onclick="mybtnfunction();"*@>
+                                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next" id="correctPhone" @*onclick="mybtnfunction();"*@>
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -426,24 +426,58 @@
 </div>
 
 @section script{
-
-    @Scripts.Render("~/Scripts/js/get-birthdate.js")
     @Scripts.Render("~/Scripts/js/get-infrastructure.js")
-    @Scripts.Render("~/Scripts/js/get-nextPrevButton.js")
     @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/Scripts/js/get-nextPrevButton.js"></script>
 
-    @*<script src="~/Scripts/input-mask.js"></script>*@
+    @*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/inputmask/jquery.inputmask.min.js"></script>*@
+
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                dateFormat: 'dd/mm/yyyy',
+                changeYear: true,
+                dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
+                monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+                monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+                changeMonth: true,
+                yearRange: "1970:2021"
+            }); /*.val();*/
+           
+        });
+    </script>
 
     @*<script>
+            //jQuery(function ($) {
+            //    $('#phone').mask('(999)-999-9999');
+            //});
+            ////$('#phone').inputmask("(999)-999-9999");
+            //$(function () {
+            //    $('#phone').inputmask("(999)-999-9999");
 
-        $(document).ready(function () {
-            $('.phone').inputmask('(___)-___-____');         
+            //});
+
+        </script>*@
+
+    <script>
+        $(function () {
+            $('#PhoneNumber').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
 
         });
+    </script>
+    @*<script>
+            $(function () {
+                $('#PhoneNumber').inputmask("(999)-999-9999");
 
-    </script>*@
+            });
+        </script>*@
+
+    @*<script>
+            $('#correctPhone').submit(function () {
+                $('#PhoneNumber').unmask();
+            });
+        </script>*@
+
 
     <script>
         $('#getServiceAvability').click(function () {
@@ -465,40 +499,24 @@
         })
     </script>
 
-
-    <script>
-        $(function () {
-            $('.datepicker').datepicker({
-                dateFormat: 'dd/mm/yy', changeYear: true,
-                dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
-                monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-                monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-                changeMonth: true,
-                yearRange: "1970:2021"
-            }).val();
-
-        });
-    </script>
-
-
     <script>
         $('#ProvinceId').change(function () {
-            GetValues('#ProvinceId', '#DistrictId','@Url.Action("GetDistricts", "Application")');
+            GetValues('#ProvinceId', '#DistrictId', '@Url.Action("GetDistricts", "InfrastructureInquiry")');
         })
         $('#DistrictId').change(function () {
-            GetValues('#DistrictId', '#RegionId', '@Url.Action("GetRegions", "Application")');
+            GetValues('#DistrictId', '#RegionId','@Url.Action("GetRegions", "InfrastructureInquiry")');
         })
         $('#RegionId').change(function () {
-            GetValues('#RegionId', '#NeighborhoodId','@Url.Action("GetNeighborhoods", "Application")');
+            GetValues('#RegionId', '#NeighborhoodId', '@Url.Action("GetNeighborhoods", "InfrastructureInquiry")');
         })
         $('#NeighborhoodId').change(function () {
-            GetValues('#NeighborhoodId', '#StreetId','@Url.Action("GetStreets", "Application")');
+            GetValues('#NeighborhoodId', '#StreetId','@Url.Action("GetStreets", "InfrastructureInquiry")');
         })
         $('#StreetId').change(function () {
-            GetValues('#StreetId', '#BuildingId','@Url.Action("GetBuildings", "Application")');
+            GetValues('#StreetId', '#BuildingId', '@Url.Action("GetBuildings", "InfrastructureInquiry")');
         })
         $('#BuildingId').change(function () {
-            GetValues('#BuildingId', '#ApartmentId','@Url.Action("GetApartments", "Application")');
+            GetValues('#BuildingId', '#ApartmentId', '@Url.Action("GetApartments", "InfrastructureInquiry")');
         })
         $('#ApartmentId').change(function () {
         })
@@ -513,7 +531,6 @@
         }
     </script>
 
-
     <script>
         function NextButtonInfTariffCon() {
             if ($('#InfrastructureAndTariffs').show()) {
@@ -521,7 +538,6 @@
                 $('#ContactInformation').show();
             }
         }
-
     </script>
 
     <script>
@@ -532,6 +548,7 @@
             }
         }
     </script>
+
     <script>
         function PrevButtonConInfTariff() {
             if ($('#ContactInformation').show()) {
@@ -541,7 +558,6 @@
         }
     </script>
 
-
     <script>
         function NextButtonConID() {
             if ($('#ContactInformation').show()) {
@@ -549,7 +565,6 @@
                 $('#IDInformation').show();
             }
         }
-
     </script>
 
     <script>
@@ -571,7 +586,6 @@
             }
         }
     </script>
-
 
     <script>
         function PrevButtonIDCon() {

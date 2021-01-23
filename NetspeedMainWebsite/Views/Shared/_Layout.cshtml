@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Netspeed - Limitsiz Mutluluk</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link rel="shortcut icon" href="~/Content/media/logos/favicon.ico" />
     <link rel="stylesheet" href="~/Content/animate.min.css" />
     <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
-    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>*@
+   
     <meta property="og:title" content="Netspeed - Limitsiz Mutluluk">
 </head>
 <body>
@@ -25,14 +23,15 @@
     @Html.Partial("LayoutParts/Footer")
 
 
-    <!--@Scripts.Render("~/bundles/jquery")-->
+    @Scripts.Render("~/bundles/jquery")
+
     <!--end::Global Config-->
     <!--begin::Standart Full(used by all pages)-->
    
   
   
     @section Script {
-        <script>
+        @*<script>
             function ShowCallMe()
             {
             //$document.getElementById("example").click();
@@ -48,7 +47,7 @@
                 });
           
             }
-        </script>
+        </script>*@
         }
     @RenderSection("script", required: false)
 </body>
