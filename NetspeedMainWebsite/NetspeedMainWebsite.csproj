@@ -1260,7 +1260,6 @@
     <Content Include="Views\Application\Verification\_Gsm.cshtml" />
     <Content Include="Views\Application\Verification\_SmsVerification.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_ContactInformation.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_AddressAndApplicationInformation.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_TariffsAndPreference.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_IDInformation.cshtml" />
     <Content Include="Views\Application\ApplicationSummary.cshtml" />

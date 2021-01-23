@@ -36,13 +36,13 @@ namespace NetspeedMainWebsite.Controllers
         {
                     
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
-            var IDCardItems = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
+            var IDCardTypeList = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
             { 
                 Text=p.Name,
                 Value=p.Code.ToString()
             });
 
-            ViewBag.IDCardItems = IDCardItems;
+            ViewBag.IDCardTypeList = IDCardTypeList;
                     
             var responseProvince = new WebServiceWrapper().GetProvinces();
             var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
@@ -54,29 +54,41 @@ namespace NetspeedMainWebsite.Controllers
             ViewBag.ProvinceList = ProvinceList;
 
             var responseNat = new WebServiceWrapper().GetNationalities();
-            var NatItems = responseNat.ValueNamePairList.Select(n => new SelectListItem()
+            var NationalityList = responseNat.ValueNamePairList.Select(n => new SelectListItem()
             {
                 Text = n.Name,
                 Value = n.Code.ToString()
             });
 
-            ViewBag.NatItems = NatItems;
+            ViewBag.NationalityList = NationalityList;
 
             var responseSex = new WebServiceWrapper().GetSexes();
-            var SexItems = responseSex.ValueNamePairList.Select(s => new SelectListItem()
+            var SexList = responseSex.ValueNamePairList.Select(s => new SelectListItem()
             {
                 Text = s.Name,
                 Value = s.Code.ToString()
             });
 
-            ViewBag.SexItems = SexItems;
+            ViewBag.SexList = SexList;
 
-            var DistrictList = new SelectListItem();
-            var RegionList = new SelectListItem();
-            var NeighborhoodList = new SelectListItem();
-            var StreetList = new SelectListItem();
-            var BuildingList = new SelectListItem();
-            var ApartmentList = new SelectListItem();
+            //var DistrictList = new SelectListItem();
+            //var RegionList = new SelectListItem();
+            //var NeighborhoodList = new SelectListItem();
+            //var StreetList = new SelectListItem();
+            //var BuildingList = new SelectListItem();
+            //var ApartmentList = new SelectListItem();
+
+
+            var DistrictList = new List<SelectListItem>();
+            var RegionList = new List<SelectListItem>();
+            var NeighborhoodList = new List<SelectListItem>();
+            var StreetList = new List<SelectListItem>();
+            var BuildingList = new List<SelectListItem>();
+            var ApartmentList = new List<SelectListItem>();
+
+            //var SexList = new List<SelectListItem>();
+            //var NationalityList = new List<SelectListItem>();
+            //var IDCardTypeList = new List<SelectListItem>();
 
             ViewBag.DistrictList = DistrictList;
             ViewBag.RegionList = RegionList;
@@ -84,6 +96,10 @@ namespace NetspeedMainWebsite.Controllers
             ViewBag.StreetList = StreetList;
             ViewBag.BuildingList = BuildingList;
             ViewBag.ApartmentList = ApartmentList;
+
+            ViewBag.SexList = SexList;
+            ViewBag.NationalityList = NationalityList;
+            ViewBag.IDCardTypeList = IDCardTypeList;
 
             return View();
         }
@@ -377,7 +393,6 @@ namespace NetspeedMainWebsite.Controllers
                     SMSCode = application.SMSCode,
                     TariffId = application.TariffId,
                     DisplayName = application.DisplayName
-
                 };
 
                 var message = string.Empty;
@@ -407,14 +422,14 @@ namespace NetspeedMainWebsite.Controllers
             }
 
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
-            var IDCardItems = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
+            var IDCardTypeList = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
             {
                 Text = c.Name,
                 Value = c.Code.ToString()
             });
 
             var responseProvince = new WebServiceWrapper().GetProvinces();
-            var ProvinceItems = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
+            var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
             {
                 Text = p.Name,
                 Value = p.Code.ToString()
@@ -422,22 +437,38 @@ namespace NetspeedMainWebsite.Controllers
             });
 
             var responseNat = new WebServiceWrapper().GetNationalities();
-            var NatItems = responseNat.ValueNamePairList.Select(n => new SelectListItem()
+            var NationalityList = responseNat.ValueNamePairList.Select(n => new SelectListItem()
             {
                 Text = n.Name,
                 Value = n.Code.ToString()
             });
 
             var responseSex = new WebServiceWrapper().GetSexes();
-            var SexItems = responseSex.ValueNamePairList.Select(s => new SelectListItem()
+            var SexList = responseSex.ValueNamePairList.Select(s => new SelectListItem()
             {
                 Text = s.Name,
                 Value = s.Code.ToString()
             });
-            application.IDCardTypeList = IDCardItems;
-            application.ProvinceList = ProvinceItems;
-            application.NationalityList = NatItems;
-            application.SexList = SexItems;
+
+            ViewBag.IDCardTypeList = IDCardTypeList;
+            ViewBag.ProvinceList = ProvinceList;
+            ViewBag.NationalityList = NationalityList;
+            ViewBag.SexList = SexList;
+
+            var DistrictList = new List<SelectListItem>();
+            var RegionList = new List<SelectListItem>();
+            var NeighborhoodList = new List<SelectListItem>();
+            var StreetList = new List<SelectListItem>();
+            var BuildingList = new List<SelectListItem>();
+            var ApartmentList = new List<SelectListItem>();
+
+            ViewBag.DistrictList = DistrictList;
+            ViewBag.RegionList = RegionList;
+            ViewBag.NeighborhoodList = NeighborhoodList;
+            ViewBag.StreetList = StreetList;
+            ViewBag.BuildingList = BuildingList;
+            ViewBag.ApartmentList = ApartmentList;
+
             return View(application);
         }
 

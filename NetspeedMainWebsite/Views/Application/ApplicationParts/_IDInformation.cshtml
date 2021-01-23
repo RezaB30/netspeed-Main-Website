@@ -12,7 +12,7 @@
         <div class="col-lg-6 col-md-6">
             <div class="form-group">
                 <label class="font-size-h6 font-weight-bolder text-dark">Kimlik Kart Tipi</label>
-                @Html.DropDownListFor(m => m.IDCardType, Model.IDCardTypeList, "SEÇİNİZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
+                @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
                 @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
             </div>
             <div class="text-danger">
@@ -24,7 +24,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Uyruk</label>
-                    @Html.DropDownListFor(m => m.Nationality, Model.NationalityList, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                    @Html.DropDownListFor(m => m.Nationality, new SelectList(ViewBag.NationalityList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
                 </div>
                 <div class="text-danger">
                     @Html.ValidationMessageFor(model => model.Nationality)
@@ -113,7 +113,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
-                    @Html.DropDownListFor(m => m.Sex, Model.SexList, "SEÇİNİZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                    @Html.DropDownListFor(m => m.Sex, new SelectList(ViewBag.SexList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
                 </div>
                 <div class="text-danger">
                     @Html.ValidationMessageFor(model => model.Sex)
