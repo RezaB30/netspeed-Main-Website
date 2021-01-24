@@ -9,25 +9,7 @@ using System.Web.Mvc;
 namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class ApplicationViewModel
-    {
-        //public ApplicationViewModel()
-        //{
-        //    //ProvinceList = new List<SelectListItem>();
-            //DistrictList = new List<SelectListItem>();
-            //RegionList = new List<SelectListItem>();
-            //NeighborhoodList = new List<SelectListItem>();
-            //StreetList = new List<SelectListItem>();
-            //BuildingList = new List<SelectListItem>();
-            //ApartmentList = new List<SelectListItem>();
-            //BirthDayList = new List<SelectListItem>();
-            //BirthMonthList = new List<SelectListItem>();
-            //BirthYearList = new List<SelectListItem>();
-            //SexList = new List<SelectListItem>();
-            //NationalityList = new List<SelectListItem>();
-            //IDCardTypeList = new List<SelectListItem>();
-        //}
-
-     
+    {     
         [Required(ErrorMessage = "*İl Alanı Gerekli")]
         public long? ProvinceId { get; set; }
         [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
@@ -44,21 +26,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "*Kapı Numarası Alanı Gerekli")]
         public long? ApartmentId { get; set; }
         public string AddressText { get; set; }
-
-        //public IEnumerable<SelectListItem> ProvinceList { get; set; }
-        //public IEnumerable<SelectListItem> DistrictList { get; set; }
-        //public IEnumerable<SelectListItem> RegionList { get; set; }
-        //public IEnumerable<SelectListItem> NeighborhoodList { get; set; }
-        //public IEnumerable<SelectListItem> StreetList { get; set; }
-        //public IEnumerable<SelectListItem> BuildingList { get; set; }
-        //public IEnumerable<SelectListItem> ApartmentList { get; set; }
-        //public IEnumerable<SelectListItem> BirthDayList { get; set; }
-        //public IEnumerable<SelectListItem> BirthMonthList { get; set; }
-        //public IEnumerable<SelectListItem> BirthYearList { get; set; }
-        //public IEnumerable<SelectListItem> SexList { get; set; }
-        //public IEnumerable<SelectListItem> NationalityList { get; set; }
-        //public IEnumerable<SelectListItem> IDCardTypeList { get; set; }
-
 
         //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "*Lütfen Telefon Numaranızı Doğru Giriniz.")]
         [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
@@ -115,8 +82,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public int? IDCardType { get; set; }
 
         [Required(ErrorMessage = "*Posta Kodu Alanı Gerekli ")]
-        //public int PostalCode { get; set; }
-
+   
         public string PostalCode
         {
             get
@@ -225,8 +191,8 @@ namespace NetspeedMainWebsite.Models.ViewModel
         }
 
         [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
-        //public string SerialNo { get; set; }
         private string _SerialNo;
+
         [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
         public string SerialNo
         {
@@ -264,7 +230,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-
         [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
         private string _PlaceOfIssue;
         [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
@@ -290,14 +255,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
         [Required(ErrorMessage = "*Tarife Seçimi Gerekli ")]
-        public int? TariffId { get; set; }
-        //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
-        //public int SubscriptionAgreement { get; set; }
-        //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
-        //[Range(typeof(bool), "true", "true", ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur.")]
-        //[Required(ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur. ")]
-        //[Range(typeof(bool), "true", "true", ErrorMessage = "*Abonelik Sözleşmesini Okudum Alanı Zorunludur.")]
-    
+        public int? TariffId { get; set; }          
         public string DisplayName { get; set; }
     }
 }

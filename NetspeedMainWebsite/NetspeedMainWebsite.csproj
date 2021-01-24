@@ -159,10 +159,7 @@
     <Compile Include="Models\ViewModel\InfrastructureInquiryResultViewModel.cs" />
     <Compile Include="Models\ViewModel\InfrastructureInquiryViewModel.cs" />
     <Compile Include="Models\ViewModel\PaymentBillViewModel.cs" />
-    <Compile Include="Models\ViewModel\PaymentCardInfo.cs" />
     <Compile Include="Models\ViewModel\TariffsViewModel.cs" />
-    <Compile Include="Models\ViewModel\VerificationViewModel.cs" />
-    <Compile Include="Models\ViewModel\VPOSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1239,11 +1236,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\CountDown.js" />
-    <Content Include="Scripts\js\get-birthdate.js" />
     <Content Include="Scripts\js\get-infrastructure.js" />
     <Content Include="Scripts\js\get-ServiceAvailability.js" />
     <Content Include="Scripts\js\get-nextPrevButton.js" />
-    <Content Include="Scripts\js\get-switchpartial.js" />
     <Content Include="Scripts\login-general.js" />
     <Content Include="Scripts\lottie-player.js" />
     <Content Include="Scripts\simplebar.min.js" />
@@ -1266,20 +1261,13 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\ClientPayment\PaymentFail.cshtml" />
     <Content Include="Views\ClientPayment\PaymentVPOS.cshtml" />
-    <Content Include="Views\Application\Verification\_Gsm.cshtml" />
-    <Content Include="Views\Application\Verification\_SmsVerification.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_ContactInformation.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_TariffsAndPreference.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_IDInformation.cshtml" />
     <Content Include="Views\Application\ApplicationSummary.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_ApplicationConstant.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_ApplicationValidation.cshtml" />
     <Content Include="Views\Application\ApplicationConfirm.cshtml" />
-    <Content Include="Views\Application\GsmVerification.cshtml" />
     <Content Include="Views\Application\GsmVerificationWithSms.cshtml" />
     <Content Include="Views\Application\ApplicationFail.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_GSMValidation.cshtml" />
-    <Content Include="Views\Application\ApplicationParts\_SMSValidation.cshtml" />
     <Content Include="Views\Application\AlreadyHaveCustomer.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_InfrastructureInquiryForApplication.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_InfrastructureAndTariffs.cshtml" />

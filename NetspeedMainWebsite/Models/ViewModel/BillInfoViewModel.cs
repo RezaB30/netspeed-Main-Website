@@ -8,10 +8,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class BillInfoViewModel
     {
-
-        //[Range(typeof(bool), "true", "true", ErrorMessage = "Lütfen Ödenecek Faturayı Seçiniz.")]
-
-        //[Required(ErrorMessage ="Lütfen Ödenecek Faturayı Seçiniz.")]
         public bool BillCheck { get; set; }
         public long BillId { get; set; }
         public string ServiceName { get; set; }

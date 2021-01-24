@@ -18,14 +18,12 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        //HashUtilities hash = new HashUtilities();
-
+   
         [HttpPost]
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
         {
             var message = string.Empty;
-            //var CallMeList = new List<CallMeViewModel>();
-
+     
             if (ModelState.IsValid)
             {
                 var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
@@ -60,7 +58,7 @@ namespace NetspeedMainWebsite.Controllers
 
             filterContext.Result = new ViewResult
             {
-                //ViewName = "~/Views/Home/Error.cshtml",
+                ViewName = "~/Views/Home/Error.cshtml",
             };
             filterContext.ExceptionHandled = true;
         }

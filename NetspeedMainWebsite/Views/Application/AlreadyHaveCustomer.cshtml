@@ -1,7 +1,10 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 
 
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ 
+    ViewBag.Title = "Kayıtlı Müşteri - Netspeed";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    }
 
 
 
@@ -20,7 +23,7 @@
     @Html.AntiForgeryToken()
     <!--begin::Container-->
     <div class="container">
-       
+
 
         <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
 
@@ -68,7 +71,7 @@
                                         <script src="~/Scripts/js/lottie-player.js"></script>
                                     </div>
                                     @*</div>*@
-                                   
+
                                     @*<div class="col-lg-5 col-md-5">*@
 
                                     <div @*style="width:7em; height:3em"*@>

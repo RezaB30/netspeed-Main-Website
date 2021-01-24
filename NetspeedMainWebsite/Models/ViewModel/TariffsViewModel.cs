@@ -8,7 +8,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class TariffsViewModel
     {
-        public bool TariffSelect { get; set; }
         public int TariffID { get; set; }
         public int DomainID { get; set; }
         public string DisplayName { get; set; }

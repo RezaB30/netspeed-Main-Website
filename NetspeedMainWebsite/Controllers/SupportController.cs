@@ -14,19 +14,16 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-
         public ActionResult InfrastructureQuery()
         {
             return View();
         }
-
        
         public ActionResult TransferProcess()
         {
             return View();
         }
-
-        
+                
         public ActionResult OperatorConversion()
         {
             return View();
@@ -86,7 +83,6 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
-
 
         public ActionResult LineDisjuncture()
         {

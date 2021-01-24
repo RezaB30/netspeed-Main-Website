@@ -1,6 +1,16 @@
 ﻿
+@{
+    <style>
+        #dropdown-hover {
+            display: none
+        }
 
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+        #k:hover > #dropdown-hover {
+            display: block
+        }
+    </style>
+}
+<div id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
     <!--begin::Main-->
     <!--begin::header-sm-->
     <div class="header-sm py-0 d-flex flex-lg-column" style="background-color: #1c0646;" id="kt_header">
@@ -22,7 +32,6 @@
 
     </div>
     <!--end::Container-->
- 
     <!--end::header-sm-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
@@ -61,7 +70,7 @@
         </button>
     </div>
     <!--end::Toolbar-->
- 
+
 
     <div id="kt_quick_actions" class="offcanvas offcanvas-left p-6 offcanvas-off" style="background-color: #290b63;">
         <!--begin::Header-->
@@ -72,7 +81,7 @@
             </a>
             <!--end::Logo-->
             <a href="#" class="btn btn-sm btn-icon btn-hover-info" id="kt_quick_actions_close">
-                <i class="ki ki-close icon-sm text-muted"></i>
+                <i class="ki ki-close icon-sm text-muted"></i>de
             </a>
         </div>
         <!--end::Header-->
@@ -94,7 +103,7 @@
                     <a href="/Home/Applicaiton" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
                         <span class="fab fa-wpforms font-size-h1 menu-icon">
                         </span>
-                        </span>
+                        @*</span>*@
                         <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Şimdi Başvur</span>
                     </a>
                 </div>
@@ -105,7 +114,7 @@
                 <div class="col-6">
                     <a href="/InfrastructureInquiry/Index" class="btn btn-block btn-hover-primary text-center py-5 px-5" style="background-color: #43257d">
                         <i class="flaticon-placeholder-3 font-size-h1 text-warning"></i>
-                        </span>
+                        @*</span>*@
                         <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Altyapı Sorgula</span>
                     </a>
                 </div>
@@ -209,15 +218,14 @@
                                         <span class="text-white text-hover-warning font-size-h6">Altyapı Sorgula</span>
                                     </a>
                                 </li>
-                                <li class="menu-item menu-item-rel" aria-haspopup="true">
-                                    <ul class="menu-subnav">
-                                        <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 
+                                <li class=" menu-item menu-item-rel" aria-haspopup="true" id="hover">
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true" id="k">
                                             <a href="/Support/Index" class="link m-3">
                                                 <span class="text-white text-hover-warning font-size-h6">Destek</span>
-
                                             </a>
-                                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left" style="background-color: #290b63">
+                                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left" style="background-color: #290b63" id="dropdown-hover">
                                                 <ul class="menu-subnav">
                                                     <li class="menu-item" aria-haspopup="true">
                                                         <a href="/Home/ContractAndForm" class="menu-link">
@@ -244,7 +252,10 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        </ul>
+                                    </ul>
+                                </li>
+
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -314,7 +325,7 @@
                                         </svg><!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                </a>
+                            </a>
 
                         </div>
                         <!--son::mini panel-->
@@ -329,6 +340,13 @@
             </div>
         </div>
     </div>
+</div>
 
-    
+
+@section script
+        {
+    <script>
+
+    </script>
+}
 

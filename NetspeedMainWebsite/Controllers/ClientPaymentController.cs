@@ -12,11 +12,6 @@ namespace NetspeedMainWebsite.Controllers
 {
     public class ClientPaymentController : BaseController
     {
-        // GET: PaymentBill
-
-        //WebServiceWrapper client = new WebServiceWrapper();
-
-
         [HttpGet]
         public ActionResult BillPaymentLogin()
         {

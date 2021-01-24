@@ -107,6 +107,7 @@ namespace NetspeedMainWebsite.Controllers
             }
             return Json(StreetItems, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
         public ActionResult GetBuildings(long code)
         {
             var response = client.GetStreetBuildings(code);
@@ -122,7 +123,7 @@ namespace NetspeedMainWebsite.Controllers
             }
             return Json(BuildingItems, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
         public ActionResult GetApartments(long code)
         {
             var response = client.GetBuildingApartments(code);

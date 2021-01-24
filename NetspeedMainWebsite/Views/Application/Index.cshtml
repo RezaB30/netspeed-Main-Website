@@ -1,7 +1,9 @@
-﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
+﻿@*@Html.ValidationSummary(false, "Please fix the following error and then submit the form")*@
+@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 @using NetspeedMainWebsite.Models.ViewModel
 
 @{
+    ViewBag.Title = " Netspeed Başvuru - ADSL, VDSL, FİBER Ev İnterneti Başvurusu";
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
@@ -368,12 +370,16 @@
                                                         <!--end::Svg Icon-->
                                                     </span>
                                                 </button>
+                                                <div style="color:red; list-style-type:none;">
+                                                    @Html.ValidationSummary()
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="GSMValidation">
                                     @Html.Partial("ApplicationParts/_GSMValidation")
+
                                     <div class="row">
                                         <div class="col-lg-9 col-md-9">
                                             <div class="mr-2">
@@ -413,6 +419,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             }
 
                         </div>
@@ -430,7 +437,7 @@
     @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
 
     @*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
-    <script src="~/Scripts/inputmask/jquery.inputmask.min.js"></script>*@
+        <script src="~/Scripts/inputmask/jquery.inputmask.min.js"></script>*@
 
     <script>
         $(function () {
@@ -443,7 +450,7 @@
                 changeMonth: true,
                 yearRange: "1970:2021"
             }); /*.val();*/
-           
+
         });
     </script>
 
@@ -472,11 +479,12 @@
             });
         </script>*@
 
-    @*<script>
-            $('#correctPhone').submit(function () {
-                $('#PhoneNumber').unmask();
+    <script>
+             $(function () {
+                    $('#SMSCode').inputmask("999999");
+
             });
-        </script>*@
+        </script>
 
 
     <script>
