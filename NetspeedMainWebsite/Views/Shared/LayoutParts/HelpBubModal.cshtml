@@ -5,7 +5,6 @@
     <div class="wa__btn_popup_icon"></div>
 </div>
 
-
 <div class="wa__popup_chat_box">
     <div class="wa__popup_heading">
         <div class="wa__popup_title">Merhaba</div>
@@ -46,7 +45,7 @@
             </div>
 
 
-            <div class="wa__popup_content_item ">
+            <div class="wa__popup_content_item " id="displayCallMe">
                 <a data-toggle="modal" data-target="#exampleModal" id="#example" class="wa__stt wa__stt_online">
                     <div class="wa__popup_avatar">
                         <h1 class="fas fa-headset font-weight-boldest text-primary  my-2"></h1>
@@ -62,23 +61,6 @@
                 </a>
             </div>
 
-
-
-            <!--<div class="wa__popup_content_item ">
-        <a data-toggle="modal" data-target="#exampleModal" id="#example" class="wa__stt wa__stt_online">
-            <div class="wa__popup_avatar">
-                <h1 class="fas fa-headset font-weight-boldest text-primary  my-2"></h1>
-            </div>
-
-            <div class="wa__popup_txt">
-                <div class="wa__member_name text-info font-size-h5">Biz Sizi Arayalım mı?</div>-->
-            @*/.wa__member_name*@
-            <!--<div class="wa__member_duty">Aranma Talebinde Bulunun</div>-->
-            @*/.wa__member_duty*@
-            <!--</div>-->
-            @* /.wa__popup_txt*@
-            <!--</a>
-    </div>-->
 
 
 
@@ -134,82 +116,120 @@
 @{ var callMe = TempData["CallMeModel"] as NetspeedMainWebsite.Models.ViewModel.CallMeViewModel ?? new NetspeedMainWebsite.Models.ViewModel.CallMeViewModel(); }
 
 <!-- Modal-->
-<div class="modal fade" id="exampleModal" tabindex="-0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            @using (Html.BeginForm("CallMe", null, FormMethod.Post, new { @class = "form-group", id = "myModal" }))
-            {
-                @Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery) @*@Html.AntiForgeryToken()*@
-                <div class="modal-header" style="background:#290b63">
 
 
-                    <i class="fa fas fa-headphones-alt font-size-h2 text-white"></i>
-                    <h5 class="modal-title text-white" id="exampleModalLabel">Biz Sizi Arayalım!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body bg-secondary">
-                    <div class="form-group fv-plugins-icon-container">
-                        @* <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="" maxlength="50">*@
-                        @Html.EditorFor(model => callMe.FullName, new { htmlAttributes = new { id = "FullName", @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
+<div id="#callMeModal">
+    <div class="modal fade" id="exampleModal" tabindex="-0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("CallMe", null, FormMethod.Post, new { @class = "form-group", id = "myModal" }))
+                {
+                    @Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery) @*@Html.AntiForgeryToken()*@
+                    <div class="modal-header" style="background:#290b63">
 
 
-                        <div class="fv-plugins-message-container">
-                            <div class="text-danger">
+                        <i class="fa fas fa-headphones-alt font-size-h2 text-white"></i>
+                        <h5 class="modal-title text-white" id="exampleModalLabel">Biz Sizi Arayalım!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="text-danger" style="text-align:center; font-size:2em">
+                        @TempData["messages"]
+                    </div>
+                    <div class="modal-body bg-secondary">
+                        <div class="form-group fv-plugins-icon-container">
+                            @* <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="" maxlength="50">*@
+                            @Html.EditorFor(model => callMe.FullName, new { htmlAttributes = new { id = "FullName", @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
 
-                                @(callMe?.FullNameValidationMessage)
-                                @if (callMe != null)
-                                {
-                                }
+                            <div class="fv-plugins-message-container">
+                                <div class="text-danger">
+
+                                    @(callMe?.FullNameValidationMessage)
+                                    @if (callMe != null)
+                                    {
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group fv-plugins-icon-container">
-                        <!--<input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6"--> @*name="gsmno"*@ <!--id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber"  maxlength="14">-->
-                        @Html.EditorFor(model => callMe.PhoneNumber, new
-                   {
-                       name = "PhoneNumber",
-
-                       htmlAttributes = new
+                        <div class="form-group fv-plugins-icon-container">
+                            <!--<input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6"--> @*name="gsmno"*@ <!--id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber"  maxlength="14">-->
+                            @Html.EditorFor(model => callMe.PhoneNumber, new
                        {
-                           id = "kt_inputmask_3",
-                           @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6",
+                           name = "PhoneNumber",
 
-                           @autocomplete = "off",
-                           placeholder = "GSM Numaranız"
-                       }
-                   })
+                           htmlAttributes = new
+                           {
+                               id = "kt_inputmask_3",
+                               @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6",
 
-                        <div class="fv-plugins-message-container">
-                            <div class="text-danger">
-                                @(callMe?.PhoneNumberValidationMessage)
+                               @autocomplete = "off",
+                               placeholder = "GSM Numaranız"
+                           }
+                       })
+
+                            <div class="fv-plugins-message-container">
+                                <div class="text-danger">
+                                    @(callMe?.PhoneNumberValidationMessage)
+                                </div>
                             </div>
+                            <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
                         </div>
-                        <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
-                    </div>
-                    <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
+                        <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
 
-                        <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
-                        <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm" onclick="ShowCallMe()">Beni Arayın</button>
-                    </div>
+                            <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
+                            <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm">Beni Arayın</button>
+                        </div>
 
-                </div>
-                <div class="modal-footer bg-secondary">
-                    <p>
-                        <small>
-                            <span>Başvurunuz esnasında paylaşacağınız GSM numarası, Ad-Soyadı, hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için </span>
-                            <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
-                        </small>
-                    </p>
-                </div>}
+                    </div>
+                    <div class="modal-footer bg-secondary">
+                        <p>
+                            <small>
+                                <span>Başvurunuz esnasında paylaşacağınız GSM numarası, Ad-Soyadı, hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için </span>
+                                <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
+                            </small>
+                        </p>
+                    </div>}
+            </div>
         </div>
     </div>
 </div>
 
 
+<script>
+    if ("@TempData["messages"]" != "" || "@TempData["CallMeModel"]"!="") {
+            $('.fade').modal('show');
+        }
+</script>
+
 @section script{
     <script>var NtsAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#0BB783", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#D7F9EF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+
+
+    @*//$('#displayCallMe').click(function () {
+        //    $('#callMeModal').show();
+        //});*@
+
+
+
+
+    <!--<script>
+        $('#exampleModal').modal('show');-->
+    @*$('#confirm').click(function () {
+            if (@TempData["message"] != null) {
+                $('#exampleModal').modal('show');
+                //$('#exampleModal').modal();
+            }
+        });*@
+
+    <!--</script>-->
+    @*<script>
+            $(document).ready(function () {
+                $('#callMeModal').modal('show')
+            });
+        </script>*@
+
+
 } 

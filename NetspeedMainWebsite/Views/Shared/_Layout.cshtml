@@ -10,10 +10,22 @@
     <link rel="shortcut icon" href="~/Content/media/logos/favicon.ico" />
     <link rel="stylesheet" href="~/Content/animate.min.css" />
     <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
-   
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
     <meta property="og:title" content="Netspeed - Limitsiz Mutluluk">
 </head>
 <body>
+
+    <style>
+        #callMeModal {
+            display: none
+        }
+    </style>
     @Html.Partial("LayoutParts/Menu")
 
 
@@ -27,28 +39,37 @@
 
     <!--end::Global Config-->
     <!--begin::Standart Full(used by all pages)-->
-   
-  
-  
-    @section Script {
+
+
+    @section script {
+
         @*<script>
-            function ShowCallMe()
-            {
-            //$document.getElementById("example").click();
-                $("Footer").ready(function () {
+
+                if (@TempData["messages"] != null) {
                     $('#exampleModal').modal('show');
-
-                    $('#modal').modal('show');
-                    $('#modal').modal('fade').modal('show');
-
-                    $('#example').modal('show');
-                    $data("bs.modal").modal('show');
-
-                });
-          
             }
+                </script>*@
+
+
+        @*<script>
+            $(function () {
+                var mes = "@TempData["messages"]";
+                if (mes != "") {
+                    $('.fade').modal('show');
+                }
+            })
+                </script>*@
+
+     
+            @*<script type="text/javascript">
+                $(window).on('load', function() {
+                    //$('#callMeModal').modal('show');
+                    $('.fade').show();
+            });
         </script>*@
-        }
+        
+      
+    }
     @RenderSection("script", required: false)
 </body>
 </html>

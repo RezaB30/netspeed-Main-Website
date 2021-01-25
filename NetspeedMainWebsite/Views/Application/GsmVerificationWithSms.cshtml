@@ -267,13 +267,18 @@
 
 @section script{
 
-
     <script>
         $(function () {
-            $('#SMSCode').inputmask({ "mask": "______", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-
+            $('#SMSCode').inputmask("999999");
         });
     </script>
+
+    @*<script>
+            $(function () {
+                $('#SMSCode').inputmask({ "mask": "______", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+
+            });
+        </script>*@
 
     <script>
 

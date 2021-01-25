@@ -10,6 +10,14 @@
 }
 
 <style>
+    .validation-summary-message {
+        color: red;
+    }
+
+        .validation-summary-message ul {
+            list-style-type: none;
+        }
+
     #InfrastructureInquiryForApplication {
         display: block;
     }
@@ -219,7 +227,7 @@
 
                                         <div class="col-lg-5 col-md-5">
                                             <div @*style="width:7em; height:3em"*@>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next" onclick="NextButtonInfAppInfTariff();" id="getServiceAvability" @*onclick="mybtnfunction();"*@>
+                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next" @*onclick="NextButtonInfAppInfTariff();"*@ id="getServiceAvability" @*onclick="mybtnfunction();"*@>
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -268,7 +276,7 @@
 
                                             <div class="col-lg-3 col-md-3">
                                                 <div @*style="width:7em; height:3em"*@>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next" onclick="NextButtonInfTariffCon();" @*onclick="mybtnfunction();"*@>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputContolButton" data-wizard-type="action-next" onclick="NextButtonInfTariffCon();" @*onclick="mybtnfunction();"*@>
                                                         Sonraki
                                                         <span class="svg-icon svg-icon-md ml-1">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -312,7 +320,7 @@
 
                                             <div class="col-lg-3 col-md-3">
                                                 <div @*style="width:7em; height:3em"*@>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next" onclick="NextButtonConID();" @*onclick="mybtnfunction();"*@>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next" @*onclick="NextButtonConID();"*@ @*id="inputControl"*@ @*onclick="mybtnfunction();"*@>
                                                         Sonraki
                                                         <span class="svg-icon svg-icon-md ml-1">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -370,16 +378,16 @@
                                                         <!--end::Svg Icon-->
                                                     </span>
                                                 </button>
-                                                <div style="color:red; list-style-type:none;">
-                                                    @Html.ValidationSummary()
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="GSMValidation">
                                     @Html.Partial("ApplicationParts/_GSMValidation")
-
+                                    <div class="validation-summary-message">
+                                        @Html.ValidationSummary()
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-9 col-md-9">
                                             <div class="mr-2">
@@ -440,31 +448,114 @@
         <script src="~/Scripts/inputmask/jquery.inputmask.min.js"></script>*@
 
     <script>
+        $('.inputControlInf').click(function () {
+            var count = $('.validationControlInf').filter(function () {
+                return this.value.trim() == '';
+            }).length;
+
+            //if ($.trim($('.validationControl').length) != 3) {
+            //    alert('Hata Bulundu.');
+            //}
+            if (count == 0) {
+                if ($('#InfrastructureInquiryForApplication').show()) {
+                    $('#InfrastructureInquiryForApplication').hide();
+                    $('#InfrastructureAndTariffs').show();
+                }
+            }
+            else {
+                alert('Hata Bulundu.');
+            }
+
+        });
+    </script>
+
+    <script>
+        $('.inputControlButton').click(function () {
+            var count = $('.validationControl').filter(function () {
+                return this.value.trim() == '';
+            }).length;
+
+            //if ($.trim($('.validationControl').length) != 3) {
+            //    alert('Hata Bulundu.');
+            //}
+            if (count == 0) {
+                if ($('#ContactInformation').show()) {
+                    $('#ContactInformation').hide();
+                    $('#IDInformation').show();
+                }
+                else {
+                    alert('Hata Bulundu.');
+                }
+            }
+        });
+    </script>
+
+    <script>
+        $('.inputControlButton').click(function () {
+            var count = $('.validationControl').filter(function () {
+                return this.value.trim() == '';
+            }).length;
+
+            //if ($.trim($('.validationControl').length) != 3) {
+            //    alert('Hata Bulundu.');
+            //}
+            if (count == 0) {
+                $('#ContactInformation').hide();
+                $('#IDInformation').show();
+            }
+            else {
+
+            }
+        });
+    </script>
+
+
+
+
+    @*<script>
+
+            function show_alert() {
+                xdialog.alert("Hello! I am an alert box!");
+            }
+        </script>*@
+
+    @*<script>
+            $('#getServiceAvability').click(function () {
+                if ($.trim($('#myMessage').val()) == '') {
+                    alert('Input can not be left blank');
+                }
+            });
+        </script>*@
+
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $('#checkBtn').click(function () {
+                checked = $("input[type=text]:checked").length;
+                if (!checked) {
+                    alert("Abonelik Sözleşmesini Okudum Alanını İşaretlemeniz Gerekmektedir.");
+                    return false;
+                }
+
+            });
+        });
+        </script>*@
+
+
+
+    <script>
         $(function () {
             $('.datepicker').datepicker({
-                dateFormat: 'dd/mm/yyyy',
+                dateFormat: 'dd.mm.yy',
                 changeYear: true,
+                changeMonth: true,
                 dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
                 monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
                 monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-                changeMonth: true,
                 yearRange: "1970:2021"
             }); /*.val();*/
 
         });
     </script>
-
-    @*<script>
-            //jQuery(function ($) {
-            //    $('#phone').mask('(999)-999-9999');
-            //});
-            ////$('#phone').inputmask("(999)-999-9999");
-            //$(function () {
-            //    $('#phone').inputmask("(999)-999-9999");
-
-            //});
-
-        </script>*@
 
     <script>
         $(function () {
@@ -478,13 +569,6 @@
 
             });
         </script>*@
-
-    <script>
-             $(function () {
-                    $('#SMSCode').inputmask("999999");
-
-            });
-        </script>
 
 
     <script>
@@ -566,14 +650,14 @@
         }
     </script>
 
-    <script>
-        function NextButtonConID() {
-            if ($('#ContactInformation').show()) {
-                $('#ContactInformation').hide();
-                $('#IDInformation').show();
+    @*<script>
+            function NextButtonConID() {
+                if ($('#ContactInformation').show()) {
+                    $('#ContactInformation').hide();
+                    $('#IDInformation').show();
+                }
             }
-        }
-    </script>
+        </script>*@
 
     <script>
         function NextButtonIDGSM() {

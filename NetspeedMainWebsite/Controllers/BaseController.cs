@@ -18,17 +18,19 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-   
+
         [HttpPost]
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
         {
-            var message = string.Empty;
-     
+            var messages = string.Empty;
+
             if (ModelState.IsValid)
             {
                 var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
-                
-                ViewBag.message = message;
+
+                messages = "Talebiniz Alınmıştır.";
+                TempData["messages"] = messages;
+               
                 return Redirect(returnUrl);
             }
 
