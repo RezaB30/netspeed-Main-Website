@@ -1239,7 +1239,7 @@
     <Content Include="Scripts\js\CountDown.js" />
     <Content Include="Scripts\js\get-infrastructure.js" />
     <Content Include="Scripts\js\get-ServiceAvailability.js" />
-    <Content Include="Scripts\js\get-nextPrevButton.js" />
+    <Content Include="Scripts\js\get-required-message.js" />
     <Content Include="Scripts\login-general.js" />
     <Content Include="Scripts\lottie-player.js" />
     <Content Include="Scripts\simplebar.min.js" />

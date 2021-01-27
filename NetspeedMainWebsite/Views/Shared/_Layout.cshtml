@@ -21,11 +21,11 @@
 </head>
 <body>
 
-    <style>
+    @*<style>
         #callMeModal {
             display: none
         }
-    </style>
+    </style>*@
     @Html.Partial("LayoutParts/Menu")
 
 
@@ -43,30 +43,6 @@
 
     @section script {
 
-        @*<script>
-
-                if (@TempData["messages"] != null) {
-                    $('#exampleModal').modal('show');
-            }
-                </script>*@
-
-
-        @*<script>
-            $(function () {
-                var mes = "@TempData["messages"]";
-                if (mes != "") {
-                    $('.fade').modal('show');
-                }
-            })
-                </script>*@
-
-     
-            @*<script type="text/javascript">
-                $(window).on('load', function() {
-                    //$('#callMeModal').modal('show');
-                    $('.fade').show();
-            });
-        </script>*@
         
       
     }

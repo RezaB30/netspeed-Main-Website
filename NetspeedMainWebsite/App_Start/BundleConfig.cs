@@ -16,8 +16,8 @@ namespace NetspeedMainWebsite
                          "~/Scripts/jquery-ui-1.12.1.min.js",
                          "~/Scripts/jquery-ui-1.12.1.js",
                          "~/Scripts/inputmask/jquery.inputmask.js",
-                        // "~/Scripts/jquery.validate.js",
-                        //"~/Scripts/jquery.validate.unobtrusive.js",
+                         "~/Scripts/jquery.validate.js",
+                        "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/helpbubscript.js"
 
 

@@ -31,7 +31,7 @@ namespace NetspeedMainWebsite.Binders
                 return value.Date;
             }
 
-            bindingContext.ModelState.AddModelError(key, string.Format("Tarihi Gün/Ay/Yıl Formatında Giriniz.", bindingContext.ModelMetadata.DisplayName));
+            bindingContext.ModelState.AddModelError(key, string.Format("Tarihi Gün.Ay.Yıl Formatında Giriniz.", bindingContext.ModelMetadata.DisplayName));
 
             return null;
         }

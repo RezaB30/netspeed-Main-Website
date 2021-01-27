@@ -1,34 +1,4 @@
-﻿//var oAH = {
-
-//    ValidateSubmit: function (self) {
-
-//        // send request to handler
-//        return $.ajax({
-//            type: "POST",
-//            url: "",
-//            data: aData,
-//            cache: false
-//        })
-//            .then(function (data) {
-//                return data.Status === 1;
-//            });
-//    }
-//}
-
-
-//$('#form').on('submit', function (e) {
-//    var form = this;
-//    e.preventDefault()
-
-//    return oAH.ValidateSubmit(this)
-//        .then(function (canSubmit) {
-//            if (canSubmit) {
-//                form.submit();
-//            }
-//        });
-//});
-
-function GetService(apartmentId, url, callback) {
+﻿function GetService(apartmentId, url, callback) {
     var token = $("[name='__RequestVerificationToken']").val();
     //ClearList(responseId);
 
