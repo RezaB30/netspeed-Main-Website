@@ -15,7 +15,7 @@ namespace NetspeedMainWebsite
 
         private readonly string Culture;
 
-        private readonly string Rand;
+        private string Rand;
 
         private readonly MainSiteServiceClient InternalClient;
 
@@ -24,18 +24,23 @@ namespace NetspeedMainWebsite
             Username = Properties.Settings.Default.WebServiceUsername;
             PasswordHash = HashUtilities.HashCalculate(Properties.Settings.Default.WebServicePasswordHash);
             Culture = "tr-tr";
-            Rand = Guid.NewGuid().ToString("N");
             InternalClient = new MainSiteServiceClient();
         }
         private string CalculateHash()
         {
-            var k=InternalClient.GetKeyFragment(Username);
+            var k = InternalClient.GetKeyFragment(Username);
             var hashedHexString = HashUtilities.HashCalculate($"{Username}{Rand}{PasswordHash}{k}");
             return hashedHexString;
         }
 
+        private void UpdateRandom()
+        {
+            Rand = Guid.NewGuid().ToString("N");
+        }
+
         public NetspeedServiceAddressDetailsResponse GetApartmentAddress(long? BBKCode)
         {
+            UpdateRandom();
             return InternalClient.GetApartmentAddress(new NetspeedServiceAddressDetailsRequest()
             {
                 Username = Username,
@@ -48,6 +53,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetProvinces()
         {
+            UpdateRandom();
             return InternalClient.GetProvinces(new NetspeedServiceRequests()
             {
                 Username = Username,
@@ -59,6 +65,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetProvinceDistricts(long? code)
         {
+            UpdateRandom();
             return InternalClient.GetProvinceDistricts(new NetspeedServiceArrayListRequest()
             {
                 Username = Username,
@@ -72,6 +79,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetDistrictRuralRegions(long? code)
         {
+            UpdateRandom();
             return InternalClient.GetDistrictRuralRegions(new NetspeedServiceArrayListRequest()
             {
                 Username = Username,
@@ -84,6 +92,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetRuralRegionNeighbourhoods(long? code)
         {
+            UpdateRandom();
             return InternalClient.GetRuralRegionNeighbourhoods(new NetspeedServiceArrayListRequest()
             {
                 Username = Username,
@@ -95,6 +104,7 @@ namespace NetspeedMainWebsite
         }
         public NetspeedServiceArrayListResponse GetNeighbourhoodStreets(long? code)
         {
+            UpdateRandom();
             return InternalClient.GetNeighbourhoodStreets(new NetspeedServiceArrayListRequest()
             {
                 Username = Username,
@@ -106,6 +116,7 @@ namespace NetspeedMainWebsite
         }
         public NetspeedServiceArrayListResponse GetStreetBuildings(long? code)
         {
+            UpdateRandom();
             return InternalClient.GetStreetBuildings(new NetspeedServiceArrayListRequest()
             {
                 Username = Username,
@@ -118,6 +129,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetBuildingApartments(long? code)
         {
+            UpdateRandom();
             return InternalClient.GetBuildingApartments(new NetspeedServiceArrayListRequest()
             {
                 Username = Username,
@@ -131,6 +143,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetIDCardTypes()
         {
+            UpdateRandom();
             return InternalClient.GetIDCardTypes(new NetspeedServiceRequests()
             {
                 Username = Username,
@@ -142,6 +155,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetSexes()
         {
+            UpdateRandom();
             return InternalClient.GetSexes(new NetspeedServiceRequests()
             {
                 Username = Username,
@@ -152,22 +166,24 @@ namespace NetspeedMainWebsite
         }
         public NetspeedServiceSubscriberGetBillsResponse GetBills(string PhoneNumber, string ClientInfo)
         {
+            UpdateRandom();
             return InternalClient.GetBills(new NetspeedServiceSubscriberGetBillsRequest()
             {
                 Username = Username,
                 Rand = Rand,
                 Culture = Culture,
                 Hash = CalculateHash(),
-                GetBillParameters= new SubscriberGetBillsRequest
+                GetBillParameters = new SubscriberGetBillsRequest
                 {
-                    PhoneNo=PhoneNumber,
-                    TCKOrSubscriberNo=ClientInfo
+                    PhoneNo = PhoneNumber,
+                    TCKOrSubscriberNo = ClientInfo
                 }
             });
         }
 
         public NetspeedServiceArrayListResponse GetNationalities()
         {
+            UpdateRandom();
             return InternalClient.GetNationalities(new NetspeedServiceRequests()
             {
                 Username = Username,
@@ -179,6 +195,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceArrayListResponse GetProfessions()
         {
+            UpdateRandom();
             return InternalClient.GetProfessions(new NetspeedServiceRequests()
             {
                 Username = Username,
@@ -187,19 +204,18 @@ namespace NetspeedMainWebsite
                 Culture = Culture
             });
         }
-         public NetspeedServiceExternalTariffResponse GetTariffList()
+        public NetspeedServiceExternalTariffResponse GetTariffList()
         {
+            UpdateRandom();
             return InternalClient.ExternalTariffList(new NetspeedServiceExternalTariffRequest()
             {
                 Username = Username,
                 Rand = Rand,
                 Hash = CalculateHash(),
                 Culture = Culture
-                
+
             });
         }
-
-        
 
 
         public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(/*int? BillingPeriod,*/ /*int? DomainID,*/ int? ServiceID, long? ProvinceId, string ProvinceName,
@@ -208,8 +224,9 @@ namespace NetspeedMainWebsite
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int? Nationality, int Profession, int? Sex,
             DateTime? BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, DateTime? DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
-            string Culture, /*int? CustomerType, */string Email/*, string[] CorporateCustomerInfo*/, string ReferenceCode,int? TariffId)
+            string Culture, /*int? CustomerType, */string Email/*, string[] CorporateCustomerInfo*/, string ReferenceCode, int? TariffId)
         {
+            UpdateRandom();
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
             {
                 Username = Username,
@@ -220,9 +237,9 @@ namespace NetspeedMainWebsite
                 {
                     SubscriptionInfo = new SubscriptionRegistrationInfo()
                     {
-                        ReferralDiscountInfo=new ReferralDiscountInfo()
-                        { 
-                            ReferenceNo=ReferenceCode
+                        ReferralDiscountInfo = new ReferralDiscountInfo()
+                        {
+                            ReferenceNo = ReferenceCode
                         },
                         //BillingPeriod = BillingPeriod,
                         ServiceID = TariffId,//tarifelerden al
@@ -248,7 +265,7 @@ namespace NetspeedMainWebsite
                         }
                     },
                     IndividualCustomerInfo = new IndividualCustomerInfo()
-                    {                        
+                    {
                         BirthPlace = BirthPlace,
                         FathersName = FathersName/*"HÜSEYİN"*/,
                         MothersMaidenName = MothersMaidenName /*"KALAYCIOĞULLARI"*/,
@@ -310,7 +327,7 @@ namespace NetspeedMainWebsite
                             DoorNo = DoorNo,
                             Floor = Floor,
                             PostalCode = PostalCode,
-                           
+
                         },
                         //ContactPhoneNo = ApplicationItemList[0].PhoneNumber,
                         ContactPhoneNo = ContactPhoneNo/*"5465939624"*/,
@@ -325,52 +342,54 @@ namespace NetspeedMainWebsite
                         //}
 
                     },
-                    CorporateCustomerInfo =null /*new CorporateCustomerInfo*/
+                    CorporateCustomerInfo = null /*new CorporateCustomerInfo*/
                     //{
-                        //CentralSystemNo = null,
-                        //CompanyAddress = null,
-                        //ExecutiveBirthPlace = null,
-                        //ExecutiveFathersName = null,
-                        //ExecutiveMothersMaidenName = null,
-                        //ExecutiveNationality = null,
-                        //ExecutiveMothersName = null,
-                        //ExecutiveProfession = null,
-                        //ExecutiveResidencyAddress = null,
-                        //ExecutiveSex = null,
-                        //TaxNo = null,
-                        //TaxOffice = null,
-                        //Title = null,
-                        //ExtensionData = null
+                    //CentralSystemNo = null,
+                    //CompanyAddress = null,
+                    //ExecutiveBirthPlace = null,
+                    //ExecutiveFathersName = null,
+                    //ExecutiveMothersMaidenName = null,
+                    //ExecutiveNationality = null,
+                    //ExecutiveMothersName = null,
+                    //ExecutiveProfession = null,
+                    //ExecutiveResidencyAddress = null,
+                    //ExecutiveSex = null,
+                    //TaxNo = null,
+                    //TaxOffice = null,
+                    //Title = null,
+                    //ExtensionData = null
                     //}
                 }
-            }); 
+            });
 
         }
 
         public NetspeedServicePayBillsResponse PayBills(long[] billIds)
         {
+            UpdateRandom();
             return InternalClient.PayBills(new NetspeedServicePayBillsRequest()
             {
                 Username = Username,
                 Rand = Rand,
                 Hash = CalculateHash(),
                 Culture = Culture,
-                PayBillsParameters= billIds
+                PayBillsParameters = billIds
             });
         }
 
         public NetspeedServiceRegisterCustomerContactResponse RegisterCustomerContact(string FullName, string PhoneNumber)
         {
+            UpdateRandom();
             return InternalClient.RegisterCustomerContact(new NetspeedServiceCustomerContactRequest()
             {
                 Username = Username,
                 Rand = Rand,
                 Hash = CalculateHash(),
                 Culture = Culture,
-                CustomerContactParameters= new CustomerContactRequest
+                CustomerContactParameters = new CustomerContactRequest
                 {
-                    FullName=FullName,
-                    PhoneNo=PhoneNumber,
+                    FullName = FullName,
+                    PhoneNo = PhoneNumber,
                     RequestSubTypeID = 1048,
                     RequestTypeID = 1022,
                 }
@@ -414,6 +433,7 @@ namespace NetspeedMainWebsite
 
         public NetspeedServiceSendGenericSMSResponse SendGenericSMS(string phoneNumber)
         {
+            UpdateRandom();
             return InternalClient.SendGenericSMS(new NetspeedServiceSendGenericSMSRequest()
             {
                 Username = Username,
@@ -423,13 +443,14 @@ namespace NetspeedMainWebsite
                 SendGenericSMSParameters = new SendGenericSMSRequest
                 {
                     CustomerPhoneNo = phoneNumber,
-                    
+
                 }
             });
         }
 
         public NetspeedServiceServiceAvailabilityResponse ServiceAvailability(string apartmentId)
         {
+            UpdateRandom();
             return InternalClient.ServiceAvailability(new NetspeedServiceServiceAvailabilityRequest()
             {
                 Username = Username,
@@ -445,18 +466,19 @@ namespace NetspeedMainWebsite
 
         public NetspeedServicePaymentVPOSResponse SubscriberPaymentVPOS(long[] BillList, string FailUrl, string OkUrl)
         {
+            UpdateRandom();
             return InternalClient.SubscriberPaymentVPOS(new NetspeedServicePaymentVPOSRequest()
             {
                 Username = Username,
                 Rand = Rand,
                 Hash = CalculateHash(),
                 Culture = Culture,
-               PaymentVPOSParameters= new PaymentVPOSRequest
-               {
-                   BillIds=BillList,
-                   FailUrl=FailUrl,
-                   OkUrl=OkUrl
-               }
+                PaymentVPOSParameters = new PaymentVPOSRequest
+                {
+                    BillIds = BillList,
+                    FailUrl = FailUrl,
+                    OkUrl = OkUrl
+                }
             });
         }
     }

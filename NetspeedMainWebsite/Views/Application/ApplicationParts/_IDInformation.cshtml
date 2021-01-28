@@ -11,8 +11,8 @@
     <div class="form-group">
         <div class="col-lg-6 col-md-6">
             <div class="form-group is-required">
-                <label class="font-size-h6 font-weight-bolder text-dark">Kimlik Kart Tipi</label>
-                @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6" })
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Kart Tipi</label>
+                @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
                 @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
 
                 <div class="text-danger">
@@ -26,7 +26,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Uyruk</label>
-                    @Html.DropDownListFor(m => m.Nationality, new SelectList(ViewBag.NationalityList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6," })
+                    @Html.DropDownListFor(m => m.Nationality, new SelectList(ViewBag.NationalityList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.Nationality)
@@ -103,7 +103,6 @@
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
                         @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No" } })
-
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.SerialNo)
                         </div>
@@ -118,7 +117,7 @@
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
                     @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
-                    @Html.TextBoxFor(m => m.BirthDate, new{ @class = "datepicker", @placeholder = "Doğum Günü" })
+                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü" })
 
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.BirthDate)
@@ -148,8 +147,10 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
+                    
+
                     @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
-                    @Html.TextBoxFor(m => m.DateOfIssue, new { @class = "datepicker", @placeholder = "Verildiği Tarih"  })
+                    @Html.TextBoxFor(m => m.DateOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Verildiği Tarih" })
 
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.DateOfIssue)
@@ -164,8 +165,6 @@
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
                     @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer" } })
-
-
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.PlaceOfIssue)
                     </div>

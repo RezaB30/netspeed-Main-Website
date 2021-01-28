@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NetspeedMainWebsite.AddressUtilities;
 
 namespace NetspeedMainWebsite.Controllers
 {
@@ -12,7 +13,7 @@ namespace NetspeedMainWebsite.Controllers
     {
         //GET: InfrastructureInquiry
         //MainSiteServiceClient client = new MainSiteServiceClient();
-        WebServiceWrapper client = new WebServiceWrapper();
+        AddressUtility addressUtil = new AddressUtility();
         public ActionResult Index()
         {
             var responseProvince = new WebServiceWrapper().GetProvinces();
@@ -39,105 +40,103 @@ namespace NetspeedMainWebsite.Controllers
 
             return View();
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
         {
-            var response = client.GetProvinceDistricts(code);
-
-            var DistrictItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (DistrictItems == null)
+            var result = addressUtil.GetProvinceDistricts(code);
+            if (result == null)
             {
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
-            return Json(DistrictItems, JsonRequestBehavior.AllowGet);
+            return Json(result.Select(item => new
+            {
+                Text = item.Value,
+                Value = item.Key
+            }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult GetRegions(long code)
         {
-            var response = client.GetDistrictRuralRegions(code);
+            var result = addressUtil.GetDistrictRegions(code);
 
-            var RegionItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (RegionItems == null)
+            if (result == null)
             {
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
-            return Json(RegionItems, JsonRequestBehavior.AllowGet);
+            return Json(result.Select(item => new
+            {
+                Text = item.Value,
+                Value = item.Key
+            }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult GetNeighborhoods(long code)
         {
-            var response = client.GetRuralRegionNeighbourhoods(code);
+            var result = addressUtil.GetRegionNeighbourhoods(code);
 
-            var NeighborhoodsItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (NeighborhoodsItems == null)
+            if (result == null)
             {
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
-            return Json(NeighborhoodsItems, JsonRequestBehavior.AllowGet);
+            return Json(result.Select(item => new
+            {
+                Text = item.Value,
+                Value = item.Key
+            }), JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public ActionResult GetStreets(long code)
         {
+            var result = addressUtil.GetNeighbourhoodStreets(code);
 
-            var response = client.GetNeighbourhoodStreets(code);
-            var StreetItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (StreetItems == null)
+            if (result == null)
             {
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
-            return Json(StreetItems, JsonRequestBehavior.AllowGet);
+            return Json(result.Select(item => new
+            {
+                Text = item.Value,
+                Value = item.Key
+            }), JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult GetBuildings(long code)
         {
-            var response = client.GetStreetBuildings(code);
+            var result = addressUtil.GetStreetBuildings(code);
 
-            var BuildingItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (BuildingItems == null)
+            if (result == null)
             {
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
-            return Json(BuildingItems, JsonRequestBehavior.AllowGet);
+            return Json(result.Select(item => new
+            {
+                Text = item.Value,
+                Value = item.Key
+            }), JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult GetApartments(long code)
         {
-            var response = client.GetBuildingApartments(code);
+            var result = addressUtil.GetBuildingAparments(code);
 
-            var BuildingItems = response.ValueNamePairList.Select(r => new
-            {
-                Text = r.Name,
-                Value = r.Code.ToString()
-            });
-            if (BuildingItems == null)
+            if (result == null)
             {
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
-            return Json(BuildingItems, JsonRequestBehavior.AllowGet);
+            return Json(result.Select(item => new
+            {
+                Text = item.Value,
+                Value = item.Key
+            }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -150,8 +149,9 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult InfrastructureInquiryResult(InfrastructureInquiryViewModel inf, string apartmentId)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                var client = new WebServiceWrapper();
                 var response = client.ServiceAvailability(apartmentId);
 
                 InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();
@@ -269,7 +269,7 @@ namespace NetspeedMainWebsite.Controllers
 
             return View(viewName: "Index", model: inf);
 
-       
+
         }
 
         [HttpPost]

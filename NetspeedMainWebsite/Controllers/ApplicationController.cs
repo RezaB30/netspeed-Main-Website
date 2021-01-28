@@ -1,4 +1,5 @@
-﻿using NetspeedMainWebsite.MainSiteServiceReference;
+﻿using NetspeedMainWebsite.AddressUtilities;
+using NetspeedMainWebsite.MainSiteServiceReference;
 using NetspeedMainWebsite.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -69,24 +70,20 @@ namespace NetspeedMainWebsite.Controllers
 
         public ActionResult Index()
         {
-                    
+
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
             var IDCardTypeList = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
-            { 
-                Text=p.Name,
-                Value=p.Code.ToString()
-            });
-
-            ViewBag.IDCardTypeList = IDCardTypeList;
-                    
-            var responseProvince = new WebServiceWrapper().GetProvinces();
-            var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
             {
                 Text = p.Name,
                 Value = p.Code.ToString()
             });
 
-            ViewBag.ProvinceList = ProvinceList;
+            ViewBag.IDCardTypeList = IDCardTypeList;
+
+            var addressUtil = new AddressUtility();
+            var responseProvince = addressUtil.GetProvinces();
+
+            ViewBag.ProvinceList = new SelectList(responseProvince, "Key", "Value");
 
             var responseNat = new WebServiceWrapper().GetNationalities();
             var NationalityList = responseNat.ValueNamePairList.Select(n => new SelectListItem()
@@ -104,7 +101,7 @@ namespace NetspeedMainWebsite.Controllers
                 Value = s.Code.ToString()
             });
 
-            ViewBag.SexList = SexList;                     
+            ViewBag.SexList = SexList;
 
             var DistrictList = new List<SelectListItem>();
             var RegionList = new List<SelectListItem>();
@@ -236,17 +233,22 @@ namespace NetspeedMainWebsite.Controllers
 
         }
 
-   
+
 
         [HttpPost]
         public ActionResult Index(ApplicationViewModel application)
         {
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
 
+            var dateAndTime = application.BirthDate;
+            application.BirthDate = dateAndTime.GetValueOrDefault().Date;
+
             if (ModelState.IsValid)
             {
                 //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
                 var ApplicationList = new List<ApplicationViewModel>();
+
+
 
                 var result = new ApplicationViewModel()
                 {
@@ -274,6 +276,7 @@ namespace NetspeedMainWebsite.Controllers
                     ReferenceCode = application.ReferenceCode,
                     Nationality = application.Nationality,
                     Sex = application.Sex,
+                    //BirthDate =Convert.ToDateTime(application.ReturnDateForDisplay),
                     BirthDate = application.BirthDate,
                     DateOfIssue = application.DateOfIssue,
                     SMSCode = application.SMSCode,
@@ -314,14 +317,6 @@ namespace NetspeedMainWebsite.Controllers
                 Value = c.Code.ToString()
             });
 
-            var responseProvince = new WebServiceWrapper().GetProvinces();
-            var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
-            {
-                Text = p.Name,
-                Value = p.Code.ToString()
-
-            });
-
             var responseNat = new WebServiceWrapper().GetNationalities();
             var NationalityList = responseNat.ValueNamePairList.Select(n => new SelectListItem()
             {
@@ -337,23 +332,33 @@ namespace NetspeedMainWebsite.Controllers
             });
 
             ViewBag.IDCardTypeList = IDCardTypeList;
-            ViewBag.ProvinceList = ProvinceList;
             ViewBag.NationalityList = NationalityList;
             ViewBag.SexList = SexList;
 
-            var DistrictList = new List<SelectListItem>();
-            var RegionList = new List<SelectListItem>();
-            var NeighborhoodList = new List<SelectListItem>();
-            var StreetList = new List<SelectListItem>();
-            var BuildingList = new List<SelectListItem>();
-            var ApartmentList = new List<SelectListItem>();
+            var addressUtil = new AddressUtility();
 
-            ViewBag.DistrictList = DistrictList;
-            ViewBag.RegionList = RegionList;
-            ViewBag.NeighborhoodList = NeighborhoodList;
-            ViewBag.StreetList = StreetList;
-            ViewBag.BuildingList = BuildingList;
-            ViewBag.ApartmentList = ApartmentList;
+            ViewBag.ProvinceList = new SelectList(addressUtil.GetProvinces(), "Key", "Value", application.ProvinceId);
+            ViewBag.DistrictList = application.ProvinceId.HasValue ? new SelectList(addressUtil.GetProvinceDistricts(application.ProvinceId.Value), "Key", "Value", application.DistrictId) : new SelectList(Enumerable.Empty<object>());
+            ViewBag.RegionList = application.DistrictId.HasValue ? new SelectList(addressUtil.GetDistrictRegions(application.DistrictId.Value), "Key", "Value", application.RegionId) : new SelectList(Enumerable.Empty<object>());
+            ViewBag.NeighborhoodList = application.RegionId.HasValue ? new SelectList(addressUtil.GetRegionNeighbourhoods(application.RegionId.Value), "Key", "Value", application.NeighborhoodId) : new SelectList(Enumerable.Empty<object>());
+            ViewBag.StreetList = application.NeighborhoodId.HasValue ? new SelectList(addressUtil.GetNeighbourhoodStreets(application.NeighborhoodId.Value), "Key", "Value", application.StreetId) : new SelectList(Enumerable.Empty<object>());
+            ViewBag.BuildingList = application.StreetId.HasValue ? new SelectList(addressUtil.GetStreetBuildings(application.StreetId.Value), "Key", "Value", application.BuildingId) : new SelectList(Enumerable.Empty<object>());
+            ViewBag.ApartmentList = application.BuildingId.HasValue ? new SelectList(addressUtil.GetBuildingAparments(application.BuildingId.Value), "Key", "Value", application.ApartmentId) : new SelectList(Enumerable.Empty<object>());
+
+
+            //ViewBag.DistrictList = DistrictList;               
+            //ViewBag.RegionList = RegionList;
+            //ViewBag.NeighborhoodList = NeighborhoodList;
+            //ViewBag.StreetList = StreetList;
+            //ViewBag.BuildingList = BuildingList;
+            //ViewBag.ApartmentList = ApartmentList;
+
+            //ViewBag.DistrictId = application.DistrictId;
+            //ViewBag.RegionId = application.RegionId;
+            //ViewBag.NeighborhoodId = application.NeighborhoodId;
+            //ViewBag.StreetId = application.StreetId;
+            //ViewBag.BuildingId = application.BuildingId;
+            //ViewBag.ApartmentId = application.ApartmentId;
 
             return View(application);
         }
@@ -423,7 +428,7 @@ namespace NetspeedMainWebsite.Controllers
                 AddressText = address.AddressText
             };
 
-            var response = new WebServiceWrapper().NewCustomerRegister(/*1,*//* 1,*/ 1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+            var response = new WebServiceWrapper().NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
                 address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
                 result._PostalCode, result.BirthPlace, result.FatherName,

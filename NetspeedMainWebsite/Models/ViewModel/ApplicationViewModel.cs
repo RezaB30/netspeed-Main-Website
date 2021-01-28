@@ -9,12 +9,22 @@ using System.Web.Mvc;
 namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class ApplicationViewModel
-    {     
+    {
+        //    public string DistrictName { get; set; }
+        //    public string RegionName { get; set; }
+        //    public string NeighborhoodName { get; set; }
+        //    public string StreetName { get; set; }
+        //    public string BuildingName { get; set; }
+        //    public string ApartmentName { get; set; }
+
+
         [Required(ErrorMessage = "*İl Alanı Gerekli")]
         public long? ProvinceId { get; set; }
         [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
         public long? DistrictId { get; set; }
         [Required(ErrorMessage = "*Semt Alanı Gerekli")]
+
+
         public long? RegionId { get; set; }
         [Required(ErrorMessage = "*Mahalle Alanı Gerekli")]
         public long? NeighborhoodId { get; set; }
@@ -82,7 +92,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public int? IDCardType { get; set; }
 
         [Required(ErrorMessage = "*Posta Kodu Alanı Gerekli ")]
-   
+
         public string PostalCode
         {
             get
@@ -105,9 +115,21 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(11), MinLength(11)]
         public string TC { get; set; }
 
+
+        //[RegularExpression("^[0-9]{4}-[0-9]{2}-[0-9]{2} (?:20|21|22|23|(?:[0-1][0-9])):[0-5][0-9]:[0-5][0-9]$",ErrorMessage = "Tarihi Doğru Formatta Giriniz")]
+        //public string BirthDate { get; set; }
+
         [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
         public DateTime? BirthDate { get; set; }
+        //public string ReturnDateForDisplay
+        //{
+        //    get
+        //    {
+        //        return this.BirthDate.ToString("d");
+        //    }
+        //}
 
+       
 
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
         [Range(1, 2, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
@@ -250,12 +272,12 @@ namespace NetspeedMainWebsite.Models.ViewModel
         }
         [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
         public DateTime? DateOfIssue { get; set; }
-     
+
         //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }
         [Required(ErrorMessage = "*Tarife Seçimi Gerekli ")]
-        public int? TariffId { get; set; }          
+        public int? TariffId { get; set; }
         public string DisplayName { get; set; }
     }
 }
