@@ -13,13 +13,12 @@ namespace NetspeedMainWebsite
                          //"~/Scripts/jquery-ui-{version}.js",
                          //"~/Scripts/jquery-3.5.1.slim.min.js",
                          // "~/Scripts/jquery-3.5.1.slim.js",
-                         "~/Scripts/jquery-ui-1.12.1.min.js",
+                         //"~/Scripts/jquery-ui-1.12.1.min.js",
                          "~/Scripts/jquery-ui-1.12.1.js",
                          "~/Scripts/inputmask/jquery.inputmask.js",
                          "~/Scripts/jquery.validate.js",
                         "~/Scripts/jquery.validate.unobtrusive.js",
                         "~/Scripts/helpbubscript.js"
-
 
 
                         //"~/Scripts/jquery-ui-1.12.1.min.js"

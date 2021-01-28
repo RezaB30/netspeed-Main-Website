@@ -48,13 +48,13 @@ namespace NetspeedMainWebsite.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentBillAndResult(string PhoneNumber, string ClientInfo)
+        public ActionResult PaymentBillAndResult(/*string PhoneNumber, string ClientInfo*/ PaymentBillViewModel clientInfos)
         {
             var message = string.Empty;
             if (ModelState.IsValid)
             {
                 WebServiceWrapper clientsBills = new WebServiceWrapper();
-                var response = clientsBills.GetBills(PhoneNumber, ClientInfo);
+                var response = clientsBills.GetBills(clientInfos.PhoneNumber, clientInfos.ClientInfo);
 
                 //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
 
@@ -94,7 +94,7 @@ namespace NetspeedMainWebsite.Controllers
                 return View(ClientBillList);
             }
 
-            return View();
+            return View(viewName:"BillPaymentLogin",model:clientInfos);
         }
 
 
@@ -107,13 +107,19 @@ namespace NetspeedMainWebsite.Controllers
             var CurrentSelectedBills = ((string[])SelectedBills)[0].ToString().Split(',');
             var GetSelectedBills = new List<long>();//selected bills
 
+            if (CurrentSelectedBills.First()=="")
+            {
+                message = "Fatura Seçmeniz Gerekmektedir.";
+                TempData["message"] = message;
+                return RedirectToAction("PaymentBillAndResult","ClientPayment");
+            }
 
             foreach (var item in CurrentSelectedBills)
             {
                 GetSelectedBills.Add(Convert.ToInt64(item));
             }
-            var BillList = (List<BillInfoViewModel>)Session["ClientBillList"];//all bills
 
+            var BillList = (List<BillInfoViewModel>)Session["ClientBillList"];//all bills
 
             var selectBills = BillList.Where(bill => GetSelectedBills.Contains(bill.BillId)).ToArray();
 

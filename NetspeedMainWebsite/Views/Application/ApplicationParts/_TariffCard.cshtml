@@ -5,55 +5,59 @@
 
 
 <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-xl-12 ml-2">
-            <!--begin::Stats Widget 4-->
-            <div class="text-danger">
-                @Html.ValidationMessageFor(m => item.TariffID)
-            </div>
-            <div class="card card-custom gutter-b" style="background:#ffffff; box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);-moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);">
-                <!--begin::Body-->
-                <div class="card-body d-flex align-items-center py-0 mt-6">
-                    <div class="d-flex flex-column flex-grow-1 py-2 py-lg-0">
-                        <label class="option option option-plain">
-                            <span class="option-control">
-                                <span class="radio radio-info radio-lg mb-8 ">
-                                    @*  <input type="radio" id="tariffId">*@
-                                    @*@Html.RadioButtonFor(m => item.TariffSelect,"SEÇ",Model.)*@
-                                    @*@Html.RadioButtonFor(m => item.TariffID, item.TariffID)*@
-                                    @Html.RadioButton("TariffId", item.TariffID)
-                                    @*@Html.HiddenFor(m=>item.DisplayName)*@
-                                    @*@Html.LabelFor(m=> item.TariffID,item.DisplayName)*@
+    <div class="form-group is-required">
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-12 ml-2">
+                <!--begin::Stats Widget 4-->
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(m => item.TariffID)
+                </div>
 
-                                    @*@Html.HiddenFor(m => item.TariffID)*@
-                                    <span>
+                <div class="col-xl-12 ml-2">
+                    <!--begin::Stats Widget 4-->
+                    <div class="card card-custom gutter-b" style="background:#ffffff; box-shadow:-webkit-box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);
+                                -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);
+                                box-shadow: 1px 4px 4px 0px rgb(0 0 0 / 14%)">
+                        <!--begin::Body-->
+                        <div class="card-body d-flex align-items-center py-0 mt-6">
+                            <div class="d-flex flex-column flex-grow-1 py-2 py-lg-0">
+
+                                <label class="option option option-plain">
+                                    <span class="option-control">
+                                        <span class="radio radio-info radio-lg mb-8 ">
+                                            @*<input type="radio" name="tariff" value="1">*@
+
+                                            @Html.RadioButton("TariffId", item.TariffID)
+                                            <span>
+                                            </span>
+                                        </span>
                                     </span>
-                                </span>
-                            </span>
-                            <span class="option-label">
-                                <span class="option-head">
-                                    <span class="option-title font-size-h6 font-weight-bolder m-1 text-dark">
-                                        <label id="tariffName"></label>
-                                        @Html.DisplayFor(m => item.DisplayName)
+                                    <span class="option-label">
+                                        <span class="option-head">
+                                            <span class="option-title font-size-h6 font-weight-bolder m-1 text-dark">
+                                                <label id="tariffName"></label>
+                                                @Html.DisplayFor(m => item.DisplayName)
+                                            </span>
+                                            <span class="font-size-h6 font-weight-bolder m-1 text-info ">
+                                                <label id="price"></label>
+                                                @Html.DisplayFor(m => item.Price)
+                                            </span>
+                                        </span>
+                                        <span class="text-dark-50 font-weight font-size-h6 mt5 option-body">
+                                            <label id="speed"></label>
+                                            @Html.DisplayFor(m => item.Speed)
+                                        </span>
                                     </span>
-                                    <span class="font-size-h6 font-weight-bolder m-1 text-info ">
-                                        <label id="price"></label>
-                                        @Html.DisplayFor(m => item.Price)
-                                    </span>
-                                </span>
-                                <span class="text-dark-50 font-weight font-size-h6 mt5 option-body">
-                                    <label id="speed"></label>
-                                    @Html.DisplayFor(m => item.Speed)
-                                </span>
-                            </span>
-                        </label>
+                                </label>
+                            </div>
+                            <!--end::Body-->
+                        </div>
                     </div>
-                    <!--end::Body-->
                 </div>
             </div>
-        </div>
-    }
+            <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
+        }
 
-
+    </div>
 </div>

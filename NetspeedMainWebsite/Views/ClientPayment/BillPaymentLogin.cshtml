@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Fatura Sorgulama ve Ödeme - Netspeed";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -76,7 +77,7 @@
                         <!--end::Title-->
                         <!--begin::Form-->
                         @using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
-                     
+
                         {
                             @Html.AntiForgeryToken()
                             <div class="d-flex justify-content-center flex-row-fluid ">
@@ -160,6 +161,12 @@
 <!--end::Form-->
 <!--end::Content-->
 @section script{
-    <script src="~/Scripts/js/hide-show-fields-form.js"></script>
-    <script src="~/Scripts/js/input-mask.js"></script>
+@*<script src="~/Scripts/js/hide-show-fields-form.js"></script>
+    <script src="~/Scripts/js/input-mask.js"></script>*@
+<script>
+    $(function () {
+        $('#kt_inputmask_3').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+    });
+</script>
+
 }

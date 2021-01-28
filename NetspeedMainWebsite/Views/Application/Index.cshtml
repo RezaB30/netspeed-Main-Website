@@ -256,12 +256,15 @@
                                     <div id="InfrastructureAndTariffContent"></div>
                                     <div id="visibleButton">
                                         <div class="form-group">
+                                            <div class="pb-15 pb-lg-4">
+                                                <h3 class="font-weight-bolder text-dark-50 font-size-h2">Varsa Referans Kodu</h3><hr class="my-4">
+                                            </div>
                                             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Referans Kodunu Yazınız</label>
                                             @Html.EditorFor(m => m.ReferenceCode, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Referans Kodu" } })
                                             @*<input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" placeholder="Referans Kodu" name="referans" im-insert="true" value="" />*@
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-9 col-md-9">
+                                            <div class="col-lg-4 col-md-4">
                                                 <div class="mr-2">
                                                     <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonInfTariffInfApp();">
                                                         <span class="svg-icon svg-icon-md mr-1">
@@ -278,10 +281,12 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-4 col-md-4">
+                                            </div>
 
-                                            <div class="col-lg-3 col-md-3">
+                                            <div class="col-lg-4 col-md-4">
                                                 <div @*style="width:7em; height:3em"*@>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlTarCon" data-wizard-type="action-next" @*onclick="NextButtonInfTariffCon();"*@ @*onclick="mybtnfunction();"*@>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlTarCon" data-wizard-type="action-next">
                                                         Sonraki
                                                         <span class="svg-icon svg-icon-md ml-1">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -390,11 +395,9 @@
                                 </div>
                                 <div id="GSMValidation" class="wizard-step">
                                     @Html.Partial("ApplicationParts/_GSMValidation")
-                                    <div class="validation-summary-message">
-                                        @Html.ValidationSummary()
-                                    </div>
+
                                     <div class="row">
-                                        <div class="col-lg-9 col-md-9">
+                                        <div class="col-lg-4 col-md-4">
                                             <div class="mr-2">
                                                 <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonGSMID();">
                                                     <span class="svg-icon svg-icon-md mr-1">
@@ -411,8 +414,10 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <div class="col-lg-4 col-md-4">
+                                        </div>
 
-                                        <div class="col-lg-3 col-md-3">
+                                        <div class="col-lg-4 col-md-4">
                                             <div @*style="width:7em; height:3em"*@>
                                                 <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next" id="correctPhone" @*onclick="mybtnfunction();"*@>
                                                     Sonraki
@@ -432,11 +437,14 @@
                                         </div>
                                     </div>
                                 </div>
-
                             }
 
                         </div>
+                        <div class="validation-summary-message">
+                            @Html.ValidationSummary()
+                        </div>
                     </div>
+
                     <!--end::Form-->
                 </div>
                 <!--end::Content-->
@@ -448,8 +456,6 @@
 @section script{
     @Scripts.Render("~/Scripts/js/get-infrastructure.js")
     @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
-
-    @Scripts.Render("~/Scripts/js/get-required-message.js")
 
 
     @*<script>
@@ -465,13 +471,10 @@
             var isValid = true;
             var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-            //var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('check[name]');
 
             requiredSelects.each(function () {
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-                //var hasText = currentSelect.find('input[type=text]' == "") > 0
-                //var HasRadioButtons = currentSelect.find('input[type=radio]:checked').length > 0;
 
                 if (!hasSelectedOption /*|| !hasText || ! HasRadioButtons*/) {
                     isValid = false;
@@ -516,18 +519,14 @@
             var isValid = true;
             var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-            //var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('check[name]');
 
             requiredSelects.each(function () {
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-                //var hasText = currentSelect.find('input[type=text]' == "") > 0
-                //var HasRadioButtons = currentSelect.find('input[type=radio]:checked').length > 0;
 
                 if (!hasSelectedOption /*|| !hasText || ! HasRadioButtons*/) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
-                    //currentSelect.closest('.form-group.is-required').find('span.required-error').show();
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -536,7 +535,6 @@
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
-                //var hasText = currentSelect.find('input[value!=""]:text').length > 0
                 var hasText = currentInput.val() != "";
 
                 if (!hasText) {
@@ -568,18 +566,14 @@
             var isValid = true;
             var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-            //var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('check[name]');
 
             requiredSelects.each(function () {
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-                //var hasText = currentSelect.find('input[type=text]' == "") > 0
-                //var HasRadioButtons = currentSelect.find('input[type=radio]:checked').length > 0;
-
+               
                 if (!hasSelectedOption /*|| !hasText || ! HasRadioButtons*/) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
-                    //currentSelect.closest('.form-group.is-required').find('span.required-error').show();
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -599,22 +593,6 @@
                     currentInput.closest('.form-group').find('span.required-error').hide();
                 }
             });
-
-            //requiredRadioButtons.each(function () {
-            //    var currentSelect = $(this);
-            //    var HasRadioButtons = currentSelect.find('input[value!=""]:checked').length > 0;
-
-            //    if (!HasRadioButtons) {
-            //        isValid = false;
-            //        currentSelect.closest('.form-group').find('span.required-error').show();
-            //        //currentSelect.closest('.form-group.is-required').find('span.required-error').show();
-            //    }
-            //    else {
-            //        currentSelect.closest('.form-group').find('span.required-error').hide();
-            //    }
-            //});
-
-
 
             if (isValid == true) {
 
@@ -648,31 +626,32 @@
 
     <script>
         $('button.inputControlTarCon').click(function () {
+            var count = 0;
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;     
-            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');                    
+            var isValid = true;
+            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
 
             requiredRadioButtons.each(function () {
-                var currentSelect = $(this);
-                var HasRadioButtons = currentSelect.find('input[value!=""]:checked').length > 0;
+                var currentSelect = $(this);           
+                var HasRadioButtons = currentSelect.is(':checked');
+                if (HasRadioButtons) {
+                    count = count + 1;
+                }
 
-                if (!HasRadioButtons) {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-                    //currentSelect.closest('.form-group.is-required').find('span.required-error').show();
+                if (count == 1) {
+                    currentSelect.closest('.form-group').find('span.required-error').hide();
+
+                    if ($('#InfrastructureAndTariffs').is(':visible')) {
+                        $('#InfrastructureAndTariffs').hide();
+                        $('#ContactInformation').show();
+                    }
                 }
                 else {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
+                    isValid = false;
+                    currentSelect.closest('.form-group').find('span.required-error').show();
                 }
             });
-
-            if (isValid == true) {
-                if ($('#InfrastructureAndTariffs').is(':visible')) {
-                    $('#InfrastructureAndTariffs').hide();
-                    $('#ContactInformation').show();
-                }
-            }
         })
 
 
@@ -745,16 +724,6 @@
         })
     </script>
 
-
-    @*<script>
-        function NextButtonInfTariffCon() {
-            if ($('#InfrastructureAndTariffs').show()) {
-                $('#InfrastructureAndTariffs').hide();
-                $('#ContactInformation').show();
-            }
-        }
-    </script>*@
-
     <script>
         function PrevButtonInfTariffInfApp() {
             if ($('#InfrastructureAndTariffs').show()) {
@@ -773,26 +742,7 @@
         }
     </script>
 
-    @*<script>
-            function NextButtonConID() {
-                if ($('#ContactInformation').show()) {
-                    $('#ContactInformation').hide();
-                    $('#IDInformation').show();
-                }
-            }
-        </script>*@
-
-    @*<script>
-            function NextButtonIDGSM() {
-
-                if ($('#IDInformation').show()) {
-                    $('#IDInformation').hide();
-                    $('#GSMValidation').show();
-                }
-            }
-        </script>*@
-
-    <script>
+       <script>
         function PrevButtonGSMID() {
 
             if ($('#GSMValidation').show()) {

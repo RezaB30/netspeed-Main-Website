@@ -72,7 +72,6 @@
                             <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(../../Content/media/svg/astitled-1.svg)"></div><br>
                         </div>
                         <!--end::Aside Top-->
-
                     </div>
                     <!--begin::Aside-->
                     <!--begin::Content-->
@@ -83,8 +82,6 @@
                                     -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);
                                     box-shadow: box-shadow:-webkit-box-shadow: -10px 68px 106px -16px rgba(0,0,0,0.37);
                                     -moz-box-shadow: -13px 68px 106px -16px rgba(0,0,0,0.37);">
-
-
 
                         <!--begin::Title-->
                         <div class="text-right mb-lg-4 mb-15 mr-xxl-10">
@@ -106,7 +103,6 @@
 
                                     <!--begin::Form Group-->
                                     <div class="row">
-
                                         <div class="separator separator-dashed mt-5 my-3"></div>
                                         <div class="col-lg-12 col-md-12">
                                             <h3 class="font-weight-bolder text-dark-50 font-size-h3">Adres Bilgileriniz</h3><hr>
@@ -115,10 +111,10 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Şehir</label>
-
                                                 @Html.DropDownListFor(m => m.ProvinceId, new SelectList(ViewBag.ProvinceList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.ProvinceId)
                                             </div>
                                         </div>
                                         <!--end::Form Group-->
@@ -128,13 +124,12 @@
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
                                                 @Html.DropDownListFor(m => m.DistrictId, new SelectList(ViewBag.DistrictList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
-                                                @* @Html.DropDownListFor(m => m.DistrictId, Model.District, "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.DistrictId)
                                             </div>
                                             <!--end::Form Group-->
                                         </div>
-
 
                                         <!--begin::Form Group-->
 
@@ -143,7 +138,9 @@
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
                                                 @*@Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.DistrictList, "Value", "Text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
                                                 @Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.RegionId)
                                             </div>
                                         </div>
                                         <!--end::Form Group-->
@@ -153,8 +150,9 @@
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
                                                 @Html.DropDownListFor(m => m.NeighborhoodId, new SelectList(ViewBag.NeighborhoodList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.NeighborhoodId)
                                             </div>
                                             <!--end::Form Group-->
                                         </div>
@@ -165,8 +163,9 @@
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
                                                 @Html.DropDownListFor(m => m.StreetId, new SelectList(ViewBag.StreetList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.StreetId)
                                             </div>
                                         </div>
                                         <!--end::Form Group-->
@@ -176,8 +175,9 @@
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
                                                 @Html.DropDownListFor(m => m.BuildingId, new SelectList(ViewBag.BuildingList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
+                                            </div>
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.BuildingId)
                                             </div>
                                         </div>
                                         <!--end::Form Group--><!--begin::Form Group-->
@@ -185,20 +185,14 @@
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
                                                 @Html.DropDownListFor(m => m.ApartmentId, new SelectList(ViewBag.ApartmentList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-
                                             </div>
-                                            <!--end::Form Group-->
+                                            <div class="text-danger">
+                                                @Html.ValidationMessageFor(m => m.ApartmentId)
+                                                <!--end::Form Group-->
+                                            </div>
                                         </div>
                                     </div>
-
-                                    @* @Html.ActionLink("Altyapımı Sorgula", "InfrastructureInquiryResult", "InfrastructureInquiry", new { BBK =Model.ApartmentId }, new { @class = "btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12", @id="submit" })*@
                                     <button type="submit" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12">Altyapımı Sorgula</button>
-
-
-
-                                    @*<input type="submit" name="Altyapımı Sorgula" value="Model.ApartmentId" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12" />*@
-
                                 </div>
                             }
                         </div>

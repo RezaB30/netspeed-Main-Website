@@ -206,8 +206,8 @@
 
 <!--end::Content-->
 @section script{
-    <script src="~/Scripts/js/hide-show-fields-form.js"></script>
-    <script src="~/Scripts/js/input-mask.js"></script>
+    @*<script src="~/Scripts/js/hide-show-fields-form.js"></script>*@
+   @* <script src="~/Scripts/js/input-mask.js"></script>*@
 
     <script>
         $('form').submit(function (e) {
@@ -220,30 +220,6 @@
             });
             $("input[name='SelectedBills']").val(idList);
         });
-                    //var arrCheckboxes;
-                    //var checkboxSelector = "input[type='checkbox']";
-                    //$("body").delegate(checkboxSelector, "change", function () {
-                    //    arrCheckboxes = $(checkboxSelector).map(function () {
-                    //        return { name: this.name, val: this.checked };
-                    //    }).get();
-                    //});
-
-
-                    //var arrCheckboxes;
-                    //var arrCheckboxBillId;
-                    //var checkboxSelector = "input[type='checkbox']";
-                    //$("body").delegate(checkboxSelector, "change", function () {
-                    //    arrCheckboxes = $(checkboxSelector).map(function () {
-                    //        if (this.checked == true) {
-                    //            return {
-                    //                name: this.name, val: this.checked
-                    //            };}
-
-                    //    }).get();
-                    //    //arrCheckboxBillId = $(checkboxSelector).map(function () {
-                    //    //    return { name: this.#BillId, val: this.checked};
-                    //    //}).get();
-
-                    //});
+                  
     </script>
 }
