@@ -1,0 +1,17 @@
+﻿@*@model DateTime?
+
+    @{
+        if (Model.HasValue)
+        {
+            @: @Model.Value.ToString("dd MMMM yyyy")
+        }
+        else
+        {
+            @: -
+        }
+    }*@
+
+
+@model DateTime?
+
+@Html.TextBoxFor(model => model, new { @class = " ", placeholder = 0.ToString("dd.mm.yyyy"), autocomplete = "off" })

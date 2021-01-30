@@ -116,6 +116,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
+                   
                     @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
                     @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü" })
 

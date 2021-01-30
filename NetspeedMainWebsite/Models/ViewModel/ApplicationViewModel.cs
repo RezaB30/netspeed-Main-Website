@@ -10,14 +10,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class ApplicationViewModel
     {
-        //    public string DistrictName { get; set; }
-        //    public string RegionName { get; set; }
-        //    public string NeighborhoodName { get; set; }
-        //    public string StreetName { get; set; }
-        //    public string BuildingName { get; set; }
-        //    public string ApartmentName { get; set; }
-
-
         [Required(ErrorMessage = "*İl Alanı Gerekli")]
         public long? ProvinceId { get; set; }
         [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
@@ -115,21 +107,26 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(11), MinLength(11)]
         public string TC { get; set; }
 
-
-        //[RegularExpression("^[0-9]{4}-[0-9]{2}-[0-9]{2} (?:20|21|22|23|(?:[0-1][0-9])):[0-5][0-9]:[0-5][0-9]$",ErrorMessage = "Tarihi Doğru Formatta Giriniz")]
-        //public string BirthDate { get; set; }
-
         [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        public DateTime? BirthDate { get; set; }
-        //public string ReturnDateForDisplay
-        //{
-        //    get
-        //    {
-        //        return this.BirthDate.ToString("d");
-        //    }
-        //}
+        public string BirthDate
+        {
+            get
+            {
+                return _BirthDate.HasValue ? _BirthDate.Value.ToString() : null;
+            }
+            set
+            {
+                DateTime BirthDate;
+                if (DateTime.TryParse(value, out BirthDate))
+                {
+                    _BirthDate = BirthDate;
+                }
+            }
+        }
+        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
+        public DateTime? _BirthDate { get; set; }
 
-       
+
 
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
         [Range(1, 2, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
@@ -271,7 +268,24 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
         [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        public DateTime? DateOfIssue { get; set; }
+        //public DateTime? DateOfIssue { get; set; }
+        public string DateOfIssue
+        {
+            get
+            {
+                return _DateOfIssue.HasValue ? _DateOfIssue.Value.ToString() : null;
+            }
+            set
+            {
+                DateTime DateOfIssue;
+                if (DateTime.TryParse(value, out DateOfIssue))
+                {
+                    _DateOfIssue = DateOfIssue;
+                }
+            }
+        }
+        [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
+        public DateTime? _DateOfIssue { get; set; }
 
         //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         public string SMSCode { get; set; }

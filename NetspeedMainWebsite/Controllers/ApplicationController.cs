@@ -240,8 +240,11 @@ namespace NetspeedMainWebsite.Controllers
         {
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
 
-            var dateAndTime = application.BirthDate;
-            application.BirthDate = dateAndTime.GetValueOrDefault().Date;
+            //var dateAndTime = application.BirthDate;
+            //application.BirthDate = dateAndTime.GetValueOrDefault().Date;
+            //DateTime dateAndTime = Convert.ToDateTime(application.BirthDate);
+            //var shortDate = dateAndTime.ToString("dd.MM.yyyy");
+            //application.BirthDate = application.BirthDate.ToString("dd.MM.yyyy");
 
             if (ModelState.IsValid)
             {
@@ -428,14 +431,15 @@ namespace NetspeedMainWebsite.Controllers
                 AddressText = address.AddressText
             };
 
-            var response = new WebServiceWrapper().NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+            var response
+                = new WebServiceWrapper().NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
                 address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
                 result._PostalCode, result.BirthPlace, result.FatherName,
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
-               result.Sex, result.BirthDate, result.IDCardType, result.FirstName,
+               result.Sex,Convert.ToDateTime(result.BirthDate), result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
-               result.DateOfIssue, null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId
+               Convert.ToDateTime(result.DateOfIssue), null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId
                );
 
 

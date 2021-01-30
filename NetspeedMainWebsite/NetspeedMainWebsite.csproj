@@ -1275,6 +1275,7 @@
     <Content Include="Views\Application\ApplicationParts\_InfrastructureAndTariffs.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_TariffCard.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_HasNotInfrastructure.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
