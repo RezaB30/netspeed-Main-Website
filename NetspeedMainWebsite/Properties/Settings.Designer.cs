@@ -103,5 +103,23 @@ namespace NetspeedMainWebsite.Properties {
                 return ((global::System.TimeSpan)(this["SMSValidationDuration"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6LemlQwaAAAAAMAzZ6gkJsOT6eFTMOdu5xWO8r5X")]
+        public string CaptchaSecretKey {
+            get {
+                return ((string)(this["CaptchaSecretKey"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6LemlQwaAAAAAFqlAuPzuuBF-gF0HrNBeelSS2xJ")]
+        public string CaptchaSiteKey {
+            get {
+                return ((string)(this["CaptchaSiteKey"]));
+            }
+        }
     }
 }

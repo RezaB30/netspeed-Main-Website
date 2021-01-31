@@ -1,0 +1,45 @@
+﻿@*@{
+    Layout = null;
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdJjwwaAAAAAE69sH-4G4BFT_xWZQroRGIUbKw6"></script>
+
+
+}
+
+<button class="g-recaptcha"
+        data-sitekey="reCAPTCHA_site_key"
+        data-callback='onSubmit'
+        data-action='submit'>
+    Submit
+</button>
+
+
+<script>
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+    }
+</script>
+
+
+<script>
+    function onClick(e) {
+        e.preventDefault();
+        grecaptcha.ready(function () {
+            grecaptcha.execute('reCAPTCHA_site_key', { action: 'submit' }).then(function (token) {
+                // Add your logic to submit to your backend server here.
+
+                //{
+                //    "success": true | false,
+                //        "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+                //            "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
+                //                "error-codes":      // optional
+                //}
+
+            });
+        });
+    }
+</script>*@
+
+
+
+

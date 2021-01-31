@@ -17,7 +17,6 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
-
         public ActionResult GsmVerification()
         {
             return View();
@@ -347,21 +346,6 @@ namespace NetspeedMainWebsite.Controllers
             ViewBag.StreetList = application.NeighborhoodId.HasValue ? new SelectList(addressUtil.GetNeighbourhoodStreets(application.NeighborhoodId.Value), "Key", "Value", application.StreetId) : new SelectList(Enumerable.Empty<object>());
             ViewBag.BuildingList = application.StreetId.HasValue ? new SelectList(addressUtil.GetStreetBuildings(application.StreetId.Value), "Key", "Value", application.BuildingId) : new SelectList(Enumerable.Empty<object>());
             ViewBag.ApartmentList = application.BuildingId.HasValue ? new SelectList(addressUtil.GetBuildingAparments(application.BuildingId.Value), "Key", "Value", application.ApartmentId) : new SelectList(Enumerable.Empty<object>());
-
-
-            //ViewBag.DistrictList = DistrictList;               
-            //ViewBag.RegionList = RegionList;
-            //ViewBag.NeighborhoodList = NeighborhoodList;
-            //ViewBag.StreetList = StreetList;
-            //ViewBag.BuildingList = BuildingList;
-            //ViewBag.ApartmentList = ApartmentList;
-
-            //ViewBag.DistrictId = application.DistrictId;
-            //ViewBag.RegionId = application.RegionId;
-            //ViewBag.NeighborhoodId = application.NeighborhoodId;
-            //ViewBag.StreetId = application.StreetId;
-            //ViewBag.BuildingId = application.BuildingId;
-            //ViewBag.ApartmentId = application.ApartmentId;
 
             return View(application);
         }

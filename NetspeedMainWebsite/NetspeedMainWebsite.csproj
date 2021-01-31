@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="HashUtilities.cs" />
     <Compile Include="Controllers\InfrastructureWrapper.cs" />
+    <Compile Include="Models\ViewModel\CaptchaResponseViewModel.cs" />
     <Compile Include="Models\ViewModel\ApplicationViewModel.cs" />
     <Compile Include="Models\ViewModel\BillInfoViewModel.cs" />
     <Compile Include="Models\ViewModel\CallMeViewModel.cs" />
@@ -1275,7 +1276,7 @@
     <Content Include="Views\Application\ApplicationParts\_InfrastructureAndTariffs.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_TariffCard.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_HasNotInfrastructure.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
+    <Content Include="Views\Shared\_ReCaptcha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

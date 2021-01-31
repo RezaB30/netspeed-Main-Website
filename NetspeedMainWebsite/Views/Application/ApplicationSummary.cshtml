@@ -3,12 +3,10 @@
     @using NetspeedMainWebsite.Models.ViewModel*@
 
 
-@{
-    ViewBag.Title = "Başvuru Özeti - Netspeed";
+@{ ViewBag.Title = "Başvuru Özeti - Netspeed";
 
-    var model = Model;
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+                var model = Model;
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
 
@@ -234,7 +232,7 @@
 
                             @Html.HiddenFor(m => m.ReferenceCode)
                             @Html.HiddenFor(m => m.Floor)
-                       
+
                             @Html.HiddenFor(m => m.TariffId)
 
                             <div> @Html.DisplayFor(m => m.FirstName)</div>
@@ -260,12 +258,11 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Section-->
-                      
                         <!--end::Section-->
                         <!--begin::Section-->
                         <h4 class="font-weight-bolder mb-3">Tarife ve Tercihler:</h4>
                         <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
-                            @Html.DisplayFor(m=>m.DisplayName)
+                            @Html.DisplayFor(m => m.DisplayName)
                         </div>
                         <!--end::Section-->
                         <div class="separator separator-dashed my-5"></div>
@@ -280,10 +277,10 @@
                                 <div class="checkbox-inline">
 
                                     <label class="checkbox">
-                                         <input name="cccvv" type="checkbox" class="is-invalid">
+                                        <input name="cccvv" type="checkbox" class="is-invalid">
                                         @*@Html.CheckBoxFor(m => m.SubscriptionAgreementCheck, new { @class = "checkbox checkbox checkbox - inline mr - 2" })
-                                        @Html.HiddenFor(m => m.SubscriptionAgreementCheck)
-                                        @Html.ValidationMessageFor(m => m.SubscriptionAgreementCheck)*@
+                                            @Html.HiddenFor(m => m.SubscriptionAgreementCheck)
+                                            @Html.ValidationMessageFor(m => m.SubscriptionAgreementCheck)*@
 
 
 
@@ -297,50 +294,30 @@
                             </div>
                         </div>
                     </div>
-                    @* @Html.ActionLink("Onayla", "ApplicationConfirm", "Application", new { @class = "btn btn-primary font-weight-bolder font-size-h6 pl-5 pr-8 py-4 my-3" })*@
-                    @*  @Html.ActionLink("Onayla", "ApplicationGet", "Application", new { @class = "btn btn-primary font-weight-bolder font-size-h6 pl-5 pr-8 py-4 my-3" })*@
-                           
-                <div class="row">
-                    <div class="col-lg-8 col-md-8">
-                    </div>
-                    <!--<div class="col-lg-4 col-md-4">-->
-                    <!--<input type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-5 pr-8 py-4 my-3" value="Onayla" id="checkBtn" />
-    <span class="svg-icon svg-icon-md ml-2">-->
-                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                    <!--<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <polygon points="0 0 24 0 24 24 0 24" />
-            <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-        </g>
-    </svg>-->
-                    <!--end::Svg Icon-->
-                    <!--</span>-->
-                    <!--</div>-->
 
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                        </div>
 
-                    <div class="col-lg-4 col-md-4">
-                        <div @*style="width:7em; height:3em"*@>
-                            <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 "  data-wizard-type="action-next" id="checkBtn" @*onclick="mybtnfunction();"*@>
-                                Onayla
-                                <span class="svg-icon svg-icon-md ml-1">
-                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <polygon points="0 0 24 0 24 24 0 24" />
-                                            <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                        </g>
-                                    </svg>
-                                    <!--end::Svg Icon-->
-                                </span>
-                            </button>
+                        <div class="col-lg-4 col-md-4">
+                            <div @*style="width:7em; height:3em"*@>
+                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 " data-wizard-type="action-next" id="checkBtn" @*onclick="mybtnfunction();"*@>
+                                    Onayla
+                                    <span class="svg-icon svg-icon-md ml-1">
+                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon points="0 0 24 0 24 24 0 24" />
+                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-                    
-
                 </div>}
                         </div>
                     </div>
@@ -352,23 +329,23 @@
         <!--end::Content-->
     </div>
 </div>
-    @*</div>
-</div>*@
+@*</div>
+    </div>*@
 
 
 @section script{
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#checkBtn').click(function () {
-            checked = $("input[type=checkbox]:checked").length;
+        $(document).ready(function () {
+            $('#checkBtn').click(function () {
+                checked = $("input[type=checkbox]:checked").length;
 
-            if (!checked) {
-                alert("Abonelik Sözleşmesini Okudum Alanını İşaretlemeniz Gerekmektedir.");
-                return false;
-            }
+                if (checked != 2) {
+                    alert("Abonelik Sözleşmesini Okudum ve Kişisel Verilerimin İşlenmesine İzin Veriyorum Alanını İşaretlemeniz Gerekmektedir.");
+                    return false;
+                }
 
+            });
         });
-    });
-</script>
+    </script>
 }
 

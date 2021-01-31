@@ -22,14 +22,14 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
         {
-            var messages = string.Empty;
+            var callMessages = string.Empty;
 
             if (ModelState.IsValid)
             {
                 var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
 
-                messages = "Talebiniz Alınmıştır.";
-                TempData["messages"] = messages;
+                callMessages = "Talebiniz Alınmıştır.";
+                TempData["callMessages"] = callMessages;
                
                 return Redirect(returnUrl);
             }

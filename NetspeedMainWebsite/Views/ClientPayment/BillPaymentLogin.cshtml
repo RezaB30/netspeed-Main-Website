@@ -5,6 +5,12 @@
     ViewBag.Title = "Fatura Sorgulama ve Ödeme - Netspeed";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 }
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -125,27 +131,42 @@
                                                         @Html.ValidationMessageFor(m => m.PhoneNumber)
                                                     </div>
                                                 </div>
+                                            </div>                                          
+
+
+                                            <div class="g-recaptcha" data-sitekey="6LemlQwaAAAAAFqlAuPzuuBF-gF0HrNBeelSS2xJ"></div>
+
+                                            <div class="text-danger">
+                                                @TempData["CaptchaMessage"]
+                                                </div>
+                                                <!--end::Form group-->
+                                                <!--begin::Action-->
+                                                <div class="pb-lg-0 pb-5">
+                                                    @* <a href="/Payment/PaymentBillAndResult" type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Fatura Borcumu Sorgula</a>*@
+
+                                                    @* @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { @class = "btn btn-primary font-weight-bold mr-2" })*@
+
+                                                    <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>
+
+                                                    @*<button class="btn btn-primary font-weight-bold mr-2 g-recaptcha"
+                        data-sitekey="reCAPTCHA_site_key"
+                        data-callback='onSubmit'
+                        data-action='submit'>
+                    Fatura Borcumu Sorgula
+                </button>*@
+
+                                                    <!--end::Action-->
+
+                                                    <input type="hidden">
+                                                </div>
+                                                <hr class="my-8">
+                                                <div class="d-flex align-items-center">
+                                                    <p class="text-dark-50 font-weight-bold my-8">Ödemelerinizi kolay ve güvenli bir şekilde yapabilmenizi sağlayan yeni nesil ödeme sistemi ile her seferinde kredi kartı bilgilerinizi paylaşmaya gerek kalmadan çok kolay, hızlı ve güvenli bir şekilde Netspeed evde internet faturalarınızı ödeyebilir veya otomatik olarak ödenmesini sağlayabilirsiniz. </p>
+                                                </div>
+                                                <p><a href="https://online.netspeed.com.tr" class="text-primary font-weight-bold my-8 text-hover-warning ">Faturanıza otomatik ödeme vermek için tıklayınız.</a></p>
+
                                             </div>
-                                            <!--end::Form group-->
-                                            <!--begin::Action-->
-                                            <div class="pb-lg-0 pb-5">
-                                                @* <a href="/Payment/PaymentBillAndResult" type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3">Fatura Borcumu Sorgula</a>*@
-
-                                                @* @Html.ActionLink("Fatura Borcumu Sorgula", "PaymentBillAndResult", "PaymentClient", new { @class = "btn btn-primary font-weight-bold mr-2" })*@
-
-                                                <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>
-                                                <!--end::Action-->
-
-                                                <input type="hidden">
-                                            </div>
-                                            <hr class="my-8">
-                                            <div class="d-flex align-items-center">
-                                                <p class="text-dark-50 font-weight-bold my-8">Ödemelerinizi kolay ve güvenli bir şekilde yapabilmenizi sağlayan yeni nesil ödeme sistemi ile her seferinde kredi kartı bilgilerinizi paylaşmaya gerek kalmadan çok kolay, hızlı ve güvenli bir şekilde Netspeed evde internet faturalarınızı ödeyebilir veya otomatik olarak ödenmesini sağlayabilirsiniz. </p>
-                                            </div>
-                                            <p><a href="https://online.netspeed.com.tr" class="text-primary font-weight-bold my-8 text-hover-warning ">Faturanıza otomatik ödeme vermek için tıklayınız.</a></p>
-
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         }
@@ -157,16 +178,13 @@
     </div>
 </div>
 
-
-<!--end::Form-->
-<!--end::Content-->
 @section script{
-@*<script src="~/Scripts/js/hide-show-fields-form.js"></script>
-    <script src="~/Scripts/js/input-mask.js"></script>*@
-<script>
-    $(function () {
-        $('#kt_inputmask_3').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-    });
-</script>
+
+    <script>
+        $(function () {
+            $('#kt_inputmask_3').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+        });
+    </script>
+
 
 }

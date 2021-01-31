@@ -1,12 +1,11 @@
 ﻿@{
     ViewBag.Title = " Netspeed Sözleşme ve Formlar - Bireysel Ev interneti Sözleşmeleri";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    <title> Netspeed Sözleşme ve Formlar - Bireysel Ev interneti Sözleşmeleri</title>
+   
 }
 
 
 <div id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
-
 
     <!--end::Section-->
     <!--begin::Content-->
@@ -40,7 +39,7 @@
                                 <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
                                     <!--begin::Wizard Steps-->
                                     <div class="wizard-steps">
-                                      <!--begin::Wizard Step 1 Nav-->
+                                        <!--begin::Wizard Step 1 Nav-->
                                         <div class="wizard-step">
                                             <div class="wizard-wrapper">
                                                 <div class="wizard-icon">
@@ -92,17 +91,11 @@
                             <!--end::Title-->
                             <!--begin::Form-->
                             <div class="d-flex justify-content-center flex-row-fluid ">
-                                <form class="pb-5 w-100 w-md-450px w-lg-500px" id="kt_form2">
+                                <div class="pb-5 w-100 w-md-450px w-lg-500px" @*id="kt_form2*@>
                                     <!--begin: Wizard Step 1-->
                                     <!--begin::Title-->
                                     <div class="pb-10 pb-lg-15">
-
                                         <h3 class="font-weight-bolder text-info font-size-h2">Sözleşme ve Formlar İçin İndirme Linkleri</h3><hr class="my-8">
-
-
-
-
-
 
                                         <div class="d-flex align-items-center">
                                             <!--begin::Pic-->
@@ -119,7 +112,7 @@
                                             </div>
                                             <!--end::Info-->
                                             <!--begin::Toolbar-->
-                                           
+
                                             <div class="text-right pr-0">
                                                 <a href="https://netspeed.com.tr/sozlesme/basvuruformuvesozlesme.pdf" target="_blank" class="btn btn-icon btn-light btn-sm">
                                                     <span class="svg-icon svg-icon-md svg-icon-2x svg-icon-primary">
@@ -135,7 +128,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="d-flex align-items-center">
                                             <!--begin::Pic-->
                                             <div class="flex-shrink-0 mr-4 symbol symbol-40 ">
@@ -151,7 +144,7 @@
                                             </div>
                                             <!--end::Info-->
                                             <!--begin::Toolbar-->
-                                            <td class="text-right pr-0">
+                                            <div class="text-right pr-0">
                                                 <a href="https://netspeed.com.tr/sozlesme/bireyselisletmecidegisiklikformu.pdf" target="_blank" class="btn btn-icon btn-light btn-sm">
                                                     <span class="svg-icon svg-icon-md svg-icon-2x svg-icon-primary">
                                                         <!--begin::Svg Icon--><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -164,7 +157,7 @@
                                                         </svg><!--end::Svg Icon-->
                                                     </span>
                                                 </a>
-                                            </td>
+                                            </div>
                                         </div>
 
                                         <div class="d-flex align-items-center">
@@ -182,7 +175,7 @@
                                             </div>
                                             <!--end::Info-->
                                             <!--begin::Toolbar-->
-                                            <td class="text-right pr-0">
+                                            <div class="text-right pr-0">
                                                 <a href="https://netspeed.com.tr/sozlesme/pstnyalindslformu.pdf" target="_blank" class="btn btn-icon btn-light btn-sm">
                                                     <span class="svg-icon svg-icon-md svg-icon-2x svg-icon-primary">
                                                         <!--begin::Svg Icon--><svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -195,7 +188,7 @@
                                                         </svg><!--end::Svg Icon-->
                                                     </span>
                                                 </a>
-                                            </td>
+                                            </div>
                                         </div>
                                         <hr class="my-8">
                                         <div class="d-flex align-items-center">
@@ -204,25 +197,23 @@
 
                                         <span class="text-dark-75 font-weight-bold my-8"> Netspeed İnternet A.Ş Saraylar Mah. 464. Sokak No:1 Durmuş Ali Çoban İş Merkezi Kat:3 No:9 20010 Merkezefendi/Denizli</span>
                                     </div>
-
-
-
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!--end::Form-->
         </div>
 
-        <!--end::Form-->
+        <!--end::Content-->
     </div>
-
-    <!--end::Content-->
-    </div>
+</div>
 
 
 
-@section script{
-    <script src="~/Scripts/js/input-mask.js"></script>
-    <script src="~/Scripts/js/hide-show-fields-form.js"></script>
-}
+@*@section script{
+        <script src="~/Scripts/js/input-mask.js"></script>
+        <script src="~/Scripts/js/hide-show-fields-form.js"></script>
+    }*@

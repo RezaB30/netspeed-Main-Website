@@ -7,6 +7,8 @@ using NetspeedMainWebsite.Models;
 using NetspeedMainWebsite.Models.ViewModel;
 using NetspeedMainWebsite.MainSiteServiceReference;
 using System.Runtime.Caching;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace NetspeedMainWebsite.Controllers
 {
@@ -18,22 +20,22 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult BillPaymentLogin(PaymentBillViewModel payment, string PhoneNumber, string ClientInfo)
-        {
-            var ClientInfoList = new List<PaymentBillViewModel>();
+        //[HttpPost]
+        //public ActionResult BillPaymentLogin(/*FormCollection fc, */PaymentBillViewModel payment/*, string PhoneNumber, string ClientInfo*/)
+        //{
+        //    var ClientInfoList = new List<PaymentBillViewModel>();
 
-            if (ModelState.IsValid)
-            {
-                ClientInfoList.Add(new PaymentBillViewModel()
-                {
-                    ClientInfo = payment.ClientInfo,
-                    PhoneNumber = payment.PhoneNumber
-                });
-                return RedirectToAction("PaymentBillAndResult", "ClientPayment");
-            }
-            return View();
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        ClientInfoList.Add(new PaymentBillViewModel()
+        //        {
+        //            ClientInfo = payment.ClientInfo,
+        //            PhoneNumber = payment.PhoneNumber
+        //        });
+        //        return RedirectToAction("PaymentBillAndResult", "ClientPayment");
+        //    }
+        //    return View();
+        //}
 
 
         [HttpGet]
@@ -48,53 +50,72 @@ namespace NetspeedMainWebsite.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentBillAndResult(/*string PhoneNumber, string ClientInfo*/ PaymentBillViewModel clientInfos)
+        public ActionResult PaymentBillAndResult(/*string PhoneNumber, string ClientInfo*//*FormCollection fc,*/ PaymentBillViewModel clientInfos)
         {
             var message = string.Empty;
+
             if (ModelState.IsValid)
             {
-                WebServiceWrapper clientsBills = new WebServiceWrapper();
-                var response = clientsBills.GetBills(clientInfos.PhoneNumber, clientInfos.ClientInfo);
+                var response = Request["g-recaptcha-response"];
+                //const string secret = Properties.Settings.Default.CaptchaKey;
 
-                //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
+                string secret = Properties.Settings.Default.CaptchaSecretKey;
 
+                var client = new WebClient();
+                var reply =
+                    client.DownloadString(
+                        string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
 
-                if (response.ResponseMessage.ErrorCode == 2)
-                {                    
-                    TempData["message"] = "Kayıtlı Abone Bulunamadı.";
-                    return RedirectToAction("BillPaymentLogin", "ClientPayment");
-                }
+                var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponseViewModel>(reply);
 
-                if (response.ResponseMessage.ErrorCode == 4)
+                if (captchaResponse.Success)
                 {
-                    TempData["message"] = "Fatura Bulunamadı.";
-                    return RedirectToAction("BillPaymentLogin", "ClientPayment");
+                    //TempData["CaptchaMessage"] = "Güvenlik başarıyla doğrulanmıştır.";
+                    WebServiceWrapper clientsBills = new WebServiceWrapper();
+                    var responseClient = clientsBills.GetBills(clientInfos.PhoneNumber, clientInfos.ClientInfo);
+
+                    //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
+
+                    if (responseClient.ResponseMessage.ErrorCode == 2)
+                    {
+                        TempData["message"] = "Kayıtlı Abone Bulunamadı.";
+                        return RedirectToAction("BillPaymentLogin", "ClientPayment");
+                    }
+
+                    if (responseClient.ResponseMessage.ErrorCode == 4)
+                    {
+                        TempData["message"] = "Fatura Bulunamadı.";
+                        return RedirectToAction("BillPaymentLogin", "ClientPayment");
+                    }
+
+                    if (responseClient.ResponseMessage.ErrorCode == 5)
+                    {
+                        return RedirectToAction("AlreadyHaveCustomer", "Application");
+                    }
+
+                    BillInfoViewModel Bills = new BillInfoViewModel();
+
+                    var ClientBillItems = responseClient.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
+                    {
+                        ServiceName = r.ServiceName,
+                        CanBePaid = r.CanBePaid,
+                        BillDate = r.BillDate,
+                        BillId = r.ID,
+                        Total = r.Total,
+                        LastPaymentDate = r.LastPaymentDate
+                    });
+                    var ClientBillList = ClientBillItems.ToList();
+
+                    //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
+                    Session["ClientBillList"] = ClientBillList;
+                    return View(ClientBillList);
                 }
+                else
+                    TempData["CaptchaMessage"] = "Lütfen güvenliği doğrulayınız.";
 
-                if (response.ResponseMessage.ErrorCode == 5)
-                {
-                    return RedirectToAction("AlreadyHaveCustomer", "Application");
-                }
-
-                BillInfoViewModel Bills = new BillInfoViewModel();
-
-                var ClientBillItems = response.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
-                {
-                    ServiceName = r.ServiceName,
-                    CanBePaid = r.CanBePaid,
-                    BillDate = r.BillDate,
-                    BillId = r.ID,
-                    Total = r.Total,
-                    LastPaymentDate = r.LastPaymentDate
-                });
-                var ClientBillList = ClientBillItems.ToList();
-
-                //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
-                Session["ClientBillList"] = ClientBillList;
-                return View(ClientBillList);
             }
 
-            return View(viewName:"BillPaymentLogin",model:clientInfos);
+            return View(viewName: "BillPaymentLogin", model: clientInfos);
         }
 
 
@@ -107,11 +128,11 @@ namespace NetspeedMainWebsite.Controllers
             var CurrentSelectedBills = ((string[])SelectedBills)[0].ToString().Split(',');
             var GetSelectedBills = new List<long>();//selected bills
 
-            if (CurrentSelectedBills.First()=="")
+            if (CurrentSelectedBills.First() == "")
             {
                 message = "Fatura Seçmeniz Gerekmektedir.";
                 TempData["message"] = message;
-                return RedirectToAction("PaymentBillAndResult","ClientPayment");
+                return RedirectToAction("PaymentBillAndResult", "ClientPayment");
             }
 
             foreach (var item in CurrentSelectedBills)
@@ -223,40 +244,40 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
-        {
-            WebServiceWrapper client = new WebServiceWrapper();
-            var message = string.Empty;
+        //[HttpPost]
+        //public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
+        //{
+        //    WebServiceWrapper client = new WebServiceWrapper();
+        //    var message = string.Empty;
 
-            if (ModelState.IsValid)
-            {
-                var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
+        //    if (ModelState.IsValid)
+        //    {
+        //        var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
 
-                message = "Talebiniz Alınmıştır.";
-                TempData["CallMeModel"] = message;
+        //        message = "Talebiniz Alınmıştır.";
+        //        TempData["CallMeModel"] = message;
 
-                return Redirect(returnUrl);
-            }
+        //        return Redirect(returnUrl);
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                TempData["CallMeModel"] = callMe;
-                var errors = ModelState.ToArray().Select(ms => new { Key = ms.Key, ErrorMessages = string.Join(Environment.NewLine, ms.Value.Errors.Select(e => e.ErrorMessage)) }).ToArray();
-                foreach (var errorItem in errors)
-                {
-                    if (errorItem.Key == "callMe.FullName")
-                    {
-                        callMe.FullNameValidationMessage = errorItem.ErrorMessages;
-                    }
-                    else if (errorItem.Key == "callMe.PhoneNumber")
-                    {
-                        callMe.PhoneNumberValidationMessage = errorItem.ErrorMessages;
-                    }
-                }
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        TempData["CallMeModel"] = callMe;
+        //        var errors = ModelState.ToArray().Select(ms => new { Key = ms.Key, ErrorMessages = string.Join(Environment.NewLine, ms.Value.Errors.Select(e => e.ErrorMessage)) }).ToArray();
+        //        foreach (var errorItem in errors)
+        //        {
+        //            if (errorItem.Key == "callMe.FullName")
+        //            {
+        //                callMe.FullNameValidationMessage = errorItem.ErrorMessages;
+        //            }
+        //            else if (errorItem.Key == "callMe.PhoneNumber")
+        //            {
+        //                callMe.PhoneNumberValidationMessage = errorItem.ErrorMessages;
+        //            }
+        //        }
+        //    }
 
-            return Redirect(returnUrl);
-        }
+        //    return Redirect(returnUrl);
+        //}
     }
 }

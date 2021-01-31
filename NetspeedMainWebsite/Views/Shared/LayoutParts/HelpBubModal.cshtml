@@ -1,4 +1,16 @@
 ﻿
+
+
+@if (TempData["callMessages"] == null)
+{
+    <style>
+        #success-part {
+            display: none;
+        }
+    </style>
+}
+
+
 <div class="wa__btn_popup animate__animated animate__bounceInRight animate__delay-5s">
 
     <div class="wa__btn_popup_txt font-weight-bolder font-size-h8 text-info rounded-lg animate__animated animate__backOutRight animate__delay-20s">Yardım mı Lazım? <strong> </strong></div>
@@ -61,11 +73,6 @@
                 </a>
             </div>
 
-
-
-
-
-
             <div class="wa__popup_content_item ">
                 <a target="_blank" href="https://m.me/netspeedtr" class="wa__stt wa__stt_online">
                     <div class="wa__popup_avatar">
@@ -106,26 +113,37 @@
     @*/.wa__popup_content*@
 </div>
 
-@*begin::Global Config(global config for global JS scripts)*@
+
+@if (TempData["callMessages"] != null)
+{
+    <style>
+        #help-bubble-part {
+            display: none;
+        }
+
+        #success-part {
+            display: block;
+        }
+    </style>
+}
 
 
 
-
-
-@*@model NetspeedMainWebsite.Models.ViewModel.CallMeViewModel*@
 @{ var callMe = TempData["CallMeModel"] as NetspeedMainWebsite.Models.ViewModel.CallMeViewModel ?? new NetspeedMainWebsite.Models.ViewModel.CallMeViewModel(); }
 
 <!-- Modal-->
 
-
-<div id="#callMeModal">
+<div id="callMeModal">
     <div class="modal fade" id="exampleModal" tabindex="-0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 @using (Html.BeginForm("CallMe", null, FormMethod.Post, new { @class = "form-group", id = "myModal" }))
                 {
+
+
                     @Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
                     @Html.Hidden("returnUrl", Request.Url.PathAndQuery) @*@Html.AntiForgeryToken()*@
+
                     <div class="modal-header" style="background:#290b63">
 
 
@@ -135,54 +153,56 @@
                             <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
                         </button>
                     </div>
-                    <div class="text-danger" style="text-align:center; font-size:2em">
-                        @TempData["messages"]
+                    <div style=" background-color: white; width: 35em; border: solid ##e4e6ef; padding: 3em; margin: 1.5em; border-radius: 3%;" id="success-part">
+                        <div style="text-align:center; font-size:2em; margin-top:1em; color:#290b63">
+                            @TempData["callMessages"]
+                        </div>
                     </div>
-                    <div class="modal-body bg-secondary">
-                        <div class="form-group fv-plugins-icon-container">
-                            @* <input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6" name="FullName" id="FullName" placeholder="Adı Soyadı" value="" maxlength="50">*@
-                            @Html.EditorFor(model => callMe.FullName, new { htmlAttributes = new { id = "FullName", @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
+                    <div id="help-bubble-part">
+                        <div class="modal-body bg-secondary">
+                            <div class="form-group fv-plugins-icon-container">
+                                @Html.EditorFor(model => callMe.FullName, new { htmlAttributes = new { id = "FullName", @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
 
-                            <div class="fv-plugins-message-container">
-                                <div class="text-danger">
+                                <div class="fv-plugins-message-container">
+                                    <div class="text-danger">
 
-                                    @(callMe?.FullNameValidationMessage)
-                                    @if (callMe != null)
-                                    {
-                                    }
+                                        @(callMe?.FullNameValidationMessage)
+                                        @if (callMe != null)
+                                        {
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-group fv-plugins-icon-container">
-                            <!--<input type="text" class="form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6"--> @*name="gsmno"*@ <!--id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" name="PhoneNumber"  maxlength="14">-->
-                            @Html.EditorFor(model => callMe.PhoneNumber, new
-                       {
-                           name = "PhoneNumber",
-
-                           htmlAttributes = new
+                            <div class="form-group fv-plugins-icon-container">
+                                @Html.EditorFor(model => callMe.PhoneNumber, new
                            {
-                               id = "kt_inputmask_3",
-                               @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6",
+                               name = "PhoneNumber",
 
-                               @autocomplete = "off",
-                               placeholder = "GSM Numaranız"
-                           }
-                       })
+                               htmlAttributes = new
+                               {
+                                   id = "kt_inputmask_3",
+                                   @class = "form-control h-auto py-4 px-6 border-1 rounded-lg font-size-h6",
 
-                            <div class="fv-plugins-message-container">
-                                <div class="text-danger">
-                                    @(callMe?.PhoneNumberValidationMessage)
+                                   @autocomplete = "off",
+                                   placeholder = "GSM Numaranız"
+                               }
+                           })
+
+                                <div class="fv-plugins-message-container">
+                                    <div class="text-danger">
+                                        @(callMe?.PhoneNumberValidationMessage)
+                                    </div>
                                 </div>
+                                <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
                             </div>
-                            <div class="row m-2"><span class="form-text text-info">Lütfen size ulaşabileceğimiz GSM numaranızı yazınız.</span></div>
-                        </div>
-                        <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
+                            <div class="footer col-sm-0 d-flex align-items-center justify-content-sm-end">
 
-                            <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
-                            <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm">Beni Arayın</button>
-                        </div>
+                                <button type="button" class="btn btn-warning text-white font-weight-bold px-12 m-2" data-dismiss="modal">İptal</button>
+                                <button type="submit" class="btn btn-info font-weight-bold px-12 m-2" id="confirm">Beni Arayın</button>
+                            </div>
 
+                        </div>
                     </div>
                     <div class="modal-footer bg-secondary">
                         <p>
@@ -191,7 +211,8 @@
                                 <a href="/About/Kvkk" target="_blank" class=" text-danger">Kişisel veri aydınlatma metni</a>
                             </small>
                         </p>
-                    </div>}
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -199,37 +220,17 @@
 
 
 <script>
-    if ("@TempData["messages"]" != "" || "@TempData["CallMeModel"]"!="") {
+    if ("@TempData["callMessages"]" != "" || "@TempData["CallMeModel"]"!="") {
             $('.fade').modal('show');
         }
 </script>
 
+<script>
+    $(function () {
+        $('#kt_inputmask_3').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+    });
+</script>
 @section script{
     <script>var NtsAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#0BB783", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#D7F9EF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
-
-
-    @*//$('#displayCallMe').click(function () {
-        //    $('#callMeModal').show();
-        //});*@
-
-
-
-
-    <!--<script>
-        $('#exampleModal').modal('show');-->
-    @*$('#confirm').click(function () {
-            if (@TempData["message"] != null) {
-                $('#exampleModal').modal('show');
-                //$('#exampleModal').modal();
-            }
-        });*@
-
-    <!--</script>-->
-    @*<script>
-            $(document).ready(function () {
-                $('#callMeModal').modal('show')
-            });
-        </script>*@
-
 
 } 
