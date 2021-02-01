@@ -16,8 +16,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RequestSubTypeID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="RequestTypeID" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CustomerContactRequest" nillable="true" type="tns:CustomerContactRequest" />
@@ -264,4 +262,12 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="NetspeedServiceExternalTariffRequest" nillable="true" type="tns:NetspeedServiceExternalTariffRequest" />
+  <xs:complexType name="NetspeedServiceGenericAppSettingsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q14:BaseRequestOfSHA1o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceGenericAppSettingsRequest" nillable="true" type="tns:NetspeedServiceGenericAppSettingsRequest" />
 </xs:schema>

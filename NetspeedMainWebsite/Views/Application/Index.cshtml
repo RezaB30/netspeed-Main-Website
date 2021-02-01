@@ -3,7 +3,7 @@
 @using NetspeedMainWebsite.Models.ViewModel
 
 @{
-    ViewBag.Title = " Netspeed Başvuru - ADSL, VDSL, FİBER Ev İnterneti Başvurusu";
+    ViewBag.Title = "Başvuru - ADSL, VDSL, FİBER Ev İnterneti Başvurusu";
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
@@ -382,7 +382,7 @@
 
                                         <div class="col-lg-3 col-md-3">
                                             <div>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" >
+                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next">
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -427,7 +427,7 @@
 
                                         <div class="col-lg-4 col-md-4">
                                             <div>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputGsmButton" data-wizard-type="action-next" id="correctPhone" >
+                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputGsmButton" data-wizard-type="action-next" id="correctPhone">
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -775,4 +775,64 @@
         })
     </script>
 
+
+    <script>
+        $(function () {
+            $('#TC').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#PostalCode').inputmask({ "mask": "99999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#Floor').inputmask({ "mask": "999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#FirstName").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#LastName").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#FatherName").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#MotherName").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#BirthPlace").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#PlaceOfIssue").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
+    
+    <script>
+        $(function () {
+            $("#MotherFirstSurname").inputmask({ regex: "[a-zA-Z- ]*" });
+        });
+    </script>
 }

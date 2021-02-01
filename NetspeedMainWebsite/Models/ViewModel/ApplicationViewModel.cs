@@ -31,9 +31,12 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
         public string PhoneNumber { get; set; }
 
+        [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
 
         private string _FirstName;
+
+        [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
         public string FirstName
         {
@@ -75,8 +78,8 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "*Lütfen Telefon E-Posta Adresinizi Doğru Giriniz.")]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "*Uyruk Alanı Gerekli ")]
-        [Range(1, 255, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
+        //[Required(ErrorMessage = "*Uyruk Alanı Gerekli ")]
+        //[Range(1, 255, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
         public int? Nationality { get; set; }
 
         [Required(ErrorMessage = "*Kart Tipi Alanı Gerekli ")]

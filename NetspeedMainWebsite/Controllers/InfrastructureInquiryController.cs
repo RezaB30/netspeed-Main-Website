@@ -171,7 +171,6 @@ namespace NetspeedMainWebsite.Controllers
                 {
                     var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
                     InfrastructureResult.Distance = Fiber.FiberDistance.ToString();
-                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
                     InfrastructureResult.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
                     InfrastructureResult.XDSLType = "FİBER";
                     InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
@@ -184,18 +183,15 @@ namespace NetspeedMainWebsite.Controllers
                         Price = t.Price,
                         Speed = t.Speed,
                     });
-                    //InfrastructureResult.TariffList = TariffItems.ToArray();
                 }
                 else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed > Adsl.AdslSpeed)
                 {
                     var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
                     InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
                     InfrastructureResult.Distance = Vdsl.VdslDistance.ToString();
-                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
                     InfrastructureResult.XDSLType = "VDSL";
                     InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
                     InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
-                    //return View(InfrastructureResult);
 
                     var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
                     {
@@ -262,14 +258,14 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
         {
             WebServiceWrapper client = new WebServiceWrapper();
-            var message = string.Empty;
+            var callMessages = string.Empty;
 
             if (ModelState.IsValid)
             {
                 var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
 
-                message = "Talebiniz Alınmıştır.";
-                TempData["message"] = message;
+                callMessages = "Talebiniz Alınmıştır.";
+                TempData["callMessages"] = callMessages;
 
                 return Redirect(returnUrl);
             }

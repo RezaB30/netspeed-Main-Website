@@ -224,7 +224,7 @@ namespace NetspeedMainWebsite
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int? Nationality, int Profession, int? Sex,
             DateTime? BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, DateTime? DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
-            string Culture, /*int? CustomerType, */string Email/*, string[] CorporateCustomerInfo*/, string ReferenceCode, int? TariffId)
+            string Culture, string Email, string ReferenceCode, int? TariffId)
         {
             UpdateRandom();
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
@@ -241,8 +241,7 @@ namespace NetspeedMainWebsite
                         {
                             ReferenceNo = ReferenceCode
                         },
-                        //BillingPeriod = BillingPeriod,
-                        ServiceID = TariffId,//tarifelerden al
+                        ServiceID = TariffId,
                         SetupAddress = new AddressInfo()
                         {
                             ProvinceID = ProvinceId,
@@ -267,10 +266,10 @@ namespace NetspeedMainWebsite
                     IndividualCustomerInfo = new IndividualCustomerInfo()
                     {
                         BirthPlace = BirthPlace,
-                        FathersName = FathersName/*"HÜSEYİN"*/,
-                        MothersMaidenName = MothersMaidenName /*"KALAYCIOĞULLARI"*/,
-                        MothersName = MothersName/*"GÜLŞAH"*/,
-                        Nationality = Nationality,
+                        FathersName = FathersName,
+                        MothersMaidenName = MothersMaidenName,
+                        MothersName = MothersName,
+                        Nationality = 228,
                         Profession = Profession,
                         Sex = Sex,
                         ResidencyAddress = new AddressInfo()
@@ -296,7 +295,7 @@ namespace NetspeedMainWebsite
                     },
                     IDCardInfo = new IDCardInfo()
                     {
-                        BirthDate = BirthDate,  //ApplicationItemList[0].BirthDate,
+                        BirthDate = BirthDate,
                         CardType = CardType,
                         FirstName = FirstName,
                         LastName = LastName,
@@ -329,36 +328,12 @@ namespace NetspeedMainWebsite
                             PostalCode = PostalCode,
 
                         },
-                        //ContactPhoneNo = ApplicationItemList[0].PhoneNumber,
-                        ContactPhoneNo = ContactPhoneNo/*"5465939624"*/,
+                        ContactPhoneNo = ContactPhoneNo,
                         Culture = "tr-tr",
-                        //CustomerType = application.CustomerType,
-                        //CustomerType = 1,
                         Email = Email,
-
-                        //OtherPhoneNos = new PhoneNoListItem()
-                        //{
-                        //    Number=
-                        //}
-
                     },
-                    CorporateCustomerInfo = null /*new CorporateCustomerInfo*/
-                    //{
-                    //CentralSystemNo = null,
-                    //CompanyAddress = null,
-                    //ExecutiveBirthPlace = null,
-                    //ExecutiveFathersName = null,
-                    //ExecutiveMothersMaidenName = null,
-                    //ExecutiveNationality = null,
-                    //ExecutiveMothersName = null,
-                    //ExecutiveProfession = null,
-                    //ExecutiveResidencyAddress = null,
-                    //ExecutiveSex = null,
-                    //TaxNo = null,
-                    //TaxOffice = null,
-                    //Title = null,
-                    //ExtensionData = null
-                    //}
+                    CorporateCustomerInfo = null
+
                 }
             });
 
@@ -389,9 +364,7 @@ namespace NetspeedMainWebsite
                 CustomerContactParameters = new CustomerContactRequest
                 {
                     FullName = FullName,
-                    PhoneNo = PhoneNumber,
-                    RequestSubTypeID = 1048,
-                    RequestTypeID = 1022,
+                    PhoneNo = PhoneNumber
                 }
             });
         }
@@ -446,5 +419,19 @@ namespace NetspeedMainWebsite
                 }
             });
         }
-    }
+
+        
+        public NetspeedServiceGenericAppSettingsResponse GenericAppSettings()
+        {
+            UpdateRandom();
+            return InternalClient.GenericAppSettings(new NetspeedServiceGenericAppSettingsRequest()
+            {
+                Username = Username,
+                Rand = Rand,
+                Hash = CalculateHash(),
+                Culture = Culture
+                                             
+            });
+        }
+}
 }

@@ -35,14 +35,14 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
         {
             WebServiceWrapper client = new WebServiceWrapper();
-            var message = string.Empty;
+            var callMessages = string.Empty;
 
             if (ModelState.IsValid)
             {
                 var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
 
-                message = "Talebiniz Alınmıştır.";
-                TempData["message"] = message;
+                callMessages = "Talebiniz Alınmıştır.";
+                TempData["callMessages"] = callMessages;
 
                 return Redirect(returnUrl);
             }
@@ -128,7 +128,6 @@ namespace NetspeedMainWebsite.Controllers
         {
             var message = string.Empty;
 
-            //ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
             var applicationTariff = new ApplicationViewModel();
             var infrastructureTariff = new InfrastructureTariffViewModel();
             WebServiceWrapper clientAddres = new WebServiceWrapper();
@@ -147,7 +146,6 @@ namespace NetspeedMainWebsite.Controllers
                 {
                     var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
                     infrastructureTariff.Distance = Fiber.FiberDistance.ToString();
-                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.FiberSpeed.ToString();
                     infrastructureTariff.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
                     infrastructureTariff.XDSLType = "FİBER";
                     infrastructureTariff.PortState = Fiber.FiberPortState.ToString();
@@ -167,11 +165,9 @@ namespace NetspeedMainWebsite.Controllers
                     var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
                     infrastructureTariff.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
                     infrastructureTariff.Distance = Vdsl.VdslDistance.ToString();
-                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.VdslSpeed.ToString();
                     infrastructureTariff.XDSLType = "VDSL";
                     infrastructureTariff.PortState = Vdsl.VdslPortState.ToString();
                     infrastructureTariff.SVUID = Vdsl.VdslSVUID.ToString();
-                    //return View(InfrastructureResult);
 
                     var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
                     {
@@ -184,15 +180,12 @@ namespace NetspeedMainWebsite.Controllers
                 }
                 else if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
                 {
-                    //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
                     var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
                     infrastructureTariff.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
                     infrastructureTariff.Distance = Adsl.AdslDistance.ToString();
-                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
                     infrastructureTariff.XDSLType = "ADSL";
                     infrastructureTariff.PortState = Adsl.AdslPortState.ToString();
                     infrastructureTariff.SVUID = Adsl.AdslSVUID.ToString();
-                    //return View(InfrastructureResult);
                     var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
                     {
                         TariffID = t.TariffID,
@@ -202,15 +195,10 @@ namespace NetspeedMainWebsite.Controllers
                     });
                     infrastructureTariff.TariffList = TariffItems.ToArray();
                 }
-                else//DÜZENLE
+                else
                 {
-                    //message = "Haneye Ait Altyapı Bulunamadığından Başvuruya Devam Edemezsiniz.";
-                    //TempData["message"]=message;
-                    //ViewBag.message = message;
-                    //return RedirectToAction("Index", "Application");
-
-                    message = "altyapiyok";
-                    TempData["message"] = "messsage";
+                    //message = "altyapiyok";
+                    //TempData["message"] = "messsage";
                     return PartialView("ApplicationParts/_HasNotInfrastructure");
                 }
             }
@@ -220,16 +208,7 @@ namespace NetspeedMainWebsite.Controllers
             }
 
             return PartialView("ApplicationParts/_InfrastructureAndTariffs", model: infrastructureTariff);
-            //return Json(new
-            //{
-            //    tariffs = tariffs.ToArray(),
-            //    maxSpeed = InfrastructureResult.MaxSpeed,
-            //    distance = InfrastructureResult.Distance,
-            //    XDSLType = InfrastructureResult.XDSLType,
-            //    portState = InfrastructureResult.PortState,
-            //    SVUID = InfrastructureResult.SVUID,
-            //});
-
+           
         }
 
 
@@ -238,12 +217,6 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult Index(ApplicationViewModel application)
         {
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
-
-            //var dateAndTime = application.BirthDate;
-            //application.BirthDate = dateAndTime.GetValueOrDefault().Date;
-            //DateTime dateAndTime = Convert.ToDateTime(application.BirthDate);
-            //var shortDate = dateAndTime.ToString("dd.MM.yyyy");
-            //application.BirthDate = application.BirthDate.ToString("dd.MM.yyyy");
 
             if (ModelState.IsValid)
             {
@@ -414,7 +387,6 @@ namespace NetspeedMainWebsite.Controllers
                Convert.ToDateTime(result.DateOfIssue), null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId
                );
 
-
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 return RedirectToAction("ApplicationConfirm", "Application");
@@ -429,8 +401,6 @@ namespace NetspeedMainWebsite.Controllers
             {
                 ValidationError="Kimlik Bilginiz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz.";
                 TempData["ValidationError"] = ValidationError;
-
-
                 return RedirectToAction("Index", "Application");
             }
 

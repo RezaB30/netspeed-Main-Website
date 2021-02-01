@@ -19,6 +19,7 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRequests))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfServiceAvailabilityRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceServiceAvailabilityRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfNullableOflongSHA1qBRhzOKh))]
@@ -137,6 +138,13 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceExternalTariffRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
     [System.SerializableAttribute()]
     public partial class NetspeedServiceExternalTariffRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceGenericAppSettingsRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceGenericAppSettingsRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -426,12 +434,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PhoneNoField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> RequestSubTypeIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> RequestTypeIDField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -464,32 +466,6 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.PhoneNoField, value) != true)) {
                     this.PhoneNoField = value;
                     this.RaisePropertyChanged("PhoneNo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> RequestSubTypeID {
-            get {
-                return this.RequestSubTypeIDField;
-            }
-            set {
-                if ((this.RequestSubTypeIDField.Equals(value) != true)) {
-                    this.RequestSubTypeIDField = value;
-                    this.RaisePropertyChanged("RequestSubTypeID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> RequestTypeID {
-            get {
-                return this.RequestTypeIDField;
-            }
-            set {
-                if ((this.RequestTypeIDField.Equals(value) != true)) {
-                    this.RequestTypeIDField = value;
-                    this.RaisePropertyChanged("RequestTypeID");
                 }
             }
         }
@@ -2119,6 +2095,8 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfArrayOfExternalTariffResponseSHA1x9h56FeD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse))]
     public partial class BaseResponseOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2561,6 +2539,37 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.ExternalTariffListField, value) != true)) {
                     this.ExternalTariffListField = value;
                     this.RaisePropertyChanged("ExternalTariffList");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse))]
+    public partial class BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceGenericAppSettingsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceGenericAppSettingsResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.GenericAppSettingsResponse GenericAppSettingsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.GenericAppSettingsResponse GenericAppSettings {
+            get {
+                return this.GenericAppSettingsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenericAppSettingsField, value) != true)) {
+                    this.GenericAppSettingsField = value;
+                    this.RaisePropertyChanged("GenericAppSettings");
                 }
             }
         }
@@ -3732,6 +3741,83 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GenericAppSettingsResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class GenericAppSettingsResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RecaptchaClientKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RecaptchaServerKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool UseGoogleRecaptchaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RecaptchaClientKey {
+            get {
+                return this.RecaptchaClientKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RecaptchaClientKeyField, value) != true)) {
+                    this.RecaptchaClientKeyField = value;
+                    this.RaisePropertyChanged("RecaptchaClientKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RecaptchaServerKey {
+            get {
+                return this.RecaptchaServerKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RecaptchaServerKeyField, value) != true)) {
+                    this.RecaptchaServerKeyField = value;
+                    this.RaisePropertyChanged("RecaptchaServerKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool UseGoogleRecaptcha {
+            get {
+                return this.UseGoogleRecaptchaField;
+            }
+            set {
+                if ((this.UseGoogleRecaptchaField.Equals(value) != true)) {
+                    this.UseGoogleRecaptchaField = value;
+                    this.RaisePropertyChanged("UseGoogleRecaptcha");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainSiteServiceReference.IMainSiteService")]
     public interface IMainSiteService {
@@ -3861,6 +3947,12 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/ExternalTariffList", ReplyAction="http://tempuri.org/IMainSiteService/ExternalTariffListResponse")]
         System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse> ExternalTariffListAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GenericAppSettings", ReplyAction="http://tempuri.org/IMainSiteService/GenericAppSettingsResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse GenericAppSettings(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GenericAppSettings", ReplyAction="http://tempuri.org/IMainSiteService/GenericAppSettingsResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse> GenericAppSettingsAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -4056,6 +4148,14 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse> ExternalTariffListAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffRequest request) {
             return base.Channel.ExternalTariffListAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse GenericAppSettings(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest request) {
+            return base.Channel.GenericAppSettings(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse> GenericAppSettingsAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest request) {
+            return base.Channel.GenericAppSettingsAsync(request);
         }
     }
 }

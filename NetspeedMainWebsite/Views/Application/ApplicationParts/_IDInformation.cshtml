@@ -21,7 +21,7 @@
         </div>
         @*<div class="form-group">*@
         <div class="row">
-            <div class="col-lg-6 col-md-6">
+            @*<div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Uyruk</label>
                     @Html.DropDownListFor(m => m.Nationality, new SelectList(ViewBag.NationalityList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
@@ -31,7 +31,7 @@
                     </div>
                     <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                 </div>
-            </div>
+            </div>*@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
@@ -55,7 +55,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
-                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı" } })
+                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı", @maxlength = 50 } })
 
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.FatherName)
@@ -68,7 +68,8 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
-                        @Html.EditorFor(m => m.MotherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Adı" } })
+                        @Html.EditorFor(m => m.MotherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Adı",  @maxlength = 50
+                        } })
 
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.MotherName)
@@ -84,7 +85,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
-                        @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Doğum Yeri" } })
+                        @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Doğum Yeri", @maxlength = 50 } })
 
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.BirthPlace)
@@ -97,7 +98,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
-                        @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No" } })
+                        @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No", @maxlength = 15 } })
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.SerialNo)
                         </div>
@@ -151,7 +152,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
-                    @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer" } })
+                    @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer", @maxlength = 50 } })
                     <div class="text-danger">
                         @Html.ValidationMessageFor(model => model.PlaceOfIssue)
                     </div>
@@ -172,7 +173,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="form-group is-required">
                             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
-                            @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", } })
+                            @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", @maxlength = 50 } })
 
                             <div class="text-danger">
                                 @Html.ValidationMessageFor(model => model.MotherFirstSurname)
@@ -186,4 +187,3 @@
         </div>
     </div>
 </div>
-

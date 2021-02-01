@@ -136,6 +136,12 @@
   <wsdl:message name="IMainSiteService_ExternalTariffList_OutputMessage">
     <wsdl:part name="parameters" element="tns:ExternalTariffListResponse" />
   </wsdl:message>
+  <wsdl:message name="IMainSiteService_GenericAppSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenericAppSettings" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_GenericAppSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenericAppSettingsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMainSiteService">
     <wsdl:operation name="RegisterCustomerContact">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterCustomerContact" message="tns:IMainSiteService_RegisterCustomerContact_InputMessage" />
@@ -220,6 +226,10 @@
     <wsdl:operation name="ExternalTariffList">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/ExternalTariffList" message="tns:IMainSiteService_ExternalTariffList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/ExternalTariffListResponse" message="tns:IMainSiteService_ExternalTariffList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenericAppSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GenericAppSettings" message="tns:IMainSiteService_GenericAppSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/GenericAppSettingsResponse" message="tns:IMainSiteService_GenericAppSettings_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMainSiteService" type="tns:IMainSiteService">
@@ -406,6 +416,15 @@
     </wsdl:operation>
     <wsdl:operation name="ExternalTariffList">
       <soap:operation soapAction="http://tempuri.org/IMainSiteService/ExternalTariffList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenericAppSettings">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/GenericAppSettings" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

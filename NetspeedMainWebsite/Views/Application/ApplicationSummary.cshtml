@@ -1,7 +1,7 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 
 
-@{ ViewBag.Title = "Başvuru Özeti - Netspeed";
+@{ ViewBag.Title = "Başvuru Özeti";
 
                 var model = Model;
                 Layout = "~/Views/Shared/_Layout.cshtml"; }
@@ -217,7 +217,7 @@
 
                             @Html.HiddenFor(m => m.MotherName)
                             @Html.HiddenFor(m => m.MotherFirstSurname)
-                            @Html.HiddenFor(m => m.Nationality)
+                          @*  @Html.HiddenFor(m => m.Nationality)*@
                             @Html.HiddenFor(m => m.Sex)
                             @Html.HiddenFor(m => m.BirthDate)
 

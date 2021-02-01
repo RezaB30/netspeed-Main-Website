@@ -50,21 +50,32 @@ namespace NetspeedMainWebsite.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentBillAndResult(/*string PhoneNumber, string ClientInfo*//*FormCollection fc,*/ PaymentBillViewModel clientInfos)
+        public ActionResult PaymentBillAndResult(PaymentBillViewModel clientInfos)
         {
             var message = string.Empty;
 
             if (ModelState.IsValid)
             {
+                WebServiceWrapper genericSettings = new WebServiceWrapper();
+                var captcha= genericSettings.GenericAppSettings();
+                
+
                 var response = Request["g-recaptcha-response"];
                 //const string secret = Properties.Settings.Default.CaptchaKey;
 
-                string secret = Properties.Settings.Default.CaptchaSecretKey;
+                //string secret = Properties.Settings.Default.CaptchaSecretKey;
+
+                bool googleCaptcha = captcha.GenericAppSettings.UseGoogleRecaptcha;
+
+                string secretKey = captcha.GenericAppSettings.RecaptchaServerKey;
+                string clientKey = captcha.GenericAppSettings.RecaptchaClientKey;
+
+                ViewBag.clientKey = clientKey;
 
                 var client = new WebClient();
                 var reply =
                     client.DownloadString(
-                        string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+                        string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
 
                 var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponseViewModel>(reply);
 

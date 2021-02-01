@@ -223,4 +223,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ExternalTariffResponse" nillable="true" type="tns:ExternalTariffResponse" />
+  <xs:complexType name="NetspeedServiceGenericAppSettingsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GenericAppSettings" nillable="true" type="tns:GenericAppSettingsResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceGenericAppSettingsResponse" nillable="true" type="tns:NetspeedServiceGenericAppSettingsResponse" />
+  <xs:complexType name="GenericAppSettingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RecaptchaClientKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecaptchaServerKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UseGoogleRecaptcha" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GenericAppSettingsResponse" nillable="true" type="tns:GenericAppSettingsResponse" />
 </xs:schema>

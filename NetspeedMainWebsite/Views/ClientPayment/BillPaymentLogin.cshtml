@@ -2,7 +2,7 @@
 @using NetspeedMainWebsite.Models.ViewModel
 
 @{
-    ViewBag.Title = "Fatura Sorgulama ve Ödeme - Netspeed";
+    ViewBag.Title = "Fatura Sorgulama ve Ödeme";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
@@ -131,30 +131,32 @@
                                                         @Html.ValidationMessageFor(m => m.PhoneNumber)
                                                     </div>
                                                 </div>
-                                            </div>                                          
+                                            </div>
 
 
-                                            <div class="g-recaptcha" data-sitekey="6LemlQwaAAAAAFqlAuPzuuBF-gF0HrNBeelSS2xJ"></div>
+                                            @*<div class="g-recaptcha" data-sitekey="6LemlQwaAAAAAFqlAuPzuuBF-gF0HrNBeelSS2xJ"></div>*@
+                                           
+                                            <div class="g-recaptcha" data-sitekey= @ViewBag.clientKey></div>
+
 
                                             <div class="text-danger">
                                                 @TempData["CaptchaMessage"]
-                                                </div>
-                                                <!--end::Form group-->
-                                                <!--begin::Action-->
-                                                <div class="pb-lg-0 pb-5">
-
-                                                    <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>
-                                                                                     <!--end::Action-->
-
-                                                    @*<input type="hidden">*@
-                                                </div>
-                                                <hr class="my-8">
-                                                <div class="d-flex align-items-center">
-                                                    <p class="text-dark-50 font-weight-bold my-8">Ödemelerinizi kolay ve güvenli bir şekilde yapabilmenizi sağlayan yeni nesil ödeme sistemi ile her seferinde kredi kartı bilgilerinizi paylaşmaya gerek kalmadan çok kolay, hızlı ve güvenli bir şekilde Netspeed evde internet faturalarınızı ödeyebilir veya otomatik olarak ödenmesini sağlayabilirsiniz. </p>
-                                                </div>
-                                                <p><a href="https://online.netspeed.com.tr" class="text-primary font-weight-bold my-8 text-hover-warning ">Faturanıza otomatik ödeme vermek için tıklayınız.</a></p>
-
                                             </div>
+                                            <!--end::Form group-->
+                                            <!--begin::Action-->
+                                            <div class="pb-lg-0 pb-5">
+
+                                                <button type="submit" class="btn btn-primary font-weight-bold mr-2">Fatura Borcumu Sorgula</button>
+                                                <!--end::Action-->
+                                                @*<input type="hidden">*@
+                                            </div>
+                                            <hr class="my-8">
+                                            <div class="d-flex align-items-center">
+                                                <p class="text-dark-50 font-weight-bold my-8">Ödemelerinizi kolay ve güvenli bir şekilde yapabilmenizi sağlayan yeni nesil ödeme sistemi ile her seferinde kredi kartı bilgilerinizi paylaşmaya gerek kalmadan çok kolay, hızlı ve güvenli bir şekilde Netspeed evde internet faturalarınızı ödeyebilir veya otomatik olarak ödenmesini sağlayabilirsiniz. </p>
+                                            </div>
+                                            <p><a href="https://online.netspeed.com.tr" class="text-primary font-weight-bold my-8 text-hover-warning ">Faturanıza otomatik ödeme vermek için tıklayınız.</a></p>
+
+                                        </div>
                                         </div>
                                 </div>
                             </div>
