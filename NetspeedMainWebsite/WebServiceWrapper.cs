@@ -396,41 +396,6 @@ namespace NetspeedMainWebsite
             });
         }
 
-        //public NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(string phoneNumber, string password)
-        //{
-        //    return InternalClient.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
-        //    {
-        //        Username = Username,
-        //        Rand = Rand,
-        //        Hash = CalculateHash(),
-        //        Culture = Culture,
-        //        RegisterSMSValidationParameters = new RegisterSMSValidationRequest
-        //        {
-        //            CustomerPhoneNo = phoneNumber,
-        //            Password = password
-        //        }
-
-        //    });
-        //}
-
-
-        //public NetspeedServiceRegisterSMSValidationResponse RegisterSMSValidation(string phoneNumber, string password)
-        //{
-        //    return InternalClient.RegisterSMSValidation(new NetspeedServiceRegisterSMSValidationRequest()
-        //    {
-        //        Username = Username,
-        //        Rand = Rand,
-        //        Hash = CalculateHash(),
-        //        Culture = Culture,
-        //        RegisterSMSValidationParameters = new RegisterSMSValidationRequest
-        //        {
-        //            CustomerPhoneNo = phoneNumber,
-        //            Password = password
-        //        }
-
-        //    });
-        //}
-
         public NetspeedServiceSendGenericSMSResponse SendGenericSMS(string phoneNumber)
         {
             UpdateRandom();

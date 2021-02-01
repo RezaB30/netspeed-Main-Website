@@ -1,11 +1,8 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 
 
-@{ 
-    ViewBag.Title = "Kayıtlı Müşteri - Netspeed";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
-    }
-
+@{ ViewBag.Title = "Kayıtlı Müşteri - Netspeed";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -23,14 +20,9 @@
     @Html.AntiForgeryToken()
     <!--begin::Container-->
     <div class="container">
-
-
         <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
-
-
             <!--begin::Title-->
             <div class="text-right mb-lg-4 mb-15 mr-xxl-10">
-
             </div>
             <!--end::Title-->
             <!--begin::Form-->
@@ -45,8 +37,6 @@
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between text-white position-relative ml-auto p-7">
                                 <!--begin::Shape-->
                                 <div class="row">
-
-                                    @*<div class="col-lg-7 col-md-7">*@
 
                                     <div class="position-absolute opacity-30 top-0 right-0">
                                         <span class="svg-icon svg-icon-2x svg-logo-white svg-icon-flip">
@@ -70,12 +60,8 @@
                                     <div class="text-right d-flex flex-column">
                                         <script src="~/Scripts/js/lottie-player.js"></script>
                                     </div>
-                                    @*</div>*@
 
-                                    @*<div class="col-lg-5 col-md-5">*@
-
-                                    <div @*style="width:7em; height:3em"*@>
-
+                                    <div>
                                         <a href="https://online.netspeed.com.tr">
                                             <button type="button" class="btn btn-dark font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
 
@@ -94,36 +80,18 @@
                                             </button>
                                         </a>
                                     </div>
-
-                                    @*</div>*@
-
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
                         <hr class="my-0">
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
         <!--end: Wizard Actions-->
     </div>
 </div>
-<!--end::Form-->
-        </div>
-<!--end::Content-->
-    </div>
-</div>
-    </div>
-</div>
+
 
 
 

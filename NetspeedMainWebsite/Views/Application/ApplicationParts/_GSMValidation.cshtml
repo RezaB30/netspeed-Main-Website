@@ -25,17 +25,12 @@
                     {
                         @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6",
                         @placeholder = "Telefon Numaranız"
-                        //@id = "validationControl"
-                        //@id="phone"
-                        //@data_inputmask = "(999) 999-9999"
                     }
 
                 })
                 <div class="text-danger"> @Html.ValidationMessageFor(model => model.PhoneNumber)</div>
-                @* @Html.HiddenFor(m => m.PhoneNumber)*@
                 <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
 
-                @*<input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" name="gsmno" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true" />*@
             </div>
             <!--end::Form Group-->
             <!--end: Wizard Step 1-->
@@ -43,8 +38,4 @@
         </div>
     </div>
 </div>
-@*</div>*@
-@*</div>
-    </div>
-    </div>*@
 

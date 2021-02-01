@@ -22,6 +22,5 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string PortState { get; set; }
         public string SVUID { get; set; }
         public TariffsViewModel[] TariffList { get; set; }
-        //public IEnumerable<TariffsViewModel> TariffList { get; set; }
     }
 }

@@ -247,17 +247,12 @@ namespace NetspeedMainWebsite.Controllers
 
             if (ModelState.IsValid)
             {
-                //DateTime bd = new DateTime(application.BirthYear, application.BirthMonth, application.BirthDay);
-                var ApplicationList = new List<ApplicationViewModel>();
-
-
 
                 var result = new ApplicationViewModel()
                 {
                     FirstName = application.FirstName.ToUpper(new CultureInfo("tr-TR", false)),
                     LastName = application.LastName,
                     BirthPlace = application.BirthPlace.ToUpper(new CultureInfo("tr-TR", false)),
-                    //ContactPhoneNo = application.PhoneNumber,
                     PhoneNumber = application.PhoneNumber,
                     TC = application.TC,
                     EmailAddress = application.EmailAddress,
@@ -278,7 +273,6 @@ namespace NetspeedMainWebsite.Controllers
                     ReferenceCode = application.ReferenceCode,
                     Nationality = application.Nationality,
                     Sex = application.Sex,
-                    //BirthDate =Convert.ToDateTime(application.ReturnDateForDisplay),
                     BirthDate = application.BirthDate,
                     DateOfIssue = application.DateOfIssue,
                     SMSCode = application.SMSCode,
@@ -305,9 +299,7 @@ namespace NetspeedMainWebsite.Controllers
                 MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(Properties.Settings.Default.SMSValidationDuration.Minutes));
 
                 var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
-                //ViewBag.exTime = exTime;
                 TempData["exTime"] = exTime;
-                //Session["smscode"] = response.SMSCode;
 
                 return View(viewName: "GsmVerificationWithSms", model: result);
             }
@@ -357,14 +349,12 @@ namespace NetspeedMainWebsite.Controllers
         {
             var SmsValidationMessage = string.Empty;
 
-            //var smscode = Session["smscode"] as string;
             var Value = MemoryCache.Default.Get(result.PhoneNumber) as ApplicationViewModel;
 
             if (Value.ExpirationDate > DateTime.Now)
             {
                 if (Value.SMSCode == result.SMSCode)//Is true sms code?
                 {
-                    //return View(viewName: "GsmVerification", model: result);
                     WebServiceWrapper clientGetAddress = new WebServiceWrapper();
                     var getAddress = clientGetAddress.GetApartmentAddress(result.ApartmentId);
                     var address = getAddress.AddressDetailsResponse;
@@ -383,7 +373,6 @@ namespace NetspeedMainWebsite.Controllers
                 {
                     TempData["SmsValidationMessage"] = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
                     var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
-                    //ViewBag.exTime = exTime;
                     TempData["exTime"] = exTime;
                     //customers have 2 minutes
                     return View(viewName: "GsmVerificationWithSms", model: result);
@@ -400,11 +389,10 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult ApplicationSummary(ApplicationViewModel result)
         {
+            var ValidationError = string.Empty;
             WebServiceWrapper client = new WebServiceWrapper();
             var getAddress = client.GetApartmentAddress(result.ApartmentId);
             var address = getAddress.AddressDetailsResponse;
-
-            //var ConfirmList = new List<ApplicationViewModel>();
 
             var Confirm = new ApplicationViewModel()
             {
@@ -439,6 +427,10 @@ namespace NetspeedMainWebsite.Controllers
 
             if (response.ResponseMessage.ErrorCode == 200)
             {
+                ValidationError="Kimlik Bilginiz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz.";
+                TempData["ValidationError"] = ValidationError;
+
+
                 return RedirectToAction("Index", "Application");
             }
 
@@ -446,7 +438,6 @@ namespace NetspeedMainWebsite.Controllers
 
         }
 
-        //[ValidateAntiForgeryToken]
         public ActionResult ApplicationFail()
         {
             return View();

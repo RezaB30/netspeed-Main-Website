@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-between align-items-center border-bottom border-white py-7">
             <h3 class="h4 text-dark-25 mb-0">İletişim Formu</h3>
             <div class="d-flex">
-                <a href="/Support/ContactUs" class="font-size-h6 text-dark-25 text-hover-warning font-weight-bold ml-8">İletişim Kanalları</a>
+                <a href="/About/ContactUs" class="font-size-h6 text-dark-25 text-hover-warning font-weight-bold ml-8">İletişim Kanalları</a>
             </div>
         </div>
         <!--end::Topbar-->
@@ -38,13 +38,12 @@
     <div class="card-body bg-white">
         <div class="row">
             <div class="col-xl-3"></div>
-            <div style="color:red; list-style-type:none;">
+            @*<div style="color:red; list-style-type:none;">
                 @Html.ValidationSummary()
-            </div>
+            </div>*@
 
             <div class="col-xl-6">
-                <div style="text-align:center; color:red; font-size:2em; margin-bottom:1em">
-                    @* @TempData["Message"]*@
+                <div style="text-align:center; color:#6610f2; font-size:2em; margin-bottom:1em">
                     @ViewBag.Message
                 </div>
                 <div class="alert alert-custom fade show my-8 mb-8" style="background-color: rgb(255 248 225)" role="alert">
@@ -57,7 +56,6 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız Soyadınız</label>
-                    <!--<input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="FullName"--> @*id="FullName"*@ <!--placeholder="Adı Soyadı" maxlength="50">-->
 
                     @Html.EditorFor(m => m.FullName, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", name = "FullName", placeholder = "Adı Soyadı", @autocomplete = "off", @maxlength = 50 } })
 
@@ -69,7 +67,6 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">İletişim Numaranız</label>
-                    <!--<input type="text" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="PhoneNumber"--> @*id="PhoneNumber"*@ <!--placeholder="Telefon Numarası" id="kt_inputmask_3" im-insert="true">-->
                     @Html.EditorFor(m => m.PhoneNumber, new
                     {
                         htmlAttributes = new
@@ -89,7 +86,6 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
-                    <!--<input type="email" class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6" name="EmailAddress"--> @*id="EmailAddress"*@ <!--placeholder="E-Posta Adresi" maxlength="50">-->
                     @Html.EditorFor(m => m.EmailAddress, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", name = "EmailAddress", @autocomplete = "off", placeholder = "E-Posta Adresi" } })
 
                     <div class="text-danger">
@@ -131,9 +127,3 @@
 }
 <div class="py-10">
 </div>
-
-
-@section script{
-    <script src="~/Scripts/js/hide-show-fields-form.js"></script>
-    <script src="~/Scripts/js/input-mask.js"></script>
-}

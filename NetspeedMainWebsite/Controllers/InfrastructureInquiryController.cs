@@ -12,8 +12,7 @@ namespace NetspeedMainWebsite.Controllers
     public class InfrastructureInquiryController : Controller
     {
         //GET: InfrastructureInquiry
-        //MainSiteServiceClient client = new MainSiteServiceClient();
-        AddressUtility addressUtil = new AddressUtility();
+               AddressUtility addressUtil = new AddressUtility();
         public ActionResult Index()
         {
             var responseProvince = new WebServiceWrapper().GetProvinces();
@@ -205,19 +204,15 @@ namespace NetspeedMainWebsite.Controllers
                         Price = t.Price,
                         Speed = t.Speed,
                     });
-                    //InfrastructureResult.TariffList = TariffItems.ToArray();
                 }
                 else if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
                 {
-                    //var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FiberSpeed.Value) * 1024, true);
                     var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
                     InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
                     InfrastructureResult.Distance = Adsl.AdslDistance.ToString();
-                    //InfrastructureResult.MaxSpeed = response.ServiceAvailabilityResponse.AdslSpeed.ToString();
                     InfrastructureResult.XDSLType = "ADSL";
                     InfrastructureResult.PortState = Adsl.AdslPortState.ToString();
                     InfrastructureResult.SVUID = Adsl.AdslSVUID.ToString();
-                    //return View(InfrastructureResult);
                     var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
                     {
                         TariffID = t.TariffID,
@@ -225,9 +220,8 @@ namespace NetspeedMainWebsite.Controllers
                         Price = t.Price,
                         Speed = t.Speed,
                     });
-                    //InfrastructureResult.TariffList = TariffItems.ToArray();
                 }
-                else//DÜZENLE
+                else
                 {
                     InfrastructureResult.Message = response.ResponseMessage.ErrorMessage;
                     InfrastructureResult.Distance = "-";
@@ -235,14 +229,7 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.XDSLType = "";
                     InfrastructureResult.PortState = "Yok";
                 }
-                //}
-                //else
-                //{
-                //    var message = string.Empty;
-                //    message = "Lütfen Tüm Alanları Doldurunuz.";
-                //    TempData["message"] = message;
-                //    return RedirectToAction("Index", "InfrastructureInquiry");
-                //}
+               
                 return View(InfrastructureResult);
             }
             var responseProvince = new WebServiceWrapper().GetProvinces();
@@ -268,7 +255,6 @@ namespace NetspeedMainWebsite.Controllers
             ViewBag.ApartmentList = ApartmentList;
 
             return View(viewName: "Index", model: inf);
-
 
         }
 

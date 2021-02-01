@@ -19,7 +19,6 @@
                     @placeholder = "Adınız",
                     @maxlength = 50@*@id= "validationControl"*@}
             })
-            @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="firstname" placeholder="Adınız" value="" />*@
 
 
             <div class="text-danger">
@@ -27,7 +26,6 @@
             </div>
             <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
         </div>
-     @*   @Html.HiddenFor(m => m.FirstName)*@
     </div>
     <!--end::Form Group-->
     <!--begin::Form Group-->
@@ -40,16 +38,13 @@
                 {
                     @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6 validationControl",
                     @placeholder = "Soyadınız",
-                    @maxlength = 50@*, @id = "validationControl"*@}
+                    @maxlength = 50}
             })
-            @*  <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="lastname" placeholder="Soyadınız" value="" />*@
-
 
             <div class="text-danger">
                 @Html.ValidationMessageFor(model => model.LastName)
             </div>
             <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
-            @*  @Html.HiddenFor(m => m.LastName)*@
         </div>
     </div>
     <!--end::Form Group-->
@@ -63,9 +58,8 @@
                 {
                     @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6 validationControl",
                     @placeholder = "E-Posta Adresi",
-                    @maxlength = 50@*@id = "validationControl"*@}
+                    @maxlength = 50}
             })
-            @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="email" placeholder="E-Posta Adresiniz" value="" />*@
 
 
             <div class="text-danger">
@@ -79,7 +73,4 @@
     </div>
 </div>
 
-
-    @*</div>
-    </div>*@
-    @*</div>*@
+ 

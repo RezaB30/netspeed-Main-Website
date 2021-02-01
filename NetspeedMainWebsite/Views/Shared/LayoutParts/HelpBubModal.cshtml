@@ -1,6 +1,4 @@
 ﻿
-
-
 @if (TempData["callMessages"] == null)
 {
     <style>
@@ -139,8 +137,6 @@
             <div class="modal-content">
                 @using (Html.BeginForm("CallMe", null, FormMethod.Post, new { @class = "form-group", id = "myModal" }))
                 {
-
-
                     @Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
                     @Html.Hidden("returnUrl", Request.Url.PathAndQuery) @*@Html.AntiForgeryToken()*@
 
@@ -153,8 +149,8 @@
                             <i aria-hidden="true" class="text-white font-size-h6 ki ki-close"></i>
                         </button>
                     </div>
-                    <div style=" background-color: white; width: 35em; border: solid ##e4e6ef; padding: 3em; margin: 1.5em; border-radius: 3%;" id="success-part">
-                        <div style="text-align:center; font-size:2em; margin-top:1em; color:#290b63">
+                    <div style="width: 35em; border: solid #e4e6ef; padding: 3em; margin: 1.5em; border-radius: 3%;" id="success-part">
+                        <div style="text-align:center; font-size:2em; color:#8950FC">
                             @TempData["callMessages"]
                         </div>
                     </div>

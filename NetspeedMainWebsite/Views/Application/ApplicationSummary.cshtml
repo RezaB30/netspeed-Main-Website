@@ -1,6 +1,4 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
-@*@model IEnumerable<NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel>
-    @using NetspeedMainWebsite.Models.ViewModel*@
 
 
 @{ ViewBag.Title = "Başvuru Özeti - Netspeed";
@@ -247,10 +245,8 @@
                         <!--begin::Section-->
                         <h4 class="font-weight-bolder mb-3">Bağlantı Yapılacak Adres:</h4>
 
-                        <div>
-
+                        <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
                             @Html.DisplayFor(m => m.AddressText)
-
                         </div>
 
                         <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
@@ -271,19 +267,12 @@
 
                         <div class="separator separator-dashed my-5"></div>
 
-
                         <div class="form-group row">
                             <div class="col-xl-12 col-lg-8 ">
                                 <div class="checkbox-inline">
 
                                     <label class="checkbox">
-                                        <input name="cccvv" type="checkbox" class="is-invalid">
-                                        @*@Html.CheckBoxFor(m => m.SubscriptionAgreementCheck, new { @class = "checkbox checkbox checkbox - inline mr - 2" })
-                                            @Html.HiddenFor(m => m.SubscriptionAgreementCheck)
-                                            @Html.ValidationMessageFor(m => m.SubscriptionAgreementCheck)*@
-
-
-
+                                        <input name="cccvv" type="checkbox" class="is-invalid">                                      
                                         <span></span><a href="https://netspeed.com.tr/sozlesme/basvuruformuvesozlesme.pdf" target="_blank" class="text-primary font-weight-bolder">Abonelik Sözleşmesini Okudum</a>
                                     </label>
                                     <label class="checkbox">
@@ -300,7 +289,7 @@
                         </div>
 
                         <div class="col-lg-4 col-md-4">
-                            <div @*style="width:7em; height:3em"*@>
+                            <div >
                                 <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 " data-wizard-type="action-next" id="checkBtn" @*onclick="mybtnfunction();"*@>
                                     Onayla
                                     <span class="svg-icon svg-icon-md ml-1">

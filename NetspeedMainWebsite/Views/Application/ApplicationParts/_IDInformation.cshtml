@@ -2,7 +2,6 @@
 
 
 <div class="pb-5" data-wizard-type="step-content">
-    @*@Html.AntiForgeryToken()*@
     <!--begin::Title-->
     <div class="pb-15 pb-lg-5">
         <h3 class="font-weight-bolder text-dark font-size-h2">Kimlik Bilgileriniz</h3><hr class="my-4">
@@ -13,7 +12,6 @@
             <div class="form-group is-required">
                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Kart Tipi</label>
                 @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-                @* <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" name="evtelno" id="kt_inputmask_18" im-insert="true" value="" />*@
 
                 <div class="text-danger">
                     @Html.ValidationMessageFor(model => model.IDCardType)
@@ -62,7 +60,6 @@
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.FatherName)
                         </div>
-                        @*@Html.HiddenFor(m => m.FatherName)*@
                         <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                     </div>
                 </div>
@@ -78,7 +75,6 @@
                         </div>
                         <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                     </div>
-                    @*@Html.HiddenFor(m => m.MotherName)*@
                 </div>
             </div>
         </div>
@@ -95,7 +91,6 @@
                         </div>
                         <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                     </div>
-                    @*@Html.HiddenFor(m => m.BirthPlace)*@
                 </div>
                 <!--end::Form Group-->
                 <!--begin::Form Group-->
@@ -108,7 +103,6 @@
                         </div>
                         <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                     </div>
-                    @*@Html.HiddenFor(m => m.SerialNo)*@
                 </div>
             </div>
         </div>
@@ -117,7 +111,6 @@
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
                    
-                    @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
                     @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü" })
 
                     <div class="text-danger">
@@ -125,7 +118,6 @@
                     </div>
                     <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                 </div>
-                @*@Html.HiddenFor(m => m.BirthDate)*@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
@@ -139,18 +131,13 @@
                 </div>
             </div>
         </div>
-        @*@Html.HiddenFor(m => m.Sex)*@
-        @*</div>*@
         <!--end::Form Group-->
         <!--begin::Form Group-->
-        @* <div class="pb-0 pb-lg-0">*@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>
-                    
 
-                    @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
                     @Html.TextBoxFor(m => m.DateOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Verildiği Tarih" })
 
                     <div class="text-danger">
@@ -158,7 +145,6 @@
                     </div>
                     <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                 </div>
-                @*@Html.HiddenFor(m => m.DateOfIssue)*@
 
 
             </div>
@@ -172,25 +158,14 @@
                     <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                 </div>
             </div>
-            @*@Html.HiddenFor(m => m.PlaceOfIssue)*@
             <!--end::Form Group-->
             <!--begin::Form Group-->
 
         </div>
-        @*</div>*@
 
         <div class="pb-0 pb-lg-5">
             <div class="row">
-                <!--<div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih</label>-->
-                @*@Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "datepicker form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Gün.Ay.Yıl" } })*@
-                <!--
-                </div>-->
-                <!--end::Form Group-->
-                <!--begin::Form Group-->
-
-            </div>
+                         </div>
             <div class="pb-0 pb-lg-5">
                 <div class="row">
                     <!--end::Form Group-->
@@ -205,13 +180,10 @@
                             </div>
                             <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
                         </div>
-                        @*@Html.HiddenFor(m => m.MotherFirstSurname)*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@*</div>*@
-<!--end::Form Group-->
-<!--end: Wizard Step 6-->
+

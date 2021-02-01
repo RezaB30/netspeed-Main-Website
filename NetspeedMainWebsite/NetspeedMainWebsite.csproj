@@ -169,7 +169,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Utilities.cs" />
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1281,8 +1280,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\media\svg\social-icons\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\CallMe\" />
     <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>

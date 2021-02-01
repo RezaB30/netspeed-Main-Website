@@ -104,7 +104,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
 
         [Required(ErrorMessage = "*T.C Kimlik Numarası Alanı Gerekli ")]
         [RegularExpression(@"^([1-9]{1}[0-9]{9}[02468]{1})$", ErrorMessage = "*Lütfen T.C Kimlik Numaranızı Doğru Giriniz.")]
-        //[MaxLength(11), MinLength(11)]
         public string TC { get; set; }
 
         [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
@@ -303,7 +302,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
         public DateTime? _DateOfIssue { get; set; }
 
-        //[Required(ErrorMessage = "*SMS Doğrulama Kodu Alanı Gerekli ")]
         [MaxLength(6), MinLength(6)]
         public string SMSCode { get; set; }
         public DateTime ExpirationDate { get; set; }

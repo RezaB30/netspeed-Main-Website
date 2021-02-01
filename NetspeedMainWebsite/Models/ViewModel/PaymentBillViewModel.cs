@@ -10,7 +10,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
     {
         [Required(ErrorMessage = "*TC Kimlik Numarası veya Müşteri Numarası Zorunlu Alandır.")]
         [RegularExpression(@"^([1-9]{1}[0-9]{9}[02468]{1})|([1-9]{1}[0-9]{9})$", ErrorMessage = "*Lütfen Numaranızı Doğru Giriniz.")]//or kullan
-        //[RegularExpression(@"^([1-9]{1}[0-9]{9}[02468]{1}$) | (^[1-9]{1}[0-9]{9}$)", ErrorMessage = "*Lütfen Numaranızı Doğru Giriniz.")]//or kullan
         public string ClientInfo { get; set; }
 
         [Required(ErrorMessage = "*GSM Numarası Alanı Zorunlu Alandır.")]

@@ -136,7 +136,6 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
-                                                @*@Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.DistrictList, "Value", "Text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })*@
                                                 @Html.DropDownListFor(m => m.RegionId, new SelectList(ViewBag.RegionList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
                                             </div>
                                             <div class="text-danger">
@@ -208,9 +207,6 @@
 <!--end::Content-->
 
 @section script{
-
-    @*<script src="~/Scripts/js/hide-show-fields-form.js"></script>
-        <script src="~/Scripts/js/input-mask.js"></script>*@
 
     @Scripts.Render("~/Scripts/js/get-infrastructure.js")
 

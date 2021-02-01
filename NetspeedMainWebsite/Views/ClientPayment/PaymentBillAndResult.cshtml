@@ -142,12 +142,10 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td class="pl-0 py-6">
-                                                                    @* <label class="checkbox checkbox checkbox-inline">*@
                                                                     <span class="text-dark-75 font-weight-bolder text-hover-primary">
                                                                         @Html.CheckBoxFor(modelItem => item.BillCheck, new { @class = "checkbox checkbox checkbox - inline mr - 2", @data_value = item.BillId })
                                                                         @Html.HiddenFor(modelItem => item.BillId)
                                                                     </span>
-                                                                    @* </label>*@
                                                                     <div class="text-danger">
                                                                         @ViewBag.message
                                                                     </div>
@@ -206,9 +204,7 @@
 
 <!--end::Content-->
 @section script{
-    @*<script src="~/Scripts/js/hide-show-fields-form.js"></script>*@
-   @* <script src="~/Scripts/js/input-mask.js"></script>*@
-
+   
     <script>
         $('form').submit(function (e) {
             var idList = [];

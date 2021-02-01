@@ -39,10 +39,6 @@
         display: none;
     }
 
-    /* #TariffsAndPreference {
-        display: none;
-    }*/
-
     #IDInformation {
         display: none;
     }
@@ -52,6 +48,10 @@
     }
 
     #SMSValidation {
+        display: none;
+    }
+
+    #validation-error {
         display: none;
     }
 </style>
@@ -214,24 +214,33 @@
 
 
                     <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10">
-
                         <div class="d-flex justify-content-center flex-row-fluid ">
-
-                            @using (Html.BeginForm("Index", "Application", FormMethod.Post))
+                            @if (TempData["ValidationError"] != null)
                             {
-                                @*@Html.AntiForgeryToken()*@
+                                <style>
+                                    #validation-error {
+                                        display: block;
+                                    }
+                                </style>
+                            }
+
+
+                            @using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @id = "ApplicationForm" }))
+                            {
                                 <div id="InfrastructureInquiryForApplication" class="wizard-step">
 
-                                    @*@ViewBag.addressMessage*@
+                                    <div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">
+                                        @TempData["ValidationError"]
+
+                                    </div>
                                     @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
-                                    @*<input id="ButtonSwitch" type="button" value="Click" onclick="NextButton4();" />*@
                                     <div class="row">
                                         <div class="col-lg-7 col-md-7">
 
                                         </div>
 
                                         <div class="col-lg-5 col-md-5">
-                                            <div @*style="width:7em; height:3em"*@>
+                                            <div>
                                                 <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next">
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
@@ -261,7 +270,6 @@
                                             </div>
                                             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Referans Kodunu Yazınız</label>
                                             @Html.EditorFor(m => m.ReferenceCode, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Referans Kodu" } })
-                                            @*<input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" placeholder="Referans Kodu" name="referans" im-insert="true" value="" />*@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4">
@@ -285,7 +293,7 @@
                                             </div>
 
                                             <div class="col-lg-4 col-md-4">
-                                                <div @*style="width:7em; height:3em"*@>
+                                                <div>
                                                     <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlTarCon" data-wizard-type="action-next">
                                                         Sonraki
                                                         <span class="svg-icon svg-icon-md ml-1">
@@ -329,8 +337,8 @@
                                             </div>
 
                                             <div class="col-lg-3 col-md-3">
-                                                <div @*style="width:7em; height:3em"*@>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next" @*onclick="NextButtonConID();"*@ @*id="inputControl"*@ @*onclick="mybtnfunction();"*@>
+                                                <div>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next">
                                                         Sonraki
                                                         <span class="svg-icon svg-icon-md ml-1">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -373,8 +381,8 @@
                                         </div>
 
                                         <div class="col-lg-3 col-md-3">
-                                            <div @*style="width:7em; height:3em"*@>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" onclick="NextButtonIDGSM();" @*onclick="mybtnfunction();"*@>
+                                            <div>
+                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" >
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -418,8 +426,8 @@
                                         </div>
 
                                         <div class="col-lg-4 col-md-4">
-                                            <div @*style="width:7em; height:3em"*@>
-                                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next" id="correctPhone" @*onclick="mybtnfunction();"*@>
+                                            <div>
+                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputGsmButton" data-wizard-type="action-next" id="correctPhone" >
                                                     Sonraki
                                                     <span class="svg-icon svg-icon-md ml-1">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -457,13 +465,6 @@
     @Scripts.Render("~/Scripts/js/get-infrastructure.js")
     @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
 
-
-    @*<script>
-            $('button.inputControlInf').click(function () {
-                GetRequiredMessage('inputControlInf','#InfrastructureInquiryForApplication', '#InfrastructureAndTariffs');
-            })
-        </script>*@
-
     <script>
         $('button.inputControlButton').click(function () {
             var clickedButton = $(this);
@@ -476,10 +477,9 @@
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
 
-                if (!hasSelectedOption /*|| !hasText || ! HasRadioButtons*/) {
+                if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
-                    //currentSelect.closest('.form-group.is-required').find('span.required-error').show();
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -488,7 +488,6 @@
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
-                //var hasText = currentSelect.find('input[value!=""]:text').length > 0
                 var hasText = currentInput.val() != "";
 
                 if (!hasText) {
@@ -510,8 +509,6 @@
         })
     </script>
 
-
-
     <script>
         $('button.inputControlButtonId').click(function () {
             var clickedButton = $(this);
@@ -524,7 +521,7 @@
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
 
-                if (!hasSelectedOption /*|| !hasText || ! HasRadioButtons*/) {
+                if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
                 }
@@ -549,15 +546,12 @@
             if (isValid == true) {
 
                 if ($('#IDInformation').is(':visible')) {
-
                     $('#IDInformation').hide();
                     $('#GSMValidation').show();
                 }
             }
         })
     </script>
-
-
 
     <script>
         $('button.inputControlInf').click(function () {
@@ -570,8 +564,8 @@
             requiredSelects.each(function () {
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-               
-                if (!hasSelectedOption /*|| !hasText || ! HasRadioButtons*/) {
+
+                if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
                 }
@@ -582,7 +576,6 @@
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
-                //var hasText = currentSelect.find('input[value!=""]:text').length > 0
                 var hasText = currentInput.val() != "";
 
                 if (!hasText) {
@@ -595,7 +588,6 @@
             });
 
             if (isValid == true) {
-
                 $.ajax({
                     url: '@Url.Action("GetServiceAvailability","Application")',
                     method: 'POST',
@@ -618,11 +610,7 @@
                 }
             }
         })
-
-
     </script>
-
-
 
     <script>
         $('button.inputControlTarCon').click(function () {
@@ -633,7 +621,7 @@
             var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
 
             requiredRadioButtons.each(function () {
-                var currentSelect = $(this);           
+                var currentSelect = $(this);
                 var HasRadioButtons = currentSelect.is(':checked');
                 if (HasRadioButtons) {
                     count = count + 1;
@@ -657,7 +645,6 @@
 
     </script>
 
-
     <script>
         $(function () {
             $('.datepicker').datepicker({
@@ -668,7 +655,7 @@
                 monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
                 monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
                 yearRange: "1970:2021"
-            }); /*.val();*/
+            });
 
         });
     </script>
@@ -679,7 +666,6 @@
 
         });
     </script>
-
 
     <script>
             $('#getServiceAvability').click(function () {
@@ -742,7 +728,7 @@
         }
     </script>
 
-       <script>
+    <script>
         function PrevButtonGSMID() {
 
             if ($('#GSMValidation').show()) {
@@ -754,12 +740,39 @@
 
     <script>
         function PrevButtonIDCon() {
-
             if ($('#IDInformation').show()) {
                 $('#IDInformation').hide();
                 $('#ContactInformation').show();
             }
         }
+    </script>
+
+    <script>
+        $('button.inputGsmButton').click(function () {
+            var clickedButton = $(this);
+            var currentContainer = clickedButton.closest('div.wizard-step');
+            var isValid = true;
+            //var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
+            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+
+            requiredTexts.each(function () {
+                var currentInput = $(this);
+                var hasText = currentInput.val() != "";
+
+                if (!hasText) {
+                    isValid = false;
+                    currentInput.closest('.form-group').find('span.required-error').show();
+                }
+                else {
+                    currentInput.closest('.form-group').find('span.required-error').hide();
+                }
+            });
+
+            if (isValid == true) {
+                $('#ApplicationForm').submit();
+            }
+
+        })
     </script>
 
 }

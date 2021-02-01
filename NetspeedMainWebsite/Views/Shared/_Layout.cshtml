@@ -21,13 +21,7 @@
 </head>
 <body>
 
-    @*<style>
-        #callMeModal {
-            display: none
-        }
-    </style>*@
     @Html.Partial("LayoutParts/Menu")
-
 
     @RenderBody()
 
@@ -43,8 +37,6 @@
 
     @section script {
 
-        
-      
     }
     @RenderSection("script", required: false)
 </body>

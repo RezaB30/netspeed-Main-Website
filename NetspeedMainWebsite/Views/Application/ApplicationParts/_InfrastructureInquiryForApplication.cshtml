@@ -2,11 +2,6 @@
 @using NetspeedMainWebsite.Models.ViewModel
 
 
-@*<style>
-    span {
-        display: none;
-    }
-</style>*@
 
 @Html.AntiForgeryToken()
 
@@ -128,7 +123,7 @@
                 {
                     @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 validationControlInf",
                     @placeholder = "Kat No",
-           @maxlength = 3@*,id= "myMessage"*@}
+           @maxlength = 3}
 })
             <div class="text-danger">
                 @Html.ValidationMessageFor(m => m.Floor)
@@ -152,45 +147,3 @@
     </div>
 </div>
 
-
-
-@section script{
-
-    @Scripts.Render("~/Scripts/js/get-infrastructure.js")
-    @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
-
-    @*<script>
-
-            $('#btnadad').on('click', function (e)
-
-            $('#ProvinceId').change(function () {
-                GetValues('#ProvinceId', '#DistrictId', '/Application/GetDistricts');
-            })
-
-        </script>*@
-
-
-    @*<script>
-            $('#ProvinceId').change(function () {
-                GetValues('#ProvinceId', '#DistrictId', '/Application/GetDistricts');
-            })
-            $('#DistrictId').change(function () {
-                GetValues('#DistrictId', '#RegionId', '/Application/GetRegions');
-            })
-            $('#RegionId').change(function () {
-                GetValues('#RegionId', '#NeighborhoodId', '/Application/GetNeighborhoods');
-            })
-            $('#NeighborhoodId').change(function () {
-                GetValues('#NeighborhoodId', '#StreetId', '/Application/GetStreets');
-            })
-            $('#StreetId').change(function () {
-                GetValues('#StreetId', '#BuildingId', '/Application/GetBuildings');
-            })
-            $('#BuildingId').change(function () {
-                GetValues('#BuildingId', '#ApartmentId', '/Application/GetApartments');
-            })
-            $('#ApartmentId').change(function () {
-            })
-        </script>*@
-
-}
