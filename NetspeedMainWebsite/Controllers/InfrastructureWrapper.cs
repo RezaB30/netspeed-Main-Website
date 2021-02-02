@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace NetspeedMainWebsite
 {
 
-    public class InfrastructureWrapper:Controller
+    public class InfrastructureWrapper: Controller
     {
         [HttpPost]
         [ValidateAntiForgeryToken]

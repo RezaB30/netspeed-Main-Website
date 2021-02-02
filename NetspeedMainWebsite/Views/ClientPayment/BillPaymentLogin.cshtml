@@ -1,5 +1,6 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.PaymentBillViewModel
 @using NetspeedMainWebsite.Models.ViewModel
+@using RezaB.Web
 
 @{
     ViewBag.Title = "Fatura Sorgulama ve Ödeme";
@@ -10,6 +11,8 @@
     </script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    var random = new Random();
 
 }
 
@@ -105,7 +108,8 @@
                                             <!--begin::Form group-->
                                             <div class="form-group fv-plugins-icon-container">
                                                 <div class="text-danger">
-                                                    @TempData["message"]
+                                                    @TempData["clientMessage"]
+                                                    @TempData["temp"]
                                                 </div>
                                                 <label class="font-size-h6 font-weight-bolder text-dark">TC. Kimlik NO veya Müşteri No</label>
                                                 @* <input class="form-control form-control-solid h-auto py-4 px-6 rounded-lg" placeholder="TC. Kimlik No veya Müşteri No" type="text" name="ClientInfo" maxlength="11" autocomplete="off">*@
@@ -135,13 +139,50 @@
 
 
                                             @*<div class="g-recaptcha" data-sitekey="6LemlQwaAAAAAFqlAuPzuuBF-gF0HrNBeelSS2xJ"></div>*@
-                                           
-                                            <div class="g-recaptcha" data-sitekey= @ViewBag.clientKey></div>
 
+                                            @*  <div class="g-recaptcha" data-sitekey= @ViewBag.clientKey></div>*@
 
-                                            <div class="text-danger">
-                                                @TempData["CaptchaMessage"]
+                                            @*<div class="captcha">
+                                                    <div class="captcha-image-wrapper">
+                                                        <img class="captcha-image" src="@Url.Action("DirectLoginCaptcha","Captcha",new { id = random.Next(1000, int.MaxValue) })" />
+                                                        <input class="captcha-reload-button" type="button" />
+                                                    </div>
+                                                </div>
+
+                                                @Html.EditorFor(m => m.Captcha, new { htmlAttributes = new { @placeholder = "", @autocomplete = "off" } })
+                                                <div class="validation-container">@Html.ValidationMessageFor(m => m.Captcha)</div>*@
+
+                                            @*@if (Session["HasCustomCaptcha"] != null)
+                                                {*@
+                                            <div class="form-group py-2 m-0" style="padding-top:0 !important;padding-bottom:0 !important;">
+                                                <img src="@Url.Action("LoginCaptcha", "Captcha", new { id = DateTime.Now.Ticks })}" class="custom-captcha form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg" />
                                             </div>
+                                            <div class="form-group py-2  m-0">
+                                                @Html.EditorFor(m => m.Captcha, new { htmlAttributes = new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6", placeholder = "Kodu Giriniz", name = "PhoneNumber", id = "customCaptcha", @autocomplete = "off" } })
+
+                                               @* <input type="text" name="customCaptcha" id="customCaptcha" class="form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg" placeholder="Kod" />*@
+                                            </div>
+                                            @*}
+                                                else
+                                                {*@
+                                            <div class="form-group py-2  m-0">
+                                                <div class="g-recaptcha" data-sitekey="@ViewBag.clientCaptchaKey" data-error-callback="RecaptchaError"></div>
+                                            </div>
+                                            @*}*@
+
+                                            @*@if (true)
+                                            {
+                                                <div class='form-group py-2 m-0' style='padding-top:0 !important;padding-bottom:0 !important;'>
+                                                    <img src=@Url.Action("LoginCaptcha", "Captcha", new { id = DateTime.Now.Ticks }) class='custom-captcha form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg' />
+                                                </div>
+                                                <div class='form-group py-2  m-0'>
+                                                    <input autocomplete='off' type='text' name='customCaptcha' id='customCaptcha'
+                                                           class='form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg' placeholder="Kod" />
+                                                </div>
+                                            }*@
+                                            @*<div class="text-danger">
+                                                    @TempData["CaptchaMessage"]
+                                                </div>*@
                                             <!--end::Form group-->
                                             <!--begin::Action-->
                                             <div class="pb-lg-0 pb-5">
@@ -157,7 +198,7 @@
                                             <p><a href="https://online.netspeed.com.tr" class="text-primary font-weight-bold my-8 text-hover-warning ">Faturanıza otomatik ödeme vermek için tıklayınız.</a></p>
 
                                         </div>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         }
@@ -170,12 +211,117 @@
 </div>
 
 @section script{
+    @Scripts.Render("~/Scripts/js/get-captcha.js")
+
 
     <script>
         $(function () {
-            $('#kt_inputmask_3').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+            $('#ClientInfo').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
         });
     </script>
 
+    <script>
+        $(function () {
+            $('#PhoneNumber').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+        });
+    </script>
+
+    <script>
+        $('#Captcha').val("");
+    </script>
+
+
+    @*<script>
+            function RecaptchaError() {
+                GetCustomCaptcha('@Url.Action("GetCustomCaptcha", "ClientPayment")');
+            }
+            function DirectLoginResult(data, status) {
+                DisableLoadingScreen();
+                try {
+                    var result = data.responseJSON;
+                    if (result.valid) {
+                        if (result.invalidCaptcha) {
+                            GetCustomCaptcha('@Url.Action("GetCustomCaptcha", "ClientPayment")');
+                        } else {
+                            grecaptcha.reset();
+                        }
+                        var content = '<div data-field="username" data-validator="notEmpty" class="fv-help-block">' + result.valid + '</div>';
+                        $('#username-valid-container').html(content);
+                    }
+                    else {
+                        swal.fire({
+                            input: "text",
+                            icon: "success",
+                            title: "Common.SetLoginSMSCode",
+                            buttonsStyling: false,
+                            confirmButtonText: "Common.Login",
+                            showCancelButton: true,
+                            cancelButtonText: "Common.Cancel",
+                            customClass: {
+                                confirmButton: "btn font-weight-bold btn-light-primary",
+                                cancelButton: "btn font-weight-bold btn-light-danger"
+                            },
+                            inputValidator: (value) => {
+                                if (!value) {
+                                    if (result.invalidCaptcha) {
+                                        GetCustomCaptcha('@Url.Action("GetCustomCaptcha","ClientPayment")');
+                                    } else {
+                                        grecaptcha.reset();
+                                    }
+                                    return 'Common.SetLoginSMSCode'
+                                }
+                                else {
+                                    var error = "";
+                                    //var token = $('input[name="__RequestVerificationToken"]').val();
+                                    $.ajax({
+                                        url: 'Url.Action("CustomerLogin","Auth")',
+                                        method: 'POST',
+                                        data: { CustomerCode: $('#CustomerCode').val(), SMSPassword: value/* __RequestVerificationToken: token */},
+                                        complete: function (data, status) {
+                                            if (status == "success") {
+                                                var result = data.responseJSON;
+                                                if (!result.valid) {
+                                                    const Toast = swal.mixin({
+                                                        toast: true,
+                                                        position: 'top-end',
+                                                        showConfirmButton: false,
+                                                        timer: 1500,
+                                                        timerProgressBar: true
+                                                    })
+                                                    Toast.fire({
+                                                        icon: 'success',
+                                                        title: 'Common.LoggingOn'
+                                                    }).then((result) => {
+                                                        $('form').find("button").prop("disabled", "disabled");
+                                                        window.location.href = "/";
+                                                    })
+                                                }
+                                                else {
+                                                    swal.fire({
+                                                        icon: 'error',
+                                                        title: '',
+                                                        text: result.valid,
+                                                        buttonsStyling: false,
+                                                        confirmButtonText: "Common.OK",
+                                                        showCancelButton: false,
+                                                        customClass: {
+                                                            confirmButton: "btn font-weight-bold btn-light-primary"
+                                                        },
+                                                    })
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }).then(function () {
+                            KTUtil.scrollTop();
+                        });
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+        </script>*@
 
 }

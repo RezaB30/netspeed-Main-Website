@@ -1,6 +1,7 @@
 ﻿using NetspeedMainWebsite.AddressUtilities;
 using NetspeedMainWebsite.MainSiteServiceReference;
 using NetspeedMainWebsite.Models.ViewModel;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,8 +12,9 @@ using System.Web.Mvc;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class ApplicationController : Controller
+    public class ApplicationController : BaseController
     {
+        Logger applicationLogger = LogManager.GetLogger("applications");
         public ActionResult AlreadyHaveCustomer()
         {
             return View();
@@ -29,42 +31,6 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult ApplicationConfirm()
         {
             return View();
-        }
-
-        [HttpPost]
-        public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
-        {
-            WebServiceWrapper client = new WebServiceWrapper();
-            var callMessages = string.Empty;
-
-            if (ModelState.IsValid)
-            {
-                var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
-
-                callMessages = "Talebiniz Alınmıştır.";
-                TempData["callMessages"] = callMessages;
-
-                return Redirect(returnUrl);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                TempData["CallMeModel"] = callMe;
-                var errors = ModelState.ToArray().Select(ms => new { Key = ms.Key, ErrorMessages = string.Join(Environment.NewLine, ms.Value.Errors.Select(e => e.ErrorMessage)) }).ToArray();
-                foreach (var errorItem in errors)
-                {
-                    if (errorItem.Key == "callMe.FullName")
-                    {
-                        callMe.FullNameValidationMessage = errorItem.ErrorMessages;
-                    }
-                    else if (errorItem.Key == "callMe.PhoneNumber")
-                    {
-                        callMe.PhoneNumberValidationMessage = errorItem.ErrorMessages;
-                    }
-                }
-            }
-
-            return Redirect(returnUrl);
         }
 
         public ActionResult Index()
@@ -208,7 +174,7 @@ namespace NetspeedMainWebsite.Controllers
             }
 
             return PartialView("ApplicationParts/_InfrastructureAndTariffs", model: infrastructureTariff);
-           
+
         }
 
 
@@ -276,6 +242,10 @@ namespace NetspeedMainWebsite.Controllers
 
                 return View(viewName: "GsmVerificationWithSms", model: result);
             }
+
+
+            applicationLogger.Error($"application !modelstate");
+            
 
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
             var IDCardTypeList = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
@@ -382,7 +352,7 @@ namespace NetspeedMainWebsite.Controllers
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
                 result._PostalCode, result.BirthPlace, result.FatherName,
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
-               result.Sex,Convert.ToDateTime(result.BirthDate), result.IDCardType, result.FirstName,
+               result.Sex, Convert.ToDateTime(result.BirthDate), result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
                Convert.ToDateTime(result.DateOfIssue), null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId
                );
@@ -397,15 +367,18 @@ namespace NetspeedMainWebsite.Controllers
                 return RedirectToAction("AlreadyHaveCustomer", "Application");
             }
 
+            if (response.ResponseMessage.ErrorCode == 199)
+            {
+                applicationLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (NewCustomerRegister)");
+            }
+
             if (response.ResponseMessage.ErrorCode == 200)
             {
-                ValidationError="Kimlik Bilginiz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz.";
+                ValidationError = "Kimlik Bilginiz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz.";
                 TempData["ValidationError"] = ValidationError;
                 return RedirectToAction("Index", "Application");
             }
-
             return RedirectToAction("ApplicationFail", "Application");
-
         }
 
         public ActionResult ApplicationFail()

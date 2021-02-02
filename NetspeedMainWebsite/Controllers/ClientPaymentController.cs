@@ -9,33 +9,50 @@ using NetspeedMainWebsite.MainSiteServiceReference;
 using System.Runtime.Caching;
 using System.Net;
 using Newtonsoft.Json;
+using NLog;
 
 namespace NetspeedMainWebsite.Controllers
 {
     public class ClientPaymentController : BaseController
     {
+        Logger paymentLogger = LogManager.GetLogger("payments");
+        //private static Logger logger = LogManager.GetLogger("router_api_errors");
+
         [HttpGet]
         public ActionResult BillPaymentLogin()
         {
+            WebServiceWrapper genericSettings = new WebServiceWrapper();
+            var googleRecaptcha = genericSettings.GenericAppSettings();
+
+
+            Session.Remove("HasCustomCaptcha");
+            //var googleRecaptcha = new ServiceUtilities().CustomerWebsiteGenericSettings();
+            ViewBag.clientCaptchaKey = googleRecaptcha.GenericAppSettings == null ? "" : googleRecaptcha.GenericAppSettings.RecaptchaClientKey;
+            if (googleRecaptcha != null && ! googleRecaptcha.GenericAppSettings.UseGoogleRecaptcha)
+            {
+                Session["HasCustomCaptcha"] = true;
+            }
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult BillPaymentLogin(/*FormCollection fc, */PaymentBillViewModel payment/*, string PhoneNumber, string ClientInfo*/)
-        //{
-        //    var ClientInfoList = new List<PaymentBillViewModel>();
+        [HttpPost]
+        public ActionResult BillPaymentLogin(PaymentBillViewModel payment)
+        {
+            var ClientInfoList = new List<PaymentBillViewModel>();
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        ClientInfoList.Add(new PaymentBillViewModel()
-        //        {
-        //            ClientInfo = payment.ClientInfo,
-        //            PhoneNumber = payment.PhoneNumber
-        //        });
-        //        return RedirectToAction("PaymentBillAndResult", "ClientPayment");
-        //    }
-        //    return View();
-        //}
+            if (ModelState.IsValid)
+            {
+                ClientInfoList.Add(new PaymentBillViewModel()
+                {
+                    ClientInfo = payment.ClientInfo,
+                    PhoneNumber = payment.PhoneNumber
+                });
+                return RedirectToAction("PaymentBillAndResult", "ClientPayment");
+
+
+            }
+            return View();
+        }
 
 
         [HttpGet]
@@ -48,84 +65,188 @@ namespace NetspeedMainWebsite.Controllers
             var ClientBillList = (List<BillInfoViewModel>)Session["ClientBillList"];
             return View(ClientBillList);
         }
-        [HttpPost]
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult PaymentBillAndResult(PaymentBillViewModel clientInfos)
+        //{
+        //    var message = string.Empty;
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        WebServiceWrapper genericSettings = new WebServiceWrapper();
+        //        var captcha = genericSettings.GenericAppSettings();
+
+        //        var response = Request["g-recaptcha-response"];
+        //        //const string secret = Properties.Settings.Default.CaptchaKey;
+
+        //        //string secret = Properties.Settings.Default.CaptchaSecretKey;
+
+        //        bool googleCaptcha = captcha.GenericAppSettings.UseGoogleRecaptcha;//false ise
+
+        //        if (googleCaptcha == true)
+        //        {
+        //            string secretKey = captcha.GenericAppSettings.RecaptchaServerKey;
+        //            string clientKey = captcha.GenericAppSettings.RecaptchaClientKey; 
+        //            ViewBag.clientKey = clientKey;
+        //        }
+
+
+
+
+
+
+        //        var client = new WebClient();
+        //        var reply =
+        //            client.DownloadString(
+        //                string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
+
+        //        var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponseViewModel>(reply);
+
+        //        if (captchaResponse.Success)
+        //        {
+        //            WebServiceWrapper clientsBills = new WebServiceWrapper();
+        //            var responseClient = clientsBills.GetBills(clientInfos.PhoneNumber, clientInfos.ClientInfo);
+
+        //            //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
+
+        //            if (responseClient.ResponseMessage.ErrorCode == 2)
+        //            {
+        //                TempData["clientMessage"] = "Kayıtlı Abone Bulunamadı.";
+        //                return RedirectToAction("BillPaymentLogin", "ClientPayment");
+        //            }
+
+        //            if (responseClient.ResponseMessage.ErrorCode == 4)
+        //            {
+        //                TempData["clientMessage"] = "Fatura Bulunamadı.";
+        //                return RedirectToAction("BillPaymentLogin", "ClientPayment");
+        //            }
+
+        //            if (responseClient.ResponseMessage.ErrorCode == 5)
+        //            {
+        //                return RedirectToAction("AlreadyHaveCustomer", "Application");
+        //            }
+
+        //            if (responseClient.ResponseMessage.ErrorCode == 199)
+        //            {
+        //                paymentLogger.Error($"{responseClient.ResponseMessage.ErrorMessage} - Internal Server Error (PayBills)");
+        //            }
+
+        //            //BillInfoViewModel Bills = new BillInfoViewModel();
+
+
+
+        //            //if (responseClient.ResponseMessage.ErrorCode == 199)
+        //            //{
+        //            //    paymentLogger.Error($"{responseClient.ResponseMessage.ErrorMessage} - Internal Server Error (PayBills)");
+        //            //}
+
+        //            var ClientBillItems = responseClient.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
+        //            {
+        //                ServiceName = r.ServiceName,
+        //                CanBePaid = r.CanBePaid,
+        //                BillDate = r.BillDate,
+        //                BillId = r.ID,
+        //                Total = r.Total,
+        //                LastPaymentDate = r.LastPaymentDate
+        //            });
+        //            var ClientBillList = ClientBillItems.ToList();
+
+        //            //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
+        //            Session["ClientBillList"] = ClientBillList;
+
+        //            //Session["ClientInfo"] = clientInfos;
+
+        //            return View(ClientBillList);
+        //        }
+        //        else
+        //            TempData["CaptchaMessage"] = "Lütfen güvenliği doğrulayınız.";
+        //    }
+
+        //    return View(viewName: "BillPaymentLogin", model: clientInfos);
+        //}
+
         [ValidateAntiForgeryToken]
+        [HttpPost]
+
         public ActionResult PaymentBillAndResult(PaymentBillViewModel clientInfos)
+        //public ActionResult Login(LoginViewModel login)
         {
-            var message = string.Empty;
+            WebServiceWrapper genericSettings = new WebServiceWrapper();
+            var googleRecaptcha = genericSettings.GenericAppSettings();
 
-            if (ModelState.IsValid)
+            var invalidCaptcha = Session["HasCustomCaptcha"];
+            if (invalidCaptcha != null)
             {
-                WebServiceWrapper genericSettings = new WebServiceWrapper();
-                var captcha= genericSettings.GenericAppSettings();
-                
-
-                var response = Request["g-recaptcha-response"];
-                //const string secret = Properties.Settings.Default.CaptchaKey;
-
-                //string secret = Properties.Settings.Default.CaptchaSecretKey;
-
-                bool googleCaptcha = captcha.GenericAppSettings.UseGoogleRecaptcha;
-
-                string secretKey = captcha.GenericAppSettings.RecaptchaServerKey;
-                string clientKey = captcha.GenericAppSettings.RecaptchaClientKey;
-
-                ViewBag.clientKey = clientKey;
-
-                var client = new WebClient();
-                var reply =
-                    client.DownloadString(
-                        string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
-
-                var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponseViewModel>(reply);
-
-                if (captchaResponse.Success)
+                var customCaptcha = Request.Form["customCaptcha"];
+                var loginCaptcha = Session["LoginCaptcha"] as string;
+                if (customCaptcha != loginCaptcha)
                 {
-                    WebServiceWrapper clientsBills = new WebServiceWrapper();
-                    var responseClient = clientsBills.GetBills(clientInfos.PhoneNumber, clientInfos.ClientInfo);
-
-                    //var url = NetspeedMainWebsite.Properties.Settings.Default.oimUrl;
-
-                    if (responseClient.ResponseMessage.ErrorCode == 2)
-                    {
-                        TempData["message"] = "Kayıtlı Abone Bulunamadı.";
-                        return RedirectToAction("BillPaymentLogin", "ClientPayment");
-                    }
-
-                    if (responseClient.ResponseMessage.ErrorCode == 4)
-                    {
-                        TempData["message"] = "Fatura Bulunamadı.";
-                        return RedirectToAction("BillPaymentLogin", "ClientPayment");
-                    }
-
-                    if (responseClient.ResponseMessage.ErrorCode == 5)
-                    {
-                        return RedirectToAction("AlreadyHaveCustomer", "Application");
-                    }
-
-                    BillInfoViewModel Bills = new BillInfoViewModel();
-
-                    var ClientBillItems = responseClient.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
-                    {
-                        ServiceName = r.ServiceName,
-                        CanBePaid = r.CanBePaid,
-                        BillDate = r.BillDate,
-                        BillId = r.ID,
-                        Total = r.Total,
-                        LastPaymentDate = r.LastPaymentDate
-                    });
-                    var ClientBillList = ClientBillItems.ToList();
-
-                    //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
-                    Session["ClientBillList"] = ClientBillList;
-                    return View(ClientBillList);
+                    return Json(new { invalidCaptcha = true, valid = "CMS.Localization.Errors.InvalidCaptcha" }, JsonRequestBehavior.AllowGet);
                 }
-                else
-                    TempData["CaptchaMessage"] = "Lütfen güvenliği doğrulayınız.";
+            }
+            else
+            {
+                //var googleRecaptcha = new ServiceUtilities().CustomerWebsiteGenericSettings();
+                var recaptchaServerkey = googleRecaptcha.GenericAppSettings == null ? "" : googleRecaptcha.GenericAppSettings.RecaptchaServerKey;
+                var captchaResponseKey = Request.Form["g-Recaptcha-Response"];
+                var captcha = RezaB.Web.Captcha.GoogleRecaptchaValidator.Check(recaptchaServerkey, captchaResponseKey);
 
+                // captcha control end
+                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.Fail)
+                {
+                    return Json(new { valid = "" }, JsonRequestBehavior.AllowGet);
+                }
+                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.NotWorking)
+                {
+                    return Json(new { invalidCaptcha = true, valid = "" }, JsonRequestBehavior.AllowGet);
+                }
             }
 
-            return View(viewName: "BillPaymentLogin", model: clientInfos);
+            if (!ModelState.IsValid)
+            {              
+                return View(viewName: "BillPaymentLogin", model: clientInfos);
+            }
+
+            WebServiceWrapper clientLogin = new WebServiceWrapper();
+           
+            var result = clientLogin.GetBills(clientInfos.ClientInfo, clientInfos.PhoneNumber);
+
+
+            if (result.ResponseMessage.ErrorCode != 0)
+            {
+                if (invalidCaptcha != null)
+                {
+                    return Json(new { invalidCaptcha = true, valid = result.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { valid = result.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
+            }
+            // sign in
+            Session.Remove("HasCustomCaptcha");
+            if (invalidCaptcha == null)
+            {
+                return Json(new { valid = "" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { valid = "", invalidCaptcha = true }, JsonRequestBehavior.AllowGet);
+
+
+            var ClientBillItems = result.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
+            {
+                ServiceName = r.ServiceName,
+                CanBePaid = r.CanBePaid,
+                BillDate = r.BillDate,
+                BillId = r.ID,
+                Total = r.Total,
+                LastPaymentDate = r.LastPaymentDate
+            });
+            var ClientBillList = ClientBillItems.ToList();
+
+            //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
+            Session["ClientBillList"] = ClientBillList;
+
+            //Session["ClientInfo"] = clientInfos;
+
+            return View(ClientBillList);
         }
 
 
@@ -233,6 +354,11 @@ namespace NetspeedMainWebsite.Controllers
             var response = clientVPOS.SubscriberPaymentVPOS(BillList, Url.Action("PaymentFail", "ClientPayment", new { id = Key }, Request.Url.Scheme),
                 Url.Action("PaymentConfirm", "ClientPayment", new { id = Key }, Request.Url.Scheme));
 
+            if (response.ResponseMessage.ErrorCode == 199)
+            {
+                paymentLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (SubscriberPaymentVPOS)");
+            }
+
             ViewBag.VPOSForm = response.PaymentVPOSResponse.HtmlForm;
             return View();
         }
@@ -241,8 +367,14 @@ namespace NetspeedMainWebsite.Controllers
         {
             var billIds = MemoryCache.Default.Get(id) as long[];
 
+
             WebServiceWrapper clientsPayBills = new WebServiceWrapper();
             var response = clientsPayBills.PayBills(billIds);
+
+            if (response.ResponseMessage.ErrorCode == 199)
+            {
+                paymentLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (PayBills)");
+            }
 
             MemoryCache.Default.Remove(id);
             return View();
@@ -252,6 +384,18 @@ namespace NetspeedMainWebsite.Controllers
         {
             MemoryCache.Default.Remove(id);
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetCustomCaptcha()
+        {
+            Session["HasCustomCaptcha"] = true;
+            var img = $"<div class='form-group py-2 m-0' style='padding-top:0 !important;padding-bottom:0 !important;'><img src='{Url.Action("LoginCaptcha", "Captcha", new { id = DateTime.Now.Ticks })}' class='custom-captcha form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg' /></div>";
+            var input = $"<div class='form-group py-2  m-0'><input autocomplete='off' type='text' name='customCaptcha' id='customCaptcha' " +
+                $"class='form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg' placeholder='{"placeholder"}' /></div>";
+            var content = img + input;
+
+            return Content(content);
         }
     }
 }

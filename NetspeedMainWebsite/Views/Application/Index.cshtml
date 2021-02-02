@@ -568,6 +568,7 @@
                 if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
+                    //alert("Hata");
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -762,6 +763,7 @@
                 if (!hasText) {
                     isValid = false;
                     currentInput.closest('.form-group').find('span.required-error').show();
+                   
                 }
                 else {
                     currentInput.closest('.form-group').find('span.required-error').hide();
@@ -829,10 +831,11 @@
             $("#PlaceOfIssue").inputmask({ regex: "[a-zA-Z- ]*" });
         });
     </script>
-    
+
     <script>
         $(function () {
             $("#MotherFirstSurname").inputmask({ regex: "[a-zA-Z- ]*" });
         });
     </script>
+
 }

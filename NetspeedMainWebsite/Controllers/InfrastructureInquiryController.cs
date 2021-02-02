@@ -6,13 +6,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NetspeedMainWebsite.AddressUtilities;
+using NLog;
 
 namespace NetspeedMainWebsite.Controllers
 {
-    public class InfrastructureInquiryController : Controller
+    public class InfrastructureInquiryController : BaseController
     {
         //GET: InfrastructureInquiry
-               AddressUtility addressUtil = new AddressUtility();
+        AddressUtility addressUtil = new AddressUtility();
+
+        Logger infrastructureLogger = LogManager.GetLogger("infrastructure");
+        Logger tariffLogger = LogManager.GetLogger("tariffs");
+
         public ActionResult Index()
         {
             var responseProvince = new WebServiceWrapper().GetProvinces();
@@ -151,7 +156,7 @@ namespace NetspeedMainWebsite.Controllers
             if (ModelState.IsValid)
             {
                 var client = new WebServiceWrapper();
-                var response = client.ServiceAvailability(apartmentId);
+                //var response = client.ServiceAvailability(apartmentId);
 
                 InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();
 
@@ -165,7 +170,15 @@ namespace NetspeedMainWebsite.Controllers
                 var Vdsl = getAddress.ServiceAvailabilityResponse.VDSL;
                 var Adsl = getAddress.ServiceAvailabilityResponse.ADSL;
 
+                if (getAddress.ResponseMessage.ErrorCode == 199)
+                {
+                    infrastructureLogger.Error($"{getAddress.ResponseMessage.ErrorMessage} - Internal Server Error (ServiceAvailability)");
+                }
 
+                if (getTariff.ResponseMessage.ErrorCode == 199)
+                {
+                    tariffLogger.Error($"{getTariff.ResponseMessage.ErrorMessage} - Internal Server Error (GetTariffList)");
+                }
 
                 if (Fiber.HasInfrastructureFiber)
                 {
@@ -219,15 +232,16 @@ namespace NetspeedMainWebsite.Controllers
                 }
                 else
                 {
-                    InfrastructureResult.Message = response.ResponseMessage.ErrorMessage;
+                    InfrastructureResult.Message = getAddress.ResponseMessage.ErrorMessage;
                     InfrastructureResult.Distance = "-";
                     InfrastructureResult.MaxSpeed = "Sorguladığınız haneye ait altyapı bilgisi bulunamadı.";
                     InfrastructureResult.XDSLType = "";
                     InfrastructureResult.PortState = "Yok";
                 }
-               
+
                 return View(InfrastructureResult);
             }
+
             var responseProvince = new WebServiceWrapper().GetProvinces();
             var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
             {
@@ -251,43 +265,6 @@ namespace NetspeedMainWebsite.Controllers
             ViewBag.ApartmentList = ApartmentList;
 
             return View(viewName: "Index", model: inf);
-
-        }
-
-        [HttpPost]
-        public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)
-        {
-            WebServiceWrapper client = new WebServiceWrapper();
-            var callMessages = string.Empty;
-
-            if (ModelState.IsValid)
-            {
-                var response = client.RegisterCustomerContact(callMe.FullName, callMe.PhoneNumber);
-
-                callMessages = "Talebiniz Alınmıştır.";
-                TempData["callMessages"] = callMessages;
-
-                return Redirect(returnUrl);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                TempData["CallMeModel"] = callMe;
-                var errors = ModelState.ToArray().Select(ms => new { Key = ms.Key, ErrorMessages = string.Join(Environment.NewLine, ms.Value.Errors.Select(e => e.ErrorMessage)) }).ToArray();
-                foreach (var errorItem in errors)
-                {
-                    if (errorItem.Key == "callMe.FullName")
-                    {
-                        callMe.FullNameValidationMessage = errorItem.ErrorMessages;
-                    }
-                    else if (errorItem.Key == "callMe.PhoneNumber")
-                    {
-                        callMe.PhoneNumberValidationMessage = errorItem.ErrorMessages;
-                    }
-                }
-            }
-
-            return Redirect(returnUrl);
         }
     }
 }
