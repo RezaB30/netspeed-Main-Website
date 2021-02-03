@@ -82,7 +82,7 @@
                         <div class="d-flex justify-content-center flex-row-fluid ">
 
                             @*@using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))*@
-                            @using (Html.BeginForm("PaymentSelectBill", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
+                            @using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                             {
                                 @Html.Hidden("SelectedBills")
                                 @Html.AntiForgeryToken()
@@ -100,7 +100,10 @@
                                                     Ödemesini yapmak istediğiniz Fatura veya Faturalarınızı seçiniz.
                                                 </span>
                                                 <span>@ViewBag.message</span>
-                                                <h3 class="text-danger">@TempData["message"]</h3>
+                                                <h3 class="text-danger">
+                                                    @*@TempData["message"]*@
+                                                    @ViewBag.MessageForBills
+                                                </h3>
                                                 
                                             </div>
                                             <!--begin::Title-->

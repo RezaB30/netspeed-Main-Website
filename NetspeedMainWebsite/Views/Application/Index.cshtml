@@ -7,6 +7,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+                @*<script src="alert/dist/sweetalert-dev.js"></script>
+                    <link href="alert/dist/sweetalert.css" rel="stylesheet" >*@
 }
 
 <style>
@@ -53,6 +58,32 @@
 
     #validation-error {
         display: none;
+    }
+
+
+
+
+    .swal-button {
+        color: #8c8299;
+        background-color: #E4E6EF;
+        font-weight: 300;
+        padding: 0.5em 1em;
+    }
+
+        .swal-button:hover {
+            background-color: #E4E6EF;
+        }
+
+    .swal-footer {
+        text-align: center
+    }
+
+    .swal-text{
+        font-size:1.1rem
+    }
+
+    .swal-modal {
+        width: 45vh !important;
     }
 </style>
 
@@ -568,7 +599,15 @@
                 if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
-                    //alert("Hata");
+                                     
+                        swal({
+                            title: '',
+                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                            icon: 'error',
+                            button: 'Tamam',
+                        })
+                    
+                    
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -763,7 +802,7 @@
                 if (!hasText) {
                     isValid = false;
                     currentInput.closest('.form-group').find('span.required-error').show();
-                   
+
                 }
                 else {
                     currentInput.closest('.form-group').find('span.required-error').hide();
@@ -836,6 +875,12 @@
         $(function () {
             $("#MotherFirstSurname").inputmask({ regex: "[a-zA-Z- ]*" });
         });
+    </script>
+
+    <script type="text/javascript">
+        function JSalert() {
+            swal("Congrats!", ", Your account is created!", "success");
+        }
     </script>
 
 }

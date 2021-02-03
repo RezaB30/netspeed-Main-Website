@@ -90,7 +90,7 @@
                         </div>
                         <!--end::Title-->
                         <!--begin::Form-->
-                        @using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
+                        @using (Html.BeginForm("BillPaymentLogin", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
 
                         {
                             @Html.AntiForgeryToken()
@@ -113,7 +113,8 @@
                                             <!--begin::Form group-->
                                             <div class="form-group fv-plugins-icon-container">
                                                 <h3 class="text-danger">
-                                                    @TempData["clientMessage"]
+                                                   @* @TempData["clientMessage"]*@
+                                                    @ViewBag.clientMessage
 
                                                 </h3>
                                                 <label class="font-size-h6 font-weight-bolder text-dark">TC. Kimlik NO veya Müşteri No</label>
