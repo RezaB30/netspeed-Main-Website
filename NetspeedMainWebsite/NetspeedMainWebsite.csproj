@@ -1310,12 +1310,14 @@
     <Content Include="Views\Application\ApplicationParts\_TariffCard.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_HasNotInfrastructure.cshtml" />
     <Content Include="Views\Shared\_ReCaptcha.cshtml" />
+    <Content Include="Views\ClientPayment\ClientLoginFails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\media\svg\social-icons\" />
     <Folder Include="Views\Captcha\" />
     <Folder Include="Views\Payment\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\media\bg\debug.log" />

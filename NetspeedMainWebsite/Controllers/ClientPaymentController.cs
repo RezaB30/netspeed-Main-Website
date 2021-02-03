@@ -20,15 +20,29 @@ namespace NetspeedMainWebsite.Controllers
 
         [HttpGet]
         public ActionResult BillPaymentLogin()
+
         {
             WebServiceWrapper genericSettings = new WebServiceWrapper();
             var googleRecaptcha = genericSettings.GenericAppSettings();
 
+            //var t = true;
 
             Session.Remove("HasCustomCaptcha");
-            //var googleRecaptcha = new ServiceUtilities().CustomerWebsiteGenericSettings();
+
+            //if (t == true)
+            //{
+            //    Session["HasCustomCaptcha"] = true;
+            //    ViewBag.HasCustomCaptcha = true;
+            //}
+
+            //if (t == false)
+            //{
+            //    ViewBag.clientCaptchaKey = googleRecaptcha.GenericAppSettings == null ? "" : googleRecaptcha.GenericAppSettings.RecaptchaClientKey;
+
+            //}
+
             ViewBag.clientCaptchaKey = googleRecaptcha.GenericAppSettings == null ? "" : googleRecaptcha.GenericAppSettings.RecaptchaClientKey;
-            if (googleRecaptcha != null && ! googleRecaptcha.GenericAppSettings.UseGoogleRecaptcha)
+            if (googleRecaptcha != null && !googleRecaptcha.GenericAppSettings.UseGoogleRecaptcha)
             {
                 Session["HasCustomCaptcha"] = true;
             }
@@ -48,8 +62,6 @@ namespace NetspeedMainWebsite.Controllers
                     PhoneNumber = payment.PhoneNumber
                 });
                 return RedirectToAction("PaymentBillAndResult", "ClientPayment");
-
-
             }
             return View();
         }
@@ -176,9 +188,12 @@ namespace NetspeedMainWebsite.Controllers
             var googleRecaptcha = genericSettings.GenericAppSettings();
 
             var invalidCaptcha = Session["HasCustomCaptcha"];
+
             if (invalidCaptcha != null)
             {
-                var customCaptcha = Request.Form["customCaptcha"];
+                //var customCaptcha = Request.Form["customCaptcha"];
+                var customCaptcha = clientInfos.Captcha;
+
                 var loginCaptcha = Session["LoginCaptcha"] as string;
                 if (customCaptcha != loginCaptcha)
                 {
@@ -193,42 +208,54 @@ namespace NetspeedMainWebsite.Controllers
                 var captcha = RezaB.Web.Captcha.GoogleRecaptchaValidator.Check(recaptchaServerkey, captchaResponseKey);
 
                 // captcha control end
-                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.Fail)
+                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.Fail)//google captcha işaretlenmediyse
                 {
-                    return Json(new { valid = "" }, JsonRequestBehavior.AllowGet);
+                    TempData["clientMessage"] = "Lütfen Doğrulama Alanını Doldurunuz.";
+                    return RedirectToAction("BillPaymentLogin", "ClientPayment");
                 }
-                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.NotWorking)
+                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.NotWorking)//google captcha çalışmıyorsa
                 {
-                    return Json(new { invalidCaptcha = true, valid = "" }, JsonRequestBehavior.AllowGet);
+                    Session["HasCustomCaptcha"] = true;
+                    var netspeedCaptcha = Session["HasCustomCaptcha"];
+
+                    if (clientInfos.Captcha == null)
+                    {
+                        TempData["clientMessage"] = "Lütfen Doğrulama Alanını Doldurunuz.";
+                    }
+                }
+                if (clientInfos.Captcha == null && captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.Fail)
+                {
+                    TempData["clientMessage"] = "Lütfen Doğrulama Alanını Doldurunuz.";
                 }
             }
 
+
             if (!ModelState.IsValid)
-            {              
-                return View(viewName: "BillPaymentLogin", model: clientInfos);
+            {
+                return RedirectToAction("BillPaymentLogin", "ClientPayment");
             }
 
             WebServiceWrapper clientLogin = new WebServiceWrapper();
-           
-            var result = clientLogin.GetBills(clientInfos.ClientInfo, clientInfos.PhoneNumber);
 
+            var result = clientLogin.GetBills(clientInfos.PhoneNumber, clientInfos.ClientInfo);
+
+            if (result.ResponseMessage.ErrorCode == 4)
+            {
+                TempData["clientMessage"] = "Fatura Bulunamadı.";
+                return RedirectToAction("ClientLoginFails", "ClientPayment");
+            }
+
+            if (result.ResponseMessage.ErrorCode == 5)
+            {
+                return RedirectToAction("AlreadyHaveCustomer", "Application");
+            }
 
             if (result.ResponseMessage.ErrorCode != 0)
             {
-                if (invalidCaptcha != null)
-                {
-                    return Json(new { invalidCaptcha = true, valid = result.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
-                }
-                return Json(new { valid = result.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
+                TempData["clientMessage"] = result.ResponseMessage.ErrorMessage;
+                //return View(viewName: "BillPaymentLogin", model: clientInfos);
+                return RedirectToAction("BillPaymentLogin", "ClientPayment");
             }
-            // sign in
-            Session.Remove("HasCustomCaptcha");
-            if (invalidCaptcha == null)
-            {
-                return Json(new { valid = "" }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(new { valid = "", invalidCaptcha = true }, JsonRequestBehavior.AllowGet);
-
 
             var ClientBillItems = result.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()
             {
@@ -240,6 +267,15 @@ namespace NetspeedMainWebsite.Controllers
                 LastPaymentDate = r.LastPaymentDate
             });
             var ClientBillList = ClientBillItems.ToList();
+
+
+            // sign in
+            //Session.Remove("HasCustomCaptcha");
+            //if (invalidCaptcha == null)
+            //{
+            //    return Json(new { valid = "" }, JsonRequestBehavior.AllowGet);
+            //}
+            //return Json(new { valid = "", invalidCaptcha = true }, JsonRequestBehavior.AllowGet);
 
             //Session.Add("BillCheckList", ClientBillList);//kullanma hata çıkyor içinde varsa
             Session["ClientBillList"] = ClientBillList;
@@ -396,6 +432,11 @@ namespace NetspeedMainWebsite.Controllers
             var content = img + input;
 
             return Content(content);
+        }
+
+        public ActionResult ClientLoginFails()
+        {
+            return View();
         }
     }
 }

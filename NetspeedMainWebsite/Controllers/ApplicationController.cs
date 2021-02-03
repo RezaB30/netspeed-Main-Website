@@ -244,7 +244,7 @@ namespace NetspeedMainWebsite.Controllers
             }
 
 
-            applicationLogger.Error($"application !modelstate");
+           
             
 
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();

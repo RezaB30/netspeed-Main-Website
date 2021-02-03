@@ -1,8 +1,8 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 
 
-@{ ViewBag.Title = "Kayıtlı Müşteri";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ ViewBag.Title = "Giriş İşlemi Başarısız";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -17,7 +17,7 @@
 <!--end::Subheader-->
 <!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
-  @*  @Html.AntiForgeryToken()*@
+    @*  @Html.AntiForgeryToken()*@
     <!--begin::Container-->
     <div class="container">
         <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
@@ -33,7 +33,7 @@
                         <!--begin: Wizard Step 1-->
                         <!--begin::Title-->
                         <div class="pb-10 pb-lg-15">
-                            <h3 class="font-weight-bolder text-info font-size-h2">Kayıtlı Müşteri</h3><hr class="my-8">
+                            <h3 class="font-weight-bolder text-info font-size-h2">Giriş İşlemi Başarısız</h3><hr class="my-8">
                             <div class="bg-secondary rounded d-flex align-items-center justify-content-between text-white position-relative ml-auto p-7">
                                 <!--begin::Shape-->
                                 <div class="row">
@@ -58,14 +58,14 @@
                                     <!--end::Shape-->
                                     <h3 class="font-weight-bolder text-dark font-size-h4">İşlemlerinizi Yapmak İçin Lütfen Netspeed Online İşlem Merkezini Ziyaret Ediniz. </h3>
                                     <div class="text-right d-flex flex-column">
-                                      @*  <script src="~/Scripts/js/lottie-player.js"></script>*@
+                                       @* <script src="~/Scripts/js/lottie-player.js"></script>*@
                                     </div>
 
                                     <div>
-                                        <a href="https://online.netspeed.com.tr">
+                                        <a href="/ClientPayment/BillPaymentLogin">
                                             <button type="button" class="btn btn-dark font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
 
-                                                Online İşlem Merkezine Git
+                                               Fatura ödeme Giriş Sayfasına Tıklayınız.
                                                 <span class="svg-icon svg-icon-md ml-1">
                                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
                                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
