@@ -113,7 +113,7 @@
                                             <!--begin::Form group-->
                                             <div class="form-group fv-plugins-icon-container">
                                                 <h3 class="text-danger">
-                                                   @* @TempData["clientMessage"]*@
+                                                    @* @TempData["clientMessage"]*@
                                                     @ViewBag.clientMessage
 
                                                 </h3>
@@ -192,9 +192,15 @@
     @Scripts.Render("~/Scripts/js/get-captcha.js")
 
 
+    @*<script>
+            $(function () {
+                $('#ClientInfo').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+            });
+        </script>*@
+
     <script>
         $(function () {
-            $('#ClientInfo').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+            $("#ClientInfo").inputmask({ regex: "[0-90-9- ]*" });
         });
     </script>
 
@@ -223,7 +229,7 @@
 
         window.onload = function () {
             if ("@Session["HasCustomCaptcha"]" != "") {
-                
+
             //if ("@ViewBag.HasCustomCaptcha" != "") {
 
                 $('#login-captcha').show();

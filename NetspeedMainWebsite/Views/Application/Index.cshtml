@@ -10,8 +10,8 @@
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-                @*<script src="alert/dist/sweetalert-dev.js"></script>
-                    <link href="alert/dist/sweetalert.css" rel="stylesheet" >*@
+    @*<script src="alert/dist/sweetalert-dev.js"></script>
+        <link href="alert/dist/sweetalert.css" rel="stylesheet" >*@
 }
 
 <style>
@@ -67,7 +67,7 @@
         padding: 0.5em 1em;
     }
 
-     /*   .swal-button:hover {
+    /*   .swal-button:hover {
             background-color: #E4E6EF;
         }*/
 
@@ -75,14 +75,14 @@
         text-align: center
     }
 
-    .swal-text{
-        font-size:1.1rem
+    .swal-text {
+        font-size: 1.1rem
     }
 
     .swal-modal {
         width: 45vh !important;
     }
-/*
+    /*
     .swal-button:not([disabled]):hover {
         background-color: #E4E6EF;
     }*/
@@ -95,22 +95,21 @@
         color: #8c8299;
         background-color: #E4E6EF;
         font-weight: 400;
-       
     }
 
     /*.swal-button:focus {
         overflow: hidden;*/
-       /* color: #E4E6EF;*/
+    /* color: #E4E6EF;*/
     /*}*/
 
     .swal-button:focus {
         box-shadow: none;
     }
 
-  /*  .swal-popup{
+    /*  .swal-popup{
         padding:20rem;
     }*/
-/*
+    /*
     .swal-icon--error__line--left {
         width:2.5em;
         height:0.5em
@@ -656,15 +655,15 @@
                 if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
-                                     
+
                         swal({
                             title: '',
                             text: 'Hata Bulundu, Lütfen Kontrol Edin',
                             icon: 'error',
                             button: 'Tamam',
                         })
-                    
-                    
+
+
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -898,15 +897,28 @@
         });
     </script>
 
-    <script>
-        $(function () {
-            $('#PostalCode').inputmask({ "mask": "99999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-        });
-    </script>
+    @*<script>
+            $(function () {
+                $('#PostalCode').inputmask({ "mask": "99999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+            });
+        </script>*@
 
     <script>
         $(function () {
+            $("#Floor").inputmask({ regex: "[0-90-9- ]*" });
+        });
+    </script>
+
+
+    @*<script>
+        $(function () {
             $('#Floor').inputmask({ "mask": "999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+        });
+    </script>*@
+
+    <script>
+        $(function () {
+            $("#PostalCode").inputmask({ regex: "[0-90-9- ]*" });
         });
     </script>
 
