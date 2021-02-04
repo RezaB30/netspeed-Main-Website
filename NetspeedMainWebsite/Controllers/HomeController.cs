@@ -26,7 +26,6 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-
         public ActionResult Login()
         {
             return View();
@@ -42,6 +41,20 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
         public ActionResult Error()
+        {
+            return View();
+        }
+        public ActionResult InternalServerError()
+        {
+            return View();
+        }
+
+        public ActionResult TestMe()
+        {
+            return View();
+        }
+
+        public ActionResult TestMeForApp()
         {
             return View();
         }

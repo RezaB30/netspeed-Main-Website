@@ -24,7 +24,7 @@
             <div class="text-danger">
                 @Html.ValidationMessageFor(model => model.FirstName)
             </div>
-            <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
+            <span class="text-danger required-error">Adınızı Yazınız</span>
         </div>
     </div>
     <!--end::Form Group-->
@@ -44,7 +44,7 @@
             <div class="text-danger">
                 @Html.ValidationMessageFor(model => model.LastName)
             </div>
-            <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
+            <span class="text-danger required-error">Soyadınızı Yazınız</span>
         </div>
     </div>
     <!--end::Form Group-->
@@ -66,7 +66,7 @@
                 @Html.ValidationMessageFor(model => model.EmailAddress)
             </div>
             @* @Html.HiddenFor(m => m.EmailAddress)*@
-            <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
+        <span class="text-danger required-error">E-Posta Gerekli</span>
         </div>
         <div class="text-muted font-size-h8 m-2">Lütfen geçerli bir E-Posta adres yazınız. Bilgilerinizi bu e-posta adresinize göndereceğiz.</div>
         <!--end::Form Group-->

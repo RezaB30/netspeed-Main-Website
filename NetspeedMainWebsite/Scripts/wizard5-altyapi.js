@@ -197,3 +197,4 @@ var KTWizard5 = function () {
 jQuery(document).ready(function () {
 	KTWizard5.init();
 });
+}

@@ -141,7 +141,8 @@ namespace NetspeedMainWebsite.Controllers
 
             if (result.ResponseMessage.ErrorCode == 199)
             {
-                paymentLogger.Error($"{result.ResponseMessage.ErrorMessage} - Internal Server Error (GetBills)");                
+                paymentLogger.Error($"{result.ResponseMessage.ErrorMessage} - Internal Server Error (GetBills)");
+                return RedirectToAction("Home", "InternalServerError");
             }
 
             var ClientBillItems = result.SubscriberGetBillsResponse.Select(r => new BillInfoViewModel()

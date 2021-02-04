@@ -7,6 +7,43 @@
     var model = Model;
     Layout = "~/Views/Shared/_Layout.cshtml";
     <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+
+    <style>
+        .text-danger.required-error {
+            display: none;
+        }
+
+        .swal-button {
+            color: #8c8299;
+            background-color: #E4E6EF;
+            font-weight: 400;
+            padding: 0.5em 1em;
+        }
+
+        .swal-footer {
+            text-align: center
+        }
+
+        .swal-text {
+            font-size: 1.1rem
+        }
+
+        .swal-modal {
+            width: 45vh !important;
+        }
+
+        .swal-button:not([disabled]):hover {
+            color: #8c8299;
+            background-color: #E4E6EF;
+            font-weight: 400;
+        }
+
+        .swal-button:focus {
+            box-shadow: none;
+        }
+    </style>
 }
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -167,93 +204,99 @@
                     <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
 
                         <div class="d-flex justify-content-center flex-row-fluid ">
-                            <!--begin: Wizard Step 2-->
-                            @using (Html.BeginForm("GsmVerificationWithSms", "Application", FormMethod.Post))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.HiddenFor(m => m.PhoneNumber)
-                                @Html.HiddenFor(m => m.FirstName)
-                                @Html.HiddenFor(m => m.LastName)
-                                @Html.HiddenFor(m => m.EmailAddress)
-                                @Html.HiddenFor(m => m.ProvinceId)
-                                @Html.HiddenFor(m => m.DistrictId)
-                                @Html.HiddenFor(m => m.NeighborhoodId)
-                                @Html.HiddenFor(m => m.StreetId)
-                                @Html.HiddenFor(m => m.RegionId)
-                                @Html.HiddenFor(m => m.BuildingId)
-                                @Html.HiddenFor(m => m.ApartmentId)
-                                @Html.HiddenFor(m => m.AddressText)
-                                @Html.HiddenFor(m => m.PostalCode)
-                                @Html.HiddenFor(m => m.BirthPlace)
-                                @Html.HiddenFor(m => m.FatherName)
-                                @Html.HiddenFor(m => m.MotherName)
-                                @Html.HiddenFor(m => m.MotherFirstSurname)
-                                @*@Html.HiddenFor(m => m.Nationality)*@
-                                @Html.HiddenFor(m => m.Sex)
-                                @Html.HiddenFor(m => m.BirthDate)
-                                @Html.HiddenFor(m => m.IDCardType)
-                                @Html.HiddenFor(m => m.TC)
-                                @Html.HiddenFor(m => m.SerialNo)
-                                @Html.HiddenFor(m => m.PlaceOfIssue)
-                                @Html.HiddenFor(m => m.DateOfIssue)
-                                @Html.HiddenFor(m => m.ReferenceCode)
-                                @Html.HiddenFor(m => m.Floor)
-                                @Html.HiddenFor(m => m.TariffId)
+                            <div class="wizard-step" s>
+
+                                <!--begin: Wizard Step 2-->
+                                @using (Html.BeginForm("GsmVerificationWithSms", "Application", FormMethod.Post, new { @id = "SmsSubmit" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(m => m.PhoneNumber)
+                                    @Html.HiddenFor(m => m.FirstName)
+                                    @Html.HiddenFor(m => m.LastName)
+                                    @Html.HiddenFor(m => m.EmailAddress)
+                                    @Html.HiddenFor(m => m.ProvinceId)
+                                    @Html.HiddenFor(m => m.DistrictId)
+                                    @Html.HiddenFor(m => m.NeighborhoodId)
+                                    @Html.HiddenFor(m => m.StreetId)
+                                    @Html.HiddenFor(m => m.RegionId)
+                                    @Html.HiddenFor(m => m.BuildingId)
+                                    @Html.HiddenFor(m => m.ApartmentId)
+                                    @Html.HiddenFor(m => m.AddressText)
+                                    @Html.HiddenFor(m => m.PostalCode)
+                                    @Html.HiddenFor(m => m.BirthPlace)
+                                    @Html.HiddenFor(m => m.FatherName)
+                                    @Html.HiddenFor(m => m.MotherName)
+                                    @Html.HiddenFor(m => m.MotherFirstSurname)
+                                    @*@Html.HiddenFor(m => m.Nationality)*@
+                                    @Html.HiddenFor(m => m.Sex)
+                                    @Html.HiddenFor(m => m.BirthDate)
+                                    @Html.HiddenFor(m => m.IDCardType)
+                                    @Html.HiddenFor(m => m.TC)
+                                    @Html.HiddenFor(m => m.SerialNo)
+                                    @Html.HiddenFor(m => m.PlaceOfIssue)
+                                    @Html.HiddenFor(m => m.DateOfIssue)
+                                    @Html.HiddenFor(m => m.ReferenceCode)
+                                    @Html.HiddenFor(m => m.Floor)
+                                    @Html.HiddenFor(m => m.TariffId)
 
 
-                            <div class="pb-5" data-wizard-type="step-content">
-                                <div class="pb-10 pb-lg-15">
-                                    <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
-                                    <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
-                                </div>
-                                <!--begin::Form Group-->
-                                <div class="form-group">
-                                    <div class="text-danger mr-10">
-                                        @TempData["SmsValidationMessage"]
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <div class="pb-10 pb-lg-15">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
+                                            <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
+                                        </div>
+                                        <!--begin::Form Group-->
+                                        @*<div class="form-group">*@
+                                        <div class="form-group is-required">
+                                            <div class="text-danger mr-10">
+                                                @TempData["SmsValidationMessage"]
+                                            </div>
+
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
+                                            @Html.EditorFor(m => m.SMSCode, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6", @placeholder = "SMS Doğrulama Kodu" } })
+
+
+                                            <span class="text-danger required-error">SMS Doğrulama Kodunuzu Yazınız</span>
+                                            <div class="separator separator-dashed my-3">
+                                                <br />
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 " style="margin:3em; font-size:1.2em">
+                                                Kalan Süre
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div id="app"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-12 col-lg-8 ">
+
+                                        </div>
+                                        <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
+                                        <div class="col-lg-4 col-md-4">
+
+                                            <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 SmsButtonControl" data-wizard-type="action-next">
+                                                Sonraki
+                                                <span class="svg-icon svg-icon-md ml-1">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                                            <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
-
-                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
-                                    @Html.EditorFor(m => m.SMSCode, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6", @placeholder = "SMS Doğrulama Kodu" } })
-                                </div>
-                                <div class="separator separator-dashed my-3">
-                                    <br />
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 " style="margin:3em; font-size:1.2em">
-                                        Kalan Süre
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div id="app"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-12 col-lg-8 ">
-
-                                </div>
-                                <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
-                                <div class="col-lg-4 col-md-4">
-                             
-                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
-                                    Sonraki
-                                    <span class="svg-icon svg-icon-md ml-1">
-                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                            </g>
-                                        </svg>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                </button>
+                                }
                             </div>
-                                </div>
-                            }
+                            <!--end::Form-->
                         </div>
-                        <!--end::Form-->
                     </div>
                     <!--end::Content-->
                 </div>
@@ -394,6 +437,43 @@
                 .getElementById("basDateTimeateTimeateTimeateTime-timer-path-remaining")
                 .setAttribute("stroke-dasharray", circleDasharray);
         }
+    </script>
+
+
+    <script>
+        $('button.SmsButtonControl').click(function () {
+            var clickedButton = $(this);
+            var currentContainer = clickedButton.closest('div.wizard-step');
+            var isValid = true;
+            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+
+
+            requiredTexts.each(function () {
+                var currentInput = $(this);
+                var hasText = currentInput.val() != "";
+
+                if (!hasText) {
+                    isValid = false;
+                    currentInput.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
+                }
+                else {
+                    isValid = true
+                    currentInput.closest('.form-group').find('span.required-error').hide();
+                    
+                }
+            });
+
+            if (isValid == true) {               
+                $('#SmsSubmit').submit();
+            }
+
+        })
     </script>
 
 }

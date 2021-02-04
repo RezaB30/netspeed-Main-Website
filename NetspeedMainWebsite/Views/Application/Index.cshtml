@@ -60,19 +60,16 @@
         display: none;
     }
 
-
-
-
     .swal-button {
         color: #8c8299;
         background-color: #E4E6EF;
-        font-weight: 300;
+        font-weight: 400;
         padding: 0.5em 1em;
     }
 
-        .swal-button:hover {
+     /*   .swal-button:hover {
             background-color: #E4E6EF;
-        }
+        }*/
 
     .swal-footer {
         text-align: center
@@ -85,6 +82,43 @@
     .swal-modal {
         width: 45vh !important;
     }
+/*
+    .swal-button:not([disabled]):hover {
+        background-color: #E4E6EF;
+    }*/
+
+    /*.swal-button:not([disabled]):hover {
+        background-color: none;
+    }*/
+
+    .swal-button:not([disabled]):hover {
+        color: #8c8299;
+        background-color: #E4E6EF;
+        font-weight: 400;
+       
+    }
+
+    /*.swal-button:focus {
+        overflow: hidden;*/
+       /* color: #E4E6EF;*/
+    /*}*/
+
+    .swal-button:focus {
+        box-shadow: none;
+    }
+
+  /*  .swal-popup{
+        padding:20rem;
+    }*/
+/*
+    .swal-icon--error__line--left {
+        width:2.5em;
+        height:0.5em
+    }
+    .swal-icon--error__line--right {
+        width: 47px;
+        height: 5px
+    }*/
 </style>
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -258,7 +292,7 @@
 
                             @using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @id = "ApplicationForm" }))
                             {
-                                <div id="InfrastructureInquiryForApplication" class="wizard-step">
+                                <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
 
                                     <div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">
                                         @TempData["ValidationError"]
@@ -501,21 +535,27 @@
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
             var isValid = true;
-            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
+            //var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
 
-            requiredSelects.each(function () {
-                var currentSelect = $(this);
-                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
+            //requiredSelects.each(function () {
+            //    var currentSelect = $(this);
+            //    var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
 
-                if (!hasSelectedOption) {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-                }
-                else {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-                }
-            });
+            //    if (!hasSelectedOption) {
+            //        isValid = false;
+            //        currentSelect.closest('.form-group').find('span.required-error').show();
+            //        swal({
+            //            title: '',
+            //            text: 'Hata Bulundu, Lütfen Kontrol Edin',
+            //            icon: 'error',
+            //            button: 'Tamam',
+            //        })
+            //    }
+            //    else {
+            //        currentSelect.closest('.form-group').find('span.required-error').hide();
+            //    }
+            //});
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
@@ -524,6 +564,12 @@
                 if (!hasText) {
                     isValid = false;
                     currentInput.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
                 }
                 else {
                     currentInput.closest('.form-group').find('span.required-error').hide();
@@ -555,6 +601,12 @@
                 if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
                 }
                 else {
                     currentSelect.closest('.form-group').find('span.required-error').hide();
@@ -567,7 +619,12 @@
 
                 if (!hasText) {
                     isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
+                    currentInput.closest('.form-group').find('span.required-error').show(); swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
                 }
                 else {
                     currentInput.closest('.form-group').find('span.required-error').hide();
@@ -621,6 +678,12 @@
                 if (!hasText) {
                     isValid = false;
                     currentInput.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
                 }
                 else {
                     currentInput.closest('.form-group').find('span.required-error').hide();
@@ -678,6 +741,12 @@
                 else {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
                 }
             });
         })
@@ -802,6 +871,12 @@
                 if (!hasText) {
                     isValid = false;
                     currentInput.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
 
                 }
                 else {

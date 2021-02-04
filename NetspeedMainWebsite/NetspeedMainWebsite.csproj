@@ -1311,6 +1311,9 @@
     <Content Include="Views\Application\ApplicationParts\_HasNotInfrastructure.cshtml" />
     <Content Include="Views\Shared\_ReCaptcha.cshtml" />
     <Content Include="Views\ClientPayment\ClientLoginFails.cshtml" />
+    <Content Include="Views\Home\InternalServerError.cshtml" />
+    <Content Include="Views\Home\TestMe.cshtml" />
+    <Content Include="Views\Home\TestMeForApp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
