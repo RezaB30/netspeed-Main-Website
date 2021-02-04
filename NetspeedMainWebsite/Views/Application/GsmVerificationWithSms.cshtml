@@ -10,7 +10,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
-    <style>
+    @*<style>
         .text-danger.required-error {
             display: none;
         }
@@ -43,7 +43,7 @@
         .swal-button:focus {
             box-shadow: none;
         }
-    </style>
+    </style>*@
 }
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -227,7 +227,6 @@
                                     @Html.HiddenFor(m => m.FatherName)
                                     @Html.HiddenFor(m => m.MotherName)
                                     @Html.HiddenFor(m => m.MotherFirstSurname)
-                                    @*@Html.HiddenFor(m => m.Nationality)*@
                                     @Html.HiddenFor(m => m.Sex)
                                     @Html.HiddenFor(m => m.BirthDate)
                                     @Html.HiddenFor(m => m.IDCardType)
@@ -246,7 +245,6 @@
                                             <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
                                         </div>
                                         <!--begin::Form Group-->
-                                        @*<div class="form-group">*@
                                         <div class="form-group is-required">
                                             <div class="text-danger mr-10">
                                                 @TempData["SmsValidationMessage"]

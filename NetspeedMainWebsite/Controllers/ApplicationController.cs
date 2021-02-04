@@ -163,8 +163,6 @@ namespace NetspeedMainWebsite.Controllers
                 }
                 else
                 {
-                    //message = "altyapiyok";
-                    //TempData["message"] = "messsage";
                     return PartialView("ApplicationParts/_HasNotInfrastructure");
                 }
             }

@@ -38,8 +38,6 @@ namespace NetspeedMainWebsite.Controllers
 
                 var body = string.Join("\n", new[] {  "Ad Soyad:", contact.FullName, "Telefon Numarası:", contact.PhoneNumber, "E-Posta Adresi:" , contact.EmailAddress,"Mesaj:", contact.Message });
 
-                //string body = contact.FullName  + contact.PhoneNumber + contact.EmailAddress + contact.Message;
-
                 var Message = string.Empty;
 
                 string[] mailTo = { Properties.Settings.Default.MailUserName };

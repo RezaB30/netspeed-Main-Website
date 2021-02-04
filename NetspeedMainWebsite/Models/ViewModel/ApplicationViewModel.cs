@@ -76,10 +76,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "*E-Posta Alanı Gerekli ")]
         [StringLength(100, ErrorMessage = "En Fazla 100 Karakter Girebilirsiniz.")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "*Lütfen Telefon E-Posta Adresinizi Doğru Giriniz.")]
-        public string EmailAddress { get; set; }
-
-        //[Required(ErrorMessage = "*Uyruk Alanı Gerekli ")]
-        //[Range(1, 255, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
+        public string EmailAddress { get; set; }     
         public int? Nationality { get; set; }
 
         [Required(ErrorMessage = "*Kart Tipi Alanı Gerekli ")]
@@ -129,7 +126,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public DateTime? _BirthDate { get; set; }
 
 
-
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
         [Range(1, 2, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
         public int? Sex { get; set; }
@@ -137,6 +133,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Baba Adı Alanı Gerekli ")]
         private string _FatherName;
+
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Baba Adı Alanı Gerekli ")]
         public string FatherName
@@ -158,6 +155,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Anne Adı Alanı Gerekli ")]
         private string _MotherName;
+
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Anne Adı Alanı Gerekli ")]
         public string MotherName
@@ -179,6 +177,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         private string _BirthPlace;
+
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         public string BirthPlace
@@ -200,6 +199,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Anne Kızlık Soyadı Alanı Gerekli ")]
         private string _MotherFirstSurname;
+
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Anne Kızlık Soyadı Alanı Gerekli ")]
 
@@ -223,8 +223,8 @@ namespace NetspeedMainWebsite.Models.ViewModel
 
         [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
         private string _SerialNo;
-        [MaxLength(10), MinLength(2)]
 
+        [MaxLength(10), MinLength(2)]
         [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
         public string SerialNo
         {
@@ -247,7 +247,6 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string Floor { get; set; }
 
         [MaxLength(10), MinLength(2)]
-
         private string _ReferenceCode;
         public string ReferenceCode
         {
@@ -268,6 +267,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
         private string _PlaceOfIssue;
+
         [MaxLength(50), MinLength(2)]
         [Required(ErrorMessage = "*Verildiği Yer Alanı Gerekli ")]
         public string PlaceOfIssue
@@ -285,8 +285,8 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 _PlaceOfIssue = value;
             }
         }
+
         [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        //public DateTime? DateOfIssue { get; set; }
         public string DateOfIssue
         {
             get
@@ -302,6 +302,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 }
             }
         }
+
         [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
         public DateTime? _DateOfIssue { get; set; }
 

@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<BillInfoViewModel>
 @using NetspeedMainWebsite.Models.ViewModel
 
-@*@model NetspeedMainWebsite.Models.ViewModel.BillInfoViewModel*@
-
 @{
     //var ClientItems = Model.ToArray();
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -81,7 +79,6 @@
                         <!--begin::Form-->
                         <div class="d-flex justify-content-center flex-row-fluid ">
 
-                            @*@using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))*@
                             @using (Html.BeginForm("PaymentBillAndResult", "ClientPayment", FormMethod.Post, new { @class = "pb-5 w-100 w-md-550px w-lg-600px", id = "kt_form2" }))
                             {
                                 @Html.Hidden("SelectedBills")
@@ -101,7 +98,6 @@
                                                 </span>
                                                 <span>@ViewBag.message</span>
                                                 <h3 class="text-danger">
-                                                    @*@TempData["message"]*@
                                                     @ViewBag.MessageForBills
                                                 </h3>
                                                 

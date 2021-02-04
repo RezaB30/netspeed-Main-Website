@@ -38,7 +38,8 @@ namespace NetspeedMainWebsite
                       "~/Content/plugins.bundle.css",
                       "~/Content/prismjs.bundle.css",
                       "~/Content/style.bundle.css",
-                      "~/Content/wizard5-basvuru.css"));
+                      "~/Content/wizard5-basvuru.css",
+                     "~/Content/Custom.css"));
         }
     }
 }

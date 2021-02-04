@@ -19,19 +19,8 @@
                 <span class="text-danger required-error">Kimlik Kart Tipi Zorunludur</span>
             </div>
         </div>
-        @*<div class="form-group">*@
-        <div class="row">
-            @*<div class="col-lg-6 col-md-6">
-                <div class="form-group is-required">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Uyruk</label>
-                    @Html.DropDownListFor(m => m.Nationality, new SelectList(ViewBag.NationalityList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.Nationality)
-                    </div>
-                    <span class="text-danger required-error">Bu Alanın Doldurulması Zorunludur.</span>
-                </div>
-            </div>*@
+       
+        <div class="row">           
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>

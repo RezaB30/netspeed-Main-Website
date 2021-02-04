@@ -257,6 +257,7 @@
     <Content Include="Content\4buneg-1.png" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\CountDownStyle.css" />
+    <Content Include="Content\Custom.css" />
     <Content Include="Content\login-6.css" />
     <Content Include="Content\media\bg\11-3.svg" />
     <Content Include="Content\media\bg\11now-bg.jpg" />
@@ -1274,7 +1275,6 @@
     <Content Include="Scripts\js\get-captcha.js" />
     <Content Include="Scripts\js\get-infrastructure.js" />
     <Content Include="Scripts\js\get-ServiceAvailability.js" />
-    <Content Include="Scripts\js\get-required-message.js" />
     <Content Include="Scripts\login-general.js" />
     <Content Include="Scripts\lottie-player.js" />
     <Content Include="Scripts\simplebar.min.js" />
@@ -1309,7 +1309,6 @@
     <Content Include="Views\Application\ApplicationParts\_InfrastructureAndTariffs.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_TariffCard.cshtml" />
     <Content Include="Views\Application\ApplicationParts\_HasNotInfrastructure.cshtml" />
-    <Content Include="Views\Shared\_ReCaptcha.cshtml" />
     <Content Include="Views\ClientPayment\ClientLoginFails.cshtml" />
     <Content Include="Views\Home\InternalServerError.cshtml" />
     <Content Include="Views\Home\TestMe.cshtml" />
@@ -1320,7 +1319,6 @@
     <Folder Include="Content\media\svg\social-icons\" />
     <Folder Include="Views\Captcha\" />
     <Folder Include="Views\Payment\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\media\bg\debug.log" />

@@ -7,92 +7,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-@*<style>
-        .swal-icon--success__ring {
-            border: 0.3em solid rgb(186, 238, 235)
-        }
-    </style>*@ @*<style>
-                    swal-button--cancel {
-                        color: #545CDC
-                    }
 
-                    .swal-button {
-                        color: #8c8299;
-                        background-color: #E4E6EF;
-                        font-weight: 400;
-                        padding: 0.5em 1em;
-                    }
+            @*<style>
+                .swal-button:not([disabled]):hover {
+                    background-color: none;
+                }
 
-                    /*   .swal-button:hover {
-                                    background-color: #E4E6EF;
-                                }*/
+                .swal-button.swal-button--cancel {
+                    background-color: #545CDC;
+                    color: #ffffff
+                }
 
-                    .swal-footer {
-                        text-align: center
-                    }
-
-                    .swal-icon--success__ring {
-                        border: 4px solid rgb(27, 197, 189)
-                    }
-
-                    .swal-icon--success__line {
-                        background-color: rgb(27, 197, 189)
-                    }
-
-                    .swal-button:focus {
-                        box-shadow: none;
-                    }
-                </style>*@
-
-
-
-
-                <style>
-                    .swal-button:not([disabled]):hover {
-                        background-color: none;
-                    }
-
-                    .swal-button.swal-button--cancel {
+                    .swal-button.swal-button--cancel:not([disabled]):hover {
                         background-color: #545CDC;
                         color: #ffffff
                     }
 
-                        .swal-button.swal-button--cancel:not([disabled]):hover {
-                            background-color: #545CDC;
-                            color: #ffffff
-                        }
+                .swal-button.swal-button--confirm:not([disabled]):hover {
+                    background-color: #E4E6EF;
+                    color: #545CDC;
+                }
 
-                    .swal-button.swal-button--confirm:not([disabled]):hover {
-                        background-color: #E4E6EF;
-                        color: #545CDC;
-                    }
-
-                    .swal-button {
-                        color: #8c8299;
-                        background-color: #E4E6EF;
-                        font-weight: 400;
-                        padding: 0.5em 1em;
-                    }
+                .swal-button {
+                    color: #8c8299;
+                    background-color: #E4E6EF;
+                    font-weight: 400;
+                    padding: 0.5em 1em;
+                }
 
 
-                    .swal-footer {
-                        text-align: center
-                    }
+                .swal-footer {
+                    text-align: center
+                }
 
-                    .swal-icon--success__ring {
-                        border: 4px solid rgb(27, 197, 189)
-                    }
+                .swal-icon--success__ring {
+                    border: 4px solid rgb(27, 197, 189)
+                }
 
-                    .swal-icon--success__line {
-                        background-color: rgb(27, 197, 189)
-                    }
+                .swal-icon--success__line {
+                    background-color: rgb(27, 197, 189)
+                }
 
-                    .swal-button:focus {
-                        box-shadow: none;
-                    }
-                </style> }
+                .swal-button:focus {
+                    box-shadow: none;
+                }
+            </style>*@
+            
+            }
 
-}
+
 
 
 
@@ -305,7 +268,6 @@
 
                             @Html.HiddenFor(m => m.MotherName)
                             @Html.HiddenFor(m => m.MotherFirstSurname)
-                            @*  @Html.HiddenFor(m => m.Nationality)*@
                             @Html.HiddenFor(m => m.Sex)
                             @Html.HiddenFor(m => m.BirthDate)
 
@@ -378,9 +340,7 @@
 
                         <div class="col-lg-4 col-md-4">
                             <div>
-                                @*<button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 " data-wizard-type="action-next" id="checkBtn">*@
                                 <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 " data-wizard-type="action-next" id="checkBtn">
-
                                     Onayla
                                     <span class="svg-icon svg-icon-md ml-1">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -408,8 +368,7 @@
         <!--end::Content-->
     </div>
 </div>
-@*</div>
-    </div>*@
+
 
 
 @section script{
@@ -440,7 +399,7 @@
                         if (willDelete) {
                             swal("Form Gönderimi İptal Edildi", {
                                 icon: "error",
-                                button: 'Tamam'//sonradan ekledim
+                                button: 'Tamam'
                             });
 
                         } else {
@@ -451,62 +410,9 @@
                             window.location.href = "@Url.Action("Index","Application")";
                         }
                     });
-
             });
         });
     </script>
 
-
-
-
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $('#checkBtn').click(function () {
-                    checked = $("input[type=checkbox]:checked").length;
-
-                    if (checked != 2) {
-                        //alert("Abonelik Sözleşmesini Okudum ve Kişisel Verilerimin İşlenmesine İzin Veriyorum Alanını İşaretlemeniz Gerekmektedir.");
-                        swal({
-                            title: '',
-                            text: 'Abonelik Sözleşmesini Okudum ve Kişisel Verilerimin İşlenmesine İzin Veriyorum Alanını İşaretlemeniz Gerekmektedir.',
-                            icon: 'error',
-                            button: 'Tamam',
-                        })
-                        return false;
-                    }
-
-                    swal({
-                        title: "",
-                        text: "Herşey Tamam!, Başvurunuzu Onaylıyor musunuz?",
-                        icon: "success",
-                        //buttons: true,
-                        //dangerMode: true,
-
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Onaylıyorum',
-                        showCancelButton: true,
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: 'İptal',
-                    })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                //swal("Başvurunuz Alınmıştır", {
-                                //    icon: "success",
-                                //});
-                                $('#ApplicationSummary').submit();
-                                window.location.href = "@Url.Action("Index","Application")";
-                            } else {
-                                swal("Form Gönderimi İptal Edildi", {                                {
-                                    icon: "error",
-                                    showCancelButton: true,
-                                    cancelButtonColor: '#d33',
-
-                                    });
-                            }
-                        });
-
-                });
-            });
-        </script>*@
 
 }

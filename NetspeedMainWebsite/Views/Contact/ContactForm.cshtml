@@ -38,9 +38,6 @@
     <div class="card-body bg-white">
         <div class="row">
             <div class="col-xl-3"></div>
-            @*<div style="color:red; list-style-type:none;">
-                    @Html.ValidationSummary()
-                </div>*@
 
             <div class="col-xl-6">
                 <div style="text-align:center; color:#6610f2; font-size:2em; margin-bottom:1em">
@@ -96,7 +93,6 @@
                 <!--begin::Input-->
                 <div class="form-group">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark" for="exampleTextarea">Mesajınız</label>
-                    <!--<textarea class="form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea" name="Message"--> @*id="Message"*@ <!--id="exampleTextarea" rows="3"></textarea>-->
                     <span class="form-text text-muted">Mesajınıza gerekiyorsa 24 saat içerisinde dönüş sağlayacağız.</span>
 
                     @Html.TextAreaFor(m => m.Message, new { @class = "form-control form-control-solid h-auto p-4 border-0 rounded-lg font-size-h6 exampleTextarea", @rows = "3", id = "exampleTextarea", htmlAttributes = new { name = "Message", @autocomplete = "off", placeholder = "Mesajınız", @maxlength = "1000" } })

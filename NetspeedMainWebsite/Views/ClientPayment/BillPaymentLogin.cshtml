@@ -192,12 +192,6 @@
     @Scripts.Render("~/Scripts/js/get-captcha.js")
 
 
-    @*<script>
-            $(function () {
-                $('#ClientInfo').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-            });
-        </script>*@
-
     <script>
         $(function () {
             $("#ClientInfo").inputmask({ regex: "[0-90-9- ]*" });
@@ -215,17 +209,7 @@
     </script>
 
 
-    <script>
-        @*$(document).ready(function () {
-            if (@Session["HasCustomCaptcha"] == true) {
-                $('#login-captcha').show();
-                $('#google-captcha').hide();
-            }
-            else {
-                $('#google-captcha').show();
-                $('#login-captcha').hide();
-            }
-        }*@
+    <script>     
 
         window.onload = function () {
             if ("@Session["HasCustomCaptcha"]" != "") {
@@ -240,115 +224,6 @@
                 $('#login-captcha').hide();
             }
         };
-
     </script>
-
-
-
-    @*<script>
-            $(function () {
-                if (Session["HasCustomCaptcha"] == true) {
-                    $('#login-captcha').show();
-                    $('#google-captcha').hide();
-                }
-                else {
-                    $('#google-captcha').show();
-                    $('#login-captcha').hide();
-                }
-            });
-        </script>*@
-
-    @*<script>
-            function RecaptchaError() {
-                GetCustomCaptcha('@Url.Action("GetCustomCaptcha", "ClientPayment")');
-            }
-            function DirectLoginResult(data, status) {
-                DisableLoadingScreen();
-                try {
-                    var result = data.responseJSON;
-                    if (result.valid) {
-                        if (result.invalidCaptcha) {
-                            GetCustomCaptcha('@Url.Action("GetCustomCaptcha", "ClientPayment")');
-                        } else {
-                            grecaptcha.reset();
-                        }
-                        var content = '<div data-field="username" data-validator="notEmpty" class="fv-help-block">' + result.valid + '</div>';
-                        $('#username-valid-container').html(content);
-                    }
-                    else {
-                        swal.fire({
-                            input: "text",
-                            icon: "success",
-                            title: "Common.SetLoginSMSCode",
-                            buttonsStyling: false,
-                            confirmButtonText: "Common.Login",
-                            showCancelButton: true,
-                            cancelButtonText: "Common.Cancel",
-                            customClass: {
-                                confirmButton: "btn font-weight-bold btn-light-primary",
-                                cancelButton: "btn font-weight-bold btn-light-danger"
-                            },
-                            inputValidator: (value) => {
-                                if (!value) {
-                                    if (result.invalidCaptcha) {
-                                        GetCustomCaptcha('@Url.Action("GetCustomCaptcha","ClientPayment")');
-                                    } else {
-                                        grecaptcha.reset();
-                                    }
-                                    return 'Common.SetLoginSMSCode'
-                                }
-                                else {
-                                    var error = "";
-                                    //var token = $('input[name="__RequestVerificationToken"]').val();
-                                    $.ajax({
-                                        url: 'Url.Action("CustomerLogin","Auth")',
-                                        method: 'POST',
-                                        data: { CustomerCode: $('#CustomerCode').val(), SMSPassword: value/* __RequestVerificationToken: token */},
-                                        complete: function (data, status) {
-                                            if (status == "success") {
-                                                var result = data.responseJSON;
-                                                if (!result.valid) {
-                                                    const Toast = swal.mixin({
-                                                        toast: true,
-                                                        position: 'top-end',
-                                                        showConfirmButton: false,
-                                                        timer: 1500,
-                                                        timerProgressBar: true
-                                                    })
-                                                    Toast.fire({
-                                                        icon: 'success',
-                                                        title: 'Common.LoggingOn'
-                                                    }).then((result) => {
-                                                        $('form').find("button").prop("disabled", "disabled");
-                                                        window.location.href = "/";
-                                                    })
-                                                }
-                                                else {
-                                                    swal.fire({
-                                                        icon: 'error',
-                                                        title: '',
-                                                        text: result.valid,
-                                                        buttonsStyling: false,
-                                                        confirmButtonText: "Common.OK",
-                                                        showCancelButton: false,
-                                                        customClass: {
-                                                            confirmButton: "btn font-weight-bold btn-light-primary"
-                                                        },
-                                                    })
-                                                }
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-                        }).then(function () {
-                            KTUtil.scrollTop();
-                        });
-                    }
-                } catch (e) {
-                    console.log(e);
-                }
-            }
-        </script>*@
 
 }

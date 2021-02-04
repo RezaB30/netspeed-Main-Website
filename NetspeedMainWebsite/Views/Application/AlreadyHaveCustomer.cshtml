@@ -4,34 +4,9 @@
 @{ ViewBag.Title = "Kayıtlı Müşteri";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-@*<script src="sweetalert2/dist/sweetalert2.min.js"></script>
-            <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">*@
-
 
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<style>
-    .swal-button {
-        color: #8c8299;
-        background-color: #E4E6EF;
-        font-weight:300;
-    }
-        .swal-button:hover {
-            background-color: #E4E6EF;
-        }
-
-        .swal-footer{
-            text-align:center
-        }
-
-    .swal2-popup{
-        width:32em
-    }
-
-    .swal-modal{
-        width:45vh !important;
-    }
-</style>
 }
 
 
@@ -110,15 +85,6 @@
                                             </button>
                                         </a>
                                     </div>
-
-                                    @*<button id="">
-            Show error message
-        </button>*@
-
-
-                                    <button type="button" class="error-message" data-wizard-type="action-next">
-                                        error
-                                        </button>
                                 </div>
                             </div>
                         </div>
@@ -133,30 +99,3 @@
 
 
 
-
-
-
-@section script{
-    <script>
-        $('button.error-message').click(function () {      
-            swal({
-                title: '',
-                text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                icon: 'error',
-                button: 'Tamam',
-               
-
-            })
-            //swal({
-            //    title: ' fgdfg',
-            //    text: 'Hata Bulundu, Lütfen Kontrol Edin',
-            //    type: 'error',
-            //    showCancelButton: true,
-            //    confirmButtonColor: '#3085d6',
-            //    cancelButtonColor: '#d33',
-            //    //confirmButtonText: 'Yes, delete it!'
-            //})
-        })
-    </script>
-
-}

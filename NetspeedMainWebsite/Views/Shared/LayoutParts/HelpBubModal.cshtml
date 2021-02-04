@@ -138,7 +138,7 @@
                 @using (Html.BeginForm("CallMe", null, FormMethod.Post, new { @class = "form-group", id = "myModal" }))
                 {
                     @Html.Hidden("actionName", ViewContext.RouteData.Values["action"])
-                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery) @*@Html.AntiForgeryToken()*@
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery) 
 
                     <div class="modal-header" style="background:#290b63">
 

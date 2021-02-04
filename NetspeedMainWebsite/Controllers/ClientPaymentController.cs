@@ -38,10 +38,8 @@ namespace NetspeedMainWebsite.Controllers
         public ActionResult PaymentBillWithCard()
         {
             return View();
-        }
-        
-
-       
+        }        
+              
 
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -70,7 +68,7 @@ namespace NetspeedMainWebsite.Controllers
                 var captchaResponseKey = Request.Form["g-Recaptcha-Response"];
                 var captcha = RezaB.Web.Captcha.GoogleRecaptchaValidator.Check(recaptchaServerkey, captchaResponseKey);
 
-                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.Fail)//google captcha işaretlenmediyse
+                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.Fail)//if not marked google captcha 
                 {                    
                     ViewBag.clientMessage= "Lütfen Doğrulama Alanını Doldurunuz.";                  
                     Session.Remove("HasCustomCaptcha");
@@ -82,7 +80,7 @@ namespace NetspeedMainWebsite.Controllers
                     }
                     return View();
                 }
-                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.NotWorking)//google captcha çalışmıyorsa
+                if (captcha == RezaB.Web.Captcha.GoogleRecaptchaResultType.NotWorking)//not working google captcha 
                 {
                     Session["HasCustomCaptcha"] = true;
                     var netspeedCaptcha = Session["HasCustomCaptcha"];
@@ -276,11 +274,10 @@ namespace NetspeedMainWebsite.Controllers
             }
         }
 
-        public ActionResult PaymentVPOS(/*long[] BillIds*/)
+        public ActionResult PaymentVPOS()
         {
             var BillList = (long[])Session["BillIds"];
-            //long[] BillListt = new long[10];
-
+          
             var Key = Guid.NewGuid().ToString();
             var Value = BillList;
 
@@ -327,17 +324,7 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult GetCustomCaptcha()
-        //{
-        //    Session["HasCustomCaptcha"] = true;
-        //    var img = $"<div class='form-group py-2 m-0' style='padding-top:0 !important;padding-bottom:0 !important;'><img src='{Url.Action("LoginCaptcha", "Captcha", new { id = DateTime.Now.Ticks })}' class='custom-captcha form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg' /></div>";
-        //    var input = $"<div class='form-group py-2  m-0'><input autocomplete='off' type='text' name='customCaptcha' id='customCaptcha' " +
-        //        $"class='form-control h-auto font-size-h5 border-0 px-0 text-dark py-4 px-8 rounded-lg' placeholder='{"placeholder"}' /></div>";
-        //    var content = img + input;
-
-        //    return Content(content);
-        //}
+      
 
        
     }

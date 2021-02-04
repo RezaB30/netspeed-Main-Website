@@ -74,19 +74,6 @@ namespace NetspeedMainWebsite.Controllers
             filterContext.ExceptionHandled = true;
             logger.Error(filterContext.Exception);
 
-
-            //if (!(filterContext.Exception is System.Web.Mvc.HttpAntiForgeryException))
-            //{
-            //    if (filterContext.Exception is System.Data.Entity.Validation.DbEntityValidationException)
-            //    {
-            //        var entityException = filterContext.Exception as System.Data.Entity.Validation.DbEntityValidationException;
-            //        logger.Error(filterContext.Exception, string.Join(Environment.NewLine, entityException.EntityValidationErrors.SelectMany(e => e.ValidationErrors.Select(se => se.PropertyName + "->" + se.ErrorMessage))));
-            //    }
-            //    else
-            //    {
-            //        logger.Error(filterContext.Exception);
-            //    }
-            //}
         }
 
     }
