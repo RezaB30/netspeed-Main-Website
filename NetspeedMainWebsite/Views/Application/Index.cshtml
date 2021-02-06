@@ -10,6 +10,11 @@
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
+    <style>
+        #loading {
+            display: none;
+        }
+    </style>
 
 }
 
@@ -196,55 +201,59 @@
 
                             @using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @id = "ApplicationForm" }))
                             {
-                        <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
+                                <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
 
 
-                            <div id="validation-error">
-                                <div class="form-group" id="otherFieldGroupDiv">
-                                    <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-                                        <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
-                                        <div class="alert-text">
-                                            <a class="font-weight-bolder text-danger"> @TempData["ValidationError"] </a>
-                                            
+                                    <div id="validation-error">
+                                        <div class="form-group" id="otherFieldGroupDiv">
+                                            <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+                                                <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
+                                                <div class="alert-text">
+                                                    <a class="font-weight-bolder text-danger"> @TempData["ValidationError"] </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
+                                    @*@ViewBag.ValidationError*@
+                                    <!--@TempData["ValidationError"]
+
+                                    </div>-->
+                                    @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
+                                    <div class="row">
+                                        <div class="col-lg-7 col-md-7">
+
+                                        </div>
+
+
+                                        <div class="col-lg-5 col-md-5">
+                                            <div>
+                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next">
+                                                    Sonraki
+                                                    <span class="svg-icon svg-icon-md ml-1">
+                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                <polygon points="0 0 24 0 24 24 0 24" />
+                                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                            </g>
+                                                        </svg>
+                                                        <!--end::Svg Icon-->
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
-                                @*@ViewBag.ValidationError*@
-                                <!--@TempData["ValidationError"]
-
-                            </div>-->
-                            @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
-                            <div class="row">
-                                <div class="col-lg-7 col-md-7">
-
-                                </div>
-
-                                <div class="col-lg-5 col-md-5">
-                                    <div>
-                                        <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next">
-                                            Sonraki
-                                            <span class="svg-icon svg-icon-md ml-1">
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                    </g>
-                                                </svg>
-                                                <!--end::Svg Icon-->
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                                 <div id="InfrastructureAndTariffs" class="wizard-step">
                                     <div id="InfrastructureAndTariffContent"></div>
+                                    <div id="loading">
+
+                                        Yükleniyor, Lütfen Bekleyin...
+
+                                    </div>
                                     <div id="visibleButton">
                                         <div class="form-group">
                                             <div class="pb-15 pb-lg-4">
@@ -320,7 +329,7 @@
 
                                             <div class="col-lg-3 col-md-3">
                                                 <div>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next">
+                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next" id="email-validation">
                                                         Sonraki
                                                         <span class="svg-icon svg-icon-md ml-1">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
@@ -448,11 +457,70 @@
     @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
 
     <script>
+
+
+
+
+
+        //$(".error").hide();
+        //var hasError = false;
+        //var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        //var emailaddressVal = $("#EmailAddress").val();
+        //if (emailaddressVal == '') {
+        //    $("#EmailAddress").after('<span class="error">Enter email address.</span>');
+        //    hasError = true;
+        //}
+
+        //else if (!emailReg.test(emailaddressVal)) {
+        //    $("#EmailAddress").after('<span class="error">Enter a valid email address.</span>');
+        //    hasError = true;
+        //}
+        //if (hasError == true) { return false; }
+
+
+
+
+
         $('button.inputControlButton').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
             var isValid = true;
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+
+            $(".error").hide();
+            var hasError = false;
+            var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+
+            var emailaddressVal = $("#EmailAddress").val();
+            if (emailaddressVal == '') {
+                $("#EmailAddress").after('<span class="text-danger">E-Posta Gerekli</span>');
+                hasError = true;
+                swal({
+                    title: '',
+                    text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                    icon: 'error',
+                    button: 'Tamam',
+                })
+            }
+
+            else if (!emailReg.test(emailaddressVal)) {
+                $("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>');
+                hasError = true;
+                swal({
+                    title: '',
+                    text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                    icon: 'error',
+                    button: 'Tamam',
+                })
+            }
+
+            else {
+                //$("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>');
+                hasError = false;
+                $("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>').hide();
+
+            }
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
@@ -473,7 +541,7 @@
                 }
             });
 
-            if (isValid == true) {
+            if (isValid == true && hasError == false) {
                 if ($('#ContactInformation').is(':visible')) {
                     $('#ContactInformation').hide();
                     $('#IDInformation').show();
@@ -538,6 +606,92 @@
         })
     </script>
 
+    @*<script>
+        $('button.inputControlInf').click(function () {
+            var clickedButton = $(this);
+            var currentContainer = clickedButton.closest('div.wizard-step');
+            var isValid = true;
+            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
+            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+
+            requiredSelects.each(function () {
+                var currentSelect = $(this);
+                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
+
+                if (!hasSelectedOption) {
+                    isValid = false;
+                    currentSelect.closest('.form-group').find('span.required-error').show();
+
+                        swal({
+                            title: '',
+                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                            icon: 'error',
+                            button: 'Tamam',
+                        })
+
+
+                }
+                else {
+                    currentSelect.closest('.form-group').find('span.required-error').hide();
+                }
+            });
+
+            requiredTexts.each(function () {
+                var currentInput = $(this);
+                var hasText = currentInput.val() != "";
+
+                if (!hasText) {
+                    isValid = false;
+                    currentInput.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
+                }
+                else {
+                    currentInput.closest('.form-group').find('span.required-error').hide();
+                }
+            });
+
+            if (isValid == true) {
+                $.ajax({
+                    url: '@Url.Action("GetServiceAvailability","Application")',
+                    method: 'POST',
+                    data: { apartmentId: $("#ApartmentId").val() },
+                    beforeSend: function () {
+                        $("#loading").dialog('open').html("<p>Please Wait...</p>");
+                        //$("#loading").show();
+
+                    },
+                    beforeSend: function () {
+                        //$("#loading").dialog('open').html("<p>Please Wait...</p>");
+                        $("#loading").show();
+
+                    },
+                    complete: function (data, status) {
+
+                        if (status == "success") {
+                            //$('#tariffs-content').html(data.responseText);
+                            $('#InfrastructureAndTariffContent').html(data.responseText);
+                            var foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
+
+                            if (foundButton.length == 0) {
+                                $('#visibleButton').show();
+                            }
+                        }
+                    }
+                })
+
+                if ($('#InfrastructureInquiryForApplication').is(':visible')) {
+                    $('#InfrastructureInquiryForApplication').hide();
+                    $('#InfrastructureAndTariffs').show();
+                }
+            }
+        })
+    </script>*@
+
     <script>
         $('button.inputControlInf').click(function () {
             var clickedButton = $(this);
@@ -592,11 +746,23 @@
                     url: '@Url.Action("GetServiceAvailability","Application")',
                     method: 'POST',
                     data: { apartmentId: $("#ApartmentId").val() },
+                    //beforeSend: function () {
+                    //    $("#loading").dialog('open').html("<p>Please Wait...</p>");
+                    //    //$("#loading").show();
+
+                    //},
+                    beforeSend: function () {
+                        //$("#loading").dialog('open').html("<p>Please Wait...</p>");
+                        $("#loading").show();
+
+                    },
                     complete: function (data, status) {
+                        $("#loading").hide();
                         if (status == "success") {
                             //$('#tariffs-content').html(data.responseText);
                             $('#InfrastructureAndTariffContent').html(data.responseText);
                             var foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
+
                             if (foundButton.length == 0) {
                                 $('#visibleButton').show();
                             }
@@ -844,6 +1010,36 @@
     <script>
         $(function () {
             $("#MotherFirstSurname").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#EmailAddress").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+        });
+
+
+        $(function () {
+
+            $('#email-validation').click(function () {
+
+                $(".error").hide();
+                var hasError = false;
+                var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+
+                var emailaddressVal = $("#EmailAddress").val();
+                if (emailaddressVal == '') {
+                    $("#EmailAddress").after('<span class="error">Enter email address.</span>');
+                    hasError = true;
+                }
+
+                else if (!emailReg.test(emailaddressVal)) {
+                    $("#EmailAddress").after('<span class="error">Enter a valid email address.</span>');
+                    hasError = true;
+                }
+                if (hasError == true) { return false; }
+
+            });
         });
     </script>
 

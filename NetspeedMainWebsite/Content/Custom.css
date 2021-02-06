@@ -149,3 +149,28 @@
 /*.swal-button:focus {
     box-shadow: none;
 }*/
+
+
+#loading {
+    font-weight: bold;
+    font-size: 20px;
+    animation-name: blink;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    display:none;
+}
+
+
+@keyframes blink {
+    0% {
+        color: pink
+    }
+
+    50% {
+        color: black;
+    }
+
+    100% {
+        color: pink;
+    }
+}

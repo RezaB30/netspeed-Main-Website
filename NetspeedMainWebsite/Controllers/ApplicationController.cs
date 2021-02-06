@@ -368,8 +368,7 @@ namespace NetspeedMainWebsite.Controllers
             if (response.ResponseMessage.ErrorCode == 199)
             {
                 applicationLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (NewCustomerRegister)");
-                return RedirectToAction("InternalServerError", "Application");
-                
+                return RedirectToAction("InternalServerError", "Application");                
             }
 
             if (response.ResponseMessage.ErrorCode == 200)
