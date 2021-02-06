@@ -13,82 +13,6 @@
 
 }
 
-@*<style>
-
-    .text-danger.required-error {
-        display: none;
-    }
-
-    .validation-summary-message {
-        color: red;
-    }
-
-        .validation-summary-message ul {
-            list-style-type: none;
-        }
-
-    #InfrastructureInquiryForApplication {
-        display: block;
-    }
-
-    #visibleButton {
-        display: none;
-    }
-
-    #InfrastructureAndTariffs {
-        display: none;
-    }
-
-    #ContactInformation {
-        display: none;
-    }
-
-    #IDInformation {
-        display: none;
-    }
-
-    #GSMValidation {
-        display: none;
-    }
-
-    #SMSValidation {
-        display: none;
-    }
-
-    #validation-error {
-        display: none;
-    }
-
-    .swal-button {
-        color: #8c8299;
-        background-color: #E4E6EF;
-        font-weight: 400;
-        padding: 0.5em 1em;
-    }
-
-
-    .swal-footer {
-        text-align: center
-    }
-
-    .swal-text {
-        font-size: 1.1rem
-    }
-
-    .swal-modal {
-        width: 45vh !important;
-    }
-
-    .swal-button:not([disabled]):hover {
-        color: #8c8299;
-        background-color: #E4E6EF;
-        font-weight: 400;
-    }
-
-    .swal-button:focus {
-        box-shadow: none;
-    }
-</style>*@
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
     <!--begin::Info-->
@@ -258,41 +182,65 @@
                                 </style>
                             }
 
+                            @*@if (ViewBag.ValidationError != null)
+                                {
+                                    <style>
+                                        #validation-error {
+                                            display: block;
+                                        }
+                                    </style>
+                                }*@
+
+
+
 
                             @using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @id = "ApplicationForm" }))
                             {
-                                <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
+                        <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
 
-                                    <div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">
-                                        @TempData["ValidationError"]
 
-                                    </div>
-                                    @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
-                                    <div class="row">
-                                        <div class="col-lg-7 col-md-7">
-
-                                        </div>
-
-                                        <div class="col-lg-5 col-md-5">
-                                            <div>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next">
-                                                    Sonraki
-                                                    <span class="svg-icon svg-icon-md ml-1">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>
-                                                </button>
-                                            </div>
+                            <div id="validation-error">
+                                <div class="form-group" id="otherFieldGroupDiv">
+                                    <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+                                        <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
+                                        <div class="alert-text">
+                                            <a class="font-weight-bolder text-danger"> @TempData["ValidationError"] </a>
+                                            
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
+                                @*@ViewBag.ValidationError*@
+                                <!--@TempData["ValidationError"]
+
+                            </div>-->
+                            @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7">
+
+                                </div>
+
+                                <div class="col-lg-5 col-md-5">
+                                    <div>
+                                        <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next">
+                                            Sonraki
+                                            <span class="svg-icon svg-icon-md ml-1">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                                 <div id="InfrastructureAndTariffs" class="wizard-step">
@@ -859,43 +807,43 @@
 
     <script>
         $(function () {
-            $("#FirstName").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#FirstName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 
     <script>
         $(function () {
-            $("#LastName").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#LastName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 
     <script>
         $(function () {
-            $("#FatherName").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#FatherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 
     <script>
         $(function () {
-            $("#MotherName").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#MotherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 
     <script>
         $(function () {
-            $("#BirthPlace").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#BirthPlace").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 
     <script>
         $(function () {
-            $("#PlaceOfIssue").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#PlaceOfIssue").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 
     <script>
         $(function () {
-            $("#MotherFirstSurname").inputmask({ regex: "[a-zA-Z- ]*" });
+            $("#MotherFirstSurname").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
     </script>
 

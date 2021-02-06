@@ -121,5 +121,32 @@ namespace NetspeedMainWebsite.Properties {
                 return ((string)(this["CaptchaSiteKey"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("no-reply@netspeed.com.tr")]
+        public string MailUsernameNetspeed {
+            get {
+                return ((string)(this["MailUsernameNetspeed"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("beniara@netspeed.com.tr")]
+        public string MailReceiverNetspeed {
+            get {
+                return ((string)(this["MailReceiverNetspeed"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("JUpc47E0")]
+        public string MailPasswordNetspeed {
+            get {
+                return ((string)(this["MailPasswordNetspeed"]));
+            }
+        }
     }
 }

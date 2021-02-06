@@ -35,6 +35,7 @@ namespace NetspeedMainWebsite.Controllers
 
         public ActionResult Index()
         {
+            //ViewBag.ValidationError = Session["ValidationError"];
 
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
             var IDCardTypeList = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
@@ -180,6 +181,8 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult Index(ApplicationViewModel application)
         {
+            ViewBag.ValidationError = Session["ValidationError"];
+
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
 
             if (ModelState.IsValid)
@@ -240,11 +243,8 @@ namespace NetspeedMainWebsite.Controllers
 
                 return View(viewName: "GsmVerificationWithSms", model: result);
             }
-
-
-           
+                     
             
-
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
             var IDCardTypeList = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
             {
@@ -368,13 +368,17 @@ namespace NetspeedMainWebsite.Controllers
             if (response.ResponseMessage.ErrorCode == 199)
             {
                 applicationLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (NewCustomerRegister)");
+                return RedirectToAction("InternalServerError", "Application");
+                
             }
 
             if (response.ResponseMessage.ErrorCode == 200)
             {
                 ValidationError = "Kimlik Bilginiz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz.";
+                //Session["ValidationError"] = ValidationError;
                 TempData["ValidationError"] = ValidationError;
                 return RedirectToAction("Index", "Application");
+
             }
             return RedirectToAction("ApplicationFail", "Application");
         }

@@ -116,6 +116,7 @@ namespace NetspeedMainWebsite.Controllers
             if (result.ResponseMessage.ErrorCode == 4)
             {
                 Session["NotFindBill"] = "Fatura Bulunamadı.";
+                return RedirectToAction("ClientLoginFails", "ClientPayment");
             }
 
             if (result.ResponseMessage.ErrorCode == 5)

@@ -219,7 +219,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-        [MaxLength(10), MinLength(2)]
+        [MaxLength(9), MinLength(9)]
 
         [Required(ErrorMessage = "*Seri No Alanı Gerekli")]
         private string _SerialNo;

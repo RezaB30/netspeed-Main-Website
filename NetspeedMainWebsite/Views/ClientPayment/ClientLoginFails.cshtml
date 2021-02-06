@@ -2,20 +2,22 @@
 
 
 @{ ViewBag.Title = "Giriş İşlemi Başarısız";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
-    
-    <style>
-        #HasNotBill{
-            display:none;
-        }
-        #NotFindBill{
-            display:none;
-        }
-        #NotFindSub{
-            display:none;
-        }
-        </style>
-        }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+<style>
+    #HasNotBill {
+        display: none;
+    }
+
+    #NotFindBill {
+        display: none;
+    }
+
+    #NotFindSub {
+        display: none;
+    }
+</style>
+}
 
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -70,6 +72,8 @@
                                     </div>
                                     <!--end::Shape-->
                                     <h3 class="font-weight-bolder text-dark font-size-h4">
+
+
                                         <label id="NotFindSub">
                                             @ViewBag.NotFindSub
                                         </label>
@@ -86,7 +90,7 @@
                                     </div>
 
                                     <div>
-                                      
+
                                         <a href="/ClientPayment/BillPaymentLogin">
                                             <button type="button" class="btn btn-dark font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
                                                 Fatura Ödeme Giriş Sayfasına Dönmek İçin Tıklayınız.
@@ -117,7 +121,8 @@
 </div>
 
 
-<script>
+@section script{
+    <script>
     window.onload = function () {
         if ("@ViewBag.NotFindSub" != "") {
             $('#NotFindSub').show();
@@ -132,4 +137,6 @@
         }
 
     }
-</script>
+    </script>
+    }
+
