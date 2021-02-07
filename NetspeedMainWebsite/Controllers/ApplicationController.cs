@@ -183,6 +183,8 @@ namespace NetspeedMainWebsite.Controllers
         {
             ViewBag.ValidationError = Session["ValidationError"];
 
+            var Checked = application.TariffId;
+
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
 
             if (ModelState.IsValid)
@@ -220,6 +222,7 @@ namespace NetspeedMainWebsite.Controllers
                     DisplayName = application.DisplayName
                 };
 
+                
                 var message = string.Empty;
                 WebServiceWrapper clientPhone = new WebServiceWrapper();
                 var response = clientPhone.SendGenericSMS(application.PhoneNumber);//sending phone number for sms code
@@ -279,7 +282,7 @@ namespace NetspeedMainWebsite.Controllers
             ViewBag.StreetList = application.NeighborhoodId.HasValue ? new SelectList(addressUtil.GetNeighbourhoodStreets(application.NeighborhoodId.Value), "Key", "Value", application.StreetId) : new SelectList(Enumerable.Empty<object>());
             ViewBag.BuildingList = application.StreetId.HasValue ? new SelectList(addressUtil.GetStreetBuildings(application.StreetId.Value), "Key", "Value", application.BuildingId) : new SelectList(Enumerable.Empty<object>());
             ViewBag.ApartmentList = application.BuildingId.HasValue ? new SelectList(addressUtil.GetBuildingAparments(application.BuildingId.Value), "Key", "Value", application.ApartmentId) : new SelectList(Enumerable.Empty<object>());
-
+            ViewBag.Checked = Checked;
             return View(application);
         }
 

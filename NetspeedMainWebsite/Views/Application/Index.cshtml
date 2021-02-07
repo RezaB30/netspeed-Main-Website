@@ -14,6 +14,10 @@
         #loading {
             display: none;
         }
+
+        #visible-check {
+            display: none;
+        }
     </style>
 
 }
@@ -247,64 +251,72 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="InfrastructureAndTariffs" class="wizard-step">
-                                    <div id="InfrastructureAndTariffContent"></div>
-                                    <div id="loading">
+                                <div class="check-control">
+                                    <div id="InfrastructureAndTariffs" class="wizard-step">
+                                        <div id="InfrastructureAndTariffContent"></div>
 
-                                        Yükleniyor, Lütfen Bekleyin...
+                                        <div id="loading">
 
-                                    </div>
-                                    <div id="visibleButton">
-                                        <div class="form-group">
-                                            <div class="pb-15 pb-lg-4">
-                                                <h3 class="font-weight-bolder text-dark-50 font-size-h2">Varsa Referans Kodu</h3><hr class="my-4">
-                                            </div>
-                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Referans Kodunu Yazınız</label>
-                                            @Html.EditorFor(m => m.ReferenceCode, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Referans Kodu" } })
+                                            Yükleniyor, Lütfen Bekleyin...
+
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4">
-                                                <div class="mr-2">
-                                                    <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonInfTariffInfApp();">
-                                                        <span class="svg-icon svg-icon-md mr-1">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
-                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                                    <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
-                                                                    <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>Önceki
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4">
-                                            </div>
+                                        @*@if (ViewBag.Checked != null)
+                                            {
+                                            }*@
 
-                                            <div class="col-lg-4 col-md-4">
-                                                <div>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlTarCon" data-wizard-type="action-next">
-                                                        Sonraki
-                                                        <span class="svg-icon svg-icon-md ml-1">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>
-                                                    </button>
+                                        @*<button type="button" class="check-control" id="visible-check">control</button>*@
+
+                                        <div id="visibleButton">
+                                            <div class="form-group">
+                                                <div class="pb-15 pb-lg-4">
+                                                    <h3 class="font-weight-bolder text-dark-50 font-size-h2">Varsa Referans Kodu</h3><hr class="my-4">
+                                                </div>
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Referans Kodunu Yazınız</label>
+                                                @Html.EditorFor(m => m.ReferenceCode, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Referans Kodu" } })
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="mr-2">
+                                                        <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonInfTariffInfApp();">
+                                                            <span class="svg-icon svg-icon-md mr-1">
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
+                                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                                        <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
+                                                                        <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
+                                                                    </g>
+                                                                </svg>
+                                                                <!--end::Svg Icon-->
+                                                            </span>Önceki
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                </div>
+
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlTarCon" data-wizard-type="action-next">
+                                                            Sonraki
+                                                            <span class="svg-icon svg-icon-md ml-1">
+                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                                    </g>
+                                                                </svg>
+                                                                <!--end::Svg Icon-->
+                                                            </span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div id="ContactInformation" class="wizard-step">
                                     @Html.Partial("ApplicationParts/_ContactInformation")
                                     <div>
@@ -456,32 +468,120 @@
     @Scripts.Render("~/Scripts/js/get-infrastructure.js")
     @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
 
+
+
     <script>
+        $('button.inputControlInf').click(function () {
+            var foundButton = 1;
+            if (foundButton.length != 0) {
+                $('#visibleButton').hide();
+            }
+
+            var clickedButton = $(this);
+            var currentContainer = clickedButton.closest('div.wizard-step');
+            var isValid = true;
+            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
+            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+
+            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
+
+
+            requiredSelects.each(function () {
+                var currentSelect = $(this);
+                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
+
+                if (!hasSelectedOption) {
+                    isValid = false;
+                    currentSelect.closest('.form-group').find('span.required-error').show();
+
+                        swal({
+                            title: '',
+                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                            icon: 'error',
+                            button: 'Tamam',
+                        })
+                }
+                else {
+                    currentSelect.closest('.form-group').find('span.required-error').hide();
+                }
+            });
+
+            requiredTexts.each(function () {
+                var currentInput = $(this);
+                var hasText = currentInput.val() != "";
+
+                if (!hasText) {
+                    isValid = false;
+                    currentInput.closest('.form-group').find('span.required-error').show();
+                    swal({
+                        title: '',
+                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                        icon: 'error',
+                        button: 'Tamam',
+                    })
+                }
+                else {
+                    currentInput.closest('.form-group').find('span.required-error').hide();
+                }
+            });
+
+            if (isValid == true) {
+                $('#InfrastructureAndTariffContent').html("");
+                $.ajax({
+                    url: '@Url.Action("GetServiceAvailability","Application")',
+                    method: 'POST',
+                    data: { apartmentId: $("#ApartmentId").val() },
+                    beforeSend: function () {
+                        $("#loading").show();
+                    },
+                    complete: function (data, status) {
+                        $("#loading").hide();
+                        if (status == "success") {
+                            //$('#tariffs-content').html(data.responseText);                                                      
+                           
+                            $('#InfrastructureAndTariffContent').html(data.responseText);
+                            foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
+
+                          
+                            if (foundButton.length == 0) {
+                                $('#visibleButton').show();
+                            }
+                            
+                              if ('@ViewBag.Checked' != '') {
+
+                                  var currentContainer = $('#visibleButton').closest('div.wizard-step');
+
+                        var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
+
+                        requiredRadioButtons.each(function () {
+                            var currentSelect = $(this);
+                            var HasRadioButtonValue = currentSelect.val();
+
+                            if (HasRadioButtonValue == '@ViewBag.Checked') {
+                                $("#TariffId").prop("checked", true);
+                                $("#TariffID").prop("checked", true);
+                                currentSelect.prop("checked", true);
+
+                           }
+                      });
+                }
+                        }
+
+                    }
+                })
+
+                if ($('#InfrastructureInquiryForApplication').is(':visible')) {
+                    $('#InfrastructureInquiryForApplication').hide();
+                    $('#InfrastructureAndTariffs').show();
+                }
+            }
+        })
+    @*</script>*@
 
 
 
 
-
-        //$(".error").hide();
-        //var hasError = false;
-        //var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
-
-        //var emailaddressVal = $("#EmailAddress").val();
-        //if (emailaddressVal == '') {
-        //    $("#EmailAddress").after('<span class="error">Enter email address.</span>');
-        //    hasError = true;
-        //}
-
-        //else if (!emailReg.test(emailaddressVal)) {
-        //    $("#EmailAddress").after('<span class="error">Enter a valid email address.</span>');
-        //    hasError = true;
-        //}
-        //if (hasError == true) { return false; }
-
-
-
-
-
+    //<script>
         $('button.inputControlButton').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
@@ -549,9 +649,9 @@
             }
 
         })
-    </script>
+    @*</script>*@
 
-    <script>
+    //<script>
         $('button.inputControlButtonId').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
@@ -604,181 +704,11 @@
                 }
             }
         })
-    </script>
-
-    @*<script>
-        $('button.inputControlInf').click(function () {
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-
-            requiredSelects.each(function () {
-                var currentSelect = $(this);
-                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-
-                if (!hasSelectedOption) {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-
-                        swal({
-                            title: '',
-                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                            icon: 'error',
-                            button: 'Tamam',
-                        })
+    @*</script>*@
 
 
-                }
-                else {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-                }
-            });
 
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
-
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                else {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-            if (isValid == true) {
-                $.ajax({
-                    url: '@Url.Action("GetServiceAvailability","Application")',
-                    method: 'POST',
-                    data: { apartmentId: $("#ApartmentId").val() },
-                    beforeSend: function () {
-                        $("#loading").dialog('open').html("<p>Please Wait...</p>");
-                        //$("#loading").show();
-
-                    },
-                    beforeSend: function () {
-                        //$("#loading").dialog('open').html("<p>Please Wait...</p>");
-                        $("#loading").show();
-
-                    },
-                    complete: function (data, status) {
-
-                        if (status == "success") {
-                            //$('#tariffs-content').html(data.responseText);
-                            $('#InfrastructureAndTariffContent').html(data.responseText);
-                            var foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
-
-                            if (foundButton.length == 0) {
-                                $('#visibleButton').show();
-                            }
-                        }
-                    }
-                })
-
-                if ($('#InfrastructureInquiryForApplication').is(':visible')) {
-                    $('#InfrastructureInquiryForApplication').hide();
-                    $('#InfrastructureAndTariffs').show();
-                }
-            }
-        })
-    </script>*@
-
-    <script>
-        $('button.inputControlInf').click(function () {
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-
-            requiredSelects.each(function () {
-                var currentSelect = $(this);
-                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-
-                if (!hasSelectedOption) {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-
-                        swal({
-                            title: '',
-                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                            icon: 'error',
-                            button: 'Tamam',
-                        })
-
-
-                }
-                else {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
-
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                else {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-            if (isValid == true) {
-                $.ajax({
-                    url: '@Url.Action("GetServiceAvailability","Application")',
-                    method: 'POST',
-                    data: { apartmentId: $("#ApartmentId").val() },
-                    //beforeSend: function () {
-                    //    $("#loading").dialog('open').html("<p>Please Wait...</p>");
-                    //    //$("#loading").show();
-
-                    //},
-                    beforeSend: function () {
-                        //$("#loading").dialog('open').html("<p>Please Wait...</p>");
-                        $("#loading").show();
-
-                    },
-                    complete: function (data, status) {
-                        $("#loading").hide();
-                        if (status == "success") {
-                            //$('#tariffs-content').html(data.responseText);
-                            $('#InfrastructureAndTariffContent').html(data.responseText);
-                            var foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
-
-                            if (foundButton.length == 0) {
-                                $('#visibleButton').show();
-                            }
-                        }
-                    }
-                })
-
-                if ($('#InfrastructureInquiryForApplication').is(':visible')) {
-                    $('#InfrastructureInquiryForApplication').hide();
-                    $('#InfrastructureAndTariffs').show();
-                }
-            }
-        })
-    </script>
-
-    <script>
+    //<script>
         $('button.inputControlTarCon').click(function () {
             var count = 0;
             var clickedButton = $(this);
@@ -815,9 +745,9 @@
         })
 
 
-    </script>
+    @*</script>
 
-    <script>
+    <script>*@
         $(function () {
             $('.datepicker').datepicker({
                 dateFormat: 'dd.mm.yy',
@@ -830,35 +760,10 @@
             });
 
         });
-    </script>
+    @*</script>*@
 
-    <script>
-        $(function () {
-            $('#PhoneNumber').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
 
-        });
-    </script>
-
-    <script>
-            $('#getServiceAvability').click(function () {
-                $.ajax({
-                    url: '@Url.Action("GetServiceAvailability","Application")',
-                    method: 'POST',
-                    data: { apartmentId: $("#ApartmentId").val() },
-                    complete: function (data, status) {
-                        if (status == "success") {
-                            $('#InfrastructureAndTariffContent').html(data.responseText);
-                            var foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
-                            if (foundButton.length == 0) {
-                                $('#visibleButton').show();
-                            }
-                        }
-                    }
-                })
-            })
-    </script>
-
-    <script>
+    //<script>
         $('#ProvinceId').change(function () {
             GetValues('#ProvinceId', '#DistrictId', '@Url.Action("GetDistricts", "InfrastructureInquiry")');
         })
@@ -879,27 +784,23 @@
         })
         $('#ApartmentId').change(function () {
         })
-    </script>
+    @*</script>
 
-    <script>
+    <script>*@
         function PrevButtonInfTariffInfApp() {
             if ($('#InfrastructureAndTariffs').show()) {
                 $('#InfrastructureAndTariffs').hide();
                 $('#InfrastructureInquiryForApplication').show();
             }
         }
-    </script>
 
-    <script>
         function PrevButtonConInfTariff() {
             if ($('#ContactInformation').show()) {
                 $('#ContactInformation').hide();
                 $('#InfrastructureAndTariffs').show();
             }
         }
-    </script>
 
-    <script>
         function PrevButtonGSMID() {
 
             if ($('#GSMValidation').show()) {
@@ -907,18 +808,19 @@
                 $('#IDInformation').show();
             }
         }
-    </script>
 
-    <script>
         function PrevButtonIDCon() {
             if ($('#IDInformation').show()) {
                 $('#IDInformation').hide();
                 $('#ContactInformation').show();
             }
         }
-    </script>
 
-    <script>
+
+    @*</script>
+
+
+    <script>*@
         $('button.inputGsmButton').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
@@ -950,73 +852,92 @@
             }
 
         })
-    </script>
+    @*</script>
 
 
-    <script>
+    <script>*@
+        $(function () {
+            $('#PhoneNumber').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+            $('#TC').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
+            $("#Floor").inputmask({ regex: "[0-90-9- ]*" });
+            $("#PostalCode").inputmask({ regex: "[0-90-9- ]*" });
+            $("#FirstName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            $("#LastName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            $("#FatherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            $("#MotherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            $("#BirthPlace").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            //$("#PlaceOfIssue").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            //$("#MotherFirstSurname").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+            //$("#EmailAddress").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+
+
+        });
+    @*</script>*@
+
+    @*<script>
         $(function () {
             $('#TC').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#Floor").inputmask({ regex: "[0-90-9- ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#PostalCode").inputmask({ regex: "[0-90-9- ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#FirstName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#LastName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#FatherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#MotherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#BirthPlace").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#PlaceOfIssue").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script>*@
 
-    <script>
+    @*<script>
         $(function () {
             $("#MotherFirstSurname").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
         });
-    </script>
+    </script*@
 
-    <script>
-        $(function () {
-            $("#EmailAddress").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
+    //<script>
+    //    //$(function () {
+        //    $("#EmailAddress").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
+        //});
 
 
         $(function () {
