@@ -584,7 +584,7 @@
 
 
 
-    <script>
+<script>
         $('button.inputControlButton').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
@@ -596,8 +596,9 @@
             var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
 
             var emailaddressVal = $("#EmailAddress").val();
-           
-            if (!emailReg.test(emailaddressVal)) {
+            var regexEmail = emailReg.test(emailaddressVal);
+
+            if (!regexEmail) {
                 $("#EmailAddress").find('.span').show;
                 hasError = true;
                 swal({
@@ -609,13 +610,13 @@
 
             }
 
-            if (emailReg.test(emailaddressVal))  {
+            if (regexEmail)  {
                 //$("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>');
                 hasError = false;
                 //$("#EmailAddress").after('<span class="text-danger">E-Posta Gerekli</span>').hide();
-                $("#EmailAddress").find('.span').hide();
+                $("#EmailAddress").find('.span.required-error').hide();
 
-            }          
+            }
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
@@ -631,10 +632,11 @@
                         button: 'Tamam',
                     })
                 }
-                else {
+                if (hasText) {
                     currentInput.closest('.form-group').find('span.required-error').hide();
                     if (hasError==true) {
-                        $("#EmailAddress").find('.span').show;
+                        //$("#EmailAddress").find('span.required-error').show;
+                        $("#EmailAddress").closest('.form-group').find('span.required-error').show();
                     }
                 }
             });
@@ -723,8 +725,11 @@
 
             });
             if (count == 1) {
-                var currentSelect = $(this);
-                currentSelect.closest('.form-group').find('span.required-error').hide();
+                requiredRadioButtons.each(function () {
+                    var currentSelect = $(this);
+                    var HasRadioButtons = currentSelect.is(':checked');
+                    currentSelect.closest('.form-group').find('span.required-error').hide();
+                });
 
                 if ($('#InfrastructureAndTariffs').is(':visible')) {
                     $('#InfrastructureAndTariffs').hide();
@@ -732,9 +737,18 @@
                 }
             }
             else {
-                isValid = false;
-                var currentSelect = $(this);
+
+                requiredRadioButtons.each(function () {
+                    var currentSelect = $(this);
+                    var HasRadioButtons = currentSelect.is(':checked');
                 currentSelect.closest('.form-group').find('span.required-error').show();
+
+
+                });
+
+                isValid = false;
+                //var currentSelect = $(this);
+                //currentSelect.closest('.form-group').find('span.required-error').show();
                 swal({
                     title: '',
                     text: 'Hata Bulundu, Lütfen Kontrol Edin',
