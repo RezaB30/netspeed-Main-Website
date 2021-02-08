@@ -1,5 +1,4 @@
-﻿@*@Html.ValidationSummary(false, "Please fix the following error and then submit the form")*@
-@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
+﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 @using NetspeedMainWebsite.Models.ViewModel
 
 @{
@@ -222,7 +221,6 @@
                                     <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
                                     @*@ViewBag.ValidationError*@
                                     <!--@TempData["ValidationError"]
-
                                     </div>-->
                                     @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
                                     <div class="row">
@@ -470,30 +468,25 @@
 
 
 
-    <script>
-        $('button.inputControlInf').click(function () {
+<script>
+    $('button.inputControlInf').click(function () {
+        var prevCheckedRadioButton;
             var foundButton = 1;
             if (foundButton.length != 0) {
                 $('#visibleButton').hide();
             }
-
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
             var isValid = true;
             var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-
-            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
-
-
+            //var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
             requiredSelects.each(function () {
                 var currentSelect = $(this);
                 var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-
                 if (!hasSelectedOption) {
                     isValid = false;
                     currentSelect.closest('.form-group').find('span.required-error').show();
-
                         swal({
                             title: '',
                             text: 'Hata Bulundu, Lütfen Kontrol Edin',
@@ -505,11 +498,9 @@
                     currentSelect.closest('.form-group').find('span.required-error').hide();
                 }
             });
-
             requiredTexts.each(function () {
                 var currentInput = $(this);
                 var hasText = currentInput.val() != "";
-
                 if (!hasText) {
                     isValid = false;
                     currentInput.closest('.form-group').find('span.required-error').show();
@@ -525,8 +516,28 @@
                 }
             });
 
-            if (isValid == true) {
+            var currentContainer = $('#visibleButton').closest('div.wizard-step');
+            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
+            requiredRadioButtons.each(function () {
+                var currentSelect = $(this);
+                var HasRadioButtonValue = currentSelect.val();
+
+
+                var HasRadioButtons = currentSelect.is(':checked');
+                if (HasRadioButtons) {
+                    prevCheckedRadioButton = HasRadioButtonValue;
+                }
+
+
+            });
+
+            if (isValid == true) {  
+                           
+          
                 $('#InfrastructureAndTariffContent').html("");
+
+
+
                 $.ajax({
                     url: '@Url.Action("GetServiceAvailability","Application")',
                     method: 'POST',
@@ -537,51 +548,43 @@
                     complete: function (data, status) {
                         $("#loading").hide();
                         if (status == "success") {
-                            //$('#tariffs-content').html(data.responseText);                                                      
-                           
+                            //$('#tariffs-content').html(data.responseText);
+
                             $('#InfrastructureAndTariffContent').html(data.responseText);
                             foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
 
-                          
                             if (foundButton.length == 0) {
                                 $('#visibleButton').show();
                             }
-                            
-                              if ('@ViewBag.Checked' != '') {
 
+                            if ('@ViewBag.Checked' != '' || prevCheckedRadioButton!='') {
                                   var currentContainer = $('#visibleButton').closest('div.wizard-step');
-
                         var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
-
                         requiredRadioButtons.each(function () {
                             var currentSelect = $(this);
                             var HasRadioButtonValue = currentSelect.val();
-
-                            if (HasRadioButtonValue == '@ViewBag.Checked') {
+                            if (HasRadioButtonValue == '@ViewBag.Checked' || HasRadioButtonValue == prevCheckedRadioButton ) {
                                 $("#TariffId").prop("checked", true);
                                 $("#TariffID").prop("checked", true);
                                 currentSelect.prop("checked", true);
-
                            }
                       });
                 }
                         }
-
                     }
                 })
-
                 if ($('#InfrastructureInquiryForApplication').is(':visible')) {
                     $('#InfrastructureInquiryForApplication').hide();
                     $('#InfrastructureAndTariffs').show();
                 }
             }
         })
-    @*</script>*@
+    </script>
 
 
 
 
-    //<script>
+    <script>
         $('button.inputControlButton').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
@@ -872,72 +875,6 @@
 
 
         });
-    @*</script>*@
-
-    @*<script>
-        $(function () {
-            $('#TC').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#Floor").inputmask({ regex: "[0-90-9- ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#PostalCode").inputmask({ regex: "[0-90-9- ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#FirstName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#LastName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#FatherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#MotherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#BirthPlace").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#PlaceOfIssue").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#MotherFirstSurname").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        });
-    </script*@
-
-    //<script>
-    //    //$(function () {
-        //    $("#EmailAddress").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-        //});
 
 
         $(function () {
@@ -962,6 +899,6 @@
 
             });
         });
-    </script>
+</script>
 
 }
