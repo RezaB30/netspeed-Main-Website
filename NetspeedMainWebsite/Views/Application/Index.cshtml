@@ -596,8 +596,9 @@
             var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
 
             var emailaddressVal = $("#EmailAddress").val();
-            if (emailaddressVal == '') {
-                $("#EmailAddress").after('<span class="text-danger">E-Posta Gerekli</span>');
+           
+            if (!emailReg.test(emailaddressVal)) {
+                $("#EmailAddress").find('.span').show;
                 hasError = true;
                 swal({
                     title: '',
@@ -605,25 +606,16 @@
                     icon: 'error',
                     button: 'Tamam',
                 })
+
             }
 
-            else if (!emailReg.test(emailaddressVal)) {
-                $("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>');
-                hasError = true;
-                swal({
-                    title: '',
-                    text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                    icon: 'error',
-                    button: 'Tamam',
-                })
-            }
-
-            else {
+            if (emailReg.test(emailaddressVal))  {
                 //$("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>');
                 hasError = false;
-                $("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>').hide();
+                //$("#EmailAddress").after('<span class="text-danger">E-Posta Gerekli</span>').hide();
+                $("#EmailAddress").find('.span').hide();
 
-            }
+            }          
 
             requiredTexts.each(function () {
                 var currentInput = $(this);
@@ -641,6 +633,9 @@
                 }
                 else {
                     currentInput.closest('.form-group').find('span.required-error').hide();
+                    if (hasError==true) {
+                        $("#EmailAddress").find('.span').show;
+                    }
                 }
             });
 
@@ -877,28 +872,28 @@
         });
 
 
-        $(function () {
+        //$(function () {
 
-            $('#email-validation').click(function () {
+        //    $('#email-validation').click(function () {
 
-                $(".error").hide();
-                var hasError = false;
-                var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        //        $(".error").hide();
+        //        var hasError = false;
+        //        var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
 
-                var emailaddressVal = $("#EmailAddress").val();
-                if (emailaddressVal == '') {
-                    $("#EmailAddress").after('<span class="error">Enter email address.</span>');
-                    hasError = true;
-                }
+        //        var emailaddressVal = $("#EmailAddress").val();
+        //        if (emailaddressVal == '') {
+        //            $("#EmailAddress").after('<span class="error">Enter email address.</span>');
+        //            hasError = true;
+        //        }
 
-                else if (!emailReg.test(emailaddressVal)) {
-                    $("#EmailAddress").after('<span class="error">Enter a valid email address.</span>');
-                    hasError = true;
-                }
-                if (hasError == true) { return false; }
+        //        else if (!emailReg.test(emailaddressVal)) {
+        //            $("#EmailAddress").after('<span class="error">Enter a valid email address.</span>');
+        //            hasError = true;
+        //        }
+        //        if (hasError == true) { return false; }
 
-            });
-        });
+        //    });
+        //});
 </script>
 
 }
