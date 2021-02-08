@@ -351,4 +351,36 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD" nillable="true" type="tns:BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD" />
+  <xs:complexType name="BaseRequestOfIDCardValidationRequestSHA13jWQyVaD">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="BaseRequestOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="IDCardValidationRequest" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
+          <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequestOfSHA1o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseRequestOfIDCardValidationRequestSHA13jWQyVaD" nillable="true" type="tns:BaseRequestOfIDCardValidationRequestSHA13jWQyVaD" />
+  <xs:complexType name="BaseResponseOfbooleanSHA1Miy85_SUl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="BaseResponseOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="SHA1" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponseOfSHA1o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseResponseOfbooleanSHA1Miy85_SUl" nillable="true" type="tns:BaseResponseOfbooleanSHA1Miy85_SUl" />
 </xs:schema>

@@ -1,5 +1,15 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
 
+<style>
+    .text-danger.required-error-id {
+        display: none;
+    }
+</style>
+
+<span class="text-danger required-error-id">Lütfen Kimlik Bilgilerinizi Kontrol Ediniz</span>
+
+@ViewBag.errorMessage
+
 
 <div class="pb-5" data-wizard-type="step-content">
     <!--begin::Title-->
@@ -19,8 +29,8 @@
                 <span class="text-danger required-error">Kimlik Kart Tipi Zorunludur</span>
             </div>
         </div>
-       
-        <div class="row">           
+
+        <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
@@ -44,7 +54,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
-                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı", @maxlength = 50 , @autocomplete = "off" } })
+                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı", @maxlength = 50, @autocomplete = "off" } })
 
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.FatherName)
@@ -57,9 +67,16 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group is-required">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
-                        @Html.EditorFor(m => m.MotherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Adı",  @maxlength = 50,
-                       @autocomplete = "off"
-                   } })
+                        @Html.EditorFor(m => m.MotherName, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6",
+                                @placeholder = "Anne Adı",
+                                @maxlength = 50,
+                                @autocomplete = "off"
+                            }
+                        })
 
                         <div class="text-danger">
                             @Html.ValidationMessageFor(model => model.MotherName)
@@ -101,7 +118,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
                     <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
-                   
+
                     @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü", @autocomplete = "off" })
 
                     <div class="text-danger">
@@ -156,7 +173,7 @@
 
         <div class="pb-0 pb-lg-5">
             <div class="row">
-                         </div>
+            </div>
             <div class="pb-0 pb-lg-5">
                 <div class="row">
                     <!--end::Form Group-->

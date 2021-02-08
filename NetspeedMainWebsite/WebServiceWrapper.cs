@@ -433,5 +433,27 @@ namespace NetspeedMainWebsite
                                              
             });
         }
-}
+
+        public NetspeedServiceIDCardValidationResponse IDCardValidationResponse(int IDCardType, string TCKNo, string FirstName, string LastName, string BirtDate, string RegistirationNo)
+        {
+            UpdateRandom();
+            return InternalClient.IDCardValidation(new NetspeedServiceIDCardValidationRequest()
+            {
+                Username = Username,
+                Rand = Rand,
+                Hash = CalculateHash(),
+                Culture = Culture,
+                IDCardValidationRequest= new IDCardValidationRequest
+                {
+                    IDCardType= IDCardType,
+                    TCKNo =TCKNo,
+                    FirstName=FirstName,
+                    LastName=LastName,
+                    BirthDate=BirtDate,
+                    RegistirationNo= RegistirationNo
+                }
+
+            });
+        }
+    }
 }

@@ -31,12 +31,12 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "*Telefon Numarası Alanı Gerekli ")]
         public string PhoneNumber { get; set; }
 
-        [MaxLength(50), MinLength(2)]
+        [MaxLength(50)]
         [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
 
         private string _FirstName;
 
-        [MaxLength(50), MinLength(2)]
+        [MaxLength(50)]
         [Required(ErrorMessage = "*Ad Alanı Gerekli ")]
         public string FirstName
         {
@@ -53,9 +53,10 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 _FirstName = value;
             }
         }
-
+        [MaxLength(50)]
         [Required(ErrorMessage = "*Soyad Alanı Gerekli ")]
         private string _LastName;
+        [MaxLength(50)]
         [Required(ErrorMessage = "*Soyad Alanı Gerekli ")]
         public string LastName
         {
@@ -174,12 +175,12 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-        [MaxLength(50), MinLength(2)]
-        [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
+        [MaxLength(50)]
+        //[Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         private string _BirthPlace;
 
-        [MaxLength(50), MinLength(2)]
-        [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
+        [MaxLength(50)]
+        //[Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         public string BirthPlace
         {
             get

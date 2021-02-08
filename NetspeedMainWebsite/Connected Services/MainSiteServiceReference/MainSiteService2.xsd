@@ -241,4 +241,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GenericAppSettingsResponse" nillable="true" type="tns:GenericAppSettingsResponse" />
+  <xs:complexType name="NetspeedServiceIDCardValidationResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseResponseOfbooleanSHA1Miy85_SUl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IDCardValidationResponse" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceIDCardValidationResponse" nillable="true" type="tns:NetspeedServiceIDCardValidationResponse" />
 </xs:schema>

@@ -91,6 +91,41 @@ namespace NetspeedMainWebsite.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetIDCardValidation(int IDCardType, string TCKNo, string FirstName, string LastName, string BirthDate, string RegistirationNo)
+        {
+            var errorMessage = string.Empty;
+            string _BirthDate = BirthDate;
+            string[] BirthDateSplit = _BirthDate.Split('.');
+            string day = BirthDateSplit[0];
+            string month = BirthDateSplit[1];
+            string year = BirthDateSplit[2];
+
+            string ChangeDate=String.Concat(year,"-",month,"-",day);
+
+
+            string first = FirstName.ToUpper();
+            string last = LastName.ToUpper();
+            string serialNo=RegistirationNo.ToUpper();
+
+            var IDCardValidationError = "Kimlik Bilgilerinizi Lütfen Kontrol Ediniz.";
+            WebServiceWrapper idCardServiceClient = new WebServiceWrapper();
+            var idCardValidationResponse = idCardServiceClient.IDCardValidationResponse(IDCardType, TCKNo, first, last , ChangeDate, serialNo);
+
+            var idCardIsValid = idCardValidationResponse.IDCardValidationResponse;
+
+            //if (idCardIsValid == false)
+            //{
+            //    errorMessage = "error";
+            //    ViewBag.IDCardValidationError = IDCardValidationError;
+            //    ViewBag.errorMessage = errorMessage;
+            //}
+        
+            //return PartialView("~ApplicationParts/_IDInformation");
+            return Json(new { isValid = idCardIsValid, errorMessage = !idCardIsValid ? IDCardValidationError : null });
+        }
+
+
+        [HttpPost]
         public ActionResult GetServiceAvailability(long apartmentId)
         {
             var message = string.Empty;
@@ -389,6 +424,8 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
+
+       
 
     }
 }

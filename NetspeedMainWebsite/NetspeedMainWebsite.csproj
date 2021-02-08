@@ -250,6 +250,9 @@
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

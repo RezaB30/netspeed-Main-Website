@@ -142,6 +142,12 @@
   <wsdl:message name="IMainSiteService_GenericAppSettings_OutputMessage">
     <wsdl:part name="parameters" element="tns:GenericAppSettingsResponse" />
   </wsdl:message>
+  <wsdl:message name="IMainSiteService_IDCardValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:IDCardValidation" />
+  </wsdl:message>
+  <wsdl:message name="IMainSiteService_IDCardValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IDCardValidationResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMainSiteService">
     <wsdl:operation name="RegisterCustomerContact">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/RegisterCustomerContact" message="tns:IMainSiteService_RegisterCustomerContact_InputMessage" />
@@ -230,6 +236,10 @@
     <wsdl:operation name="GenericAppSettings">
       <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/GenericAppSettings" message="tns:IMainSiteService_GenericAppSettings_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/GenericAppSettingsResponse" message="tns:IMainSiteService_GenericAppSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IDCardValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMainSiteService/IDCardValidation" message="tns:IMainSiteService_IDCardValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMainSiteService/IDCardValidationResponse" message="tns:IMainSiteService_IDCardValidation_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMainSiteService" type="tns:IMainSiteService">
@@ -425,6 +435,15 @@
     </wsdl:operation>
     <wsdl:operation name="GenericAppSettings">
       <soap:operation soapAction="http://tempuri.org/IMainSiteService/GenericAppSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDCardValidation">
+      <soap:operation soapAction="http://tempuri.org/IMainSiteService/IDCardValidation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -310,4 +310,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="IDCardValidation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q43:NetspeedServiceIDCardValidationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IDCardValidationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="IDCardValidationResult" nillable="true" type="q44:NetspeedServiceIDCardValidationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

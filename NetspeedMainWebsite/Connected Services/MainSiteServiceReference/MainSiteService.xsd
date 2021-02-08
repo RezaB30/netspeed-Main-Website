@@ -270,4 +270,25 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="NetspeedServiceGenericAppSettingsRequest" nillable="true" type="tns:NetspeedServiceGenericAppSettingsRequest" />
+  <xs:complexType name="NetspeedServiceIDCardValidationRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q15:BaseRequestOfIDCardValidationRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IDCardValidationRequest" nillable="true" type="tns:IDCardValidationRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceIDCardValidationRequest" nillable="true" type="tns:NetspeedServiceIDCardValidationRequest" />
+  <xs:complexType name="IDCardValidationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDCardType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistirationNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCKNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IDCardValidationRequest" nillable="true" type="tns:IDCardValidationRequest" />
 </xs:schema>

@@ -35,6 +35,8 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceNewCustomerRegisterRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceSendGenericSMSRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfIDCardValidationRequestSHA13jWQyVaD))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfCustomerContactRequestSHA13jWQyVaD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceCustomerContactRequest))]
     public partial class BaseRequestOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -383,6 +385,37 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.SendGenericSMSParametersField, value) != true)) {
                     this.SendGenericSMSParametersField = value;
                     this.RaisePropertyChanged("SendGenericSMSParameters");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfIDCardValidationRequestSHA13jWQyVaD", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationRequest))]
+    public partial class BaseRequestOfIDCardValidationRequestSHA13jWQyVaD : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceIDCardValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceIDCardValidationRequest : NetspeedMainWebsite.MainSiteServiceReference.BaseRequestOfIDCardValidationRequestSHA13jWQyVaD {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.IDCardValidationRequest IDCardValidationRequestField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.IDCardValidationRequest IDCardValidationRequest {
+            get {
+                return this.IDCardValidationRequestField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDCardValidationRequestField, value) != true)) {
+                    this.IDCardValidationRequestField = value;
+                    this.RaisePropertyChanged("IDCardValidationRequest");
                 }
             }
         }
@@ -2075,6 +2108,131 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IDCardValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class IDCardValidationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BirthDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> IDCardTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RegistirationNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TCKNoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BirthDate {
+            get {
+                return this.BirthDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BirthDateField, value) != true)) {
+                    this.BirthDateField = value;
+                    this.RaisePropertyChanged("BirthDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> IDCardType {
+            get {
+                return this.IDCardTypeField;
+            }
+            set {
+                if ((this.IDCardTypeField.Equals(value) != true)) {
+                    this.IDCardTypeField = value;
+                    this.RaisePropertyChanged("IDCardType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RegistirationNo {
+            get {
+                return this.RegistirationNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RegistirationNoField, value) != true)) {
+                    this.RegistirationNoField = value;
+                    this.RaisePropertyChanged("RegistirationNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TCKNo {
+            get {
+                return this.TCKNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TCKNoField, value) != true)) {
+                    this.TCKNoField = value;
+                    this.RaisePropertyChanged("TCKNo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfSHA1o_Pr6u_PMh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfServiceAvailabilityResponseSHA1x9h56FeD))]
@@ -2097,6 +2255,8 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceExternalTariffResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfGenericAppSettingsResponseSHA1x9h56FeD))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfbooleanSHA1Miy85_SUl))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfNullableOfbooleanSHA1qBRhzOKh))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceRegisterCustomerContactResponse))]
     public partial class BaseResponseOfSHA1o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2570,6 +2730,37 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.GenericAppSettingsField, value) != true)) {
                     this.GenericAppSettingsField = value;
                     this.RaisePropertyChanged("GenericAppSettings");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfbooleanSHA1Miy85_SUl", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse))]
+    public partial class BaseResponseOfbooleanSHA1Miy85_SUl : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfSHA1o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NetspeedServiceIDCardValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses")]
+    [System.SerializableAttribute()]
+    public partial class NetspeedServiceIDCardValidationResponse : NetspeedMainWebsite.MainSiteServiceReference.BaseResponseOfbooleanSHA1Miy85_SUl {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IDCardValidationResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IDCardValidationResponse {
+            get {
+                return this.IDCardValidationResponseField;
+            }
+            set {
+                if ((this.IDCardValidationResponseField.Equals(value) != true)) {
+                    this.IDCardValidationResponseField = value;
+                    this.RaisePropertyChanged("IDCardValidationResponse");
                 }
             }
         }
@@ -3953,6 +4144,12 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/GenericAppSettings", ReplyAction="http://tempuri.org/IMainSiteService/GenericAppSettingsResponse")]
         System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse> GenericAppSettingsAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/IDCardValidation", ReplyAction="http://tempuri.org/IMainSiteService/IDCardValidationResponse")]
+        NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse IDCardValidation(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMainSiteService/IDCardValidation", ReplyAction="http://tempuri.org/IMainSiteService/IDCardValidationResponse")]
+        System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse> IDCardValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -4156,6 +4353,14 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         
         public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsResponse> GenericAppSettingsAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericAppSettingsRequest request) {
             return base.Channel.GenericAppSettingsAsync(request);
+        }
+        
+        public NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse IDCardValidation(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationRequest request) {
+            return base.Channel.IDCardValidation(request);
+        }
+        
+        public System.Threading.Tasks.Task<NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse> IDCardValidationAsync(NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationRequest request) {
+            return base.Channel.IDCardValidationAsync(request);
         }
     }
 }

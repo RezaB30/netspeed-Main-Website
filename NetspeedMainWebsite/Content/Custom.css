@@ -2,6 +2,11 @@
     display: none;
 }
 
+/*.text-danger.required-error-id {
+    display: none;
+}
+*/
+
 .validation-summary-message {
     color: red;
 }
