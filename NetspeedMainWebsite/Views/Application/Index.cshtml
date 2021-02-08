@@ -721,28 +721,28 @@
                     count = count + 1;
                 }
 
-                if (count == 1) {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-
-                    if ($('#InfrastructureAndTariffs').is(':visible')) {
-                        $('#InfrastructureAndTariffs').hide();
-                        $('#ContactInformation').show();
-                    }
-                }
-                else {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
             });
+            if (count == 1) {
+                var currentSelect = $(this);
+                currentSelect.closest('.form-group').find('span.required-error').hide();
+
+                if ($('#InfrastructureAndTariffs').is(':visible')) {
+                    $('#InfrastructureAndTariffs').hide();
+                    $('#ContactInformation').show();
+                }
+            }
+            else {
+                isValid = false;
+                var currentSelect = $(this);
+                currentSelect.closest('.form-group').find('span.required-error').show();
+                swal({
+                    title: '',
+                    text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                    icon: 'error',
+                    button: 'Tamam',
+                })
+            }
         })
-
-
     @*</script>
 
     <script>*@
