@@ -103,9 +103,9 @@ namespace NetspeedMainWebsite.Controllers
             string ChangeDate=String.Concat(year,"-",month,"-",day);
 
 
-            string first = FirstName.ToUpper();
-            string last = LastName.ToUpper();
-            string serialNo=RegistirationNo.ToUpper();
+            string first = FirstName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            string last = LastName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            string serialNo=RegistirationNo.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
 
             var IDCardValidationError = "Kimlik Bilgilerinizi Lütfen Kontrol Ediniz.";
             WebServiceWrapper idCardServiceClient = new WebServiceWrapper();
