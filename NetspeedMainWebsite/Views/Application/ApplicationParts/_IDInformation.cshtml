@@ -4,6 +4,16 @@
     .text-danger.required-error-id {
         display: none;
     }
+
+
+    .birth-certificate{
+        display:none
+    }
+
+    .text-danger.required-error-certificate {
+        display: none
+    }
+
 </style>
 
 @*<span class="text-danger required-error-id">Lütfen Kimlik Bilgilerinizi Kontrol Ediniz</span>*@
@@ -200,6 +210,98 @@
 
                             </div>
                             <span class="text-danger required-error">Anne Kızlık Soyadı Zorunludur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="birth-certificate">
+
+            <div class="pb-0 pb-lg-0">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group is-required-certificate">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sıra No</label>
+                            @Html.EditorFor(m => m.RowNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sıra No", @maxlength = 50, @autocomplete = "off" } })
+
+                            <div class="text-danger">
+                                @Html.ValidationMessageFor(model => model.RowNo)
+                            </div>
+                            <span class="text-danger required-error-certificate">Sıra No Zorunludur</span>
+                        </div>
+                    </div>
+                    <!--end::Form Group-->
+                    <!--begin::Form Group-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group is-required-certificate">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cilt No</label>
+                            @Html.EditorFor(m => m.VolumeNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Cilt No", @maxlength = 9, @autocomplete = "off" } })
+                            <div class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VolumeNo)
+                            </div>
+                            <span class="text-danger required-error-certificate">Cilt No Zorunludur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pb-0 pb-lg-0">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group is-required-certificate">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sayfa No</label>
+                            @Html.EditorFor(m => m.PageNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sayfa No", @maxlength = 50, @autocomplete = "off" } })
+
+                            <div class="text-danger">
+                                @Html.ValidationMessageFor(model => model.PageNo)
+                            </div>
+                            <span class="text-danger required-error-certificate">Sayfa No Zorunludur</span>
+                        </div>
+                    </div>
+                    <!--end::Form Group-->
+                    <!--begin::Form Group-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group is-required-certificate">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İl</label>
+                            @Html.EditorFor(m => m.IDCardProvince, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İl", @maxlength = 50, @autocomplete = "off" } })
+                            <div class="text-danger">
+                                @Html.ValidationMessageFor(model => model.IDCardProvince)
+                            </div>
+                            <span class="text-danger required-error-certificate">İl Zorunludur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pb-0 pb-lg-0">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group is-required-certificate">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
+                            @Html.EditorFor(m => m.IDCardDistrict, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İlçe", @maxlength = 50, @autocomplete = "off" } })
+
+                            <div class="text-danger">
+                                @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
+                            </div>
+                            <span class="text-danger required-error-certificate">İlçe Zorunludur</span>
+                        </div>
+                    </div>
+                    <!--end::Form Group-->
+                    <!--begin::Form Group-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="form-group is-required-certificate">
+                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
+                            @Html.EditorFor(m => m.IDCardNeighbourhood, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Mahalle", @maxlength = 50, @autocomplete = "off" } })
+                            <div class="text-danger">
+                                @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
+                            </div>
+                            <span class="text-danger required-error-certificate">Mahalle Zorunludur</span>
                         </div>
                     </div>
                 </div>

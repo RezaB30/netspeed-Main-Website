@@ -193,9 +193,9 @@
   <xs:element name="PhoneNoListItem" nillable="true" type="tns:PhoneNoListItem" />
   <xs:complexType name="IDCardInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CardType" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="DateOfIssue" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateOfIssue" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="District" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />

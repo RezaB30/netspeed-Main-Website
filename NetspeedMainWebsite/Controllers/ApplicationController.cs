@@ -100,16 +100,16 @@ namespace NetspeedMainWebsite.Controllers
             string month = BirthDateSplit[1];
             string year = BirthDateSplit[2];
 
-            string ChangeDate=String.Concat(year,"-",month,"-",day);
+            string ChangeDate = String.Concat(year, "-", month, "-", day);
 
 
             string first = FirstName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
             string last = LastName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
-            string serialNo=RegistirationNo.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            string serialNo = RegistirationNo.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
 
             var IDCardValidationError = "Kimlik Bilgilerinizi Lütfen Kontrol Ediniz.";
             WebServiceWrapper idCardServiceClient = new WebServiceWrapper();
-            var idCardValidationResponse = idCardServiceClient.IDCardValidationResponse(IDCardType, TCKNo, first, last , ChangeDate, serialNo);
+            var idCardValidationResponse = idCardServiceClient.IDCardValidationResponse(IDCardType, TCKNo, first, last, ChangeDate, serialNo);
 
             var idCardIsValid = idCardValidationResponse.IDCardValidationResponse;
 
@@ -119,7 +119,7 @@ namespace NetspeedMainWebsite.Controllers
             //    ViewBag.IDCardValidationError = IDCardValidationError;
             //    ViewBag.errorMessage = errorMessage;
             //}
-        
+
             //return PartialView("~ApplicationParts/_IDInformation");
             return Json(new { isValid = idCardIsValid, errorMessage = !idCardIsValid ? IDCardValidationError : null });
         }
@@ -220,13 +220,38 @@ namespace NetspeedMainWebsite.Controllers
 
             var Checked = application.TariffId;
 
+            applicationLogger.Error($"birthdate: {application.BirthDate}- dateofissue: {application.DateOfIssue}");
+
+
+
+
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
 
             if (ModelState.IsValid)
             {
+                string _BirthDate = application.BirthDate;
+                string[] BirthDateSplit = _BirthDate.Split('.', ' ');
+                string day = BirthDateSplit[0];
+                string month = BirthDateSplit[1];
+                string year = BirthDateSplit[2];
+
+                string ChangeBirthDate = String.Concat(year, "-", month, "-", day);
+
+                application.BirthDate = ChangeBirthDate;
+
+                string _DateOfIssue = application.DateOfIssue;
+                string[] DateOfIssueSplit = _DateOfIssue.Split('.', ' ');
+                string dayIssue = DateOfIssueSplit[0];
+                string monthIssue = DateOfIssueSplit[1];
+                string yearIssue = DateOfIssueSplit[2];
+
+                string ChangeDateOfIssue = String.Concat(yearIssue, "-", monthIssue, "-", dayIssue);
+
+                application.DateOfIssue = ChangeDateOfIssue;
 
                 var result = new ApplicationViewModel()
                 {
+
                     FirstName = application.FirstName.ToUpper(new CultureInfo("tr-TR", false)),
                     LastName = application.LastName,
                     BirthPlace = application.BirthPlace.ToUpper(new CultureInfo("tr-TR", false)),
@@ -254,10 +279,19 @@ namespace NetspeedMainWebsite.Controllers
                     DateOfIssue = application.DateOfIssue,
                     SMSCode = application.SMSCode,
                     TariffId = application.TariffId,
-                    DisplayName = application.DisplayName
+                    DisplayName = application.DisplayName,
+
+                    RowNo=application.RowNo,
+                    VolumeNo=application.VolumeNo,
+                    PageNo=application.PageNo,
+                    IDCardProvince=application.IDCardProvince,
+                    IDCardDistrict=application.IDCardDistrict,
+                    IDCardNeighbourhood=application.IDCardNeighbourhood
+
+
                 };
 
-                
+
                 var message = string.Empty;
                 WebServiceWrapper clientPhone = new WebServiceWrapper();
                 var response = clientPhone.SendGenericSMS(application.PhoneNumber);//sending phone number for sms code
@@ -281,8 +315,8 @@ namespace NetspeedMainWebsite.Controllers
 
                 return View(viewName: "GsmVerificationWithSms", model: result);
             }
-                     
-            
+
+
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
             var IDCardTypeList = responseIDCard.ValueNamePairList.Select(c => new SelectListItem()
             {
@@ -382,15 +416,37 @@ namespace NetspeedMainWebsite.Controllers
                 AddressText = address.AddressText
             };
 
+            string _BirthDate = result.BirthDate;
+            string[] BirthDateSplit = _BirthDate.Split('.', ' ');
+            string day = BirthDateSplit[0];
+            string month = BirthDateSplit[1];
+            string year = BirthDateSplit[2];
+
+            string ChangeBirthDate = String.Concat(year, "-", month, "-", day);
+
+            result.BirthDate = ChangeBirthDate;
+
+            string _DateOfIssue = result.DateOfIssue;
+            string[] DateOfIssueSplit = _DateOfIssue.Split('.', ' ');
+            string dayIssue = DateOfIssueSplit[0];
+            string monthIssue = DateOfIssueSplit[1];
+            string yearIssue = DateOfIssueSplit[2];
+
+            string ChangeDateOfIssue = String.Concat(yearIssue, "-", monthIssue, "-", dayIssue);
+
+            result.DateOfIssue = ChangeDateOfIssue;
+
             var response
                 = new WebServiceWrapper().NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
                 address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
                 result._PostalCode, result.BirthPlace, result.FatherName,
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
-               result.Sex, Convert.ToDateTime(result.BirthDate), result.IDCardType, result.FirstName,
+               result.Sex, ChangeBirthDate, result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
-               Convert.ToDateTime(result.DateOfIssue), null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId
+               ChangeDateOfIssue, null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId,
+
+               result.RowNo, result.VolumeNo, result.PageNo, result.IDCardProvince, result.IDCardDistrict, result.IDCardNeighbourhood
                );
 
             if (response.ResponseMessage.ErrorCode == 0)
@@ -406,7 +462,7 @@ namespace NetspeedMainWebsite.Controllers
             if (response.ResponseMessage.ErrorCode == 199)
             {
                 applicationLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (NewCustomerRegister)");
-                return RedirectToAction("InternalServerError", "Application");                
+                return RedirectToAction("InternalServerError", "Application");
             }
 
             if (response.ResponseMessage.ErrorCode == 200)
@@ -425,7 +481,61 @@ namespace NetspeedMainWebsite.Controllers
             return View();
         }
 
-       
+        public ActionResult Test()
+        {
+
+            var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
+            var IDCardTypeList = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
+            {
+                Text = p.Name,
+                Value = p.Code.ToString()
+            });
+
+            ViewBag.IDCardTypeList = IDCardTypeList;
+
+            var addressUtil = new AddressUtility();
+            var responseProvince = addressUtil.GetProvinces();
+
+            ViewBag.ProvinceList = new SelectList(responseProvince, "Key", "Value");
+
+            var responseNat = new WebServiceWrapper().GetNationalities();
+            var NationalityList = responseNat.ValueNamePairList.Select(n => new SelectListItem()
+            {
+                Text = n.Name,
+                Value = n.Code.ToString()
+            });
+
+            ViewBag.NationalityList = NationalityList;
+
+            var responseSex = new WebServiceWrapper().GetSexes();
+            var SexList = responseSex.ValueNamePairList.Select(s => new SelectListItem()
+            {
+                Text = s.Name,
+                Value = s.Code.ToString()
+            });
+
+            ViewBag.SexList = SexList;
+
+            var DistrictList = new List<SelectListItem>();
+            var RegionList = new List<SelectListItem>();
+            var NeighborhoodList = new List<SelectListItem>();
+            var StreetList = new List<SelectListItem>();
+            var BuildingList = new List<SelectListItem>();
+            var ApartmentList = new List<SelectListItem>();
+
+            ViewBag.DistrictList = DistrictList;
+            ViewBag.RegionList = RegionList;
+            ViewBag.NeighborhoodList = NeighborhoodList;
+            ViewBag.StreetList = StreetList;
+            ViewBag.BuildingList = BuildingList;
+            ViewBag.ApartmentList = ApartmentList;
+
+            ViewBag.SexList = SexList;
+            ViewBag.NationalityList = NationalityList;
+            ViewBag.IDCardTypeList = IDCardTypeList;
+
+            return View();
+        }
 
     }
 }

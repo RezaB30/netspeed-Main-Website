@@ -191,13 +191,13 @@
                             }
 
                             @*@if (ViewBag.ValidationError != null)
-            {
-                <style>
-                    #validation-error {
-                        display: block;
-                    }
-                </style>
-            }*@
+                                {
+                                    <style>
+                                        #validation-error {
+                                            display: block;
+                                        }
+                                    </style>
+                                }*@
 
 
 
@@ -221,7 +221,7 @@
                                     <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
                                     @*@ViewBag.ValidationError*@
                                     <!--@TempData["ValidationError"]
-                </div>-->
+                                    </div>-->
                                     @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
                                     <div class="row">
                                         <div class="col-lg-7 col-md-7">
@@ -259,8 +259,8 @@
 
                                         </div>
                                         @*@if (ViewBag.Checked != null)
-                        {
-                        }*@
+                                            {
+                                            }*@
 
                                         @*<button type="button" class="check-control" id="visible-check">control</button>*@
 
@@ -359,47 +359,60 @@
                                     </div>
                                 </div>
 
-                                <div id="IDInformation" class="wizard-step">
-                                   
-                                    @Html.Partial("ApplicationParts/_IDInformation")
-                                    @*<div id="IDValidationContent"></div>*@
+                                <div class="loadingIDValidation">
+                                    <div id="loading">
 
-                                    <div class="row">
-                                        <div class="col-lg-9 col-md-9">
-                                            <div class="mr-2">
-                                                <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonIDCon();">
-                                                    <span class="svg-icon svg-icon-md mr-1">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                                <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
-                                                                <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>Önceki
-                                                </button>
+                                        Yükleniyor, Lütfen Bekleyin...
+
+                                    </div>
+                                    <div id="IDInformation" class="wizard-step">
+
+                                        @*<div id="loading">
+
+                Yükleniyor, Lütfen Bekleyin...
+
+            </div>*@
+
+                                        @Html.Partial("ApplicationParts/_IDInformation")
+                                        @*<div id="IDValidationContent"></div>*@
+
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-9">
+                                                <div class="mr-2">
+                                                    <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonIDCon();">
+                                                        <span class="svg-icon svg-icon-md mr-1">
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
+                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                                    <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
+                                                                    <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
+                                                                </g>
+                                                            </svg>
+                                                            <!--end::Svg Icon-->
+                                                        </span>Önceki
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-3 col-md-3">
-                                            <div>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" id="getIDCardValidation">
-                                                    Sonraki
-                                                    <span class="svg-icon svg-icon-md ml-1">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>
-                                                </button>
+                                            <div class="col-lg-3 col-md-3">
+                                                <div>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" id="getIDCardValidation">
+                                                        Sonraki
+                                                        <span class="svg-icon svg-icon-md ml-1">
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                                </g>
+                                                            </svg>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                    </button>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -652,11 +665,38 @@
         })
     @*</script>*@
 
-   @*<script>*@
+
+
+            //< div id = "loading" >
+
+            //    Yükleniyor, Lütfen Bekleyin...
+
+            //                    </div >
+            //<div id="IDInformation" class="wizard-step">
+
+    @*<script>*@
+
+        $('#IDCardType').change(function () {
+
+            var idCardTypeValue = $('#IDCardType').val();
+            var birthcertificate = $('#IDCardType').closest('div.wizard-step');
+
+            if (idCardTypeValue == 2) {
+                birthcertificate.find('div.birth-certificate').show();
+            }
+            else {
+                birthcertificate.find('div.birth-certificate').hide();
+            }
+        });
+
+        $('#IDCardType').trigger('change');
+
+
         $('button.inputControlButtonId').click(function () {
             var clickedButton = $(this);
             var currentContainer = clickedButton.closest('div.wizard-step');
             var isValid = true;
+            var isValidCertificate = true;
             var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
             var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
 
@@ -697,9 +737,46 @@
                 }
             });
 
-            if (isValid == true) {
-                $('button.inputControlButtonId').hide();
-                $.ajax({                   
+
+            if ($('div.birth-certificate').is(':visible')) {
+                var clickedButton = $(this);
+                var currentContainer = clickedButton.closest('div.wizard-step');
+                //var isValid = true;
+                //var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+                var requiredBirthCertificateTexts = currentContainer.find('.form-group.is-required-certificate').find('input[name]');
+
+
+                requiredBirthCertificateTexts.each(function () {
+                    var currentInput = $(this);
+                    var hasText = currentInput.val() != "";
+
+                    if (!hasText) {
+                        isValidCertificate = false;
+                        currentInput.closest('.form-group').find('span.required-error-certificate').show();
+                        swal({
+                            title: '',
+                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
+                            icon: 'error',
+                            button: 'Tamam',
+                        })
+                    }
+                    if (hasText) {
+                        isValidCertificate = true;
+                        currentInput.closest('.form-group').find('span.required-error-certificate').hide();
+                    }
+                });
+
+            }
+
+
+            if (isValid == true && isValidCertificate==true) {
+                //$('button.inputControlButtonId').hide();
+                 $('div.loadingIDValidation').find('#IDInformation').hide();
+                $('div.loadingIDValidation').find('#loading').show();
+
+
+                //$('#loading').show();
+                $.ajax({
 
                 url: '@Url.Action("GetIDCardValidation", "Application")',
                 method: 'POST',
@@ -711,11 +788,24 @@
                     BirthDate: $("#BirthDate").val(),
                     RegistirationNo: $("#SerialNo").val(),
 
-                                    },
-                complete: function (response, status) {
-                    if (status == "success") {                 
+                    },
+
+                    //beforeSend: function () {
+                    //    //$('#IDInformation').hide();
+                    //    $("#loading").show();
+                    //},
+
+                    complete: function (response, status) {
+                        //$("#loading").hide();
+                        //$('#IDInformation').show();
+                        $('div.loadingIDValidation').find('#loading').hide();
+                        $('div.loadingIDValidation').find('#IDInformation').show();
+                       
+                    if (status == "success") {
 
                         if (response.responseJSON.isValid) {
+                //            $('#loading').hide();
+                //$('#IDInformation').show();
                             $('#IDInformation').find('div.required-error-id').hide();
                             if ($('#IDInformation').is(':visible')) {
                                 $('#IDInformation').hide();
@@ -723,16 +813,19 @@
                             }
                         }
                         else {
+                            //$('#loading').hide();
+                            //$('#IDInformation').show();
                             $('#IDInformation').find('div.required-error-id').show();
 
                         }
                     }
                 }
             })
-        //})
-                $('button.inputControlButtonId').show();
+                //})
+                //$('#loading').hide();
+                //$('#IDInformation').show();
 
-
+                //$('button.inputControlButtonId').show();
             }
         })
     @*</script>*@
@@ -799,10 +892,41 @@
                 dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
                 monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
                 monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-                yearRange: "1970:2035"
+                yearRange: "1970:2035",
+               
             });
 
         });
+    var input = document.querySelectorAll('.js-date')[0];
+
+    $('.datepicker').on('input', function (e) {
+        var current = $(this);
+        if (e.keyCode < 47 || e.keyCode > 57) {
+            e.preventDefault();
+        }
+
+        current.val(current.val().replace(/[^0-9]/g, ''));
+
+        // If they don't add the slash, do it for them...
+        if (current.val().length > 2) {
+            var currentValue = current.val();
+            if (currentValue[2] != '.')
+                current.val(currentValue.substr(0, 2) + '.' + currentValue.substr(2));
+        }
+
+        // If they don't add the slash, do it for them...
+        if (current.val().length > 5) {
+            var currentValue = current.val();
+            if (currentValue[5] != '.')
+                current.val(currentValue.substr(0, 5) + '.' + currentValue.substr(5));
+        }
+
+        if (current.val().length > 10) {
+            var currentValue = current.val();
+            current.val(currentValue.substr(0, 10));
+        }
+    });
+
     @*</script>*@
 
 
@@ -854,6 +978,11 @@
 
         function PrevButtonIDCon() {
             if ($('#IDInformation').show()) {
+
+                //if ($('div.birth-certificate').is(':visible')) {
+                //    var birthcertificate = $('#IDCardType').closest('div.wizard-step');
+                //    birthcertificate.find('div.birth-certificate').show();
+                //}
                 $('#IDInformation').hide();
                 $('#ContactInformation').show();
             }

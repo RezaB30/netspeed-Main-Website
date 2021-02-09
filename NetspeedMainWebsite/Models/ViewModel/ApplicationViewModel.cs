@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -10,6 +11,17 @@ namespace NetspeedMainWebsite.Models.ViewModel
 {
     public class ApplicationViewModel
     {
+        //Logger applicationLogger = LogManager.GetLogger("applications");
+        public string RowNo { get; set; }
+        public string VolumeNo { get; set; }
+        public string PageNo { get; set; }
+        public string IDCardProvince { get; set; }
+        public string IDCardDistrict { get; set; }
+        public string IDCardNeighbourhood { get; set; }
+
+             
+
+
         [Required(ErrorMessage = "*İl Alanı Gerekli")]
         public long? ProvinceId { get; set; }
         [Required(ErrorMessage = "*İlçe Alanı Gerekli")]
@@ -110,12 +122,16 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
         public string BirthDate
         {
+
             get
             {
+                //applicationLogger.Error($"_birthdate: {_BirthDate}");
+
                 return _BirthDate.HasValue ? _BirthDate.Value.ToString() : null;
             }
             set
             {
+                //applicationLogger.Error($"birthdate: {value}");
                 DateTime BirthDate;
                 if (DateTime.TryParse(value, out BirthDate))
                 {
@@ -176,11 +192,11 @@ namespace NetspeedMainWebsite.Models.ViewModel
         }
 
         [MaxLength(50)]
-        //[Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
+        [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         private string _BirthPlace;
 
         [MaxLength(50)]
-        //[Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
+        [Required(ErrorMessage = "*Doğum Yeri Alanı Gerekli ")]
         public string BirthPlace
         {
             get

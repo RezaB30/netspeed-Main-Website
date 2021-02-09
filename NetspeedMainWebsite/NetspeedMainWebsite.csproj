@@ -1316,6 +1316,7 @@
     <Content Include="Views\Home\InternalServerError.cshtml" />
     <Content Include="Views\Home\TestMe.cshtml" />
     <Content Include="Views\Home\TestMeForApp.cshtml" />
+    <Content Include="Views\Application\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

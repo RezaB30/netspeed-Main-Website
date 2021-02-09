@@ -1177,13 +1177,13 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> BirthDateField;
+        private string BirthDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> CardTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateOfIssueField;
+        private string DateOfIssueField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DistrictField;
@@ -1232,12 +1232,12 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> BirthDate {
+        public string BirthDate {
             get {
                 return this.BirthDateField;
             }
             set {
-                if ((this.BirthDateField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.BirthDateField, value) != true)) {
                     this.BirthDateField = value;
                     this.RaisePropertyChanged("BirthDate");
                 }
@@ -1258,12 +1258,12 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> DateOfIssue {
+        public string DateOfIssue {
             get {
                 return this.DateOfIssueField;
             }
             set {
-                if ((this.DateOfIssueField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.DateOfIssueField, value) != true)) {
                     this.DateOfIssueField = value;
                     this.RaisePropertyChanged("DateOfIssue");
                 }

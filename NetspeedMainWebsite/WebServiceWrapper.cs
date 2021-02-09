@@ -222,9 +222,10 @@ namespace NetspeedMainWebsite
             long? DistrictId, string DistrictName, long? RegionId, long? NeighbourhoodId, string NeighbourhoodName, long? StreetId, string StreetName, long? ApartmentId,
             string ApartmentNo, string AddressText, long? AddressNo, long? DoorId, string DoorNo, string Floor, int? PostalCode,
             string BirthPlace, string FathersName, string MothersMaidenName, string MothersName, int? Nationality, int Profession, int? Sex,
-            DateTime? BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, DateTime? DateOfIssue,
+            string BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, string DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
-            string Culture, string Email, string ReferenceCode, int? TariffId)
+            string Culture, string Email, string ReferenceCode, int? TariffId,
+            string RowNo, string VolumeNo, string PageNo, string IDCardProvince, string IDCardDistrict, string IDCardNeighbourhood)
         {
             UpdateRandom();
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
@@ -303,6 +304,15 @@ namespace NetspeedMainWebsite
                         SerialNo = SerialNo,
                         PlaceOfIssue = PlaceOfIssue,
                         DateOfIssue = DateOfIssue,
+
+                        RowNo= RowNo,
+                        VolumeNo = VolumeNo,
+                        PageNo= PageNo,
+                        Province= IDCardProvince,
+                        District= IDCardDistrict,
+                        Neighbourhood= IDCardNeighbourhood
+
+
                     },
                     CustomerGeneralInfo = new CustomerGeneralInfo()
                     {
