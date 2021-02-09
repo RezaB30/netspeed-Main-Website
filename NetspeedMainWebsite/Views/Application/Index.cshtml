@@ -191,13 +191,13 @@
                             }
 
                             @*@if (ViewBag.ValidationError != null)
-                                {
-                                    <style>
-                                        #validation-error {
-                                            display: block;
-                                        }
-                                    </style>
-                                }*@
+            {
+                <style>
+                    #validation-error {
+                        display: block;
+                    }
+                </style>
+            }*@
 
 
 
@@ -221,7 +221,7 @@
                                     <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
                                     @*@ViewBag.ValidationError*@
                                     <!--@TempData["ValidationError"]
-                                    </div>-->
+                </div>-->
                                     @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
                                     <div class="row">
                                         <div class="col-lg-7 col-md-7">
@@ -259,8 +259,8 @@
 
                                         </div>
                                         @*@if (ViewBag.Checked != null)
-                                            {
-                                            }*@
+                        {
+                        }*@
 
                                         @*<button type="button" class="check-control" id="visible-check">control</button>*@
 
@@ -360,9 +360,7 @@
                                 </div>
 
                                 <div id="IDInformation" class="wizard-step">
-                                    <div class="validation-summary-message">
-                                        @Html.ValidationSummary()
-                                    </div>
+                                   
                                     @Html.Partial("ApplicationParts/_IDInformation")
                                     @*<div id="IDValidationContent"></div>*@
 
@@ -453,7 +451,9 @@
                             }
 
                         </div>
-
+                        <div class="validation-summary-message">
+                            @Html.ValidationSummary()
+                        </div>
                     </div>
 
                     <!--end::Form-->
@@ -698,8 +698,9 @@
             });
 
             if (isValid == true) {
-       
-            $.ajax({
+                $('button.inputControlButtonId').hide();
+                $.ajax({                   
+
                 url: '@Url.Action("GetIDCardValidation", "Application")',
                 method: 'POST',
                 data: {
@@ -715,19 +716,21 @@
                     if (status == "success") {                 
 
                         if (response.responseJSON.isValid) {
+                            $('#IDInformation').find('div.required-error-id').hide();
                             if ($('#IDInformation').is(':visible')) {
                                 $('#IDInformation').hide();
                                 $('#GSMValidation').show();
                             }
                         }
                         else {
-                            $('#IDInformation').find('span.required-error-id').show();
+                            $('#IDInformation').find('div.required-error-id').show();
 
                         }
                     }
                 }
             })
         //})
+                $('button.inputControlButtonId').show();
 
 
             }

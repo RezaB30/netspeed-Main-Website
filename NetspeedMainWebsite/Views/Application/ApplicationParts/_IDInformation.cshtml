@@ -6,9 +6,22 @@
     }
 </style>
 
-<span class="text-danger required-error-id">Lütfen Kimlik Bilgilerinizi Kontrol Ediniz</span>
+@*<span class="text-danger required-error-id">Lütfen Kimlik Bilgilerinizi Kontrol Ediniz</span>*@
 
-@ViewBag.errorMessage
+<div class="text-danger required-error-id">
+    @*<div id="validation-error">*@
+        <div class="form-group" id="otherFieldGroupDiv">
+            <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+                <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
+                <div class="alert-text">
+                    <a class="font-weight-bolder text-danger">Kimlik Bilgileriniz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz </a>
+
+                </div>
+            </div>
+        </div>
+    @*</div>*@
+</div>
+@*@ViewBag.errorMessage*@
 
 
 <div class="pb-5" data-wizard-type="step-content">
