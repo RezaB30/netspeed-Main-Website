@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using NetspeedMainWebsite.Models.ViewModel;
 using NetspeedMainWebsite.MainSiteServiceReference;
 using NLog;
+using System.Threading;
+using System.Globalization;
 
 namespace NetspeedMainWebsite.Controllers
 {
@@ -17,11 +19,12 @@ namespace NetspeedMainWebsite.Controllers
         Logger helpBubbleLogger = LogManager.GetLogger("help-bubble");
 
         WebServiceWrapper client = new WebServiceWrapper();
-        public ActionResult OnException()
-        {
-            return View();
-        }
 
+        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        {
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("tr-tr");
+            return base.BeginExecuteCore(callback, state);
+        }
 
         [HttpPost]
         public ActionResult CallMe(CallMeViewModel callMe, string returnUrl)

@@ -1,30 +1,38 @@
 ﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
+@using NetspeedMainWebsite.Models.ViewModel
 
 @{
+    ViewBag.Title = "SMS Doğrulama";
+
+    var model = Model;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <script type="text/javascript" src="jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="jquery.countdownTimer.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.countdownTimer.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 }
 
-
-
 <style>
-    .text-danger.required-error-id {
-        display: none;
-    }
 
 
-    .birth-certificate {
-        display: none
-    }
 
-    .text-danger.required-error-certificate {
-        display: none
+    #dCountDown {
+        border: 0.1875em solid #0F1C3F;
+        border-radius: 50%;
+        box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
+        height: 11em;
+        width: 11em;
+        padding: 3.85em;
     }
 </style>
-
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
     <!--begin::Info-->
@@ -36,7 +44,7 @@
 </div>
 
 <div class="d-flex flex-column-fluid">
-
+    @Html.AntiForgeryToken()
     <!--begin::Container-->
     <div class="container">
         <!--begin::Card-->
@@ -53,7 +61,6 @@
                             <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
                                 <!--begin::Wizard Steps-->
                                 <div class="wizard-steps">
-
                                     <!--begin::Wizard Step 1 Nav-->
                                     <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
                                         <div class="wizard-wrapper">
@@ -182,617 +189,178 @@
                     <!--begin::Aside-->
                     <!--begin::Content-->
 
+                    <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
 
-                    <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10">
                         <div class="d-flex justify-content-center flex-row-fluid ">
-                            @if (TempData["ValidationError"] != null)
-                            {
-                                <style>
-                                    #validation-error {
-                                        display: block;
-                                    }
-                                </style>
-                            }
+                            <div class="wizard-step" s>
 
-                            @*@if (ViewBag.ValidationError != null)
+                                <!--begin: Wizard Step 2-->
+                                @using (Html.BeginForm("GsmVerificationWithSms", "Application", FormMethod.Post, new { @id = "SmsSubmit" }))
                                 {
-                                    <style>
-                                        #validation-error {
-                                            display: block;
-                                        }
-                                    </style>
-                                }*@
 
-
-
-
-                            @*@using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @id = "ApplicationForm" }))
-                                {*@
-                            <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
-
-
-                                <div id="validation-error">
-                                    <div class="form-group" id="otherFieldGroupDiv">
-                                        <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-                                            <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
-                                            <div class="alert-text">
-                                                <a class="font-weight-bolder text-danger"> @TempData["ValidationError"] </a>
-
-                                            </div>
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <div class="pb-10 pb-lg-15">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
+                                            <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
                                         </div>
-                                    </div>
-                                </div>
-
-
-
-                                @*<span class="text-danger required-error-id">Lütfen Kimlik Bilgilerinizi Kontrol Ediniz</span>*@
-
-                                <div class="text-danger required-error-id">
-                                    @*<div id="validation-error">*@
-                                    <div class="form-group" id="otherFieldGroupDiv">
-                                        <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-                                            <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
-                                            <div class="alert-text">
-                                                <a class="font-weight-bolder text-danger">Kimlik Bilgileriniz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @*</div>*@
-                                </div>
-                                @*@ViewBag.errorMessage*@
-
-
-                                <div class="pb-5" data-wizard-type="step-content">
-                                    <!--begin::Title-->
-                                    <div class="pb-15 pb-lg-5">
-                                        <h3 class="font-weight-bolder text-dark font-size-h2">Kimlik Bilgileriniz</h3><hr class="my-4">
-                                    </div>
-                                    <!--begin::Title-->
-                                    <div class="form-group">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="form-group is-required">
-                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Kart Tipi</label>
-                                                @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-                                                <div class="text-danger">
-                                                    @Html.ValidationMessageFor(model => model.IDCardType)
-                                                </div>
-                                                <span class="text-danger required-error">Kimlik Kart Tipi Zorunludur</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group is-required">
-                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
-                                                    <div class="form-control h-auto p-4 border-0 rounded-lg font-size-h6">
-                                                        @Html.EditorFor(m => m.TC, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "T.C Kimlik Numaranız", @autocomplete = "off" } })
-                                                    </div>
-                                                    <div class="text-danger">
-                                                        @Html.ValidationMessageFor(model => model.TC)
-                                                    </div>
-                                                    <span class="text-danger required-error">T.C Zorunludur</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="fv-plugins-message-container">
-                                            <div class="text-danger">
-                                            </div>
-                                        </div>
-
-                                        <div class="pb-0 pb-lg-0">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group is-required">
-                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
-                                                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı", @maxlength = 50, @autocomplete = "off" } })
-
-                                                        <div class="text-danger">
-                                                            @Html.ValidationMessageFor(model => model.FatherName)
-                                                        </div>
-                                                        <span class="text-danger required-error">Baba Adı Zorunludur</span>
-                                                    </div>
-                                                </div>
-                                                <!--end::Form Group-->
-                                                <!--begin::Form Group-->
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group is-required">
-                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
-                                                        @Html.EditorFor(m => m.MotherName, new
-                                                        {
-                                                            htmlAttributes = new
-                                                            {
-                                                                @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6",
-                                                                @placeholder = "Anne Adı",
-                                                                @maxlength = 50,
-                                                                @autocomplete = "off"
-                                                            }
-                                                        })
-
-                                                        <div class="text-danger">
-                                                            @Html.ValidationMessageFor(model => model.MotherName)
-                                                        </div>
-                                                        <span class="text-danger required-error">Anne Adı Zorunludur</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="pb-0 pb-lg-0">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group is-required">
-                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
-                                                        @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Doğum Yeri", @maxlength = 50, @autocomplete = "off" } })
-
-                                                        <div class="text-danger">
-                                                            @Html.ValidationMessageFor(model => model.BirthPlace)
-                                                        </div>
-                                                        <span class="text-danger required-error">Doğum Yeri Zorunludur</span>
-                                                    </div>
-                                                </div>
-                                                <!--end::Form Group-->
-                                                <!--begin::Form Group-->
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group is-required">
-                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
-                                                        @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No", @maxlength = 9, @autocomplete = "off" } })
-                                                        <div class="text-danger">
-                                                            @Html.ValidationMessageFor(model => model.SerialNo)
-                                                        </div>
-                                                        <span class="text-danger required-error">Seri No Zorunludur</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group is-required">
-                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
-
-                                                    @* @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü", @autocomplete = "off" })*@
-
-                                                    <div class="text-danger">
-                                                        @* @Html.ValidationMessageFor(model => model.BirthDate)*@
-                                                    </div>
-                                                    <span class="text-danger required-error">Doğum Günü Zorunludur</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group is-required">
-                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
-                                                    @Html.DropDownListFor(m => m.Sex, new SelectList(ViewBag.SexList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-                                                    <div class="text-danger">
-                                                        @Html.ValidationMessageFor(model => model.Sex)
-                                                    </div>
-                                                    <span class="text-danger required-error">Cinsiyet Seçiniz</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end::Form Group-->
                                         <!--begin::Form Group-->
+                                        <div class="form-group is-required">
+                                            <div class="text-danger mr-10">
+                                                @TempData["SmsValidationMessage"]
+                                            </div>
+
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
+                                            @Html.EditorFor(m => m.SMSCode, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6", @placeholder = "SMS Doğrulama Kodu", @autocomplete = "off" } })
+
+
+                                            <span class="text-danger required-error">SMS Doğrulama Kodunuzu Yazınız</span>
+                                            <div class="separator separator-dashed my-3">
+                                                <br />
+
+                                            </div>
+                                        </div>
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group is-required">
-                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih/Son Geçerlilik Tarihi </label>
-
-                                                    @Html.TextBoxFor(m => m.DateOfIssue, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Verildiği veya Son Geçerlilik Tarihi", @autocomplete = "off" })
-
-                                                    <div class="text-danger">
-                                                        @Html.ValidationMessageFor(model => model.DateOfIssue)
-                                                    </div>
-                                                    <span class="text-danger required-error">Verildiği Tarih/Son Geçerlilik Tarihi Zorunludur</span>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div class="form-group is-required">
-                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
-                                                    @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer", @maxlength = 50, @autocomplete = "off" } })
-                                                    <div class="text-danger">
-                                                        @Html.ValidationMessageFor(model => model.PlaceOfIssue)
-                                                    </div>
-                                                    <span class="text-danger required-error">Doğum Yeri Zorunludur</span>
-                                                </div>
-                                            </div>
-                                            <!--end::Form Group-->
-                                            <!--begin::Form Group-->
-
-                                        </div>
-
-                                        <div class="pb-0 pb-lg-5">
-                                            <div class="row">
-                                            </div>
-                                            <div class="pb-0 pb-lg-5">
-                                                <div class="row">
-                                                    <!--end::Form Group-->
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
-                                                            @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", @maxlength = 50, @autocomplete = "off" } })
-
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.MotherFirstSurname)
-
-                                                            </div>
-                                                            <span class="text-danger required-error">Anne Kızlık Soyadı Zorunludur</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="birth-certificate">
-
-                                            <div class="pb-0 pb-lg-0">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required-certificate">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sıra No</label>
-                                                            @Html.EditorFor(m => m.RowNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sıra No", @maxlength = 50, @autocomplete = "off" } })
-
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.RowNo)
-                                                            </div>
-                                                            <span class="text-danger required-error-certificate">Sıra No</span>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Form Group-->
-                                                    <!--begin::Form Group-->
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required-certificate">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cilt No</label>
-                                                            @Html.EditorFor(m => m.VolumeNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Cilt No", @maxlength = 9, @autocomplete = "off" } })
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.VolumeNo)
-                                                            </div>
-                                                            <span class="text-danger required-error-certificate">Cilt No Zorunludur</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="col-lg-3 col-md-3 " style="margin:3em; font-size:1.2em">
+                                                Kalan Süre
                                             </div>
 
+                                            @*<strong id="timer">
 
-                                            <div class="pb-0 pb-lg-0">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required-certificate">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sayfa No</label>
-                                                            @Html.EditorFor(m => m.PageNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Syafa No", @maxlength = 50, @autocomplete = "off" } })
+                                                    insert timer here
 
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.PageNo)
-                                                            </div>
-                                                            <span class="text-danger required-error-certificate">Sayfa No Zorunludur</span>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Form Group-->
-                                                    <!--begin::Form Group-->
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required-certificate">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İl</label>
-                                                            @Html.EditorFor(m => m.IDCardProvince, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İl", @maxlength = 50, @autocomplete = "off" } })
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.IDCardProvince)
-                                                            </div>
-                                                            <span class="text-danger required-error-certificate">İl Zorunludur</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                </strong><br /><em id="other">blah</em>*@
 
 
-                                            <div class="pb-0 pb-lg-0">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required-certificate">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
-                                                            @Html.EditorFor(m => m.IDCardDistrict, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İlçe", @maxlength = 50, @autocomplete = "off" } })
+                                            <div id="dCountDown"> </div>
 
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.IDCardDistrict)
-                                                            </div>
-                                                            <span class="text-danger required-error-certificate">İlçe Zorunludur</span>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Form Group-->
-                                                    <!--begin::Form Group-->
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div class="form-group is-required-certificate">
-                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
-                                                            @Html.EditorFor(m => m.IDCardNeighbourhood, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Mahalle", @maxlength = 50, @autocomplete = "off" } })
-                                                            <div class="text-danger">
-                                                                @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
-                                                            </div>
-                                                            <span class="text-danger required-error-certificate">Mahalle Zorunludur</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                            @*<div id="countdowntimer"><span id="future_date"><span></div>*@
 
 
 
                                         </div>
 
+                                        <div class="col-xl-12 col-lg-8 ">
 
-                                        <div>
+                                        </div>
+                                        <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
+                                        <div class="col-lg-4 col-md-4">
 
-
-
-                                            @*çalışıyor*@
-                                            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker js-date", @autocomplete = "off", placeholder = "gün.ay.yıl", id = "inputmask", @maxlength = 10 })
-                                            @*çalışıyor*@
-
-
-                                            @* @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü", @autocomplete = "off" })*@
-
-
-                                            @*@Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü", @autocomplete = "off", id = "datemask2" })*@
-
-
-                                            <div>
-                                                <label>4. Datepicker + Input Mask (js):</label>
-                                                <input id='datemask2' />
-                                            </div>
-
-
+                                            <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 SmsButtonControl" data-wizard-type="action-next">
+                                                Sonraki
+                                                <span class="svg-icon svg-icon-md ml-1">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                                            <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-
-
-
-
+                                }
                             </div>
-
-                        </div>
-
-
-
-                        <div class="row">
-
-
-                            <div class="col-lg-3 col-md-3">
-                                <div>
-                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" id="getIDCardValidation">
-                                        Sonraki
-                                        <span class="svg-icon svg-icon-md ml-1">
-                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                </g>
-                                            </svg>
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                    </button>
-
-                                </div>
-                            </div>
+                            <!--end::Form-->
                         </div>
                     </div>
-
-
-
-
-                    <!--end::Form-->
+                    <!--end::Content-->
                 </div>
-                <!--end::Content-->
+
             </div>
         </div>
     </div>
 </div>
 
 
-@section script
-    {
 
-    <div class="form-group is-required-certificate">
-        <label class="font-size-h6 font-weight-bolder m-2 text-dark">İl</label>
-        @Html.EditorFor(m => m.IDCardProvince, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İl", @maxlength = 50, @autocomplete = "off" } })
-        <div class="text-danger">
-            @Html.ValidationMessageFor(model => model.IDCardProvince)
-        </div>
-        <span class="text-danger required-error-certificate">İl Zorunludur</span>
-    </div>
+@section script{
 
     <script>
-        //<div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
-
-        //    var currentContainer = clickedButton.closest('div.wizard-step');
-
-        $('#IDCardType').change(function () {
-
-            var idCardTypeValue = $('#IDCardType').val();
-
-            if (idCardTypeValue == 2) {
-                var birthcertificate = $('#IDCardType').closest('div.wizard-step');
-                birthcertificate.find('div.birth-certificate').show();
-            }
-        })
-
-
-
-        $('button.inputControlButton').click(function () {
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var isValidCertificate = true;
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-
-
-            if ($('div.birth-certificate').is(':visible')) {
-                var clickedButton = $(this);
-                var currentContainer = clickedButton.closest('div.wizard-step');
-                var isValid = true;
-                //var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-                var requiredBirthCertificateTexts = currentContainer.find('.form-group.is-required-certificate').find('input[name]');
-
-
-                requiredBirthCertificateTexts.each(function () {
-                    var currentInput = $(this);
-                    var hasText = currentInput.val() != "";
-
-                    if (!hasText) {
-                        isValidCertificate = false;
-                        currentInput.closest('.form-group').find('span.required-error-certificate').show();
-                        swal({
-                            title: '',
-                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                            icon: 'error',
-                            button: 'Tamam',
-                        })
-                    }
-                    if (hasText) {
-                        isValidCertificate = true;
-                        currentInput.closest('.form-group').find('span.required-error-certificate').hide();
-                    }
-                });
-
-            }
-
-
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
-
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                if (hasText) {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                    if (hasError == true) {
-
-                        $("#EmailAddress").closest('.form-group').find('span.required-error').show();
-                    }
-                }
-            });
-
-            if (isValid == true && hasError == false && isValidCertificate == true) {
-                if ($('#ContactInformation').is(':visible')) {
-                    $('#ContactInformation').hide();
-                    $('#IDInformation').show();
-                }
-            }
-
-        })
-    </script>
-
-    <script>
-
-
-        //$(function () {
-        //    $('.datepicker').datepicker({
-        //        dateFormat: 'dd.mm.yy',
-        //        changeYear: true,
-        //        changeMonth: true,
-        //        dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
-        //        monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-        //        monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-        //        yearRange: "1970:2035",
-        //        mask: "99.99.9999"
-        //    });
-
-        //});
-
-        //$('#BirthDate').mask('99.99.9999');
-
-
-
-        //çalışıyor
         $(function () {
-            $('.datepicker').datepicker({
-                dateFormat: 'dd.mm.yy',
-                changeYear: true,
-                changeMonth: true,
-                dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
-                monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-                monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-                yearRange: "1970:2035"
-            });
-
+            $('#SMSCode').inputmask("999999");
         });
-
-        var input = document.querySelectorAll('.js-date')[0];
-
-        $('.datepicker').on('input', function (e) {
-            var current = $(this);
-            if (e.keyCode < 47 || e.keyCode > 57) {
-                e.preventDefault();
-            }
-
-            current.val(current.val().replace(/[^0-9]/g, ''));
-
-            // If they don't add the slash, do it for them...
-            if (current.val().length > 2) {
-                var currentValue = current.val();
-                if (currentValue[2] != '.')
-                    current.val(currentValue.substr(0, 2) + '.' + currentValue.substr(2));
-            }
-
-            // If they don't add the slash, do it for them...
-            if (current.val().length > 5) {
-                var currentValue = current.val();
-                if (currentValue[5] != '.')
-                    current.val(currentValue.substr(0, 5) + '.' + currentValue.substr(5));
-            }
-
-            if (current.val().length > 10) {
-                var currentValue = current.val();
-                current.val(currentValue.substr(0, 10));
-            }
-        });
-
-                //var dateInputMask = function dateInputMask(elm) {
-                //    elm.addEventListener('input', function (e) {
-                //        if (e.keyCode < 47 || e.keyCode > 57) {
-                //            e.preventDefault();
-                //        }
-
-                //        var len = elm.value.length;
-
-                //        // If we're at a particular place, let the user type the slash
-                //        // i.e., 12/12/1212
-                //        if (len !== 1 || len !== 3) {
-                //            if (e.keyCode == 47) {
-                //                e.preventDefault();
-                //            }
-                //        }
-
-                //        // If they don't add the slash, do it for them...
-                //        if (len === 2) {
-                //            elm.value += '.';
-                //        }
-
-                //        // If they don't add the slash, do it for them...
-                //        if (len === 5) {
-                //            elm.value += '.';
-                //        }
-                //    });
-                //};
-
-                //dateInputMask(input);
-
-                //çalışıyor
-
     </script>
 
+    <script>
+        //var countDownVal = "@TempData["exTime"]";
+        var countDownVal =25;
+
+        $('#dCountDown').html(countDownVal);
+        var timer1 = setInterval(function () { myTimer() }, 1000);
+        function myTimer() {
+            countDownVal--;
+            $('#dCountDown').html(countDownVal);
+            if (countDownVal <= 20 && countDownVal>=10) {
+                $('#dCountDown').css("color", "orange")
+            }
+
+            if (countDownVal <= 9) {
+                $('#dCountDown').css("color", "red")
+            }
+
+            //$("p").css("color", "red");
+            if (countDownVal == 0) {
+                clearInterval(timer1); // this thing can be here, or not, it's OK
+
+                @*swal({
+                    title: '',
+                    text: '"Zamanınız Dolmuştur',
+                    icon: 'error',
+                    button: 'Tamam',
+                    window.location.href = "@Url.Action("Index","Application")";
+                })*@
+               alert("Zamanınız Dolmuştur");
+                 window.location.href = "@Url.Action("Index","Application")";
+
+            }
+        }
+    </script>
+
+    @*<script>
+            $(function () {
+                $("#ms_timer").countdowntimer({
+                    minutes: 10,
+                    seconds: 10‚
+                    size: "lg"
+                });
+            });
+        </script>*@
+
+    @*<script>
+                milliseconds = milliseconds || "@TempData["exTime"]" * 1000; // 5 minutes
+                end = new Date(Date.now() + milliseconds + buffer);
+
+                // Start the counter
+                tick();
+
+                function formatTime(time) {
+                    minutes = time.getMinutes();
+                    seconds = time.getSeconds();
+                    return minutes + " minutes " + seconds + " seconds";
+                }
+
+                function tick() {
+                    var remaining = new Date(end - Date.now());
+
+                    if (remaining > 0) {
+                        $el.html(formatTime(remaining));
+                        timer = setTimeout(tick, 1000);
+                    } else {
+                        clearInterval(timer);
+                        if (callback) callback.apply($el);
+                    }
+                };
+          };
+
+
+                $('#timer').countdown(5 * 60 * 1000);
+                $('#other').countdown(3 * 1000, function () {
+                    this.html("Time's up!");
+                });
+        }) (jQuery);
+            </script>*@
 
 }

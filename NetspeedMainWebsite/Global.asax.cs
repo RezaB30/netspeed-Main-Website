@@ -26,8 +26,7 @@ namespace NetspeedMainWebsite
 
             ModelBinders.Binders[typeof(DateTime?)] = new DateBinder();
             ModelBinders.Binders[typeof(DateTime)] = new DateBinder();
-            //ModelBinders.Binders.Add(typeof(DateTime?), new DateBinder());
-            //ModelBinders.Binders.Add(typeof(DateTime), new DateBinder());
+           
 
         }
     }

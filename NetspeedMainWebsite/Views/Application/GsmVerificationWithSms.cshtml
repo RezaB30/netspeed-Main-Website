@@ -11,6 +11,227 @@
 
 }
 
+<style>
+   /* .base-timer__svg {
+        color: green
+    }*/
+    .transition10s {
+        transition: 10s ease-in-out;
+        -moz-transition: 10s ease-in-out;
+        -ms-transition: 10s ease-in-out;
+        -webkit-transition: 10s ease-in-out;
+        -o-transition: 10s ease-in-out;
+    }
+
+    .transition300 {
+        transition: 300ms ease-in-out;
+        -moz-transition: 300ms ease-in-out;
+        -ms-transition: 300ms ease-in-out;
+        -webkit-transition: 300ms ease-in-out;
+        -o-transition: 300ms ease-in-out;
+    }
+
+    .fLeft {
+        float: left !important;
+    }
+    /*Track Timer*/
+    .timerCont {
+        width: 15%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .loader {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 5px;
+        background: #f0f0f0;
+        border-radius: 100px;
+    }
+
+    .loader-bg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #fff;
+        box-shadow: 0 0 15px 0 rgba(0,0,0,0.2)
+    }
+
+    .spiner-holder-1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 50%;
+        height: 50%;
+        background: transparent;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .spiner-holder-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .loader-spiner {
+        width: 200%;
+        height: 200%;
+        border-radius: 50%;
+        border: 5px solid #91bf34;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .animate-0-25-a {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-0-25-b {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-25-50-a {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-25-50-b {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-50-75-a {
+        -webkit-transform: rotate(270deg);
+        -moz-transform: rotate(270deg);
+        -o-transform: rotate(270deg);
+        transform: rotate(270deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-50-75-b {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-75-100-a {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .animate-75-100-b {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .text {
+        padding-top: 35%;
+        text-align: center;
+        color: #4d4d4d;
+        font-size: 26px;
+        line-height: 20px;
+    }
+
+    .border0 {
+        border-color: #e00000;
+    }
+
+    .border25 {
+        border-color: #f49712;
+    }
+
+    .border50 {
+        border-color: #FFD500;
+    }
+
+    .border75 {
+        border-color: #91bf34;
+    }
+
+    .timetitle {
+        width: 85%;
+        line-height: 30px;
+        padding: 5px 20px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
     <!--begin::Info-->
     <!--begin::Page Heading-->
@@ -236,9 +457,67 @@
                                             <div class="col-lg-3 col-md-3 " style="margin:3em; font-size:1.2em">
                                                 Kalan Süre
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <div id="app"></div>
+                                            @*<div class="col-lg-6 col-md-6">
+            <div id="app"></div>
+        </div>*@
+
+                                            <div class="timerCont transition300" id="timer_div">
+                                                <div class="loader fLeft">
+                                                    <div class="loader-bg">
+                                                        <div id="timer" class="text fmUbuntuL transition10s"></div>
+                                                    </div>
+                                                    <div class="spiner-holder-1 animate-0-25-a">
+                                                        <div class="spiner-holder-2 animate-0-25-b" style="transform: rotate(-90deg);">
+                                                            <div class="loader-spiner transition10s border75">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="spiner-holder-1 animate-25-50-a">
+                                                        <div class="spiner-holder-2 animate-25-50-b" style="transform: rotate(-90deg);">
+                                                            <div class="loader-spiner transition10s border75"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="spiner-holder-1 animate-50-75-a">
+                                                        <div class="spiner-holder-2 animate-50-75-b" style="transform: rotate(-90deg);">
+                                                            <div class="loader-spiner transition10s border75"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="spiner-holder-1 animate-75-100-a">
+                                                        <div class="spiner-holder-2 animate-75-100-b" style="transform: rotate(-90deg);">
+                                                            <div class="loader-spiner transition10s border75"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+
+
+
+                                            <!--<div class="col-lg-6 col-md-6">
+        <div id="appk">
+            <div class="base-timer">
+                <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+                    <g class="base-timer__circle">
+
+                        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+
+                        <path id="base-timer-path-remaining"
+                              stroke-dasharray="283"
+                              class="base-timer__path-remaining ${remainingPathColor}"
+                              d="M 50, 50 m -45, 0  a 45,45 0 1,0 90,0   a 45,45 0 1,0 -90,0 " />-->
+                                            @*</path>*@
+                                            <!--</g>
+                </svg>
+                <span id="base-timer-label" class="base-timer__label">
+                    ${formatTime(
+                    timeLeft
+                    )}
+                </span>
+            </div>
+
+        </div>
+    </div>-->
+
                                         </div>
 
                                         <div class="col-xl-12 col-lg-8 ">
@@ -288,125 +567,123 @@
 
     <script>
 
-        const FULL_DASH_ARRAY = 283;
-        const WARNING_THRESHOLD = 10;
-        const ALERT_THRESHOLD = 5;
 
-        const COLOR_CODES = {
-            info: {
-                color: "green"
-            },
-            warning: {
-                color: "orange",
-                threshold: WARNING_THRESHOLD
-            },
-            alert: {
-                color: "red",
-                threshold: ALERT_THRESHOLD
+
+     var time = "@TempData["exTime"]"; // seconds
+        var originalRotate = -90;
+        var cntDwn = "@TempData["exTime"]"-60;
+    var rotatePerSec = 360 / time;
+    var rotateQuarter = time / 4;
+    // console.log("rr..."+rotateQuarter);
+    function myTimer() {
+        // console.log('time...' + time + 'cntDwn...' + cntDwn + 'originalRotate...' + originalRotate);
+        console.log('time...' + time + 'cntDwn...' + cntDwn + 'originalRotate...' + originalRotate);
+        if (cntDwn == 0) {
+            // console.log("cdn zero");
+            cntDwn = 59;
+        } else {
+            cntDwn--;
+            if (cntDwn < 10) {
+                cntDwn = "0" + cntDwn;
             }
-        };
-
-        const TIME_LIMIT =@TempData["exTime"];
-      //  const TIME_LIMIT = 120;
-        let timePassed = 0;
-        let timeLeft = TIME_LIMIT;
-        let timerInterval = null;
-        let remainingPathColor = COLOR_CODES.info.color;
-
-        document.getElementById("app").innerHTML = `
-<div class="base-timer">
-  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g class="base-timer__circle">
-      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-      <path
-        id="base-timer-path-remaining"
-        stroke-dasharray="283"
-        class="base-timer__path-remaining ${remainingPathColor}"
-        d="
-          M 50, 50
-          m -45, 0
-          a 45,45 0 1,0 90,0
-          a 45,45 0 1,0 -90,0
-        "
-      ></path>
-    </g>
-  </svg>
-  <span id="base-timer-label" class="base-timer__label">${formatTime(
-            timeLeft
-        )}</span>
-</div>
-`;
-
-        startTimer();
-
-        function onTimesUp() {
-            clearInterval(timerInterval);
+            // console.log("cdn --");
         }
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timePassed = timePassed += 1;
-                timeLeft = TIME_LIMIT - timePassed;
-                document.getElementById("base-timer-label").innerHTML = formatTime(
-                    timeLeft
-                );
-                setCircleDasharray();
-                setRemainingPathColor(timeLeft);
+        if (time >= 240 && time < 300) {
+            // console.log("test1");
+            $("#timer").html("04:" + cntDwn);
+        } else if (time >= 180 && time < 240) {
+            $("#timer").html("03:" + cntDwn);
+        } else if (time >= 120 && time < 180) {
+            $("#timer").html("02:" + cntDwn);
+        } else if (time >= 60 && time < 120) {
+            $("#timer").html("01:" + cntDwn);
+        } else if (time >= 0 && time < 60) {
+            if (time > 0) {
+                $("#timer").html("00:" + cntDwn);
+            } else {
+                console.log("time is zero");
+                $("#timer").html("00:00");
+            }
+        } else if (time < 0) {
 
-                if (timeLeft === 0) {
-                    onTimesUp();
-                }
-            }, 1000);
+            $(".animate-75-100-b").css("transform", "rotate(0deg)");
         }
-
-        function formatTime(time) {
-            const minutes = Math.floor(time / 60);
-            if (time == 1) {
+         if (time == 1) {
                 alert("Zamanınız Dolmuştur");
                  window.location.href = "@Url.Action("Index","Application")";
 
             }
-            let seconds = time % 60;
 
-            if (seconds < 10) {
-                seconds = `0${seconds}`;
+
+
+        if (originalRotate <= 0) {
+            originalRotate = originalRotate + 1.2;
+        } else {
+            originalRotate = -88.8;
+        }
+
+        // console.log("rotate..."+ originalRotate + "....." + time);
+        if (time > 225 && time <= 300) {
+            if (originalRotate <= 0) {
+                // console.log("A11 "+time);
+                $(".animate-0-25-b").css("transform", "rotate(" + originalRotate + "deg)");
+            } else {
+                // console.log("A22 "+time);
+                $(".animate-0-25-b").css("transform", "rotate(0deg)");
+                $(".loader-spiner").removeClass("border75").addClass("border50");
             }
-
-            return `${minutes}:${seconds}`;
-        }
-
-        function setRemainingPathColor(timeLeft) {
-            const { alert, warning, info } = COLOR_CODES;
-            if (timeLeft <= alert.threshold) {
-                document
-                    .getElementById("base-timer-path-remaining")
-                    .classList.remove(warning.color);
-                document
-                    .getElementById("base-timer-path-remaining")
-                    .classList.add(alert.color);
-            } else if (timeLeft <= warning.threshold) {
-                document
-                    .getElementById("base-timer-path-remaining")
-                    .classList.remove(info.color);
-                document
-                    .getElementById("base-timer-path-remaining")
-                    .classList.add(warning.color);
+        } else if (time > 150 && time <= 225) {
+            if (originalRotate <= 0) {
+                // console.log("B11 "+time);
+                // $(".animate-0-25-b").css("transform","rotate(0deg)");
+                $(".animate-25-50-b").css("transform", "rotate(" + originalRotate + "deg)");
+            } else {
+                // console.log("B22 "+time);
+                $(".animate-25-50-b").css("transform", "rotate(0deg)");
+                $(".loader-spiner").removeClass("border50").addClass("border25");
             }
+        } else if (time > 75 && time <= 150) {
+            if (originalRotate <= 0) {
+                // console.log("C11 "+time);
+                // $(".animate-25-50-b").css("transform","rotate(0deg)");
+                $(".animate-50-75-b").css("transform", "rotate(" + originalRotate + "deg)");
+            } else {
+                // console.log("C22 "+time);
+                $(".animate-50-75-b").css("transform", "rotate(0deg)");
+                $(".loader-spiner").removeClass("border25").addClass("border0");
+            }
+        } else if (time > 0 && time <= 75) {
+            if (originalRotate <= 0) {
+                // console.log("D11 "+time);
+                // $(".animate-50-75-b").css("transform","rotate(0deg)");
+                $(".animate-75-100-b").css("transform", "rotate(" + originalRotate + "deg)");
+            } else {
+                // console.log("D22 "+time);
+                $(".animate-75-100-b").css("transform", "rotate(0deg)");
+            }
+            // $(".animate-0-25-b").css("transform","rotate(0deg)");
+            // $(".animate-25-50-b").css("transform","rotate(0deg)");
+            // $(".animate-50-75-b").css("transform","rotate(0deg)");
+
+
+        } else if (time <= 0) {
+            $(".animate-75-100-b").css("transform", "rotate(0deg)");
         }
 
-        function calculateTimeFraction() {
-            const rawTimeFraction = timeLeft / TIME_LIMIT;
-            return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
-        }
+        time--;
 
-        function setCircleDasharray() {
-            const circleDasharray = `${(
-                calculateTimeFraction() * FULL_DASH_ARRAY
-            ).toFixed(0)} 283`;
-            document
-                .getElementById("basDateTimeateTimeateTimeateTime-timer-path-remaining")
-                .setAttribute("stroke-dasharray", circleDasharray);
+    }
+    var myVar = setInterval(function () {
+        myTimer();
+        if (time < 1) {
+            console.log("Stop");
+            clearInterval(myVar);
+            $(".animate-75-100-b").css("transform", "rotate(0deg)");
+            $("#timer").html("00:00");
         }
+    }, 1000);
+
     </script>
 
 

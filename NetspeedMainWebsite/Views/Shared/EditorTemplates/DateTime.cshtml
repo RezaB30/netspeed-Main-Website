@@ -1,0 +1,10 @@
+﻿@model DateTime?
+
+@if (Model.HasValue)
+{
+    @Html.TextBoxFor(model => model, Model.Value.ToString("dd.MM.yyyy"), ViewData["htmlAttributes"])
+}
+else
+{
+    @Html.TextBoxFor(model => model, ViewData["htmlAttributes"])
+}

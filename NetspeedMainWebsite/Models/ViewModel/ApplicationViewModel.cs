@@ -58,7 +58,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _FirstName;
                 }
-                return _FirstName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _FirstName.ToUpper();
             }
             set
             {
@@ -78,13 +78,14 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _LastName;
                 }
-                return _LastName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _LastName.ToUpper();
             }
             set
             {
                 _LastName = value;
             }
         }
+
 
         [Required(ErrorMessage = "*E-Posta Alanı Gerekli ")]
         [StringLength(100, ErrorMessage = "En Fazla 100 Karakter Girebilirsiniz.")]
@@ -119,29 +120,21 @@ namespace NetspeedMainWebsite.Models.ViewModel
         [RegularExpression(@"^([1-9]{1}[0-9]{9}[02468]{1})$", ErrorMessage = "*Lütfen T.C Kimlik Numaranızı Doğru Giriniz.")]
         public string TC { get; set; }
 
-        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        public string BirthDate
+      
+        public DateTime BirthDate
         {
-
             get
             {
-                //applicationLogger.Error($"_birthdate: {_BirthDate}");
-
-                return _BirthDate.HasValue ? _BirthDate.Value.ToString() : null;
+                return Convert.ToDateTime(sBirthDate);
             }
             set
             {
-                //applicationLogger.Error($"birthdate: {value}");
-                DateTime BirthDate;
-                if (DateTime.TryParse(value, out BirthDate))
-                {
-                    _BirthDate = BirthDate;
-                }
+                sBirthDate = DateUtilities.ConvertToWebServiceDate(value);
             }
         }
-        [Required(ErrorMessage = "*Doğum Günü Alanı Gerekli ")]
-        public DateTime? _BirthDate { get; set; }
+        public string sBirthDate { get; set; }
 
+                      
 
         [Required(ErrorMessage = "*Cinsiyet Alanı Gerekli ")]
         [Range(1, 2, ErrorMessage = "*Lütfen Geçerli Bir Değer Giriniz.")]
@@ -161,7 +154,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _FatherName;
                 }
-                return _FatherName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _FatherName.ToUpper();
             }
             set
             {
@@ -183,7 +176,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _MotherName;
                 }
-                return _MotherName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _MotherName.ToUpper();
             }
             set
             {
@@ -205,7 +198,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _BirthPlace;
                 }
-                return _BirthPlace.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _BirthPlace.ToUpper();
             }
             set
             {
@@ -228,7 +221,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _MotherFirstSurname;
                 }
-                return _MotherFirstSurname.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _MotherFirstSurname.ToUpper();
             }
             set
             {
@@ -251,7 +244,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _SerialNo;
                 }
-                return _SerialNo.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _SerialNo.ToUpper();
             }
             set
             {
@@ -273,7 +266,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _ReferenceCode;
                 }
-                return _ReferenceCode.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _ReferenceCode.ToUpper();
             }
             set
             {
@@ -295,7 +288,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
                 {
                     return _PlaceOfIssue;
                 }
-                return _PlaceOfIssue.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+                return _PlaceOfIssue.ToUpper();
             }
             set
             {
@@ -303,25 +296,23 @@ namespace NetspeedMainWebsite.Models.ViewModel
             }
         }
 
-        [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        public string DateOfIssue
+
+        public DateTime DateOfIssue
         {
             get
             {
-                return _DateOfIssue.HasValue ? _DateOfIssue.Value.ToString() : null;
+                return Convert.ToDateTime(sDateOfIssue);
             }
             set
             {
-                DateTime DateOfIssue;
-                if (DateTime.TryParse(value, out DateOfIssue))
-                {
-                    _DateOfIssue = DateOfIssue;
-                }
+                sDateOfIssue = DateUtilities.ConvertToWebServiceDate(value);
             }
         }
 
-        [Required(ErrorMessage = "*Verildiği Tarih Alanı Gerekli ")]
-        public DateTime? _DateOfIssue { get; set; }
+        public string sDateOfIssue { get; set; }
+
+
+        
 
         [MaxLength(6), MinLength(6)]
         public string SMSCode { get; set; }

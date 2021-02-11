@@ -91,36 +91,38 @@ namespace NetspeedMainWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetIDCardValidation(int IDCardType, string TCKNo, string FirstName, string LastName, string BirthDate, string RegistirationNo)
-        {
-            var errorMessage = string.Empty;
-            string _BirthDate = BirthDate;
-            string[] BirthDateSplit = _BirthDate.Split('.');
-            string day = BirthDateSplit[0];
-            string month = BirthDateSplit[1];
-            string year = BirthDateSplit[2];
-
-            string ChangeDate = String.Concat(year, "-", month, "-", day);
+        public ActionResult GetIDCardValidation(int IDCardType, string TCKNo, string FirstName, string LastName, DateTime BirthDate, string RegistirationNo)
+        {        
+            applicationLogger.Error($"birthdate: {BirthDate} -GetIDCardValidation bEGIN");
 
 
-            string first = FirstName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
-            string last = LastName.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
-            string serialNo = RegistirationNo.ToUpper(CultureInfo.CreateSpecificCulture("tr-TR"));
+            string ChangeDate = DateUtilities.ConvertToWebServiceDate(BirthDate);
+
+            //string upperFirstName = UpperUtilities.ToUpperWebServiceWord(FirstName);
+            //string upperLastName = UpperUtilities.ToUpperWebServiceWord(LastName);
+            //string upperRegistirationNo = UpperUtilities.ToUpperWebServiceWord(RegistirationNo);
+
+            string upperFirstName = FirstName.ToUpper();
+            string upperLastName = LastName.ToUpper();
+            string upperRegistirationNo = RegistirationNo.ToUpper();
+
 
             var IDCardValidationError = "Kimlik Bilgilerinizi Lütfen Kontrol Ediniz.";
             WebServiceWrapper idCardServiceClient = new WebServiceWrapper();
-            var idCardValidationResponse = idCardServiceClient.IDCardValidationResponse(IDCardType, TCKNo, first, last, ChangeDate, serialNo);
+            var idCardValidationResponse = idCardServiceClient.IDCardValidationResponse(IDCardType, TCKNo, upperFirstName, upperLastName, ChangeDate, upperRegistirationNo);
 
             var idCardIsValid = idCardValidationResponse.IDCardValidationResponse;
 
-            //if (idCardIsValid == false)
-            //{
-            //    errorMessage = "error";
-            //    ViewBag.IDCardValidationError = IDCardValidationError;
-            //    ViewBag.errorMessage = errorMessage;
-            //}
+            applicationLogger.Error($"upperFirstName: {upperFirstName} -GetIDCardValidation END");
 
-            //return PartialView("~ApplicationParts/_IDInformation");
+            applicationLogger.Error($"upperLastName: {upperLastName} -GetIDCardValidation END");
+
+            applicationLogger.Error($"upperRegistirationNo: {upperRegistirationNo} -GetIDCardValidation END");
+
+            applicationLogger.Error($"birthdate: {ChangeDate} -GetIDCardValidation END");
+
+
+
             return Json(new { isValid = idCardIsValid, errorMessage = !idCardIsValid ? IDCardValidationError : null });
         }
 
@@ -220,35 +222,13 @@ namespace NetspeedMainWebsite.Controllers
 
             var Checked = application.TariffId;
 
-            applicationLogger.Error($"birthdate: {application.BirthDate}- dateofissue: {application.DateOfIssue}");
-
-
+            applicationLogger.Error($"birthdate: {application.BirthDate}- dateofissue: {application.DateOfIssue}-Index");
 
 
             ApplicationViewModel InfrastructureResult = new ApplicationViewModel();
 
             if (ModelState.IsValid)
             {
-                string _BirthDate = application.BirthDate;
-                string[] BirthDateSplit = _BirthDate.Split('.', ' ');
-                string day = BirthDateSplit[0];
-                string month = BirthDateSplit[1];
-                string year = BirthDateSplit[2];
-
-                string ChangeBirthDate = String.Concat(year, "-", month, "-", day);
-
-                application.BirthDate = ChangeBirthDate;
-
-                string _DateOfIssue = application.DateOfIssue;
-                string[] DateOfIssueSplit = _DateOfIssue.Split('.', ' ');
-                string dayIssue = DateOfIssueSplit[0];
-                string monthIssue = DateOfIssueSplit[1];
-                string yearIssue = DateOfIssueSplit[2];
-
-                string ChangeDateOfIssue = String.Concat(yearIssue, "-", monthIssue, "-", dayIssue);
-
-                application.DateOfIssue = ChangeDateOfIssue;
-
                 var result = new ApplicationViewModel()
                 {
 
@@ -288,7 +268,6 @@ namespace NetspeedMainWebsite.Controllers
                     IDCardDistrict=application.IDCardDistrict,
                     IDCardNeighbourhood=application.IDCardNeighbourhood
 
-
                 };
 
 
@@ -312,6 +291,9 @@ namespace NetspeedMainWebsite.Controllers
 
                 var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
                 TempData["exTime"] = exTime;
+                //TempData["exTime"] = Value.ExpirationDate;
+
+                applicationLogger.Error($"birthdate: {application.BirthDate}- dateofissue: {application.DateOfIssue}-Index end");
 
                 return View(viewName: "GsmVerificationWithSms", model: result);
             }
@@ -416,56 +398,47 @@ namespace NetspeedMainWebsite.Controllers
                 AddressText = address.AddressText
             };
 
-            string _BirthDate = result.BirthDate;
-            string[] BirthDateSplit = _BirthDate.Split('.', ' ');
-            string day = BirthDateSplit[0];
-            string month = BirthDateSplit[1];
-            string year = BirthDateSplit[2];
+          
+            var clientNewRegister = new WebServiceWrapper();
 
-            string ChangeBirthDate = String.Concat(year, "-", month, "-", day);
+            applicationLogger.Error($"birthdate: {result.BirthDate}- dateofissue: {result.DateOfIssue}-applicationSummary-before-responseNewCustomerRegister");
+            applicationLogger.Error($"sbirthdate: {result.sBirthDate}- sdateofissue: {result.sDateOfIssue}-applicationSummary-before-responseNewCustomerRegister");
 
-            result.BirthDate = ChangeBirthDate;
 
-            string _DateOfIssue = result.DateOfIssue;
-            string[] DateOfIssueSplit = _DateOfIssue.Split('.', ' ');
-            string dayIssue = DateOfIssueSplit[0];
-            string monthIssue = DateOfIssueSplit[1];
-            string yearIssue = DateOfIssueSplit[2];
+            //applicationLogger.Error($"birthdate: {result.BirthDate}- dateofissue: {result.DateOfIssue}-applicationSummary-before-responseNewCustomerRegister");
+            applicationLogger.Error($"FirstName: {result.FirstName}-  result.LastName: {result.LastName} -result.SerialNo {result.SerialNo}-applicationSummary-before-responseNewCustomerRegister");
 
-            string ChangeDateOfIssue = String.Concat(yearIssue, "-", monthIssue, "-", dayIssue);
-
-            result.DateOfIssue = ChangeDateOfIssue;
-
-            var response
-                = new WebServiceWrapper().NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
+            var responseNewCustomerRegister = clientNewRegister.NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
                 address.RuralCode, address.NeighbourhoodID, address.NeighbourhoodName, address.StreetID, address.StreetName, address.ApartmentID,
                   address.ApartmentNo, address.AddressText, address.AddressNo, address.DoorID, address.DoorNo, result.Floor,
                 result._PostalCode, result.BirthPlace, result.FatherName,
                result.MotherFirstSurname, result.MotherName, result.Nationality, 962,
-               result.Sex, ChangeBirthDate, result.IDCardType, result.FirstName,
+               result.Sex, result.sBirthDate, result.IDCardType, result.FirstName,
                result.LastName, result.TC, result.SerialNo, result.PlaceOfIssue,
-               ChangeDateOfIssue, null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId,
+               result.sDateOfIssue, null, result.PhoneNumber, "tr-tr", result.EmailAddress, result.ReferenceCode, result.TariffId,
 
-               result.RowNo, result.VolumeNo, result.PageNo, result.IDCardProvince, result.IDCardDistrict, result.IDCardNeighbourhood
-               );
+               result.RowNo, result.VolumeNo, result.PageNo, result.IDCardProvince, result.IDCardDistrict, result.IDCardNeighbourhood);
 
-            if (response.ResponseMessage.ErrorCode == 0)
+
+         
+
+            if (responseNewCustomerRegister.ResponseMessage.ErrorCode == 0)
             {
                 return RedirectToAction("ApplicationConfirm", "Application");
             }
 
-            if (response.ResponseMessage.ErrorCode == 7)
+            if (responseNewCustomerRegister.ResponseMessage.ErrorCode == 7)
             {
                 return RedirectToAction("AlreadyHaveCustomer", "Application");
             }
 
-            if (response.ResponseMessage.ErrorCode == 199)
+            if (responseNewCustomerRegister.ResponseMessage.ErrorCode == 199)
             {
-                applicationLogger.Error($"{response.ResponseMessage.ErrorMessage} - Internal Server Error (NewCustomerRegister)");
+                applicationLogger.Error($"{responseNewCustomerRegister.ResponseMessage.ErrorMessage} - Internal Server Error (NewCustomerRegister)");
                 return RedirectToAction("InternalServerError", "Application");
             }
 
-            if (response.ResponseMessage.ErrorCode == 200)
+            if (responseNewCustomerRegister.ResponseMessage.ErrorCode == 200)
             {
                 ValidationError = "Kimlik Bilginiz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz.";
                 //Session["ValidationError"] = ValidationError;
@@ -483,6 +456,12 @@ namespace NetspeedMainWebsite.Controllers
 
         public ActionResult Test()
         {
+            //var exTimek = DateTime.Now;
+            //var exTime = exTimek.AddMinutes(2);
+            var exTime = 120;
+
+            TempData["exTime"] = exTime;
+            //TempData["exTime"] = exTime;
 
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
             var IDCardTypeList = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
