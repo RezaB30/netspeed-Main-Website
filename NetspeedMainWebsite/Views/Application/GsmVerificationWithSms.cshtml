@@ -12,10 +12,44 @@
 }
 
 <style>
-   /* .base-timer__svg {
+
+    #dCountDown {
+        width: 3.5em;
+        height: 3.5em;
+        line-height: 1.5em;
+        border-radius: 50%;
+        font-size: 2em;
+        color: #290b63;
+        text-align: center;
+        border: #290b63;
+        /*background: #000;*/
+        background: #fff;
+        padding: 0.80em;
+        border: solid #290b63;
+        margin-left: 2em;
+    }
+
+    #dCountDownT {
+        width: 3.5em;
+        height: 3.5em;
+        line-height: 1.5em;
+        border-radius: 50%;
+        font-size: 2em;
+        color: #290b63;
+        text-align: center;
+        border: #290b63;
+        /*background: #000;*/
+        background: #fff;
+        padding: 0.80em;
+        border: solid #290b63;
+        margin-left: 2em;
+    }
+
+
+    /* .base-timer__svg {
         color: green
     }*/
-    .transition10s {
+    /*.transition10s {
         transition: 10s ease-in-out;
         -moz-transition: 10s ease-in-out;
         -ms-transition: 10s ease-in-out;
@@ -33,9 +67,9 @@
 
     .fLeft {
         float: left !important;
-    }
+    }*/
     /*Track Timer*/
-    .timerCont {
+    /*.timerCont {
         width: 15%;
         display: inline-block;
         vertical-align: middle;
@@ -229,7 +263,7 @@
         padding: 5px 20px;
         display: inline-block;
         vertical-align: middle;
-    }
+    }*/
 </style>
 
 <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -459,52 +493,56 @@
                                             </div>
                                             @*<div class="col-lg-6 col-md-6">
             <div id="app"></div>
-        </div>*@
+        </div>*@  
+                                           @* <div id="dCountDown"> </div>*@
 
-                                            <div class="timerCont transition300" id="timer_div">
-                                                <div class="loader fLeft">
-                                                    <div class="loader-bg">
-                                                        <div id="timer" class="text fmUbuntuL transition10s"></div>
-                                                    </div>
-                                                    <div class="spiner-holder-1 animate-0-25-a">
-                                                        <div class="spiner-holder-2 animate-0-25-b" style="transform: rotate(-90deg);">
-                                                            <div class="loader-spiner transition10s border75">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="spiner-holder-1 animate-25-50-a">
-                                                        <div class="spiner-holder-2 animate-25-50-b" style="transform: rotate(-90deg);">
-                                                            <div class="loader-spiner transition10s border75"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="spiner-holder-1 animate-50-75-a">
-                                                        <div class="spiner-holder-2 animate-50-75-b" style="transform: rotate(-90deg);">
-                                                            <div class="loader-spiner transition10s border75"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="spiner-holder-1 animate-75-100-a">
-                                                        <div class="spiner-holder-2 animate-75-100-b" style="transform: rotate(-90deg);">
-                                                            <div class="loader-spiner transition10s border75"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div id="dCountDownT"> </div>
+
+
+                                            @*<div class="timerCont transition300" id="timer_div">
+            <div class="loader fLeft">
+                <div class="loader-bg">
+                    <div id="timer" class="text fmUbuntuL transition10s"></div>
+                </div>
+                <div class="spiner-holder-1 animate-0-25-a">
+                    <div class="spiner-holder-2 animate-0-25-b" style="transform: rotate(-90deg);">
+                        <div class="loader-spiner transition10s border75">
+                        </div>
+                    </div>
+                </div>
+                <div class="spiner-holder-1 animate-25-50-a">
+                    <div class="spiner-holder-2 animate-25-50-b" style="transform: rotate(-90deg);">
+                        <div class="loader-spiner transition10s border75"></div>
+                    </div>
+                </div>
+                <div class="spiner-holder-1 animate-50-75-a">
+                    <div class="spiner-holder-2 animate-50-75-b" style="transform: rotate(-90deg);">
+                        <div class="loader-spiner transition10s border75"></div>
+                    </div>
+                </div>
+                <div class="spiner-holder-1 animate-75-100-a">
+                    <div class="spiner-holder-2 animate-75-100-b" style="transform: rotate(-90deg);">
+                        <div class="loader-spiner transition10s border75"></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
 
 
 
                                             <!--<div class="col-lg-6 col-md-6">
-        <div id="appk">
-            <div class="base-timer">
-                <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <div id="appk">
+        <div class="base-timer">
+            <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 
-                    <g class="base-timer__circle">
+                <g class="base-timer__circle">
 
-                        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+                    <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
 
-                        <path id="base-timer-path-remaining"
-                              stroke-dasharray="283"
-                              class="base-timer__path-remaining ${remainingPathColor}"
-                              d="M 50, 50 m -45, 0  a 45,45 0 1,0 90,0   a 45,45 0 1,0 -90,0 " />-->
+                    <path id="base-timer-path-remaining"
+                          stroke-dasharray="283"
+                          class="base-timer__path-remaining ${remainingPathColor}"
+                          d="M 50, 50 m -45, 0  a 45,45 0 1,0 90,0   a 45,45 0 1,0 -90,0 " />-->
                                             @*</path>*@
                                             <!--</g>
                 </svg>
@@ -565,11 +603,92 @@
         });
     </script>
 
+
+    @*<script>
+        var countDownVal = @TempData["exTime"];
+         //var countDownVal =22;
+
+        $('#dCountDown').html(countDownVal);
+        var timer1 = setInterval(function () { myTimer() }, 1000);
+        function myTimer() {
+            countDownVal--;
+            $('#dCountDown').html(countDownVal);
+            if (countDownVal <= 20 && countDownVal>=10) {
+                $('#dCountDown').css("color", "orange"),
+                    //$('#dCountDown').css("border-color","#000;")
+                    //$("#dCountDown").css("border", "1px solid red");
+                $("#dCountDown").css("border", " solid orange");
+            }
+
+            if (countDownVal <= 9) {
+                $('#dCountDown').css("color", "red")
+                $("#dCountDown").css("border", " solid red");
+
+            }
+
+             //$("p").css("color", "red");
+            if (countDownVal == 0) {
+                clearInterval(timer1); // this thing can be here, or not, it's OK
+
+                swal({
+                    title: '',
+                    text: '"Zamanınız Dolmuştur',
+                    icon: 'error',
+                    //button: 'Tamam',
+
+                })
+                window.location.href = "@Url.Action("Index","Application")";
+
+            }
+        }
+    </script>*@
+
+
+    <script>
+        var countDownValT = @TempData["exTimeT"];
+         //var countDownVal =22;
+
+        $('#dCountDownT').html(countDownValT);
+        var timer1 = setInterval(function () { myTimer() }, 1000);
+        function myTimer() {
+            countDownValT--;
+            $('#dCountDownT').html(countDownValT);
+            if (countDownValT <= 20 && countDownValT>=10) {
+                $('#dCountDownT').css("color", "orange"),
+                    //$('#dCountDown').css("border-color","#000;")
+                    //$("#dCountDown").css("border", "1px solid red");
+                    $("#dCountDownT").css("border", " solid orange");
+            }
+
+            if (countDownValT <= 9) {
+                $('#dCountDownT').css("color", "red")
+                $("#dCountDownT").css("border", " solid red");
+
+            }
+
+             //$("p").css("color", "red");
+            if (countDownValT == 0) {
+                clearInterval(timer1); // this thing can be here, or not, it's OK
+
+                swal({
+                    title: '',
+                    text: '"Zamanınız Dolmuştur',
+                    icon: 'error',
+                    button: 'Tamam',
+
+                })
+                window.location.href = "@Url.Action("Index","Application")";
+
+            }
+        }
+    </script>
+
+
     <script>
 
 
 
-     var time = "@TempData["exTime"]"; // seconds
+     @*var time = "@TempData["exTime"]"; // seconds
         var originalRotate = -90;
         var cntDwn = "@TempData["exTime"]"-60;
     var rotatePerSec = 360 / time;
@@ -682,7 +801,7 @@
             $(".animate-75-100-b").css("transform", "rotate(0deg)");
             $("#timer").html("00:00");
         }
-    }, 1000);
+    }, 1000);*@
 
     </script>
 

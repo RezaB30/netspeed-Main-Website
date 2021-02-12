@@ -6,29 +6,28 @@
     }
 
 
-    .birth-certificate{
-        display:none
+    .birth-certificate {
+        display: none
     }
 
     .text-danger.required-error-certificate {
         display: none
     }
-
 </style>
 
 @*<span class="text-danger required-error-id">Lütfen Kimlik Bilgilerinizi Kontrol Ediniz</span>*@
 
 <div class="text-danger required-error-id">
     @*<div id="validation-error">*@
-        <div class="form-group" id="otherFieldGroupDiv">
-            <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-                <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
-                <div class="alert-text">
-                    <a class="font-weight-bolder text-danger">Kimlik Bilgileriniz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz </a>
+    <div class="form-group" id="otherFieldGroupDiv">
+        <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
+            <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
+            <div class="alert-text">
+                <a class="font-weight-bolder text-danger">Kimlik Bilgileriniz Hatalı, Lütfen Kimlik Bilgilerinizi Kontrol Ediniz </a>
 
-                </div>
             </div>
         </div>
+    </div>
     @*</div>*@
 </div>
 @*@ViewBag.errorMessage*@
@@ -41,269 +40,275 @@
     </div>
     <!--begin::Title-->
     <div class="form-group">
-        <div class="col-lg-6 col-md-6">
-            <div class="form-group is-required">
-                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Kart Tipi</label>
-                @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Kart Tipi</label>
+                        @Html.DropDownListFor(m => m.IDCardType, new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
 
-                <div class="text-danger">
-                    @Html.ValidationMessageFor(model => model.IDCardType)
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.IDCardType)
+                        </div>
+                        <span class="text-danger required-error">Kimlik Kart Tipi Zorunludur</span>
+                    </div>
                 </div>
-                <span class="text-danger required-error">Kimlik Kart Tipi Zorunludur</span>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group is-required">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
-                    <div class="form-control h-auto p-4 border-0 rounded-lg font-size-h6">
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
+                        @* <div class="form-control h-auto p-4 border-0 rounded-lg font-size-h6">*@
                         @Html.EditorFor(m => m.TC, new { htmlAttributes = new { @class = "form-control h-auto p-4 border-0 rounded-lg font-size-h6", @placeholder = "T.C Kimlik Numaranız", @autocomplete = "off" } })
-                    </div>
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.TC)
-                    </div>
-                    <span class="text-danger required-error">T.C Zorunludur</span>
-                </div>
-            </div>
-        </div>
-        <div class="fv-plugins-message-container">
-            <div class="text-danger">
-            </div>
-        </div>
-
-        <div class="pb-0 pb-lg-0">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group is-required">
-                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
-                        @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı", @maxlength = 50, @autocomplete = "off" } })
+                        @*  *@
 
                         <div class="text-danger">
-                            @Html.ValidationMessageFor(model => model.FatherName)
+                            @Html.ValidationMessageFor(model => model.TC)
                         </div>
-                        <span class="text-danger required-error">Baba Adı Zorunludur</span>
+                        <span class="text-danger required-error">T.C Zorunludur</span>
                     </div>
                 </div>
-                <!--end::Form Group-->
-                <!--begin::Form Group-->
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group is-required">
-                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
-                        @Html.EditorFor(m => m.MotherName, new
+            </div>
+        </div>
+    </div>
+    <div class="fv-plugins-message-container">
+        <div class="text-danger">
+        </div>
+    </div>
+
+    <div class="pb-0 pb-lg-0">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group is-required">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
+                    @Html.EditorFor(m => m.FatherName, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Baba Adı", @maxlength = 50, @autocomplete = "off" } })
+
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.FatherName)
+                    </div>
+                    <span class="text-danger required-error">Baba Adı Zorunludur</span>
+                </div>
+            </div>
+            <!--end::Form Group-->
+            <!--begin::Form Group-->
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group is-required">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
+                    @Html.EditorFor(m => m.MotherName, new
+                    {
+                        htmlAttributes = new
                         {
-                            htmlAttributes = new
-                            {
-                                @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6",
-                                @placeholder = "Anne Adı",
-                                @maxlength = 50,
-                                @autocomplete = "off"
-                            }
-                        })
+                            @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6",
+                            @placeholder = "Anne Adı",
+                            @maxlength = 50,
+                            @autocomplete = "off"
+                        }
+                    })
 
-                        <div class="text-danger">
-                            @Html.ValidationMessageFor(model => model.MotherName)
-                        </div>
-                        <span class="text-danger required-error">Anne Adı Zorunludur</span>
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.MotherName)
                     </div>
+                    <span class="text-danger required-error">Anne Adı Zorunludur</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="pb-0 pb-lg-0">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group is-required">
-                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
-                        @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Doğum Yeri", @maxlength = 50, @autocomplete = "off" } })
-
-                        <div class="text-danger">
-                            @Html.ValidationMessageFor(model => model.BirthPlace)
-                        </div>
-                        <span class="text-danger required-error">Doğum Yeri Zorunludur</span>
-                    </div>
-                </div>
-                <!--end::Form Group-->
-                <!--begin::Form Group-->
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group is-required">
-                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
-                        @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No", @maxlength = 9, @autocomplete = "off" } })
-                        <div class="text-danger">
-                            @Html.ValidationMessageFor(model => model.SerialNo)
-                        </div>
-                        <span class="text-danger required-error">Seri No Zorunludur</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="pb-0 pb-lg-0">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group is-required">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
-
-
-                    @Html.EditorFor(m => m.BirthDate, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü", @autocomplete = "off" } })
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
+                    @Html.EditorFor(m => m.BirthPlace, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Doğum Yeri", @maxlength = 50, @autocomplete = "off" } })
 
                     <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.BirthDate)
-                    </div>
-                    <span class="text-danger required-error">Doğum Günü Zorunludur</span>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group is-required">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
-                    @Html.DropDownListFor(m => m.Sex, new SelectList(ViewBag.SexList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
-
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.Sex)
-                    </div>
-                    <span class="text-danger required-error">Cinsiyet Seçiniz</span>
-                </div>
-            </div>
-        </div>
-        <!--end::Form Group-->
-        <!--begin::Form Group-->
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group is-required">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih/Son Geçerlilik Tarihi </label>
-
-                    @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Verildiği veya Son Geçerlilik Tarihi", @autocomplete = "off" } })
-
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.DateOfIssue)
-                    </div>
-                    <span class="text-danger required-error">Verildiği Tarih/Son Geçerlilik Tarihi Zorunludur</span>
-                </div>
-
-
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group is-required">
-                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
-                    @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer", @maxlength = 50, @autocomplete = "off" } })
-                    <div class="text-danger">
-                        @Html.ValidationMessageFor(model => model.PlaceOfIssue)
+                        @Html.ValidationMessageFor(model => model.BirthPlace)
                     </div>
                     <span class="text-danger required-error">Doğum Yeri Zorunludur</span>
                 </div>
             </div>
             <!--end::Form Group-->
             <!--begin::Form Group-->
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group is-required">
+                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Seri No</label>
+                    @Html.EditorFor(m => m.SerialNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Seri No", @maxlength = 9, @autocomplete = "off" } })
+                    <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.SerialNo)
+                    </div>
+                    <span class="text-danger required-error">Seri No Zorunludur</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group is-required">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
+
+
+                @Html.EditorFor(m => m.BirthDate, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Doğum Günü", @autocomplete = "off" } })
+
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.BirthDate)
+                </div>
+                <span class="text-danger required-error">Doğum Günü Zorunludur</span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group is-required">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
+                @Html.DropDownListFor(m => m.Sex, new SelectList(ViewBag.SexList, "Value", "Text"), "SECINIZ", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.Sex)
+                </div>
+                <span class="text-danger required-error">Cinsiyet Seçiniz</span>
+            </div>
+        </div>
+    </div>
+    <!--end::Form Group-->
+    <!--begin::Form Group-->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group is-required">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Tarih/Son Geçerlilik Tarihi </label>
+
+                @Html.EditorFor(m => m.DateOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6 text-box single-line datepicker", @placeholder = "Verildiği veya Son Geçerlilik Tarihi", @autocomplete = "off" } })
+
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.DateOfIssue)
+                </div>
+                <span class="text-danger required-error">Verildiği Tarih/Son Geçerlilik Tarihi Zorunludur</span>
+            </div>
+
 
         </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group is-required">
+                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Verildiği Yer</label>
+                @Html.EditorFor(m => m.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Verildiği Yer", @maxlength = 50, @autocomplete = "off" } })
+                <div class="text-danger">
+                    @Html.ValidationMessageFor(model => model.PlaceOfIssue)
+                </div>
+                <span class="text-danger required-error">Doğum Yeri Zorunludur</span>
+            </div>
+        </div>
+        <!--end::Form Group-->
+        <!--begin::Form Group-->
 
+    </div>
+
+    <div class="pb-0 pb-lg-5">
+        <div class="row">
+        </div>
         <div class="pb-0 pb-lg-5">
             <div class="row">
-            </div>
-            <div class="pb-0 pb-lg-5">
-                <div class="row">
-                    <!--end::Form Group-->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
-                            @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", @maxlength = 50, @autocomplete = "off" } })
+                <!--end::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
+                        @Html.EditorFor(m => m.MotherFirstSurname, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Anne Kızlık Soyadı", @maxlength = 50, @autocomplete = "off" } })
 
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.MotherFirstSurname)
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.MotherFirstSurname)
 
-                            </div>
-                            <span class="text-danger required-error">Anne Kızlık Soyadı Zorunludur</span>
                         </div>
+                        <span class="text-danger required-error">Anne Kızlık Soyadı Zorunludur</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="birth-certificate">
+
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required-certificate">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sıra No</label>
+                        @Html.EditorFor(m => m.RowNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sıra No", @maxlength = 50, @autocomplete = "off" } })
+
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.RowNo)
+                        </div>
+                        <span class="text-danger required-error-certificate">Sıra No Zorunludur</span>
+                    </div>
+                </div>
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required-certificate">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cilt No</label>
+                        @Html.EditorFor(m => m.VolumeNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Cilt No", @maxlength = 9, @autocomplete = "off" } })
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.VolumeNo)
+                        </div>
+                        <span class="text-danger required-error-certificate">Cilt No Zorunludur</span>
                     </div>
                 </div>
             </div>
         </div>
 
 
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required-certificate">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sayfa No</label>
+                        @Html.EditorFor(m => m.PageNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sayfa No", @maxlength = 50, @autocomplete = "off" } })
 
-
-        <div class="birth-certificate">
-
-            <div class="pb-0 pb-lg-0">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required-certificate">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sıra No</label>
-                            @Html.EditorFor(m => m.RowNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sıra No", @maxlength = 50, @autocomplete = "off" } })
-
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.RowNo)
-                            </div>
-                            <span class="text-danger required-error-certificate">Sıra No Zorunludur</span>
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.PageNo)
                         </div>
+                        <span class="text-danger required-error-certificate">Sayfa No Zorunludur</span>
                     </div>
-                    <!--end::Form Group-->
-                    <!--begin::Form Group-->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required-certificate">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cilt No</label>
-                            @Html.EditorFor(m => m.VolumeNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Cilt No", @maxlength = 9, @autocomplete = "off" } })
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.VolumeNo)
-                            </div>
-                            <span class="text-danger required-error-certificate">Cilt No Zorunludur</span>
+                </div>
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required-certificate">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">İl</label>
+                        @Html.EditorFor(m => m.IDCardProvince, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İl", @maxlength = 50, @autocomplete = "off" } })
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.IDCardProvince)
                         </div>
+                        <span class="text-danger required-error-certificate">İl Zorunludur</span>
                     </div>
                 </div>
             </div>
+        </div>
 
 
-            <div class="pb-0 pb-lg-0">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required-certificate">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sayfa No</label>
-                            @Html.EditorFor(m => m.PageNo, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Sayfa No", @maxlength = 50, @autocomplete = "off" } })
+        <div class="pb-0 pb-lg-0">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required-certificate">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
+                        @Html.EditorFor(m => m.IDCardDistrict, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İlçe", @maxlength = 50, @autocomplete = "off" } })
 
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.PageNo)
-                            </div>
-                            <span class="text-danger required-error-certificate">Sayfa No Zorunludur</span>
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
                         </div>
-                    </div>
-                    <!--end::Form Group-->
-                    <!--begin::Form Group-->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required-certificate">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İl</label>
-                            @Html.EditorFor(m => m.IDCardProvince, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İl", @maxlength = 50, @autocomplete = "off" } })
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.IDCardProvince)
-                            </div>
-                            <span class="text-danger required-error-certificate">İl Zorunludur</span>
-                        </div>
+                        <span class="text-danger required-error-certificate">İlçe Zorunludur</span>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="pb-0 pb-lg-0">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required-certificate">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
-                            @Html.EditorFor(m => m.IDCardDistrict, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "İlçe", @maxlength = 50, @autocomplete = "off" } })
-
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
-                            </div>
-                            <span class="text-danger required-error-certificate">İlçe Zorunludur</span>
+                <!--end::Form Group-->
+                <!--begin::Form Group-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group is-required-certificate">
+                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
+                        @Html.EditorFor(m => m.IDCardNeighbourhood, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Mahalle", @maxlength = 50, @autocomplete = "off" } })
+                        <div class="text-danger">
+                            @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
                         </div>
-                    </div>
-                    <!--end::Form Group-->
-                    <!--begin::Form Group-->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="form-group is-required-certificate">
-                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
-                            @Html.EditorFor(m => m.IDCardNeighbourhood, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Mahalle", @maxlength = 50, @autocomplete = "off" } })
-                            <div class="text-danger">
-                                @Html.ValidationMessageFor(model => model.IDCardNeighbourhood)
-                            </div>
-                            <span class="text-danger required-error-certificate">Mahalle Zorunludur</span>
-                        </div>
+                        <span class="text-danger required-error-certificate">Mahalle Zorunludur</span>
                     </div>
                 </div>
             </div>

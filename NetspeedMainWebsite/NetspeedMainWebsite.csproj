@@ -1320,6 +1320,7 @@
     <Content Include="Views\Home\TestMeForApp.cshtml" />
     <Content Include="Views\Application\Test.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Application\TestId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

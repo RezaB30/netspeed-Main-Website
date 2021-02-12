@@ -15,6 +15,9 @@ namespace NetspeedMainWebsite.Controllers
     public class ApplicationController : BaseController
     {
         Logger applicationLogger = LogManager.GetLogger("applications");
+
+        Logger countdownLogger = LogManager.GetLogger("countdown");
+
         public ActionResult AlreadyHaveCustomer()
         {
             return View();
@@ -275,7 +278,18 @@ namespace NetspeedMainWebsite.Controllers
                 WebServiceWrapper clientPhone = new WebServiceWrapper();
                 var response = clientPhone.SendGenericSMS(application.PhoneNumber);//sending phone number for sms code
 
+                countdownLogger.Error($"now: { DateTime.Now}- Properties.Settings.Default.SMSValidationDuration:{Properties.Settings.Default.SMSValidationDuration} ");
+
                 var expirationDate = DateTime.Now + Properties.Settings.Default.SMSValidationDuration;
+                countdownLogger.Error($"now: { DateTime.Now}- Properties.Settings.Default.SMSValidationDuration:{Properties.Settings.Default.SMSValidationDuration}- expirationDate:{expirationDate} ---");
+
+                //DateTime k = expirationDate;
+                //DateTime t = DateTime.Now;
+
+                ////var exTimeT = (int)(k - t).TotalSeconds;
+
+                //TempData["exTimeT"] = exTimeT;
+
 
                 var Key = application.PhoneNumber;
 
@@ -287,10 +301,47 @@ namespace NetspeedMainWebsite.Controllers
                     ExpirationDate = expirationDate //expiration date for sms code  
                 };
 
+
+
+
+
                 MemoryCache.Default.Add(Key, Value, DateTimeOffset.Now.AddMinutes(Properties.Settings.Default.SMSValidationDuration.Minutes));
 
-                var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
-                TempData["exTime"] = exTime;
+                //var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
+                DateTime ck = Value.ExpirationDate;
+                DateTime ct = DateTime.Now;
+
+                var exTimeT = (int)(ck - ct).TotalSeconds;
+                //var exTimeT = (expirationDate - DateTime.Now).;
+
+
+
+
+                //countdownLogger.Error($"first extime: {exTime}");
+                countdownLogger.Error($"first extimeT: {exTimeT}");
+
+
+                countdownLogger.Error($"Value.ExpirationDate: { Value.ExpirationDate} ---first");
+                countdownLogger.Error($"expirationDate(extimeT): { expirationDate} ---first");
+
+
+
+
+
+
+
+
+                //Session["exTime"] = exTime;
+                TempData["exTimeT"] = exTimeT;
+
+              
+                countdownLogger.Error($"session extime: {Session["exTime"]}" );
+
+                countdownLogger.Error($"TEMPDATA extime: {TempData["exTime"]} ");
+
+                countdownLogger.Error($"TEMPDATA exTimeT: {TempData["exTimeT"]} ");
+
+
                 //TempData["exTime"] = Value.ExpirationDate;
 
                 applicationLogger.Error($"birthdate: {application.BirthDate}- dateofissue: {application.DateOfIssue}-Index end");
@@ -346,7 +397,7 @@ namespace NetspeedMainWebsite.Controllers
 
             var Value = MemoryCache.Default.Get(result.PhoneNumber) as ApplicationViewModel;
 
-            if (Value.ExpirationDate > DateTime.Now)
+            if (Value.ExpirationDate >= DateTime.Now)
             {
                 if (Value.SMSCode == result.SMSCode)//Is true sms code?
                 {
@@ -367,8 +418,38 @@ namespace NetspeedMainWebsite.Controllers
                 else
                 {
                     TempData["SmsValidationMessage"] = "Lütfen Sms Kodunuzu Kontrol Edip Tekrar Deneyiniz.";
-                    var exTime = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
-                    TempData["exTime"] = exTime;
+                    var exTimeT = (Value.ExpirationDate - DateTime.Now).Seconds * 2;
+                    //Session["exTime"] = exTime;
+                    //TempData["exTime"] = exTime;
+                    TempData["exTimeT"] = exTimeT;
+
+
+                    countdownLogger.Error($"now: { DateTime.Now}- Properties.Settings.Default.SMSValidationDuration:{Properties.Settings.Default.SMSValidationDuration} ");
+
+                    var expirationDate = DateTime.Now + Properties.Settings.Default.SMSValidationDuration;
+                    countdownLogger.Error($"now: { DateTime.Now}- Properties.Settings.Default.SMSValidationDuration:{Properties.Settings.Default.SMSValidationDuration}- expirationDate:{expirationDate} ---");
+
+                    countdownLogger.Error($"Value.ExpirationDate: { Value.ExpirationDate} ---again");
+
+                    countdownLogger.Error($" TempData[exTimeT]: - {TempData["exTimeT"]} ---again");
+                    countdownLogger.Error($"Value.ExpirationDate: { Value.ExpirationDate} ---again");
+
+                    countdownLogger.Error($"exTimeT: {exTimeT} ---again");
+
+
+
+
+
+
+
+
+                    //countdownLogger.Error($"session extime: {Session["exTime"]}-again");
+
+                    //countdownLogger.Error($"TEMPDATA extime: {TempData["exTime"]}-again ");
+
+                    countdownLogger.Error($"TEMPDATA extime: {TempData["exTimet"]}-again ");
+
+
                     //customers have 2 minutes
                     return View(viewName: "GsmVerificationWithSms", model: result);
                 }
@@ -455,6 +536,72 @@ namespace NetspeedMainWebsite.Controllers
         }
 
         public ActionResult Test()
+        {
+            //var exTimek = DateTime.Now;
+            //var exTime = exTimek.AddMinutes(2);
+            //var exTime = 120;
+
+            //var exTimeT = (Value.ExpirationDate - DateTime.Now).TotalSeconds;
+
+
+            //TempData["exTimeT"] = exTime;
+            //TempData["exTime"] = exTime;
+
+            var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
+            var IDCardTypeList = responseIDCard.ValueNamePairList.Select(p => new SelectListItem()
+            {
+                Text = p.Name,
+                Value = p.Code.ToString()
+            });
+
+            ViewBag.IDCardTypeList = IDCardTypeList;
+
+            var addressUtil = new AddressUtility();
+            var responseProvince = addressUtil.GetProvinces();
+
+            ViewBag.ProvinceList = new SelectList(responseProvince, "Key", "Value");
+
+            var responseNat = new WebServiceWrapper().GetNationalities();
+            var NationalityList = responseNat.ValueNamePairList.Select(n => new SelectListItem()
+            {
+                Text = n.Name,
+                Value = n.Code.ToString()
+            });
+
+            ViewBag.NationalityList = NationalityList;
+
+            var responseSex = new WebServiceWrapper().GetSexes();
+            var SexList = responseSex.ValueNamePairList.Select(s => new SelectListItem()
+            {
+                Text = s.Name,
+                Value = s.Code.ToString()
+            });
+
+            ViewBag.SexList = SexList;
+
+            var DistrictList = new List<SelectListItem>();
+            var RegionList = new List<SelectListItem>();
+            var NeighborhoodList = new List<SelectListItem>();
+            var StreetList = new List<SelectListItem>();
+            var BuildingList = new List<SelectListItem>();
+            var ApartmentList = new List<SelectListItem>();
+
+            ViewBag.DistrictList = DistrictList;
+            ViewBag.RegionList = RegionList;
+            ViewBag.NeighborhoodList = NeighborhoodList;
+            ViewBag.StreetList = StreetList;
+            ViewBag.BuildingList = BuildingList;
+            ViewBag.ApartmentList = ApartmentList;
+
+            ViewBag.SexList = SexList;
+            ViewBag.NationalityList = NationalityList;
+            ViewBag.IDCardTypeList = IDCardTypeList;
+
+            return View();
+        }
+
+
+        public ActionResult TestId()
         {
             //var exTimek = DateTime.Now;
             //var exTime = exTimek.AddMinutes(2);

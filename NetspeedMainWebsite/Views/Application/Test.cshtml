@@ -9,9 +9,9 @@
     <link href="~/Content/CountDownStyle.css" rel="stylesheet" />
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-    <script type="text/javascript" src="jquery-2.0.3.js"></script>
-    <script type="text/javascript" src="jquery.countdownTimer.js"></script>
-    <link rel="stylesheet" type="text/css" href="jquery.countdownTimer.css" />
+    @*<script type="text/javascript" src="jquery-2.0.3.js"></script>*@
+    @*<script type="text/javascript" src="jquery.countdownTimer.js"></script>*@
+    @*<link rel="stylesheet" type="text/css" href="jquery.countdownTimer.css" />*@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
@@ -25,12 +25,32 @@
 
 
     #dCountDown {
-        border: 0.1875em solid #0F1C3F;
+        /* border: 0.1875em solid #0F1C3F;
         border-radius: 50%;
         box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
         height: 11em;
         width: 11em;
-        padding: 3.85em;
+        padding: 3.85em;*/
+        /*width: 9em;
+        height: 9em;
+        line-height: 9em;
+        border-radius: 50%;
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        background: #000*/
+        width: 3.5em;
+        height: 3.5em;
+        line-height: 1.5em;
+        border-radius: 50%;
+        font-size: 2em;
+        color: #290b63;
+        text-align: center;
+        border: #290b63;
+        /*background: #000;*/
+        background: #fff;
+        padding: 0.80em;
+        border: solid #290b63;
     }
 </style>
 
@@ -285,8 +305,8 @@
     </script>
 
     <script>
-        //var countDownVal = "@TempData["exTime"]";
-        var countDownVal =25;
+        var countDownVal = @TempData["exTime"];
+        //var countDownVal =500;
 
         $('#dCountDown').html(countDownVal);
         var timer1 = setInterval(function () { myTimer() }, 1000);
@@ -294,26 +314,32 @@
             countDownVal--;
             $('#dCountDown').html(countDownVal);
             if (countDownVal <= 20 && countDownVal>=10) {
-                $('#dCountDown').css("color", "orange")
+                $('#dCountDown').css("color", "orange"),
+                    //$('#dCountDown').css("border-color","#000;")
+                    //$("#dCountDown").css("border", "1px solid red");
+                $("#dCountDown").css("border", " solid orange");
             }
 
             if (countDownVal <= 9) {
                 $('#dCountDown').css("color", "red")
+                $("#dCountDown").css("border", " solid red");
+
             }
 
             //$("p").css("color", "red");
             if (countDownVal == 0) {
                 clearInterval(timer1); // this thing can be here, or not, it's OK
 
-                @*swal({
+                swal({
                     title: '',
                     text: '"Zamanınız Dolmuştur',
                     icon: 'error',
-                    button: 'Tamam',
-                    window.location.href = "@Url.Action("Index","Application")";
-                })*@
-               alert("Zamanınız Dolmuştur");
-                 window.location.href = "@Url.Action("Index","Application")";
+                    //button: 'Tamam',
+
+                })
+                window.location.href = "@Url.Action("Index","Application")";
+               //<!--alert("Zamanınız Dolmuştur");
+                 //window.location.href = "@Url.Action("Index","Application")";
 
             }
         }
