@@ -200,6 +200,7 @@
   <ItemGroup>
     <None Include="Connected Services\MainSiteServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\MainSiteServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.disco" />
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAddressDetailsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

@@ -485,8 +485,8 @@ namespace NetspeedMainWebsite.Controllers
             applicationLogger.Error($"birthdate: {result.BirthDate}- dateofissue: {result.DateOfIssue}-applicationSummary-before-responseNewCustomerRegister");
             applicationLogger.Error($"sbirthdate: {result.sBirthDate}- sdateofissue: {result.sDateOfIssue}-applicationSummary-before-responseNewCustomerRegister");
 
+           
 
-            //applicationLogger.Error($"birthdate: {result.BirthDate}- dateofissue: {result.DateOfIssue}-applicationSummary-before-responseNewCustomerRegister");
             applicationLogger.Error($"FirstName: {result.FirstName}-  result.LastName: {result.LastName} -result.SerialNo {result.SerialNo}-applicationSummary-before-responseNewCustomerRegister");
 
             var responseNewCustomerRegister = clientNewRegister.NewCustomerRegister(1, address.ProvinceID, address.ProvinceName, address.DistrictID, address.DistrictName,
@@ -500,8 +500,8 @@ namespace NetspeedMainWebsite.Controllers
 
                result.RowNo, result.VolumeNo, result.PageNo, result.IDCardProvince, result.IDCardDistrict, result.IDCardNeighbourhood);
 
+            applicationLogger.Error($"{responseNewCustomerRegister.ResponseMessage.ErrorMessage} -  Application result (end)");
 
-         
 
             if (responseNewCustomerRegister.ResponseMessage.ErrorCode == 0)
             {
