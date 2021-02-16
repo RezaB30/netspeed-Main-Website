@@ -8,6 +8,10 @@
         #menu-drp:hover > #dropdown-hover {
             display: block
         }
+
+        /*#for-toggle{
+            display:none
+        }*/
     </style>
 }
 <div id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
@@ -15,7 +19,6 @@
     <!--begin::header-sm-->
     <div class="header-sm py-0 d-flex flex-lg-column" style="background-color: #1c0646;" id="kt_header">
         <!--begin::Container-->
-
         <!--</div>-->
 
     </div>
@@ -36,7 +39,7 @@
         <button class="btn p-0 ml-0" id="kt_quick_actions_toggle" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="">
             <div class="svg-icon svg-icon-xl">
                 <!--begin::Svg Icon-->
-                <div class="btn btn-icon btn-dropdown btn-lg mr-0">
+                <div class="btn btn-icon btn-dropdown btn-lg mr-0" id="ck">
                     <div class="btn btn-icon btn-dropdown btn-lg mr-0 pulse pulse-white">
                         <span class="svg-icon svg-icon-xl svg-icon-danger">
                             <!--begin::Svg Icon-->
@@ -58,112 +61,114 @@
         </button>
     </div>
     <!--end::Toolbar-->
+    @*<div id="for-toggle">*@
+    <div class="for-toggle">
+        <div id="kt_quick_actions" class="offcanvas offcanvas-left p-6 offcanvas-off" style="background-color: #290b63;">
+            <!--begin::Header-->
+            <div class="offcanvas-header d-flex align-items-center justify-content-between pb-10" kt-hidden-height="56" style="">
+                <!--begin::Logo-->
+                <a href="/" class="mr-7">
+                    <img alt="Logo" src="~/Content/media/svg/logos/bejjpluslogonew.svg" class="max-h-20px" />
+                </a>
+                <!--end::Logo-->
+                <a href="#" class="btn btn-sm btn-icon btn-hover-info" id="kt_quick_actions_close">
+                    <i class="ki ki-close icon-sm text-muted"></i>
+                </a>
+            </div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="offcanvas-content pr-5 mr-n5 scroll ps" style="height: 815px; overflow: hidden;">
+                <div class="row gutter-b">
+                    <!--begin::Item-->
 
+                    <div class="col-6">
+                        <a href="/SpecialOffers/Index" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                            <span class="fas fa-star font-size-h1 menu-icon">
+                            </span>
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Kampanyalar</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="/Application/Index" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                            <span class="fab fa-wpforms font-size-h1 menu-icon">
+                            </span>
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Şimdi Başvur</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <div class="row gutter-b">
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="/InfrastructureInquiry/Index" class="btn btn-block btn-hover-primary text-center py-5 px-5" style="background-color: #43257d">
+                            <i class="flaticon-placeholder-3 font-size-h1 text-warning"></i>
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Altyapı Sorgula</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="/Support/Index" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                            <span class="fas fas fa-question-circle font-size-h1 menu-icon">
+                            </span>
 
-    <div id="kt_quick_actions" class="offcanvas offcanvas-left p-6 offcanvas-off" style="background-color: #290b63;">
-        <!--begin::Header-->
-        <div class="offcanvas-header d-flex align-items-center justify-content-between pb-10" kt-hidden-height="56" style="">
-            <!--begin::Logo-->
-            <a href="/" class="mr-7">
-                <img alt="Logo" src="~/Content/media/svg/logos/bejjpluslogonew.svg" class="max-h-20px" />
-            </a>
-            <!--end::Logo-->
-            <a href="#" class="btn btn-sm btn-icon btn-hover-info" id="kt_quick_actions_close">
-                <i class="ki ki-close icon-sm text-muted"></i>de
-            </a>
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Yardım & Destek</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <div class="row gutter-b">
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="/Home/SpeedTest" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                            <span class="fas fa-tachometer-alt font-size-h2 menu-icon"></span>
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Hız Testi</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="/Home/ContractAndForm" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+
+                            <!--begin::Svg Icon-->
+                            <span class="fas fa-file-signature font-size-h1 menu-icon">
+                            </span>
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Sözleşme / Formlar</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <div class="row">
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="/ClientPayment/BillPaymentLogin" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                            <span class="fas fa-credit-card font-size-h1 menu-icon ">
+                            </span>
+
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Fatura Ödeme</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <div class="col-6">
+                        <a href="https://online.netspeed.com.tr" class="btn btn-block btn-hover-primary btn-info text-warning text-center py-5 px-5" style="background-color: #43257d">
+                            <span class="fas fa-user-alt font-size-h1 menu-icon">
+                            </span>
+
+                            <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Online İşlemler</span>
+                        </a>
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+            </div>
+            <!--end::Content-->
         </div>
-        <!--end::Header-->
-        <!--begin::Content-->
-        <div class="offcanvas-content pr-5 mr-n5 scroll ps" style="height: 815px; overflow: hidden;">
-            <div class="row gutter-b">
-                <!--begin::Item-->
 
-                <div class="col-6">
-                    <a href="/SpecialOffers/Index" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
-                        <span class="fas fa-star font-size-h1 menu-icon">
-                        </span>
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Kampanyalar</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="/Applicaiton/Index" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
-                        <span class="fab fa-wpforms font-size-h1 menu-icon">
-                        </span>
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Şimdi Başvur</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-            </div>
-            <div class="row gutter-b">
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="/InfrastructureInquiry/Index" class="btn btn-block btn-hover-primary text-center py-5 px-5" style="background-color: #43257d">
-                        <i class="flaticon-placeholder-3 font-size-h1 text-warning"></i>
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Altyapı Sorgula</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="/Support/Index" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
-                        <span class="fas fas fa-question-circle font-size-h1 menu-icon">
-                        </span>
 
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Yardım & Destek</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-            </div>
-            <div class="row gutter-b">
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="/Home/SpeedTest" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
-                        <span class="fas fa-tachometer-alt font-size-h2 menu-icon"></span>
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Hız Testi</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="/Home/ContractAndForm" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
-
-                        <!--begin::Svg Icon-->
-                        <span class="fas fa-file-signature font-size-h1 menu-icon">
-                        </span>
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Sözleşme / Formlar</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-            </div>
-            <div class="row">
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="/ClientPayment/BillPaymentLogin" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
-                        <span class="fas fa-credit-card font-size-h1 menu-icon ">
-                        </span>
-
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Fatura Ödeme</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <div class="col-6">
-                    <a href="https://online.netspeed.com.tr" class="btn btn-block btn-hover-primary btn-info text-warning text-center py-5 px-5" style="background-color: #43257d">
-                        <span class="fas fa-user-alt font-size-h1 menu-icon">
-                        </span>
-
-                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Online İşlemler</span>
-                    </a>
-                </div>
-                <!--end::Item-->
-            </div>
-            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
-        </div>
-        <!--end::Content-->
     </div>
-
 
     <!--end::Header Mobile-->
     <!--begin::Header-->
@@ -330,3 +335,27 @@
 
 
 
+<script>
+    //$('#kt_quick_actions_toggle').click(function () {
+
+    $('button#kt_quick_actions_toggle').click(function () {
+  
+        var currentContainer = $('.for-toggle').find('#kt_quick_actions')
+
+        currentContainer.addClass("offcanvas-on");
+    })
+</script>
+
+<script>
+    //$('#kt_quick_actions_toggle').click(function () {
+
+    $('a#kt_quick_actions_close').click(function () {
+
+        var currentContainer = $('.for-toggle').find('#kt_quick_actions')
+
+        currentContainer.removeClass("offcanvas-on");
+    })
+</script>
+
+@*<div class="for-toggle">
+    <div id="kt_quick_actions" class="offcanvas offcanvas-left p-6 offcanvas-off" style="background-color: #290b63;">*@
