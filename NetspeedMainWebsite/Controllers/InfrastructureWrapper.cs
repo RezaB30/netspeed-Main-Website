@@ -17,7 +17,7 @@ namespace NetspeedMainWebsite
         [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
         {
-            var response = new WebServiceWrapper().GetProvinceDistricts(code);
+            var response = new WebServiceWrapper().GetProvinceDistricts(code); 
             var DistrictItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,
