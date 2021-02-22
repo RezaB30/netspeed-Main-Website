@@ -11,13 +11,13 @@ using System.Web.Mvc;
 namespace NetspeedMainWebsite
 {
 
-    public class InfrastructureWrapper: Controller
+    public class InfrastructureWrapper : Controller
     {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
         {
-            var response = new WebServiceWrapper().GetProvinceDistricts(code); 
+            var response = new WebServiceWrapper().GetProvinceDistricts(code);
             var DistrictItems = response.ValueNamePairList.Select(r => new
             {
                 Text = r.Name,

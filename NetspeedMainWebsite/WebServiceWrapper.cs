@@ -305,12 +305,12 @@ namespace NetspeedMainWebsite
                         PlaceOfIssue = PlaceOfIssue,
                         DateOfIssue = DateOfIssue,
 
-                        RowNo= RowNo,
+                        RowNo = RowNo,
                         VolumeNo = VolumeNo,
-                        PageNo= PageNo,
-                        Province= IDCardProvince,
-                        District= IDCardDistrict,
-                        Neighbourhood= IDCardNeighbourhood
+                        PageNo = PageNo,
+                        Province = IDCardProvince,
+                        District = IDCardDistrict,
+                        Neighbourhood = IDCardNeighbourhood
 
 
                     },
@@ -430,7 +430,7 @@ namespace NetspeedMainWebsite
             });
         }
 
-        
+
         public NetspeedServiceGenericAppSettingsResponse GenericAppSettings()
         {
             UpdateRandom();
@@ -440,7 +440,7 @@ namespace NetspeedMainWebsite
                 Rand = Rand,
                 Hash = CalculateHash(),
                 Culture = Culture
-                                             
+
             });
         }
 
@@ -453,16 +453,28 @@ namespace NetspeedMainWebsite
                 Rand = Rand,
                 Hash = CalculateHash(),
                 Culture = Culture,
-                IDCardValidationRequest= new IDCardValidationRequest
+                IDCardValidationRequest = new IDCardValidationRequest
                 {
-                    IDCardType= IDCardType,
-                    TCKNo =TCKNo,
-                    FirstName=FirstName,
-                    LastName=LastName,
-                    BirthDate=BirtDate,
-                    RegistirationNo= RegistirationNo
+                    IDCardType = IDCardType,
+                    TCKNo = TCKNo,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    BirthDate = BirtDate,
+                    RegistirationNo = RegistirationNo
                 }
 
+            });
+        }
+        public NetspeedServiceGenericValidateResponse IsRegisteredCustomer(string phoneNo)
+        {
+            UpdateRandom();
+            return InternalClient.CheckRegisteredCustomer(new NetspeedServiceCheckRegisteredCustomerRequest()
+            {
+                Username = Username,
+                Rand = Rand,
+                Hash = CalculateHash(),
+                Culture = Culture,
+                PhoneNo = phoneNo
             });
         }
     }

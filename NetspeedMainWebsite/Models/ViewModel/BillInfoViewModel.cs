@@ -12,6 +12,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public long BillId { get; set; }
         public string ServiceName { get; set; }
         public bool CanBePaid { get; set; }
+        [UIHint("MontAndYear")]
         public DateTime BillDate { get; set; }
         public DateTime LastPaymentDate  { get; set; }
         public string Total { get; set; }

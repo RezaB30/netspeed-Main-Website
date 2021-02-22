@@ -1,1107 +1,2092 @@
-﻿@model NetspeedMainWebsite.Models.ViewModel.ApplicationViewModel
-@using NetspeedMainWebsite.Models.ViewModel
+﻿<!DOCTYPE html>
 
-@{
-    ViewBag.Title = "Başvuru - ADSL, VDSL, FİBER Ev İnterneti Başvurusu";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<html lang="tr">
+<!--begin::Head-->
+<head>
+    <base href="">
+    <meta charset="utf-8">
+    <title> Netspeed Başvuru - ADSL, VDSL, FİBER Ev İnterneti Başvurusu</title>
+    <meta name="searchTitle" content="Netspeed ADSL, VDSL, FİBER Ev İnterneti Başvuru">
+    <meta name="description" content="Limitsiz Evde İnternet keyfini Netspeed ile yaşayın! Türkiye'nin en ekonomik Taahhütsüz, Kotasız, Adsl, Vdsl, Fiber Hızında İnternet Paketleri Limitsiz Yalın Adsl - Ev ve Ofis interneti, Sınırsız Adsl.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="https://netspeed.com.tr/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Netspeed - Limitsiz Mutluluk">
+    <meta property="og:image" content="assets/media/logos/netspeed-only-face.png">
+    <meta property="og:url" content="https://www.netspeed.com.tr/basvur">
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <!--end::Fonts-->
+    <!--ilk::Gnl Styles-->
+    <link href="/assets/css/wizard5-basvuru.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/plugins.bundle.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/prismjs.bundle.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-    <style>
-        #loading {
+
+    <!--son::Gnl Styles-->
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico">
+    <style type="text/css">
+        #kt_quick_search_inline {
+            width: 250px !important;
+            margin-left: 1em !important;
+            margin-top: 0 !important;
+        }
+
+        .apexcharts-canvas {
+            position: relative;
+            user-select: none;
+            /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+        }
+
+
+            /* scrollbar is not visible by default for legend, hence forcing the visibility */
+            .apexcharts-canvas ::-webkit-scrollbar {
+                -webkit-appearance: none;
+                width: 6px;
+            }
+
+            .apexcharts-canvas ::-webkit-scrollbar-thumb {
+                border-radius: 4px;
+                background-color: rgba(0, 0, 0, .5);
+                box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+                -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+            }
+
+
+        .apexcharts-inner {
+            position: relative;
+        }
+
+        .apexcharts-text tspan {
+            font-family: inherit;
+        }
+
+        .legend-mouseover-inactive {
+            transition: 0.15s ease all;
+            opacity: 0.20;
+        }
+
+        .apexcharts-series-collapsed {
+            opacity: 0;
+        }
+
+        .apexcharts-tooltip {
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px -4px #999;
+            cursor: default;
+            font-size: 14px;
+            left: 62px;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 12;
+            transition: 0.15s ease all;
+        }
+
+            .apexcharts-tooltip.apexcharts-active {
+                opacity: 1;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-tooltip.apexcharts-theme-light {
+                border: 1px solid #e3e3e3;
+                background: rgba(255, 255, 255, 0.96);
+            }
+
+            .apexcharts-tooltip.apexcharts-theme-dark {
+                color: #fff;
+                background: rgba(30, 30, 30, 0.8);
+            }
+
+            .apexcharts-tooltip * {
+                font-family: inherit;
+            }
+
+
+        .apexcharts-tooltip-title {
+            padding: 6px;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+            background: #ECEFF1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid #333;
+        }
+
+        .apexcharts-tooltip-text-value,
+        .apexcharts-tooltip-text-z-value {
+            display: inline-block;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+            .apexcharts-tooltip-text-z-label:empty,
+            .apexcharts-tooltip-text-z-value:empty {
+                display: none;
+            }
+
+        .apexcharts-tooltip-text-value,
+        .apexcharts-tooltip-text-z-value {
+            font-weight: 600;
+        }
+
+        .apexcharts-tooltip-marker {
+            width: 12px;
+            height: 12px;
+            position: relative;
+            top: 0px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .apexcharts-tooltip-series-group {
+            padding: 0 10px;
+            display: none;
+            text-align: left;
+            justify-content: left;
+            align-items: center;
+        }
+
+            .apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+                opacity: 1;
+            }
+
+            .apexcharts-tooltip-series-group.apexcharts-active,
+            .apexcharts-tooltip-series-group:last-child {
+                padding-bottom: 4px;
+            }
+
+        .apexcharts-tooltip-series-group-hidden {
+            opacity: 0;
+            height: 0;
+            line-height: 0;
+            padding: 0 !important;
+        }
+
+        .apexcharts-tooltip-y-group {
+            padding: 6px 0 5px;
+        }
+
+        .apexcharts-tooltip-candlestick {
+            padding: 4px 8px;
+        }
+
+            .apexcharts-tooltip-candlestick > div {
+                margin: 4px 0;
+            }
+
+            .apexcharts-tooltip-candlestick span.value {
+                font-weight: bold;
+            }
+
+        .apexcharts-tooltip-rangebar {
+            padding: 5px 8px;
+        }
+
+            .apexcharts-tooltip-rangebar .category {
+                font-weight: 600;
+                color: #777;
+            }
+
+            .apexcharts-tooltip-rangebar .series-name {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+        .apexcharts-xaxistooltip {
+            opacity: 0;
+            padding: 9px 10px;
+            pointer-events: none;
+            color: #373d3f;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            background: #ECEFF1;
+            border: 1px solid #90A4AE;
+            transition: 0.15s ease all;
+        }
+
+            .apexcharts-xaxistooltip.apexcharts-theme-dark {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                color: #fff;
+            }
+
+            .apexcharts-xaxistooltip:after,
+            .apexcharts-xaxistooltip:before {
+                left: 50%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            .apexcharts-xaxistooltip:after {
+                border-color: rgba(236, 239, 241, 0);
+                border-width: 6px;
+                margin-left: -6px;
+            }
+
+            .apexcharts-xaxistooltip:before {
+                border-color: rgba(144, 164, 174, 0);
+                border-width: 7px;
+                margin-left: -7px;
+            }
+
+        .apexcharts-xaxistooltip-bottom:after,
+        .apexcharts-xaxistooltip-bottom:before {
+            bottom: 100%;
+        }
+
+        .apexcharts-xaxistooltip-top:after,
+        .apexcharts-xaxistooltip-top:before {
+            top: 100%;
+        }
+
+        .apexcharts-xaxistooltip-bottom:after {
+            border-bottom-color: #ECEFF1;
+        }
+
+        .apexcharts-xaxistooltip-bottom:before {
+            border-bottom-color: #90A4AE;
+        }
+
+        .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+            border-bottom-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+            border-bottom-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-top:after {
+            border-top-color: #ECEFF1
+        }
+
+        .apexcharts-xaxistooltip-top:before {
+            border-top-color: #90A4AE;
+        }
+
+        .apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+            border-top-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+            border-top-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip.apexcharts-active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-yaxistooltip {
+            opacity: 0;
+            padding: 4px 10px;
+            pointer-events: none;
+            color: #373d3f;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            background: #ECEFF1;
+            border: 1px solid #90A4AE;
+        }
+
+            .apexcharts-yaxistooltip.apexcharts-theme-dark {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                color: #fff;
+            }
+
+            .apexcharts-yaxistooltip:after,
+            .apexcharts-yaxistooltip:before {
+                top: 50%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            .apexcharts-yaxistooltip:after {
+                border-color: rgba(236, 239, 241, 0);
+                border-width: 6px;
+                margin-top: -6px;
+            }
+
+            .apexcharts-yaxistooltip:before {
+                border-color: rgba(144, 164, 174, 0);
+                border-width: 7px;
+                margin-top: -7px;
+            }
+
+        .apexcharts-yaxistooltip-left:after,
+        .apexcharts-yaxistooltip-left:before {
+            left: 100%;
+        }
+
+        .apexcharts-yaxistooltip-right:after,
+        .apexcharts-yaxistooltip-right:before {
+            right: 100%;
+        }
+
+        .apexcharts-yaxistooltip-left:after {
+            border-left-color: #ECEFF1;
+        }
+
+        .apexcharts-yaxistooltip-left:before {
+            border-left-color: #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+            border-left-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+            border-left-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-right:after {
+            border-right-color: #ECEFF1;
+        }
+
+        .apexcharts-yaxistooltip-right:before {
+            border-right-color: #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+            border-right-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+            border-right-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip.apexcharts-active {
+            opacity: 1;
+        }
+
+        .apexcharts-yaxistooltip-hidden {
             display: none;
         }
 
-        #visible-check {
-            display: none;
+        .apexcharts-xcrosshairs,
+        .apexcharts-ycrosshairs {
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.15s ease all;
+        }
+
+            .apexcharts-xcrosshairs.apexcharts-active,
+            .apexcharts-ycrosshairs.apexcharts-active {
+                opacity: 1;
+                transition: 0.15s ease all;
+            }
+
+        .apexcharts-ycrosshairs-hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-selection-rect {
+            cursor: move;
+        }
+
+        .svg_select_boundingRect, .svg_select_points_rot {
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .apexcharts-selection-rect + g .svg_select_boundingRect,
+        .apexcharts-selection-rect + g .svg_select_points_rot {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .apexcharts-selection-rect + g .svg_select_points_l,
+        .apexcharts-selection-rect + g .svg_select_points_r {
+            cursor: ew-resize;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .svg_select_points {
+            fill: #efefef;
+            stroke: #333;
+            rx: 2;
+        }
+
+        .apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+            cursor: crosshair
+        }
+
+        .apexcharts-svg.apexcharts-zoomable.hovering-pan {
+            cursor: move
+        }
+
+        .apexcharts-zoom-icon,
+        .apexcharts-zoomin-icon,
+        .apexcharts-zoomout-icon,
+        .apexcharts-reset-icon,
+        .apexcharts-pan-icon,
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon,
+        .apexcharts-toolbar-custom-icon {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            line-height: 24px;
+            color: #6E8192;
+            text-align: center;
+        }
+
+            .apexcharts-zoom-icon svg,
+            .apexcharts-zoomin-icon svg,
+            .apexcharts-zoomout-icon svg,
+            .apexcharts-reset-icon svg,
+            .apexcharts-menu-icon svg {
+                fill: #6E8192;
+            }
+
+            .apexcharts-selection-icon svg {
+                fill: #444;
+                transform: scale(0.76)
+            }
+
+        .apexcharts-theme-dark .apexcharts-zoom-icon svg,
+        .apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+        .apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+        .apexcharts-theme-dark .apexcharts-reset-icon svg,
+        .apexcharts-theme-dark .apexcharts-pan-icon svg,
+        .apexcharts-theme-dark .apexcharts-selection-icon svg,
+        .apexcharts-theme-dark .apexcharts-menu-icon svg,
+        .apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+            fill: #f3f4f5;
+        }
+
+        .apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+        .apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+        .apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+            fill: #008FFB;
+        }
+
+        .apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+        .apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+        .apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+        .apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+        .apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+        .apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+            fill: #333;
+        }
+
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon {
+            position: relative;
+        }
+
+        .apexcharts-reset-icon {
+            margin-left: 5px;
+        }
+
+        .apexcharts-zoom-icon,
+        .apexcharts-reset-icon,
+        .apexcharts-menu-icon {
+            transform: scale(0.85);
+        }
+
+        .apexcharts-zoomin-icon,
+        .apexcharts-zoomout-icon {
+            transform: scale(0.7)
+        }
+
+        .apexcharts-zoomout-icon {
+            margin-right: 3px;
+        }
+
+        .apexcharts-pan-icon {
+            transform: scale(0.62);
+            position: relative;
+            left: 1px;
+            top: 0px;
+        }
+
+            .apexcharts-pan-icon svg {
+                fill: #fff;
+                stroke: #6E8192;
+                stroke-width: 2;
+            }
+
+            .apexcharts-pan-icon.apexcharts-selected svg {
+                stroke: #008FFB;
+            }
+
+            .apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+                stroke: #333;
+            }
+
+        .apexcharts-toolbar {
+            position: absolute;
+            z-index: 11;
+            max-width: 176px;
+            text-align: right;
+            border-radius: 3px;
+            padding: 0px 6px 2px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .apexcharts-menu {
+            background: #fff;
+            position: absolute;
+            top: 100%;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 3px;
+            right: 10px;
+            opacity: 0;
+            min-width: 110px;
+            transition: 0.15s ease all;
+            pointer-events: none;
+        }
+
+            .apexcharts-menu.apexcharts-menu-open {
+                opacity: 1;
+                pointer-events: all;
+                transition: 0.15s ease all;
+            }
+
+        .apexcharts-menu-item {
+            padding: 6px 7px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .apexcharts-theme-light .apexcharts-menu-item:hover {
+            background: #eee;
+        }
+
+        .apexcharts-theme-dark .apexcharts-menu {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+
+        @@media screen and (min-width: 768px) {
+            .apexcharts-canvas:hover .apexcharts-toolbar {
+                opacity: 1;
+            }
+        }
+
+        .apexcharts-datalabel.apexcharts-element-hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-pie-label,
+        .apexcharts-datalabels,
+        .apexcharts-datalabel,
+        .apexcharts-datalabel-label,
+        .apexcharts-datalabel-value {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .apexcharts-pie-label-delay {
+            opacity: 0;
+            animation-name: opaque;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease;
+        }
+
+        .apexcharts-canvas .apexcharts-element-hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-hide .apexcharts-series-points {
+            opacity: 0;
+        }
+
+        .apexcharts-gridline,
+        .apexcharts-annotation-rect,
+        .apexcharts-tooltip .apexcharts-marker,
+        .apexcharts-area-series .apexcharts-area,
+        .apexcharts-line,
+        .apexcharts-zoom-rect,
+        .apexcharts-toolbar svg,
+        .apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+        .apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+        .apexcharts-radar-series path,
+        .apexcharts-radar-series polygon {
+            pointer-events: none;
+        }
+
+
+        /* markers */
+
+        .apexcharts-marker {
+            transition: 0.15s ease all;
+        }
+
+        @@keyframes opaque {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        /* Resize generated styles */
+
+        @@keyframes resizeanim {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .resize-triggers {
+            animation: 1ms resizeanim;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+            .resize-triggers,
+            .resize-triggers > div,
+            .contract-trigger:before {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+            }
+
+                .resize-triggers > div {
+                    background: #eee;
+                    overflow: auto;
+                }
+
+        .contract-trigger:before {
+            width: 200%;
+            height: 200%;
         }
     </style>
+    <style></style>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled">
+    <div class="wpcc-container wpcc-banner wpcc-fontsize-tiny wpcc-bottom wpcc-color-custom-843166018 " style=""><span class="wpcc-message">Size daha iyi bir internet sitesi deneyimi ve kişiselleştirilmiş içerikler sunabilmek için çerezler kullanıyoruz. Sitemizi kullanarak, çerez kullanımına izin vermektesiniz. Daha fazla bilgi için lütfen çerez kullanım politikamızı inceleyiniz.  <a class="wpcc-privacy" href="/kvkk/" rel="noopener" target="_blank" tabindex="1"> Çerez Politikası</a></span><div class="wpcc-compliance"><a class="wpcc-btn" tabindex="2">Tamam</a></div></div>
+    <!--begin::Main-->
+    <!--begin::header-sm-->
+    <div class="header-sm py-0 d-flex flex-lg-column" style="background-color: #1c0646;" id="kt_header">
+        <!--begin::Container-->
 
-}
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
 
+            <!--begin::Nav-->
+            <div class="nav nav-dark order-1 order-md-1">
+                <div class="d-flex flex-wrap justify-content-center my-2">
+                    <a href="#" class="text-dark-25 font-size-sm text-hover-info mr-lg-8 mr-5 mb-lg-0 mb-6">Bireysel</a>
+                    <a href="#" class="text-dark-50 font-size-sm text-hover-info mr-lg-8 mr-5 mb-lg-0 mb-2">Kurumsal</a>
 
-<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-    <!--begin::Info-->
-    <!--begin::Page Heading-->
-    <div class="d-flex align-items-baseline flex-wrap my-5 mr-5">
+                </div>
+
+            </div>
+            <!--end::Nav-->
+        </div>
 
     </div>
-    <!--end::Toolbar-->
-</div>
+    <!--end::Container-->
+    <!--end::header-sm-->
+    <!--begin::Header Mobile-->
+    <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
+        <div class="d-flex align-items-center">
+            <!--begin::Logo-->
+            <a href="/" class="mr-5">
+                <img alt="Logo" src="assets/media/svg/logos/bejjpluslogonew.svg" class="max-h-20px">
+            </a>
+            <!--end::Logo-->
 
-<div class="d-flex flex-column-fluid">
+        </div>
+        <!--begin::Toolbar-->
+        <!--begin::hizlimenu-->
+        <button class="btn p-0 ml-0" id="kt_quick_actions_toggle" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="">
+            <span class="svg-icon svg-icon-xl">
+                <!--begin::Svg Icon-->
+                <div class="btn btn-icon btn-dropdown btn-lg mr-0">
+                    <div class="btn btn-icon btn-dropdown btn-lg mr-0 pulse pulse-white">
+                        <span class="svg-icon svg-icon-xl svg-icon-danger">
+                            <!--begin::Svg Icon-->
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                    <rect fill="#000000" x="4" y="4" width="7" height="7" rx="1.5"></rect>
+                                    <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3"></path>
+                                </g>
+                            </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="pulse-ring"> </span>
 
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card card-custom">
-            <!--begin::Card Body-->
-            <div class="card-body p-0">
-                <!--begin::Wizard 5-->
-                <div class="wizard wizard-5 d-flex flex-column flex-lg-row flex-row-fluid" id="kt_wizard">
-                    <!--begin::Aside-->
-                    <div class="wizard-aside bg-white d-flex flex-column flex-row-auto w-100 w-lg-300px w-xl-400px w-xxl-450px">
-                        <!--begin::Aside Top-->
-                        <div class="d-flex offcanvas-mobile flex-column-fluid flex-column px-xxl-20 px-10">
-                            <!--begin: Wizard Nav-->
-                            <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
-                                <!--begin::Wizard Steps-->
-                                <div class="wizard-steps">
-
-                                    <!--begin::Wizard Step 1 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">
-                                                    <span class="svg-icon svg-icon-info svg-icon-2x">
-                                                        <!--begin::Svg Icon-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24" height="24" />
-                                                                <rect fill="#000000" opacity="0.3" x="2" y="2" width="20" height="20" rx="10" />
-                                                                <path d="M6.16794971,14.5547002 C5.86159725,14.0951715 5.98577112,13.4743022 6.4452998,13.1679497 C6.90482849,12.8615972 7.52569784,12.9857711 7.83205029,13.4452998 C8.9890854,15.1808525 10.3543313,16 12,16 C13.6456687,16 15.0109146,15.1808525 16.1679497,13.4452998 C16.4743022,12.9857711 17.0951715,12.8615972 17.5547002,13.1679497 C18.0142289,13.4743022 18.1384028,14.0951715 17.8320503,14.5547002 C16.3224187,16.8191475 14.3543313,18 12,18 C9.64566871,18 7.67758127,16.8191475 6.16794971,14.5547002 Z" fill="#000000" />
-                                                            </g>
-                                                        </svg><!--end::Svg Icon-->
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Hoşgeldiniz</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 1 Nav-->
-                                    <!--begin::Wizard Step 2 Nav-->
-                                    <!--end::Wizard Step 2 Nav-->
-                                    <!--begin::Wizard Step 3 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">1</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Adres ve Başvuru Bilgisi</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 3 Nav-->
-                                    <!--begin::Wizard Step 4 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">2</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Tarife ve Tercihler</h3>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 4 Nav-->
-                                    <!--begin::Wizard Step 5 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">3</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">İletişim Bilgileriniz</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 5 Nav-->
-                                    <!--begin::Wizard Step 6 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">4</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Kimlik Bilgileri</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 6 Nav-->
-                                    <!--begin::Wizard Step 6 Nav-->
-
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">5</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">SMS Doğrulama</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 6 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">
-                                                    <span class="svg-icon svg-icon-gray svg-icon-2x">
-                                                        <!--begin::Svg Icon-->
-
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24" height="24"></rect>
-                                                                <path d="M9,10 L9,19 L10.1525987,19.3841996 C11.3761964,19.7920655 12.6575468,20 13.9473319,20 L17.5405883,20 C18.9706314,20 20.2018758,18.990621 20.4823303,17.5883484 L21.231529,13.8423552 C21.5564648,12.217676 20.5028146,10.6372006 18.8781353,10.3122648 C18.6189212,10.260422 18.353992,10.2430672 18.0902299,10.2606513 L14.5,10.5 L14.8641964,6.49383981 C14.9326895,5.74041495 14.3774427,5.07411874 13.6240179,5.00562558 C13.5827848,5.00187712 13.5414031,5 13.5,5 L13.5,5 C12.5694044,5 11.7070439,5.48826024 11.2282564,6.28623939 L9,10 Z" fill="#000000"></path>
-                                                                <rect fill="#000000" opacity="0.3" x="2" y="9" width="5" height="11" rx="1"></rect>
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title font-weight font-size-h4">Tamamlandı!</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Wizard Steps-->
-                            </div>
-                            <!--end: Wizard Nav-->
-                            <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(../../Content/media/bg/ecovered.svg)"></div><br>
-                        </div>
-                        <!--end::Aside Top-->
                     </div>
-                    <!--begin::Aside-->
-                    <!--begin::Content-->
-
-
-                    <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10">
-                        <div class="d-flex justify-content-center flex-row-fluid ">
-                            @if (TempData["ValidationError"] != null)
-                            {
-                                <style>
-                                    #validation-error {
-                                        display: block;
-                                    }
-                                </style>
-                            }
-
-                            @*@if (ViewBag.ValidationError != null)
-                                {
-                                    <style>
-                                        #validation-error {
-                                            display: block;
-                                        }
-                                    </style>
-                                }*@
-
-
-
-
-                            @using (Html.BeginForm("Index", "Application", FormMethod.Post, new { @id = "ApplicationForm" }))
-                            {
-                                <div id="InfrastructureInquiryForApplication" class="wizard-step" style="padding: 2em;">
-
-
-                                    <div id="validation-error">
-                                        <div class="form-group" id="otherFieldGroupDiv">
-                                            <div class="alert alert-custom alert-outline-danger fade show mb-5" role="alert">
-                                                <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
-                                                <div class="alert-text">
-                                                    <a class="font-weight-bolder text-danger"> @TempData["ValidationError"] </a>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--<div class="text-danger" style="font-size:1.5em; border:0.05em solid #290B63; padding:0.5em; border-radius: 0.5em;" id="validation-error">-->
-                                    @*@ViewBag.ValidationError*@
-                                    <!--@TempData["ValidationError"]
-                                    </div>-->
-                                    @Html.Partial("ApplicationParts/_InfrastructureInquiryForApplication")
-                                    <div class="row">
-                                        <div class="col-lg-7 col-md-7">
-
-                                        </div>
-
-
-                                        <div class="col-lg-5 col-md-5">
-                                            <div>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlInf" data-wizard-type="action-next">
-                                                    Sonraki
-                                                    <span class="svg-icon svg-icon-md ml-1">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="check-control">
-                                    <div id="InfrastructureAndTariffs" class="wizard-step">
-                                        <div id="InfrastructureAndTariffContent"></div>
-
-                                        <div id="loading">
-
-                                            Yükleniyor, Lütfen Bekleyin...
-
-                                        </div>
-                                        @*@if (ViewBag.Checked != null)
-                                            {
-                                            }*@
-
-                                        @*<button type="button" class="check-control" id="visible-check">control</button>*@
-
-                                        <div id="visibleButton">
-                                            <div class="form-group">
-                                                <div class="pb-15 pb-lg-4">
-                                                    <h3 class="font-weight-bolder text-dark-50 font-size-h2">Varsa Referans Kodu</h3><hr class="my-4">
-                                                </div>
-                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Referans Kodunu Yazınız</label>
-                                                @Html.EditorFor(m => m.ReferenceCode, new { htmlAttributes = new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6", @placeholder = "Referans Kodu" } })
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4">
-                                                    <div class="mr-2">
-                                                        <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonInfTariffInfApp();">
-                                                            <span class="svg-icon svg-icon-md mr-1">
-                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
-                                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                                        <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
-                                                                        <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
-                                                                    </g>
-                                                                </svg>
-                                                                <!--end::Svg Icon-->
-                                                            </span>Önceki
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4">
-                                                </div>
-
-                                                <div class="col-lg-4 col-md-4">
-                                                    <div>
-                                                        <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlTarCon" data-wizard-type="action-next">
-                                                            Sonraki
-                                                            <span class="svg-icon svg-icon-md ml-1">
-                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                                    </g>
-                                                                </svg>
-                                                                <!--end::Svg Icon-->
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="ContactInformation" class="wizard-step">
-                                    @Html.Partial("ApplicationParts/_ContactInformation")
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-lg-9 col-md-9">
-                                                <div class="mr-2">
-                                                    <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonConInfTariff();">
-                                                        <span class="svg-icon svg-icon-md mr-1">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
-                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                                    <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
-                                                                    <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>Önceki
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-3">
-                                                <div>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButton" data-wizard-type="action-next" id="email-validation">
-                                                        Sonraki
-                                                        <span class="svg-icon svg-icon-md ml-1">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="loadingIDValidation">
-                                    <div id="loading">
-
-                                        Yükleniyor, Lütfen Bekleyin...
-
-                                    </div>
-                                    <div id="IDInformation" class="wizard-step">
-
-                                        @*<div id="loading">
-
-                Yükleniyor, Lütfen Bekleyin...
-
-            </div>*@
-
-                                        @Html.Partial("ApplicationParts/_IDInformation")
-                                        @*<div id="IDValidationContent"></div>*@
-
-                                        <div class="row">
-                                            <div class="col-lg-9 col-md-9">
-                                                <div class="mr-2">
-                                                    <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonIDCon();">
-                                                        <span class="svg-icon svg-icon-md mr-1">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
-                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                                    <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
-                                                                    <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>Önceki
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-3">
-                                                <div>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputControlButtonId" data-wizard-type="action-next" id="getIDCardValidation">
-                                                        Sonraki
-                                                        <span class="svg-icon svg-icon-md ml-1">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <polygon points="0 0 24 0 24 24 0 24" />
-                                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="GSMValidation" class="wizard-step">
-                                    @Html.Partial("ApplicationParts/_GSMValidation")
-
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-4">
-                                            <div class="mr-2">
-                                                <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev" onclick="PrevButtonGSMID();">
-                                                    <span class="svg-icon svg-icon-md mr-1">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                                <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1" />
-                                                                <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)" />
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>Önceki
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4">
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-4">
-                                            <div>
-                                                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 inputGsmButton" data-wizard-type="action-next" id="correctPhone">
-                                                    Sonraki
-                                                    <span class="svg-icon svg-icon-md ml-1">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                                <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                                <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon-->
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                        </div>
-                        <div class="validation-summary-message">
-                            @Html.ValidationSummary()
-                        </div>
-                    </div>
-
-                    <!--end::Form-->
                 </div>
-                <!--end::Content-->
+            </span>
+        </button>
+    </div>
+    <!--end::Toolbar-->
+
+
+    <div id="kt_quick_actions" class="offcanvas offcanvas-left p-6 offcanvas-off" style="background-color: #290b63;">
+        <!--begin::Header-->
+        <div class="offcanvas-header d-flex align-items-center justify-content-between pb-10" kt-hidden-height="56" style="">
+            <!--begin::Logo-->
+            <a href="/" class="mr-7">
+                <img alt="Logo" src="assets/media/svg/logos/bejjpluslogonew.svg" class="max-h-20px">
+            </a>
+            <!--end::Logo-->
+            <a href="#" class="btn btn-sm btn-icon btn-hover-info" id="kt_quick_actions_close">
+                <i class="ki ki-close icon-sm text-muted"></i>
+            </a>
+        </div>
+        <!--end::Header-->
+        <!--begin::Content-->
+        <div class="offcanvas-content pr-5 mr-n5 scroll ps" style="height: 549px; overflow: hidden;">
+            <div class="row gutter-b">
+                <!--begin::Item-->
+
+                <div class="col-6">
+                    <a href="kampanyalar" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                        <span class="fas fa-star font-size-h1 menu-icon">
+                        </span>
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Kampanyalar</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="basvur" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                        <span class="fab fa-wpforms font-size-h1 menu-icon">
+                        </span>
+
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Şimdi Başvur</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+            </div>
+            <div class="row gutter-b">
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="altyapi-sorgula" class="btn btn-block btn-hover-primary text-center py-5 px-5" style="background-color: #43257d">
+                        <i class="flaticon-placeholder-3 font-size-h1 text-warning"></i>
+
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Altyapı Sorgula</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="destek" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                        <span class="fas fas fa-question-circle font-size-h1 menu-icon">
+                        </span>
+
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Yardım &amp; Destek</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+            </div>
+            <div class="row gutter-b">
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="hiz-testi" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                        <span class="fas fa-tachometer-alt font-size-h2 menu-icon"></span>
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Hız Testi</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="sozlesme-ve-form" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+
+                        <!--begin::Svg Icon-->
+                        <span class="fas fa-file-signature font-size-h1 menu-icon">
+                        </span>
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Sözleşme / Formlar</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+            </div>
+            <div class="row">
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="destek/fatura-odeme" class="btn btn-block btn-hover-primary text-warning text-center py-5 px-5" style="background-color: #43257d">
+                        <span class="fas fa-credit-card font-size-h1 menu-icon ">
+                        </span>
+
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Fatura Ödeme</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="col-6">
+                    <a href="giris" class="btn btn-block btn-hover-primary btn-info text-warning text-center py-5 px-5" style="background-color: #43257d">
+                        <span class="fas fa-user-alt font-size-h1 menu-icon">
+                        </span>
+
+                        <span class="d-block font-weight-bold text-white font-size-h8 mt-2">Online İşlemler</span>
+                    </a>
+                </div>
+                <!--end::Item-->
+            </div>
+            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div><div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+        </div>
+        <!--end::Content-->
+    </div>
+
+
+    <!--end::Header Mobile-->
+    <!--begin::Header-->
+    <div id="kt_header" class="header flex-column header-fixed">
+
+        <!--begin::Top-->
+        <div class="header-top" style="background-color: #290b63">
+
+            <!--begin::Container-->
+            <div class="container">
+
+                <!--begin::Left-->
+                <div class="d-none d-lg-flex align-items-center mr-3">
+                    <!--begin::Logo-->
+                    <a href="/" class="mr-10">
+                        <img alt="Logo" src="assets/media/svg/logos/bejjpluslogonew.svg" class="max-h-25px">
+                    </a>
+                    <!--end::Logo-->
+                    <!--begin::Header Menu Wrapper-->
+                    <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                        <!--begin::Header Menu-->
+                        <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
+                            <!--begin::Header Nav-->
+                            <ul class="menu-nav">
+
+                                <li class="menu-item menu-item-rel" aria-haspopup="true">
+                                    <a href="kampanyalar" class="link m-3">
+                                        <span class="text-white text-hover-warning font-size-h6">Kampanyalar</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item-rel" aria-haspopup="true">
+                                    <a href="basvur" class="link m-3">
+                                        <span class="text-white text-hover-warning font-size-h6">Hemen Başvur</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item-rel" aria-haspopup="true">
+                                    <a href="/altyapi-sorgula" class="link m-3">
+                                        <span class="text-white text-hover-warning font-size-h6">Altyapı Sorgula</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item-rel" aria-haspopup="true">
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+
+                                            <a href="javascript:;" class="link m-3">
+                                                <span class="text-white text-hover-warning font-size-h6">Destek</span>
+
+                                            </a>
+                                            <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left" style="background-color: #290b63">
+                                                <ul class="menu-subnav">
+                                                    <li class="menu-item" aria-haspopup="true">
+                                                        <a href="sozlesme-ve-form" class="menu-link">
+                                                            <span class="fas fas fa-sticky-note menu-icon">
+                                                            </span>
+                                                            <span class="font-size-h6 text-hover-warning menu-text">Sözleşme &amp; Formlar</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="menu-item" aria-haspopup="true">
+                                                        <a href="destek" class="menu-link">
+                                                            <span class="fas fas fa-question-circle menu-icon">
+                                                            </span>
+                                                            <span class="font-size-h6 text-hover-warning menu-text">Yardım &amp; Destek</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="menu-item" aria-haspopup="true">
+                                                        <a href="hiz-testi" class="menu-link">
+                                                            <span class="fas fa-tachometer-alt menu-icon">
+
+                                                            </span>
+                                                            <span class="font-size-h6 text-hover-warning menu-text">Hız Testi</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="topbar">
+                    <!--begin::Desktop Arama-->
+                    <div class="d-none m-4 d-lg-flex align-items-center">
+                        <div class="quick-search quick-search-inline ml-4 w-250px" id="kt_quick_search_inline">
+                            <!--begin::Form-->
+                            <form method="get" class="quick-search-form">
+                                <div class="input-group rounded">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <span class="svg-icon svg-icon-lg">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"></path>
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control h-40px" placeholder="Nasıl yardımcı olabiliriz?">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="quick-search-close ki ki-close icon-sm" style="display: none;"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--end::Form-->
+                            <!--begin::arama-sonuclari-->
+                            <div id="kt_quick_search_toggle" data-toggle="dropdown" data-offset="0px,0px"></div>
+                            <!--son::Search-->
+                            <!--ilk::aclrm-->
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg dropdown-menu-anim-up">
+                                <div class="quick-search-wrapper scroll ps" data-scroll="true" data-height="350" data-mobile-height="200" style="height: 350px; overflow: hidden;">
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;">
+                                        </div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div><div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                                </div>
+                            </div>
+                            <!--son::aclrm-->
+                        </div>
+                    </div>
+                    <!--end::Desktop Arama-->
+                    <!--end::Topbar-->
+                    <!--ilk::mini panel-->
+                    <div class="topbar-item">
+                        <div class="btn btn-icon btn-sm btn-clean btn-text m-1 mr-2" id="kt_quick_user_toggle" data-toggle="tooltip" title="" data-original-title="Fatura Öde">
+                            <a href="destek/fatura-odeme" class="text-white text-hover-warning font-weight-bold font-size-sm d-none d-md-inline mr-1">
+                                <span class="svg-icon svg-icon-2x">
+
+                                    <span class="svg-icon svg-icon-danger svg-icon-2x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                <rect fill="#000000" opacity="0.3" x="2" y="5" width="20" height="14" rx="2"></rect>
+                                                <rect fill="#000000" x="2" y="8" width="20" height="3"></rect>
+                                                <rect fill="#000000" opacity="0.3" x="16" y="14" width="4" height="2" rx="1"></rect>
+                                            </g>
+                                        </svg><!--end::Svg Icon-->
+                                    </span>
+
+                                </span>
+                            </a>
+                        </div><a href="destek/fatura-odeme" class="text-white text-hover-warning font-weight-bold font-size-sm d-none d-md-inline mr-1">
+                            <!--son::mini panel-->
+                            <!--begin::User-->
+                        </a><div class="topbar-item">
+                            <a href="destek/fatura-odeme" class="text-white text-hover-warning font-weight-bold font-size-sm d-none d-md-inline mr-1">
+
+                            </a><a href="giris" class="btn btn-sm text-white btn-outline-info">Online İşlemler</a>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Topbar-->
             </div>
         </div>
     </div>
-</div>
-
-@section script{
-    @Scripts.Render("~/Scripts/js/get-infrastructure.js")
-    @Scripts.Render("~/Scripts/js/get-ServiceAvailability.js")
-
-
-
-<script>
-    $('button.inputControlInf').click(function () {
-        var prevCheckedRadioButton;
-            var foundButton = 1;
-            if (foundButton.length != 0) {
-                $('#visibleButton').hide();
-            }
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-            //var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
-            requiredSelects.each(function () {
-                var currentSelect = $(this);
-                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-                if (!hasSelectedOption) {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-                        swal({
-                            title: '',
-                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                            icon: 'error',
-                            button: 'Tamam',
-                        })
-                }
-                else {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                else {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-            var currentContainer = $('#visibleButton').closest('div.wizard-step');
-            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
-            requiredRadioButtons.each(function () {
-                var currentSelect = $(this);
-                var HasRadioButtonValue = currentSelect.val();
-
-
-                var HasRadioButtons = currentSelect.is(':checked');
-                if (HasRadioButtons) {
-                    prevCheckedRadioButton = HasRadioButtonValue;
-                }
-
-
-            });
-
-            if (isValid == true) {
-
-
-                $('#InfrastructureAndTariffContent').html("");
-
-                $.ajax({
-                    url: '@Url.Action("GetServiceAvailability","Application")',
-                    method: 'POST',
-                    data: { apartmentId: $("#ApartmentId").val() },
-                    beforeSend: function () {
-                        $("#loading").show();
-                    },
-                    complete: function (data, status) {
-                        $("#loading").hide();
-                        if (status == "success") {
-                            //$('#tariffs-content').html(data.responseText);
-
-                            $('#InfrastructureAndTariffContent').html(data.responseText);
-                            foundButton = $('#InfrastructureAndTariffContent').find('.HasNotInfrastucture');
-
-                            if (foundButton.length == 0) {
-                                $('#visibleButton').show();
-                            }
-
-                            if ('@ViewBag.Checked' != '' || prevCheckedRadioButton!='') {
-                                  var currentContainer = $('#visibleButton').closest('div.wizard-step');
-                        var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
-                        requiredRadioButtons.each(function () {
-                            var currentSelect = $(this);
-                            var HasRadioButtonValue = currentSelect.val();
-                            if (HasRadioButtonValue == '@ViewBag.Checked' || HasRadioButtonValue == prevCheckedRadioButton ) {
-                                $("#TariffId").prop("checked", true);
-                                $("#TariffID").prop("checked", true);
-                                currentSelect.prop("checked", true);
-                           }
-                      });
-                }
-                        }
-                    }
-                })
-                if ($('#InfrastructureInquiryForApplication').is(':visible')) {
-                    $('#InfrastructureInquiryForApplication').hide();
-                    $('#InfrastructureAndTariffs').show();
-                }
-            }
-        })
-    @*</script>*@
 
 
 
 
-    //<script>
 
-        $('button.inputControlButton').click(function () {
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
+    <!--end::Header Menu Wrapper-->
+    <!--end::Section-->
+    <!--begin::Content-->
+    <!--begin::Subheader-->
 
-            $(".error").hide();
-            var hasError = false;
-            var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Info-->
+        <!--begin::Page Heading-->
+        <div class="d-flex align-items-baseline flex-wrap my-5 mr-5">
 
-            var emailaddressVal = $("#EmailAddress").val();
-            var regexEmail = emailReg.test(emailaddressVal);
+        </div>
+        <!--end::Toolbar-->
+    </div>
 
-            if (!regexEmail) {
-                $("#EmailAddress").find('.span').show;
-                hasError = true;
-                swal({
-                    title: '',
-                    text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                    icon: 'error',
-                    button: 'Tamam',
-                })
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Card-->
+            <div class="card card-custom">
+                <!--begin::Card Body-->
+                <div class="card-body p-0">
+                    <!--begin::Wizard 5-->
+                    <div class="wizard wizard-5 d-flex flex-column flex-lg-row flex-row-fluid" id="kt_wizard" data-wizard-state="first">
+                        <!--begin::Aside-->
+                        <div class="wizard-aside bg-white d-flex flex-column flex-row-auto w-100 w-lg-300px w-xl-400px w-xxl-450px">
+                            <!--begin::Aside Top-->
+                            <div class="d-flex offcanvas-mobile flex-column-fluid flex-column px-xxl-20 px-10">
+                                <!--begin: Wizard Nav-->
+                                <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-15 pb-8">
+                                    <!--begin::Wizard Steps-->
+                                    <div class="wizard-steps">
 
-            }
+                                        <!--begin::Wizard Step 1 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">
+                                                        <span class="svg-icon svg-icon-info svg-icon-2x">
+                                                            <!--begin::Svg Icon-->
+                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                                    <rect fill="#000000" opacity="0.3" x="2" y="2" width="20" height="20" rx="10"></rect>
+                                                                    <path d="M6.16794971,14.5547002 C5.86159725,14.0951715 5.98577112,13.4743022 6.4452998,13.1679497 C6.90482849,12.8615972 7.52569784,12.9857711 7.83205029,13.4452998 C8.9890854,15.1808525 10.3543313,16 12,16 C13.6456687,16 15.0109146,15.1808525 16.1679497,13.4452998 C16.4743022,12.9857711 17.0951715,12.8615972 17.5547002,13.1679497 C18.0142289,13.4743022 18.1384028,14.0951715 17.8320503,14.5547002 C16.3224187,16.8191475 14.3543313,18 12,18 C9.64566871,18 7.67758127,16.8191475 6.16794971,14.5547002 Z" fill="#000000"></path>
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">Hoşgeldiniz</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 1 Nav-->
+                                        <!--begin::Wizard Step 2 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">1</span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">SMS Doğrulama</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 2 Nav-->
+                                        <!--begin::Wizard Step 3 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">2</span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">İletişim Bilgileriniz</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 3 Nav-->
+                                        <!--begin::Wizard Step 4 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">3</span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">Adres ve Başvuru Bilgisi</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 4 Nav-->
+                                        <!--begin::Wizard Step 5 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">4</span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">Tarife ve Tercihler</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 5 Nav-->
+                                        <!--begin::Wizard Step 6 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">5</span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">Kimlik Bilgileri</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 6 Nav-->
+                                        <!--begin::Wizard Step 6 Nav-->
+                                        <div class="wizard-step" data-wizard-type="step" data-wizard-state="pending">
+                                            <div class="wizard-wrapper">
+                                                <div class="wizard-icon">
+                                                    <i class="wizard-check ki ki-check"></i>
+                                                    <span class="wizard-number">
+                                                        <span class="svg-icon svg-icon-gray svg-icon-2x">
+                                                            <!--begin::Svg Icon-->
 
-            if (regexEmail)  {
-                //$("#EmailAddress").after('<span class="text-danger">Lütfen Geçerli Bir E-Posta Adresi Giriniz.</span>');
-                hasError = false;
-                //$("#EmailAddress").after('<span class="text-danger">E-Posta Gerekli</span>').hide();
-                $("#EmailAddress").find('.span.required-error').hide();
+                                                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                                    <path d="M9,10 L9,19 L10.1525987,19.3841996 C11.3761964,19.7920655 12.6575468,20 13.9473319,20 L17.5405883,20 C18.9706314,20 20.2018758,18.990621 20.4823303,17.5883484 L21.231529,13.8423552 C21.5564648,12.217676 20.5028146,10.6372006 18.8781353,10.3122648 C18.6189212,10.260422 18.353992,10.2430672 18.0902299,10.2606513 L14.5,10.5 L14.8641964,6.49383981 C14.9326895,5.74041495 14.3774427,5.07411874 13.6240179,5.00562558 C13.5827848,5.00187712 13.5414031,5 13.5,5 L13.5,5 C12.5694044,5 11.7070439,5.48826024 11.2282564,6.28623939 L9,10 Z" fill="#000000"></path>
+                                                                    <rect fill="#000000" opacity="0.3" x="2" y="9" width="5" height="11" rx="1"></rect>
+                                                                </g>
+                                                            </svg>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="wizard-label">
+                                                    <h3 class="wizard-title font-weight font-size-h4">Tamamlandı!</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Wizard Step 6 Nav-->
+                                    </div>
+                                    <!--end::Wizard Steps-->
+                                </div>
+                                <!--end: Wizard Nav-->
+                                <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-bottom bgi-position-center bgi-size-contain pt-15 pt-lg-10 h-250px" style="background-image: url(assets/media/bg/ecovered.svg)"></div><br>
+                            </div>
+                            <!--end::Aside Top-->
 
-            }
+                        </div>
+                        <!--begin::Aside-->
+                        <!--begin::Content-->
 
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
+                        <div class="card card-custom wizard-content d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10 ">
+                            <!--begin::Title-->
+                            <div class="text-right mb-lg-4 mb-15 mr-xxl-10">
 
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                if (hasText) {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                    if (hasError==true) {
-                        //$("#EmailAddress").find('span.required-error').show;
-                        $("#EmailAddress").closest('.form-group').find('span.required-error').show();
-                    }
-                }
-            });
+                            </div>
+                            <!--end::Title-->
+                            <!--begin::Form-->
+                            <div class="d-flex justify-content-center flex-row-fluid ">
+                                @using (Ajax.BeginForm("Index", "Application", new AjaxOptions { HttpMethod = "POST", OnComplete = "RegisterResult" }, new { @class = "pb-5 w-100 w-md-450px w-lg-500px fv-plugins-bootstrap fv-plugins-framework", @novalidate = "novalidate", @id = "kt_form", @dataform = "register" }))
+                                {
+                                    <!--begin: Wizard Step 1-->
+                                    @Html.AntiForgeryToken()
+                                    <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                                        <!--begin::Title-->
+                                        <div class="pb-10 pb-lg-15">
 
-            if (isValid == true && hasError == false) {
-                if ($('#ContactInformation').is(':visible')) {
-                    $('#ContactInformation').hide();
-                    $('#IDInformation').show();
-                }
-            }
+                                            <h3 class="font-weight-bolder text-info font-size-h2">Netspeed Ev İnterneti, Online Başvurusuna Hoş Geldiniz!</h3><hr class="my-4">
+                                            <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvurunuza devam edebilmek ve sizinle başvuru sonrası iletişime geçebilmemiz için lütfen iletişim numaranızı yazınız.</div>
+                                            <div class="text-dark font-weight font-size-h8 mt-5">Ardından Cep Telefonunuza doğrulama kodu içeren bir sms göndereceğiz.</div>
+                                        </div>
+                                        <!--begin::Title-->
+                                        <!--begin::Form Group-->
+                                        <div class="form-group fv-plugins-icon-container">
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Lütfen GSM Numaranızı Yazınız</label>
+                                            <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" name="gsmno" id="kt_inputmask_3" placeholder="GSM Numaranız" im-insert="true">
+                                            <div class="fv-plugins-message-container"></div>
+                                        </div>
+                                        <!--end::Form Group-->
+                                        <!--end: Wizard Step 1-->
+                                    </div>
+                                    <!--begin: Wizard Step 2-->
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <div class="pb-10 pb-lg-15">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">SMS Doğrulama Kodu</h3><hr class="my-4">
+                                            <div class="text-dark-50 font-weight font-size-h5 mt-5">Başvuruya devam edebilmek için GSM numaranıza gönderdiğimiz SMS doğrulama kodunu giriniz.</div>
+                                        </div>
+                                        <!--begin::Form Group-->
+                                        <div class="form-group fv-plugins-icon-container">
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark animate__animated animate__flash animate__delay-2s">SMS Doğrulama Kodunu Yazınız</label>
+                                            <input class="form-control h-auto p-4 border-0 rounded-lg font-weight-bolder text-info font-size-h6" id="kt_inputmask_12" name="smscode" placeholder="SMS Doğrulama Kodunuz" value="" im-insert="true">
+                                            <div class="fv-plugins-message-container"></div>
+                                        </div>
+                                        <div class="separator separator-dashed my-3"></div>
 
-        })
-    @*</script>*@
+                                        <div class="col-xl-12 col-lg-8 ">
+
+
+                                        </div>
+                                        <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
+
+                                    </div>
+                                    <!--end::Form Group-->
+                                    <!--end: Wizard Step 2-->
+                                    <!--begin::Form-->
+                                    <!--begin: Wizard Step 3-->
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <!--begin::Title-->
+                                        <div class="pb-10 pb-lg-15">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">İletişim Bilgileriniz</h3><hr class="my-4">
+                                        </div>
+                                        <!--begin::Title-->
+                                        <!--begin::Form Group-->
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız</label>
+                                                    <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="firstname" placeholder="Adınız" value="">
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--begin::Form Group-->
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Soyadınız</label>
+                                                    <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="lastname" placeholder="Soyadınız" value="">
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--begin::Form Group-->
+                                            <div class="col-lg-12 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">E-Posta Adresiniz</label>
+                                                    <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="email" placeholder="E-Posta Adresiniz" value="">
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <div class="text-muted font-size-h8 m-2">Lütfen geçerli bir E-Posta adres yazınız. Bilgilerinizi bu e-posta adresinize göndereceğiz.</div>
+                                                <!--end::Form Group-->
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--end: Wizard Step 3-->
+                                    <!--begin: Wizard Step 4-->
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <!--begin::Title-->
+                                        <div class="pb-10 pb-lg-8">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">Başvuru Bilgileri</h3><hr class="my-4">
+                                            <div class="text-dark-50 font-weight font-size-h5 mt-5">
+                                                Hizmet almak istediğiniz adres bilgileri ve Başvuru türü
+                                            </div>
+                                        </div>
+                                        <!--end::Title-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="form-group">
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Başvuru Türü</label>
+                                            <select name="applicationType" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                @*<option value="">Seçim Yapınız</option>*@
+                                                <option value="1">Yeni Abonelik</option>
+                                                <option value="2">Diğer Operatörden Geçiş</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="form-group fv-plugins-icon-container" id="applicationType-group" style="display: none;">
+
+                                            <div class="alert alert-custom alert-outline-primary fade show mb-5" role="alert">
+                                                <div class="alert-icon"><i class="animate__animated animate__flash flaticon-exclamation-2"></i></div>
+                                                <div class="alert-text">10 Haneli Hizmet Numaranızı mevcut operatörünüzün faturasından veya online işlem merkezine giriş yaparak öğrenebilirsiniz. </div>
+                                                <div class="alert-close">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+
+                                                    <label for="otherField1" class="font-size-h6 font-weight-bolder m-2 text-dark">Hizmet Numarası</label>
+                                                    <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" id="kt_inputmask_15" im-insert="true" name="hizmetnosu">
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6">
+                                                    <label for="otherField2" class="font-size-h6 font-weight-bolder m-2 text-dark">Mevcut Operatör Adı</label>
+                                                    <input type="text" name="mevcutoprad" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" id="otherField2">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+
+                                        <div class="form-group">
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Ev Telefonunuz Var mı?</label>
+                                            <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" id="housephone">
+                                                @*<option value="">Seçim Yapınız</option>*@
+                                                <option value="1">Hayır</option>
+                                                <option value="2">Evet</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group" id="housephone-group" style="display: none;">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <label for="totherField1" class="font-size-h6 font-weight-bolder m-2 text-dark">Ev Telefon Numaranız</label>
+                                                    <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" placeholder="Ev Telefon No" name="evtelno" id="kt_inputmask_14" im-insert="true">
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!--begin::Form Group-->
+
+                                        <div class="separator separator-dashed my-3"></div>
+                                        <div class="pb-10 pb-lg-5">
+                                            <h3 class="font-weight-bolder text-dark-50 font-size-h2">Adres Bilgileriniz</h3><hr class="my-4">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Şehir</label>
+                                                    @Html.DropDownList("sehir", new SelectList(ViewBag.ProvinceList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--begin::Form Group-->
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">İlçe</label>
+                                                    @Html.DropDownList("ilce", new SelectList(ViewBag.DistrictList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <!--end::Form Group-->
+                                            </div>
+                                        </div>
+
+                                        <!--begin::Form Group-->
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Semt</label>
+                                                    @Html.DropDownList("semt", new SelectList(ViewBag.RegionList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--begin::Form Group-->
+
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Mahalle</label>
+                                                    @Html.DropDownList("mahalle", new SelectList(ViewBag.NeighborhoodList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <!--end::Form Group-->
+                                            </div>
+                                        </div>
+
+                                        <!--begin::Form Group-->
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sokak/Cadde</label>
+                                                    @Html.DropDownList("sokak", new SelectList(ViewBag.StreetList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--begin::Form Group-->
+
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Apt./Bina No</label>
+                                                    @Html.DropDownList("aptbina", new SelectList(ViewBag.BuildingList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <!--end::Form Group-->
+                                            </div>
+                                        </div>
+
+                                        <!--begin::Form Group-->
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kapı No</label>
+                                                    @Html.DropDownList("kapino", new SelectList(ViewBag.ApartmentList, "Value", "Text"), "Seçim Yapınız", new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                    <div class="fv-plugins-message-container"></div>
+                                                    <span hidden id="address-text"></span>
+                                                </div>
+                                            </div>
+                                            <!--end::Form Group-->
+                                            <!--begin::Form Group-->
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kat No</label>
+                                                    <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="katno" placeholder="Kat No" value="">
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <!--end::Form Group-->
+
+                                            </div>
+                                        </div>
+
+                                        <!--begin::Form Group-->
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Posta Kodu</label>
+                                                    <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="postakodu" placeholder="Posta Kodu" value="">
+
+
+                                                    <!--end::Form Group-->
+
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--end: Wizard Step 4-->
+                                    <!--begin: Wizard Step 5-->
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <!--begin::Title-->
+                                        <div class="pb-10 pb-lg-8">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">Tarife Tercihi</h3><hr class="my-4">
+                                            <div class="text-dark-50 font-weight font-size-h5 mt-5">
+                                                Adresinizde desteklenen altyapıya göre aşağıdaki tarifelerden seçim yapabilirsiniz.
+                                            </div>
+                                        </div>
+                                        <!--end::Title-->
+                                        <!--Tariffs-->
+                                        <div id="customer-tariffs" class="row">
+
+                                        </div>
+                                        <!--Tariffs end-->
+                                        <br>
+                                        <!--end::Stats Widget 4-->
+                                        <!--end::Radio list-->
+
+                                        <div class="pb-10 pb-lg-8">
+                                            <h3 class="font-weight-bolder text-dark-50 font-size-h2">Ürün ve Hizmetler</h3><hr class="my-4">
+                                            <!--begin::Form Group-->
+
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Modem İstiyor musunuz?</label>
+                                                <select name="modem" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="" selected="selected">Hayır</option>
+                                                    <option value="1">Zyxel Modem 200TL(4 Taksit)</option>
+                                                    <option value="2">Zyxel Modem 200TL (1 Taksit)</option>
+                                                </select>
+                                            </div>
 
 
 
-            //< div id = "loading" >
 
-            //    Yükleniyor, Lütfen Bekleyin...
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Statik IP</label>
+                                                <select name="statikip" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6">
+                                                    <option value="" selected="selected">Hayır</option>
+                                                    <option value="1">İstiyorum (Her Ay 15TL)</option>
+                                                </select>
+                                            </div>
+                                            <br>
 
-            //                    </div >
-            //<div id="IDInformation" class="wizard-step">
+                                            <!--begin::Title-->
+                                            <div class="pb-15 pb-lg-4">
+                                                <h3 class="font-weight-bolder text-dark-50 font-size-h2">Varsa Referans Kodu</h3><hr class="my-4">
+                                            </div>
+                                            <!--begin::Title-->
+                                            <div class="form-group">
+                                                <label class="font-size-h6 font-weight-bolder m-2 text-dark">Referans Kodunu Yazınız</label>
+                                                <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" placeholder="Referans Kodu" name="referans" im-insert="true" value="">
+                                            </div>
+                                            <!--begin::Form Group-->
 
-    @*<script>*@
+                                        </div>
 
-        $('#IDCardType').change(function () {
+                                    </div>
+                                    <!--begin: Wizard Step 6-->
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <!--begin::Title-->
+                                        <div class="pb-15 pb-lg-5">
+                                            <h3 class="font-weight-bolder text-dark font-size-h2">Kimlik Bilgileriniz</h3><hr class="my-4">
+                                        </div>
+                                        <!-- card type begin-->
+                                        <div class="form-group fv-plugins-icon-container">
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Tipini Seçiniz</label>
+                                            @Html.DropDownList("idCardType", new SelectList(ViewBag.IDCardTypeList, "Value", "Text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                            <div class="fv-plugins-message-container"></div>
+                                        </div>
+                                        <!-- card type end-->
+                                        <!--begin::Title-->
+                                        <div class="form-group fv-plugins-icon-container">
+                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">T.C Kimlik Numaranız</label>
+                                            <input type="text" class="form-control h-auto p-4 border-0 rounded-lg font-size-h6" name="tcno" placeholder="T.C Kimlik No" id="kt_inputmask_18" im-insert="true" value="">
+                                            <div class="fv-plugins-message-container"></div>
+                                        </div>
+                                        <!--begin::Form Group-->
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <!--begin::Input-->
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Günü</label>
+                                                    <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumgun">
+                                                        <option value="">Gün Seçin</option>
+                                                        @for (int i = 1; i < 32; i++)
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    </select>
+                                                    <div class="fv-plugins-message-container"></div><div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <!--begin::Input-->
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Ayı </label>
+                                                    <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumay">
+                                                        <option value="">Ay Seçin</option>
+                                                        @for (int i = 1; i < 13; i++)
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    </select>
+                                                    <div class="fv-plugins-message-container"></div>
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <!--begin::Input-->
+                                                <div class="form-group fv-plugins-icon-container">
+                                                    <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yılı</label>
+                                                    <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumyili">
+                                                        <option value="">Yıl Seçin</option>
+                                                        @for (int i = DateTime.Now.Year; i > 1900; i--)
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    </select>
+                                                    <div class="fv-plugins-message-container"></div>
+                                                    <div class="fv-plugins-message-container"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pb-0 pb-lg-0">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group fv-plugins-icon-container">
+                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Adı</label>
+                                                        <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="anneadi" placeholder="Anne Adı" value="">
+                                                        <div class="fv-plugins-message-container"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Form Group-->
+                                                <!--begin::Form Group-->
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group fv-plugins-icon-container">
+                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Baba Adı</label>
+                                                        <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="babaadi" placeholder="Baba Adı" value="">
+                                                        <div class="fv-plugins-message-container"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Form Group-->
+                                        <!--begin::Form Group-->
+                                        <div class="pb-0 pb-lg-0">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group fv-plugins-icon-container">
+                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cinsiyet</label>
+                                                        @Html.DropDownList("cinsiyet", new SelectList(ViewBag.SexList, "Value", "Text"), new { @class = "form-control h-auto p-3 border-0 rounded-lg font-size-h6" })
+                                                        <div class="fv-plugins-message-container"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Form Group-->
+                                                <!--begin::Form Group-->
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group fv-plugins-icon-container">
+                                                        <label class="font-size-h6 font-weight-bolder m-2 text-dark">Doğum Yeri</label>
+                                                        <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="dogumyeri" placeholder="Doğum yeri" value="">
+                                                        <div class="fv-plugins-message-container"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pb-0 pb-lg-5">
+                                                <div class="row">
+                                                    <!--end::Form Group-->
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Anne Kızlık Soyadı</label>
+                                                            <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="annekizliksoyad" placeholder="Anne Kızlık Soyadı" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Seri Numarası</label>
+                                                            <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="serino" placeholder="Kimlik Seri No" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!--end::Form Group--> <!--extra parameters-->
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Sıra Numarası</label>
+                                                            <input oninput="ClearValidations($(this));" type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="sirano" placeholder="Sıra Numarası" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Cilt Numarası</label>
+                                                            <input oninput="ClearValidations($(this));" type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="ciltno" placeholder="Cilt Numarası" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!--end::Form Group-->
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Aile Sıra Numarası</label>
+                                                            <input oninput="ClearValidations($(this));" type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="ailesirano" placeholder="Aile Sıra Numarası" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kayıtlı Olduğu İl</label>
+                                                            <input oninput="ClearValidations($(this));" type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="kimlikil" placeholder="Kayıtlı Olduğu İl" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <!--end::Form Group-->
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kayıtlı Olduğu İlçe</label>
+                                                            <input oninput="ClearValidations($(this));" type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="kimlikilce" placeholder="Kayıtlı Olduğu İlçe" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kayıtlı Olduğu Mahalle</label>
+                                                            <input oninput="ClearValidations($(this));" type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="kimlikmahalle" placeholder="Kayıtlı Olduğu Mahalle" value="">
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--extra finish-->
+                                                <!--veriliş tarihi yada son geçerlilik tarihi-->
+                                                <div class="row">
+                                                    <div class="col-xl-4">
+                                                        <!--begin::Input-->
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Veriliş Tarihi (Gün)</label>
+                                                            <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="kimlikgun">
+                                                                <option value="">Gün Seçin</option>
+                                                                @for (int i = 1; i < 32; i++)
+                                                                {
+                                                                    <option value="@i">@i</option>
+                                                                }
+                                                            </select>
+                                                            <div class="fv-plugins-message-container"></div><div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <!--begin::Input-->
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Veriliş Tarihi (Ay)</label>
+                                                            <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="kimlikay">
+                                                                <option value="">Ay Seçin</option>
+                                                                @for (int i = 1; i < 13; i++)
+                                                                {
+                                                                    <option value="@i">@i</option>
+                                                                }
+                                                            </select>
+                                                            <div class="fv-plugins-message-container"></div>
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    <div class="col-xl-4">
+                                                        <!--begin::Input-->
+                                                        <div class="form-group fv-plugins-icon-container">
+                                                            <label class="font-size-h6 font-weight-bolder m-2 text-dark">Kimlik Veriliş Tarihi (Yıl)</label>
+                                                            <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" name="kimlikyil">
+                                                                <option value="">Yıl Seçin</option>
+                                                                @for (int i = DateTime.Now.Year + 11; i > 1900; i--)
+                                                                {
+                                                                    <option value="@i">@i</option>
+                                                                }
+                                                            </select>
+                                                            <div class="fv-plugins-message-container"></div>
+                                                            <div class="fv-plugins-message-container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-            var idCardTypeValue = $('#IDCardType').val();
-            var birthcertificate = $('#IDCardType').closest('div.wizard-step');
+                                    </div>
+                                    <!--end::Form Group-->
+                                    <!--end: Wizard Step 6-->
+                                    <!--begin: Wizard Step 7-->
+                                    <div class="pb-5" data-wizard-type="step-content">
+                                        <!--begin::Title-->
+                                        <div class="pb-10 pb-lg-5">
+                                            <h3 class="font-weight-bolder text-info font-size-h2">Başvuru Özeti</h3>
+                                            <div class="text-muted font-weight-bold font-size-h4">Yaptığınız Başvuru Özeti ve Tercihler!</div><hr class="my-4">
+                                        </div>
+                                        <!--end::Title-->
+                                        <!--begin::Section-->
+                                        <h4 class="font-weight-bolder mb-3">Abone Bilgileri:</h4>
+                                        <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
+                                            <div id="summary-fullname"></div>
+                                            <div id="summary-phoneNo"></div>
+                                            <div id="summary-email"></div>
+                                        </div>
+                                        <!--end::Section-->
+                                        <!--begin::Section-->
+                                        <h4 class="font-weight-bolder mb-3">Bağlantı Yapılacak Adres:</h4>
+                                        <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
+                                            <div id="summary-addressText"></div>
+                                        </div>
+                                        <!--end::Section-->
+                                        <!--begin::Section-->
+                                        <h4 class="font-weight-bolder mb-3">Başvuru Türü:</h4>
+                                        <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
+                                            <div id="summary-applicationType"></div>
+                                            <div id="summary-xdslNo"></div>
+                                            <div id="summary-transferISS"></div>
+                                        </div>
+                                        <!--end::Section-->
+                                        <!--begin::Section-->
+                                        <h4 class="font-weight-bolder mb-3">Tarife ve Tercihler:</h4>
+                                        <div class="text-dark-50 font-weight-bold line-height-lg mb-8">
+                                            <div id="summary-tariffName"></div>
+                                            <div id="summary-modem"></div>
+                                        </div>
+                                        <!--end::Section-->
+                                        <div class="separator separator-dashed my-5"></div>
+                                        <small>Başvurunuz esnasında paylaşacağınız GSM numarası, ad-soyadı, kimlik bilgileriniz hizmet almak istediğiniz adreste mevcut altyapıya uygun Netspeed ürün ve kampanyaları hakkında tarafınıza bilgi verilebilmesi, abonelik başvurunuzun tamamlanabilmesi için tarafınızla iletişime geçilebilmesi ve size doğru şekilde hitap edilebilmesi amaçlarıyla istenmektedir. Bu bilgiler Netspeed İnternet AŞ tarafından işlenecek ve yukarıda belirtilen amaçlar haricinde kullanılmayacaktır. Kişisel Verilerin Korunması Kanunu kapsamında sahip olduğunuz haklarınız ve detaylar için <a href="kvkk" class="text-danger">Kişisel veri aydınlatma metni</a></small>
+                                        <div class="separator separator-dashed my-5"></div>
+                                        <div class="form-group row">
+                                            <div class="col-xl-12 col-lg-8 ">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox">
+                                                        <input name="cccvv" type="checkbox" class="is-invalid">
+                                                        <span></span><a href="https://netspeed.com.tr/sozlesme/basvuruformuvesozlesme.pdf" target="_blank" class="text-primary font-weight-bolder">Abonelik Sözleşmesini Okudum</a>
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input name="cccvv" type="checkbox" class="is-invalid">
+                                                        <span></span>Kişisel Verilerimin İşlenmesine İzin Veriyorum
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end: Wizard Step 7-->
+                                    <!--begin: Wizard Actions-->
+                                    <div class="d-flex justify-content-between pt-3">
+                                        <div class="mr-2">
+                                            <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev">
+                                                <span class="svg-icon svg-icon-md mr-1">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg-->
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                            <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000)" x="14" y="7" width="2" height="10" rx="1"></rect>
+                                                            <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997)"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>Önceki
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-5 pr-8 py-4 my-3" data-wizard-type="action-submit">
+                                                Gönder
+                                                <span class="svg-icon svg-icon-md ml-2">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                            <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1"></rect>
+                                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
+                                                Sonraki
+                                                <span class="svg-icon svg-icon-md ml-1">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg-->
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                                            <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1"></rect>
+                                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div></div><div></div><div></div><div></div><div></div><div></div>
+                                }
+                            </div>
+                            <!--end: Wizard Actions-->
+                        </div>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Content-->
+    <!--begin::Footer-top-->
+    <div class="footer mt-10 py-6 d-flex flex-lg-column" style="background-color: #301065;" id="kt_footer">
+        <!--begin::Container-->
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <!--begin::Copyright-->
+            <div class="text-dark order-2 order-md-1">
+                <span class="text-dark-25 font-weight-bold font-size-h6 font-weight-bold mr-2">Müşteri Destek Hattı  |</span>
+                <a href="tel:08508005800" class="text-dark-25 font-weight-bold font-size-h6 text-hover-warning">0850 800 5 800</a>
+            </div>
+            <!--end::Copyright-->
+            <!--begin::Nav-->
+            <div class="nav nav-dark order-1 mb-2 order-md-2">
+                <span class="text-dark-25 font-weight-bold font-size-h6 font-weight-bold mt-2">Bizi Takip Edin</span>
+                <a href="https://www.facebook.com/netspeedtr" class="btn btn-icon btn-sm btn-white-facebook mr-2"><i class="socicon-facebook text-hover-warning"></i></a>
+                <a href="https://twitter.com/netspeedtr" class="btn btn-icon btn-sm btn-white-twitter mr-2"><i class="socicon-twitter text-hover-warning"></i></a>
+                <a href="https://www.instagram.com/netspeedtr" class="btn btn-icon btn-sm btn-white-instagram mr-2"><i class="socicon-instagram text-hover-warning"></i></a>
+                <a href="https://www.youtube.com/channel/UC_o84M_iunxghaC8zgLuSwA" class="btn btn-icon btn-sm btn-white-youtube mr-2"><i class="socicon-youtube text-hover-warning"></i></a>
 
-            if (idCardTypeValue == 2) {
-                birthcertificate.find('div.birth-certificate').show();
-            }
-            else {
-                birthcertificate.find('div.birth-certificate').hide();
+
+            </div>
+            <!--end::Nav-->
+        </div>
+        <!--end::Container-->
+    </div>
+
+    <!--end::Footer-top-->
+    <!--begin::Footer-->
+    <div class="footer py-4 d-flex flex-lg-column" style="background-color: #1a0340;" id="kt_footer">
+        <!--begin::Container-->
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <!--begin::Copyright-->
+            <div class="text-dark order-2 order-md-2">
+                <span class="text-muted font-weight-bold mr-2">©2020</span>
+                <a href="/" class="mr-0">
+                    <img alt="Netspeed" src="assets/media/logos/bejlogomini.svg" class="max-h-15px mr-3">
+                </a>
+            </div>
+            <!--end::Copyright-->
+            <!--begin::Nav-->
+            <div class="nav nav-dark order-1 order-md-1">
+                <div class="d-flex flex-wrap justify-content-center my-2">
+                    <a href="destek/bizeulasin" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-6">Bize Ulaşın</a>
+                    <a href="destek/hakkimizda" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Hakkımızda</a>
+                    <a href="destek/fatura-odeme" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Fatura Ödeme</a>
+                    <a href="destek/gizlilik" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Gizlilik</a>
+                    <a href="destek/cerez-politikasi" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Çerez Politikası</a>
+                    <a href="destek/kvkk" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Kişisel Verilerin Korunması</a>
+                    <a href="destek/siber-guvenlik" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Siber Güvenlik</a>
+                    <a href="kampanyalar/engelsiz-tarife" class="text-dark-25 text-hover-warning font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">Engelsiz Tarifeler</a>
+
+                </div>
+
+            </div>
+            <!--end::Nav-->
+        </div>
+    </div>
+    <!--end::Container-->
+    <!--end::Footer-->
+    <!--end::Wrapper-->
+    <!--end::Page-->
+    <!--end::Main-->
+    <!--begin::Global Config(global config for global JS scripts)-->
+    <script>var NtsAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#0BB783", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#D7F9EF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+    <!--end::Global Config-->
+    <!--begin::Standart Full(used by all pages)-->
+    <script src="/assets/js/plugins.bundle.js"></script>
+    <script src="/assets/js/prismjs.bundle.js"></script>
+    <script src="/assets/js/scripts.bundle.js"></script>
+    <!--end::Standart Full-->
+    <!--begin::Sayfa Ozel Full-->
+    <!--end::Page Vendors-->
+    <!--begin::Page Scripts(Sayfa Ozel Full)-->
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/assets/js/wizard5-basvur.js"></script>
+    <script src="/assets/js/input-mask.js"></script>
+    <script src="/assets/js/hide-show-fields-form.js"></script>
+    <script src="/assets/js/widgets.js"></script>
+    <script src="/assets/js/cookieconsent.min.js" defer=""></script>
+    <script src="/assets/js/helpbubscript.js"></script>
+    <script src="/Scripts/js/get-infrastructure.js"></script>
+    <script>
+        $('input').on("input", function () {
+            if (!$(this).attr("name").includes("mail")) {
+                $(this).val($(this).val().toLocaleUpperCase());
             }
         });
+        function ClearValidations(selector) {
+            selector.removeClass("is-invalid");
+            selector.parent("div").find(".fv-plugins-message-container").remove();
+        }
+        ChangeIDCardIssueDateType();
+        function ChangeIDCardIssueDateType() {
+            if ($('#idCardType').val() == 2) {
+                $('select[name="kimlikyil"]').prev('label').text("Kimlik Veriliş Tarihi (Yıl)");
+                $('select[name="kimlikay"]').prev('label').text("Kimlik Veriliş Tarihi (Ay)");
+                $('select[name="kimlikgun"]').prev('label').text("Kimlik Veriliş Tarihi (Gün)");
 
-        $('#IDCardType').trigger('change');
+                $('input[name="kimlikil"]').parent("div").parent("div").show();
+                $('input[name="kimlikilce"]').parent("div").parent("div").show();
+                $('input[name="kimlikmahalle"]').parent("div").parent("div").show();
+                $('input[name="ailesirano"]').parent("div").parent("div").show();
+                $('input[name="sirano"]').parent("div").parent("div").show();
+                $('input[name="ciltno"]').parent("div").parent("div").show();
+            } else {
+                $('input[name="kimlikil"]').parent("div").parent("div").hide();
+                $('input[name="kimlikilce"]').parent("div").parent("div").hide();
+                $('input[name="kimlikmahalle"]').parent("div").parent("div").hide();
+                $('input[name="ailesirano"]').parent("div").parent("div").hide();
+                $('input[name="sirano"]').parent("div").parent("div").hide();
+                $('input[name="ciltno"]').parent("div").parent("div").hide();
 
-
-        $('button.inputControlButtonId').click(function () {
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var isValidCertificate = true;
-            var requiredSelects = currentContainer.find('.form-group.is-required').find('select[name]');
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-
-            requiredSelects.each(function () {
-                var currentSelect = $(this);
-                var hasSelectedOption = currentSelect.find('option[value!=""]:selected').length > 0;
-
-                if (!hasSelectedOption) {
-                    isValid = false;
-                    currentSelect.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                else {
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
-
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show(); swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-                }
-                else {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-
-            if ($('div.birth-certificate').is(':visible')) {
-                var clickedButton = $(this);
-                var currentContainer = clickedButton.closest('div.wizard-step');
-                //var isValid = true;
-                //var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-                var requiredBirthCertificateTexts = currentContainer.find('.form-group.is-required-certificate').find('input[name]');
-
-
-                requiredBirthCertificateTexts.each(function () {
-                    var currentInput = $(this);
-                    var hasText = currentInput.val() != "";
-
-                    if (!hasText) {
-                        isValidCertificate = false;
-                        currentInput.closest('.form-group').find('span.required-error-certificate').show();
-                        swal({
-                            title: '',
-                            text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                            icon: 'error',
-                            button: 'Tamam',
-                        })
-                    }
-                    if (hasText) {
-                        isValidCertificate = true;
-                        currentInput.closest('.form-group').find('span.required-error-certificate').hide();
-                    }
-                });
-
+                $('select[name="kimlikyil"]').prev('label').text("Kimlik Geçerlilik Tarihi (Yıl)");
+                $('select[name="kimlikay"]').prev('label').text("Kimlik Geçerlilik Tarihi (Ay)");
+                $('select[name="kimlikgun"]').prev('label').text("Kimlik Geçerlilik Tarihi (Gün)");
             }
-
-
-            if (isValid == true && isValidCertificate==true) {
-                //$('button.inputControlButtonId').hide();
-                 $('div.loadingIDValidation').find('#IDInformation').hide();
-                $('div.loadingIDValidation').find('#loading').show();
-
-
-                //$('#loading').show();
+        }
+        $('#idCardType').change(function () {
+            ChangeIDCardIssueDateType();
+        });
+        //check idcard dates
+        $('select[name="kimlikyil"]').change(function () {
+            CheckDate("kimlikyil", "kimlikay", "kimlikgun");
+        });
+        $('select[name="kimlikay"]').change(function () {
+            CheckDate("kimlikyil", "kimlikay", "kimlikgun");
+        });
+        $('select[name="kimlikgun"]').change(function () {
+            CheckDate("kimlikyil", "kimlikay", "kimlikgun");
+        });
+        //check birth dates
+        $('select[name="dogumgun"]').change(function () {
+            CheckDate("dogumyili", "dogumay", "dogumgun");
+        });
+        $('select[name="dogumay"]').change(function () {
+            CheckDate("dogumyili", "dogumay", "dogumgun");
+        });
+        $('select[name="dogumyili"]').change(function () {
+            CheckDate("dogumyili", "dogumay", "dogumgun");
+        });
+        function CheckDate(yearName, monthName, dayName) {
+            var gun = $('select[name="' + dayName + '"]').val();
+            var ay = $('select[name="' + monthName + '"]').val();
+            var yil = $('select[name="' + yearName + '"]').val();
+            if (gun && ay && yil) {
                 $.ajax({
-
-                url: '@Url.Action("GetIDCardValidation", "Application")',
-                method: 'POST',
-                data: {
-                    IDCardType: $("#IDCardType").val(),
-                    TCKNo: $("#TC").val(),
-                    FirstName: $("#FirstName").val(),
-                    LastName: $("#LastName").val(),
-                    BirthDate: $("#BirthDate").val(),
-                    RegistirationNo: $("#SerialNo").val(),
-
-                    },
-
-                    //beforeSend: function () {
-                    //    //$('#IDInformation').hide();
-                    //    $("#loading").show();
-                    //},
-
-                    complete: function (response, status) {
-                        //$("#loading").hide();
-                        //$('#IDInformation').show();
-                        $('div.loadingIDValidation').find('#loading').hide();
-                        $('div.loadingIDValidation').find('#IDInformation').show();
-                       
-                    if (status == "success") {
-
-                        if (response.responseJSON.isValid) {
-                //            $('#loading').hide();
-                //$('#IDInformation').show();
-                            $('#IDInformation').find('div.required-error-id').hide();
-                            if ($('#IDInformation').is(':visible')) {
-                                $('#IDInformation').hide();
-                                $('#GSMValidation').show();
+                    url: '@Url.Action("DateTimeValidaiton", "Application")',
+                    method: 'POST',
+                    data: { year: yil, month: ay, day: gun },
+                    complete: function (data, status) {
+                        if (status == "success") {
+                            var result = data.responseJSON;
+                            if (!result) {
+                                $('select[name="' + dayName + '"]').val("");
+                                $('select[name="' + monthName + '"]').val("");
+                                $('select[name="' + yearName + '"]').val("");
+                                ShowErrorMessage("Geçersiz tarih formatı. Lütfen geçerli bir tarih seçiniz.");
                             }
                         }
-                        else {
-                            //$('#loading').hide();
-                            //$('#IDInformation').show();
-                            $('#IDInformation').find('div.required-error-id').show();
-
-                        }
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        $('#sehir').change(function () {
+            GetValues('#sehir', '#ilce', '@Url.Action("GetDistricts", "InfrastructureInquiry")');
+        })
+        $('#ilce').change(function () {
+            GetValues('#ilce', '#semt','@Url.Action("GetRegions", "InfrastructureInquiry")');
+        })
+        $('#semt').change(function () {
+            GetValues('#semt', '#mahalle', '@Url.Action("GetNeighborhoods", "InfrastructureInquiry")');
+        })
+        $('#mahalle').change(function () {
+            GetValues('#mahalle', '#sokak','@Url.Action("GetStreets", "InfrastructureInquiry")');
+        })
+        $('#sokak').change(function () {
+            GetValues('#sokak', '#aptbina', '@Url.Action("GetBuildings", "InfrastructureInquiry")');
+        })
+        $('#aptbina').change(function () {
+            GetValues('#aptbina', '#kapino', '@Url.Action("GetApartments", "InfrastructureInquiry")');
+        })
+        $('#kapino').change(function () {
+            $.ajax({
+                url: '@Url.Action("GetAddressText", "Application")',
+                data: { apartmentCode: $(this).val() },
+                method: 'POST',
+                complete: function (data, status) {
+                    if (status == "success") {
+                        $("#address-text").text(data.responseText);
+                    }
+                    else {
+                        $("#address-text").text("-");
                     }
                 }
             })
-                //})
-                //$('#loading').hide();
-                //$('#IDInformation').show();
-
-                //$('button.inputControlButtonId').show();
-            }
         })
-    @*</script>*@
-
-
-
-    //<script>
-        $('button.inputControlTarCon').click(function () {
-            var count = 0;
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var requiredRadioButtons = currentContainer.find('.form-group.is-required').find('input[type=radio]');
-
-            requiredRadioButtons.each(function () {
-                var currentSelect = $(this);
-                var HasRadioButtons = currentSelect.is(':checked');
-                if (HasRadioButtons) {
-                    count = count + 1;
-                }
-
-            });
-            if (count == 1) {
-                requiredRadioButtons.each(function () {
-                    var currentSelect = $(this);
-                    var HasRadioButtons = currentSelect.is(':checked');
-                    currentSelect.closest('.form-group').find('span.required-error').hide();
-                });
-
-                if ($('#InfrastructureAndTariffs').is(':visible')) {
-                    $('#InfrastructureAndTariffs').hide();
-                    $('#ContactInformation').show();
-                }
-            }
-            else {
-
-                requiredRadioButtons.each(function () {
-                    var currentSelect = $(this);
-                    var HasRadioButtons = currentSelect.is(':checked');
-                currentSelect.closest('.form-group').find('span.required-error').show();
-
-
-                });
-
-                isValid = false;
-                //var currentSelect = $(this);
-                //currentSelect.closest('.form-group').find('span.required-error').show();
-                swal({
-                    title: '',
-                    text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                    icon: 'error',
-                    button: 'Tamam',
-                })
-            }
-        })
-    @*</script>
-
-    <script>*@
-        $(function () {
-            $('.datepicker').datepicker({
-                dateFormat: 'dd.mm.yy',
-                changeYear: true,
-                changeMonth: true,
-                dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
-                monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-                monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-                yearRange: "1940:2035",
-               
-            });
-
-        });
-    var input = document.querySelectorAll('.js-date')[0];
-
-    $('.datepicker').on('input', function (e) {
-        var current = $(this);
-        if (e.keyCode < 47 || e.keyCode > 57) {
-            e.preventDefault();
-        }
-
-        current.val(current.val().replace(/[^0-9]/g, ''));
-
-        // If they don't add the slash, do it for them...
-        if (current.val().length > 2) {
-            var currentValue = current.val();
-            if (currentValue[2] != '.')
-                current.val(currentValue.substr(0, 2) + '.' + currentValue.substr(2));
-        }
-
-        // If they don't add the slash, do it for them...
-        if (current.val().length > 5) {
-            var currentValue = current.val();
-            if (currentValue[5] != '.')
-                current.val(currentValue.substr(0, 5) + '.' + currentValue.substr(5));
-        }
-
-        if (current.val().length > 10) {
-            var currentValue = current.val();
-            current.val(currentValue.substr(0, 10));
-        }
-    });
-
-
-
-
-    //$(function () {
-    //    $('.datepickerBirth').datepicker({
-    //        dateFormat: 'dd.mm.yy',
-    //        changeYear: true,
-    //        changeMonth: true,
-    //        dayNamesMin: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cu", "Cmt"],
-    //        monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-    //        monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
-    //        yearRange: "1940:2035",
-
-    //    });
-
-    //});
-    //var input = document.querySelectorAll('.js-date')[0];
-
-    //$('.datepickerBirth').on('input', function (e) {
-    //    var current = $(this);
-    //    if (e.keyCode < 47 || e.keyCode > 57) {
-    //        e.preventDefault();
-    //    }
-
-    //    current.val(current.val().replace(/[^0-9]/g, ''));
-
-    //    // If they don't add the slash, do it for them...
-    //    if (current.val().length > 2) {
-    //        var currentValue = current.val();
-    //        if (currentValue[2] != '.')
-    //            current.val(currentValue.substr(0, 2) + '.' + currentValue.substr(2));
-    //    }
-
-    //    // If they don't add the slash, do it for them...
-    //    if (current.val().length > 5) {
-    //        var currentValue = current.val();
-    //        if (currentValue[5] != '.')
-    //            current.val(currentValue.substr(0, 5) + '.' + currentValue.substr(5));
-    //    }
-
-    //    if (current.val().length > 10) {
-    //        var currentValue = current.val();
-    //        current.val(currentValue.substr(0, 10));
-    //    }
-    //});
-
-
-    @*</script>*@
-
-
-    //<script>
-        $('#ProvinceId').change(function () {
-            GetValues('#ProvinceId', '#DistrictId', '@Url.Action("GetDistricts", "InfrastructureInquiry")');
-        })
-        $('#DistrictId').change(function () {
-            GetValues('#DistrictId', '#RegionId','@Url.Action("GetRegions", "InfrastructureInquiry")');
-        })
-        $('#RegionId').change(function () {
-            GetValues('#RegionId', '#NeighborhoodId', '@Url.Action("GetNeighborhoods", "InfrastructureInquiry")');
-        })
-        $('#NeighborhoodId').change(function () {
-            GetValues('#NeighborhoodId', '#StreetId','@Url.Action("GetStreets", "InfrastructureInquiry")');
-        })
-        $('#StreetId').change(function () {
-            GetValues('#StreetId', '#BuildingId', '@Url.Action("GetBuildings", "InfrastructureInquiry")');
-        })
-        $('#BuildingId').change(function () {
-            GetValues('#BuildingId', '#ApartmentId', '@Url.Action("GetApartments", "InfrastructureInquiry")');
-        })
-        $('#ApartmentId').change(function () {
-        })
-    @*</script>
-
-    <script>*@
-        function PrevButtonInfTariffInfApp() {
-            if ($('#InfrastructureAndTariffs').show()) {
-                $('#InfrastructureAndTariffs').hide();
-                $('#InfrastructureInquiryForApplication').show();
-            }
-        }
-
-        function PrevButtonConInfTariff() {
-            if ($('#ContactInformation').show()) {
-                $('#ContactInformation').hide();
-                $('#InfrastructureAndTariffs').show();
-            }
-        }
-
-        function PrevButtonGSMID() {
-
-            if ($('#GSMValidation').show()) {
-                $('#GSMValidation').hide();
-                $('#IDInformation').show();
-            }
-        }
-
-        function PrevButtonIDCon() {
-            if ($('#IDInformation').show()) {
-
-                //if ($('div.birth-certificate').is(':visible')) {
-                //    var birthcertificate = $('#IDCardType').closest('div.wizard-step');
-                //    birthcertificate.find('div.birth-certificate').show();
-                //}
-                $('#IDInformation').hide();
-                $('#ContactInformation').show();
-            }
-        }
-
-
-    @*</script>
-
-
-    <script>*@
-        $('button.inputGsmButton').click(function () {
-            var clickedButton = $(this);
-            var currentContainer = clickedButton.closest('div.wizard-step');
-            var isValid = true;
-            var requiredTexts = currentContainer.find('.form-group.is-required').find('input[name]');
-
-            requiredTexts.each(function () {
-                var currentInput = $(this);
-                var hasText = currentInput.val() != "";
-
-                if (!hasText) {
-                    isValid = false;
-                    currentInput.closest('.form-group').find('span.required-error').show();
-                    swal({
-                        title: '',
-                        text: 'Hata Bulundu, Lütfen Kontrol Edin',
-                        icon: 'error',
-                        button: 'Tamam',
-                    })
-
-                }
-                else {
-                    currentInput.closest('.form-group').find('span.required-error').hide();
-                }
-            });
-
-            if (isValid == true) {
-                $('#ApplicationForm').submit();
-            }
-
-        })
-    @*</script>
-
-
-    <script>*@
-        $(function () {
-            $('#PhoneNumber').inputmask({ "mask": "(999)-999-9999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-            $('#TC').inputmask({ "mask": "99999999999", 'autoUnmask': true, 'removeMaskOnSubmit': true });
-            $("#Floor").inputmask({ regex: "[0-90-9- ]*" });
-            $("#PostalCode").inputmask({ regex: "[0-90-9- ]*" });
-            $("#FirstName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            $("#LastName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            $("#FatherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            $("#MotherName").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            $("#BirthPlace").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-
-            $("#RowNo").inputmask({ regex: "[0-90-9- ]*" });
-            $("#VolumeNo").inputmask({ regex: "[0-90-9- ]*" });
-            $("#PageNo").inputmask({ regex: "[0-90-9- ]*" });
-            $("#IDCardProvince").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            $("#IDCardDistrict").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            $("#IDCardNeighbourhood").inputmask({ regex: "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-
-            //$("#PlaceOfIssue").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            //$("#MotherFirstSurname").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-            //$("#EmailAddress").inputmask({ "[a-zA-Z-oOÖöüÜİiğĞŞşıIÇç ]*" });
-
-
-        });
-
-
-
-</script>
-
-}
+    </script>
+    <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg>
+</body><!--end::Body-->
+</html>

@@ -19,17 +19,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.184.3.63:5050/MainSiteService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:55311/MainSiteService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MainSiteService.xsd" MetadataType="Schema" ID="f28d2374-e466-439b-bf8f-d570582e61e0" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd2" />
-    <MetadataFile FileName="MainSiteService2.xsd" MetadataType="Schema" ID="7f1d8e5b-001c-4d14-9217-5f121582efd1" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd4" />
-    <MetadataFile FileName="MainSiteService1.xsd" MetadataType="Schema" ID="12da8625-d21c-46a3-ac93-af4e59a7ad48" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd1" />
-    <MetadataFile FileName="MainSiteService.wsdl" MetadataType="Wsdl" ID="d3c92054-aefd-4db9-bf62-bc020a726857" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?wsdl" />
-    <MetadataFile FileName="MainSiteService.disco" MetadataType="Disco" ID="51cd5e4d-53a9-441e-ad85-4a4a14b972dd" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?disco" />
-    <MetadataFile FileName="MainSiteService3.xsd" MetadataType="Schema" ID="1578d6cf-8ec0-4259-bb7e-3e931014f51e" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd3" />
-    <MetadataFile FileName="MainSiteService4.xsd" MetadataType="Schema" ID="8976c129-29f0-4d8d-b005-7fa1a6364f6f" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd0" />
-    <MetadataFile FileName="MainSiteService5.xsd" MetadataType="Schema" ID="b450e38e-9fb5-4dcd-8916-8c126528a6e8" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd5" />
+    <MetadataFile FileName="MainSiteService6.xsd" MetadataType="Schema" ID="9335d79e-7354-46cb-8905-536888f68997" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MainSiteService61.xsd" MetadataType="Schema" ID="f9513005-2876-4c49-a0e1-e70a416cdc9b" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MainSiteService62.xsd" MetadataType="Schema" ID="37f3bcf3-9a7f-4ff4-a2b5-be172605e3a8" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd5" />
+    <MetadataFile FileName="MainSiteService63.xsd" MetadataType="Schema" ID="626825f0-7148-4a23-b48e-ca95fed73920" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd4" />
+    <MetadataFile FileName="MainSiteService1.wsdl" MetadataType="Wsdl" ID="6628195b-27ac-4d98-a0a1-e8f229263a97" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?wsdl" />
+    <MetadataFile FileName="MainSiteService1.disco" MetadataType="Disco" ID="a42d26e6-4fa9-49a2-8454-05fa121a7cc4" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?disco" />
+    <MetadataFile FileName="MainSiteService64.xsd" MetadataType="Schema" ID="f8b8f65a-10a7-47cf-b504-63df640f1877" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MainSiteService65.xsd" MetadataType="Schema" ID="5b78b94e-80fa-468e-8a62-b4c8492f91f2" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

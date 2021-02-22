@@ -72,7 +72,7 @@ namespace NetspeedMainWebsite.Controllers
 
             filterContext.Result = new ViewResult
             {
-                ViewName = "~/Views/Home/Error.cshtml",
+                ViewName = "~/Views/Shared/Error.cshtml",
             };
             filterContext.ExceptionHandled = true;
             logger.Error(filterContext.Exception);

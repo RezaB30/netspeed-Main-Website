@@ -148,12 +148,10 @@ namespace NetspeedMainWebsite.Controllers
         {
             return View();
         }
-
-
         [HttpPost]
-        public ActionResult InfrastructureInquiryResult(InfrastructureInquiryViewModel inf, string apartmentId)
+        public ActionResult InfrastructureInquiryResult(string apartmentId)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(apartmentId))
             {
                 var client = new WebServiceWrapper();
                 //var response = client.ServiceAvailability(apartmentId);
@@ -163,23 +161,14 @@ namespace NetspeedMainWebsite.Controllers
                 WebServiceWrapper clientAddres = new WebServiceWrapper();
                 var getAddress = clientAddres.ServiceAvailability(apartmentId);
 
-                WebServiceWrapper clientTariff = new WebServiceWrapper();
-                var getTariff = clientTariff.GetTariffList();
-
                 var Fiber = getAddress.ServiceAvailabilityResponse.FIBER;
                 var Vdsl = getAddress.ServiceAvailabilityResponse.VDSL;
                 var Adsl = getAddress.ServiceAvailabilityResponse.ADSL;
 
-                if (getAddress.ResponseMessage.ErrorCode == 199)
+                if (getAddress.ResponseMessage.ErrorCode != 0)
                 {
-                    infrastructureLogger.Error($"{getAddress.ResponseMessage.ErrorMessage} - Internal Server Error (ServiceAvailability)");
+                    infrastructureLogger.Error($"{getAddress.ResponseMessage.ErrorMessage} - Error (ServiceAvailability)");
                 }
-
-                if (getTariff.ResponseMessage.ErrorCode == 199)
-                {
-                    tariffLogger.Error($"{getTariff.ResponseMessage.ErrorMessage} - Internal Server Error (GetTariffList)");
-                }
-
                 if (Fiber.HasInfrastructureFiber)
                 {
                     var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
@@ -188,14 +177,6 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.XDSLType = "FİBER";
                     InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
                     InfrastructureResult.SVUID = Fiber.FiberSVUID.ToString();
-
-                    var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasFiber == true).Select(t => new TariffsViewModel
-                    {
-                        TariffID = t.TariffID,
-                        DisplayName = t.DisplayName,
-                        Price = t.Price,
-                        Speed = t.Speed,
-                    });
                 }
                 else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed > Adsl.AdslSpeed)
                 {
@@ -205,14 +186,6 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.XDSLType = "VDSL";
                     InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
                     InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
-
-                    var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
-                    {
-                        TariffID = t.TariffID,
-                        DisplayName = t.DisplayName,
-                        Price = t.Price,
-                        Speed = t.Speed,
-                    });
                 }
                 else if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
                 {
@@ -222,13 +195,6 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.XDSLType = "ADSL";
                     InfrastructureResult.PortState = Adsl.AdslPortState.ToString();
                     InfrastructureResult.SVUID = Adsl.AdslSVUID.ToString();
-                    var TariffItems = getTariff.ExternalTariffList.Where(f => f.HasXDSL == true).Select(t => new TariffsViewModel
-                    {
-                        TariffID = t.TariffID,
-                        DisplayName = t.DisplayName,
-                        Price = t.Price,
-                        Speed = t.Speed,
-                    });
                 }
                 else
                 {
@@ -238,33 +204,10 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.XDSLType = "";
                     InfrastructureResult.PortState = "Yok";
                 }
-
-                return View(InfrastructureResult);
+                Session["InfrastructureResult"] = InfrastructureResult;
+                return RedirectToAction("InfrastructureResult", "Home");
             }
-
-            var responseProvince = new WebServiceWrapper().GetProvinces();
-            var ProvinceList = responseProvince.ValueNamePairList.Select(p => new SelectListItem()
-            {
-                Text = p.Name,
-                Value = p.Code.ToString()
-            });
-
-            ViewBag.ProvinceList = ProvinceList;
-            var DistrictList = new List<SelectListItem>();
-            var RegionList = new List<SelectListItem>();
-            var NeighborhoodList = new List<SelectListItem>();
-            var StreetList = new List<SelectListItem>();
-            var BuildingList = new List<SelectListItem>();
-            var ApartmentList = new List<SelectListItem>();
-
-            ViewBag.DistrictList = DistrictList;
-            ViewBag.RegionList = RegionList;
-            ViewBag.NeighborhoodList = NeighborhoodList;
-            ViewBag.StreetList = StreetList;
-            ViewBag.BuildingList = BuildingList;
-            ViewBag.ApartmentList = ApartmentList;
-
-            return View(viewName: "Index", model: inf);
+            return RedirectToAction("InfrastructureCheck", "Home");
         }
     }
 }
