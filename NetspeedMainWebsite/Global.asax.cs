@@ -29,5 +29,22 @@ namespace NetspeedMainWebsite
            
 
         }
+        //protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        //{
+        //    // This code will mark the __RequestVerificationToken cookie SameSite=Strict 
+        //    if (Request.Cookies.Count > 0)
+        //    {
+        //        foreach (string s in Request.Cookies.AllKeys)
+        //        {
+        //            if (s.ToLower() == "__requestverificationtoken")
+        //            {
+        //                HttpCookie c = Request.Cookies[s];
+        //                c.SameSite = System.Web.SameSiteMode.None;
+        //                c.Secure = false;
+        //                Response.Cookies.Set(c);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

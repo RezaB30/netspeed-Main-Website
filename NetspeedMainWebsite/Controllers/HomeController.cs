@@ -285,9 +285,13 @@ namespace NetspeedMainWebsite.Controllers
             var response = wrapper.RegisterCustomerContact(name, phone);
             if (response.ResponseMessage.ErrorCode == 0)
             {
-                return Json("Talebiniz alındı. En kısa sürede geri dönüş yapacağız.", JsonRequestBehavior.AllowGet);
+                return Json(new { message = "Talebiniz alındı. En kısa sürede geri dönüş yapacağız.", errorCode = "success" }, JsonRequestBehavior.AllowGet);
             }
-            return Json("Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.", JsonRequestBehavior.AllowGet);
+            if (response.ResponseMessage.ErrorCode == 200)
+            {
+                return Json(new { message = response.ResponseMessage.ErrorMessage, errorCode = "error" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { message = "Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.", errorCode = "error" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

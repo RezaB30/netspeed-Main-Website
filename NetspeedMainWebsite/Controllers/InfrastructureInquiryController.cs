@@ -199,7 +199,7 @@ namespace NetspeedMainWebsite.Controllers
                 else
                 {
                     InfrastructureResult.Message = getAddress.ResponseMessage.ErrorMessage;
-                    InfrastructureResult.Distance = "-";
+                    InfrastructureResult.Distance = null;
                     InfrastructureResult.MaxSpeed = "Sorguladığınız haneye ait altyapı bilgisi bulunamadı.";
                     InfrastructureResult.XDSLType = "";
                     InfrastructureResult.PortState = "Yok";

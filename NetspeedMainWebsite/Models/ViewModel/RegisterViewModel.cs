@@ -11,16 +11,17 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string email { get; set; }
-        public int? applicationType { get; set; }
-        public string hizmetnosu { get; set; }
-        public string mevcutoprad { get; set; }
-        public string evtelno { get; set; }
+        public int? applicationType { get; set; } // başvuru tipi
+        public string hizmetnosu { get; set; }  // xdsl no
+        public string mevcutoprad { get; set; } // mevcut operatör adı
+        public string evtelno { get; set; } // pstn no
+        public int? housephone { get; set; }    // ev tel var mı ?
         public string kapino { get; set; }
         public string katno { get; set; }
         public int? postakodu { get; set; }
         public int? tariff { get; set; }
-        public int? modem { get; set; }
-        public int? statikip { get; set; }
+        public int? modem { get; set; } // hangi modemi istiyor
+        public int? statikip { get; set; }  // statik ip
         public string referans { get; set; }
         public int? idCardType { get; set; }
         public string tcno { get; set; }

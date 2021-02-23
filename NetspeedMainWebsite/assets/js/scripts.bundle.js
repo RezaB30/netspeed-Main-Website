@@ -10808,7 +10808,7 @@ var KTLayoutSearch = function () {
                     var url = $(this).attr("target-url");
                     var searchPattern = $(this).attr("target-name").toLocaleLowerCase();
                     if (searchPattern.includes(s)) {
-                        searchArray.push('<a class="font-weight-bold text-dark-50 my-4" style="display:block;" href="' + url + '"> > ' + searchPattern + '</a>');                        
+                        searchArray.push('<a class="font-weight-bold text-dark-50 my-4" style="display:block;" href="' + url + '"> > ' + searchPattern + '</a>');
                     }
                 });
             }
@@ -10950,18 +10950,18 @@ $('.zoom-out').on('click', function () {
 //bizi arayın
 function CallUs() {
     var lname = $('input[name="lname"]').val();
-    var phone = $('input[name="phone"]').val();
+    var phone = $('input[name="phone"]').val().replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
     var isValid = true;
     if (!lname) {
-        $('input[name="lname"]').next("div.fv-plugins-message-container").text("Lütfen Adınızı Soyadınızı Giriniz");
+        $('input[name="lname"]').next("div.fv-plugins-message-container").html('<span class="fv-help-block">Lütfen Adınızı Soyadınızı Giriniz</span>');
         isValid = false;
     }
     if (!phone) {
-        $('input[name="phone"]').next("div.fv-plugins-message-container").text("Lütfen Telefon Numaranızı Giriniz");
+        $('input[name="phone"]').next("div.fv-plugins-message-container").html('<span class="fv-help-block">Lütfen Telefon Numaranızı Giriniz</span>');
         isValid = false;
     } else {
         if (phone.match(/\d/g).length != 10) {
-            $('input[name="phone"]').next("div.fv-plugins-message-container").text("Lütfen Geçerli Bir Telefon Numarası Giriniz");
+            $('input[name="phone"]').next("div.fv-plugins-message-container").html('<span class="fv-help-block">Lütfen Geçerli Bir Telefon Numarası Giriniz</span>');
             isValid = false;
         }
     }
@@ -10973,8 +10973,22 @@ function CallUs() {
             complete: function (data, status) {
                 if (status == "success") {
                     //msg
-                    var message = data.responseJSON;
-                    $('input[name="phone"]').parent("div").append("<div class='text-center h4'>" + message + "</div>");
+                    var result = data.responseJSON;
+                    Swal.fire({
+                        text: result.message,
+                        icon: result.errorCode,
+                        buttonsStyling: false,
+                        confirmButtonText: "Tamam",
+                        customClass: {
+                            confirmButton: "btn font-weight-bold btn-light"
+                        }
+                    }).then(function () {
+                        $('.modal-body.bg-secondary > .form-group.fv-plugins-icon-container > input[name="lname"]').val("");
+                        $('.modal-body.bg-secondary > .form-group.fv-plugins-icon-container > input[name="phone"]').val("");
+                        $('input[name="lname"]').next("div.fv-plugins-message-container").html('');
+                        $('input[name="phone"]').next("div.fv-plugins-message-container").html('');
+                        $('button[data-dismiss="modal"]').trigger("click");
+                    });
                 }
             }
         });
@@ -10982,18 +10996,22 @@ function CallUs() {
 
 }
 // phone number mask - call us
-$('input[name="phone"]').on("input", function (e) {
-    var phoneVal = $(this).val();
-    if (!phoneVal.match(/\d/g)) {
-        $(this).val("");
-    } else {
-        if (phoneVal.match(/\d/g).length != phoneVal.length) {
-            $(this).val(phoneVal.slice(0, phoneVal.length));
-        }
-    }
-    if (phoneVal.length > 10) {
-        $(this).val(phoneVal.slice(0, 10));
-    }
+//$('input[name="phone"]').on("input", function (e) {
+//    var phoneVal = $(this).val();
+//    if (!phoneVal.match(/\d/g)) {
+//        $(this).val("");
+//    } else {
+//        if (phoneVal.match(/\d/g).length != phoneVal.length) {
+//            $(this).val(phoneVal.slice(0, phoneVal.length));
+//        }
+//    }
+//    if (phoneVal.length > 10) {
+//        $(this).val(phoneVal.slice(0, 10));
+//    }
+//});
+// phone number format
+$('input[name="phone"]').inputmask("mask", {
+    "mask": "(999) 999-9999"
 });
 // cookie message remove from screen
 $('.wpcc-compliance > .wpcc-btn').click(function (e) {

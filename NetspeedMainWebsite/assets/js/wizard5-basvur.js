@@ -83,7 +83,57 @@ var KTWizard5 = function () {
                             wizard.goTo(wizard.getNewStep()); // next step
                         }
                         if (curFields.sehir && curFields.ilce && curFields.hizmetnosu) { // başvuru bilgileri
-                            GetTariffsPrefers(wizard);
+                            var registerStepCount = 0;
+                            ClearValidations($('input[name="evtelno"]'));
+                            ClearValidations($('input[name="hizmetnosu"]'));
+                            ClearValidations($('input[name="mevcutoprad"]'));
+                            if ($('#housephone').val() == 2) {
+                                if (!$('input[name="evtelno"]').val()) {
+                                    registerStepCount++;                                    
+                                    $('input[name="evtelno"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="evtelno" data-validator="notEmpty" class="fv-help-block">' + 'Ev Telefon Numarası Zorunludur' + '</div></div>');
+                                    $('input[name="evtelno"]').addClass("is-invalid");
+                                } else {
+                                    var _tempEvTelNo = $('input[name="evtelno"]').val().replace("(", "").replace(")", "").replace(" ", "").replace("-", "").replace("_","");
+                                    if (_tempEvTelNo.length != 10) {
+                                        registerStepCount++;
+                                        $('input[name="evtelno"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="evtelno" data-validator="notEmpty" class="fv-help-block">' + 'Lütfen Geçerli Telefon Numarası Giriniz' + '</div></div>');
+                                        $('input[name="evtelno"]').addClass("is-invalid");
+                                    }
+                                }
+                            }
+                            if ($('select[name="applicationType"]').val() == 2) {
+                                if (!$('input[name="hizmetnosu"]').val()) {
+                                    registerStepCount++;                                    
+                                    $('input[name="hizmetnosu"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="hizmetnosu" data-validator="notEmpty" class="fv-help-block">' + 'Hizmet Numarası Zorunludur' + '</div></div>');
+                                    $('input[name="hizmetnosu"]').addClass("is-invalid");
+                                } else {
+                                    if ($('input[name="hizmetnosu"]').val().replace("_","").length != 10) {
+                                        registerStepCount++;
+                                        $('input[name="hizmetnosu"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="hizmetnosu" data-validator="notEmpty" class="fv-help-block">' + 'Lütfen Geçerli Hizmet Numarası Giriniz' + '</div></div>');
+                                        $('input[name="hizmetnosu"]').addClass("is-invalid");
+                                    }
+                                }
+                                if (!$('input[name="mevcutoprad"]').val()) {
+                                    registerStepCount++;                                    
+                                    $('input[name="mevcutoprad"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="mevcutoprad" data-validator="notEmpty" class="fv-help-block">' + 'Operatör Adı Zorunludur' + '</div></div>');
+                                    $('input[name="mevcutoprad"]').addClass("is-invalid");
+                                }
+                            }
+                            if (registerStepCount != 0) {
+                                Swal.fire({
+                                    text: "Hata Bulundu, Lütfen kontrol edin",
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Tamam",
+                                    customClass: {
+                                        confirmButton: "btn font-weight-bold btn-light"
+                                    }
+                                }).then(function () {
+                                    KTUtil.scrollTop();
+                                });
+                            } else {
+                                GetTariffsPrefers(wizard);
+                            }
                         }
                         if (curFields.xstatikip && curFields.xphone && curFields.xemail && curFields.tariff) { // tarife ve tercihler
                             CheckTariffsPrefers(wizard);
@@ -648,7 +698,7 @@ function SendValidationSMS(wizard) {
                 }
                 else {
                     wizard.goTo(wizard.getNewStep()); // next step
-                }                
+                }
             } else {
                 ShowErrorMessage("Bir hata oluştu. Daha sonra tekrar deneyiniz.");
             }

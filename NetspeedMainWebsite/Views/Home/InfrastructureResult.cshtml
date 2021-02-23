@@ -1144,7 +1144,16 @@
                                                     <a href="#" class="text-white">Santral/Saha Dolabı Tahmini Mesafe</a>
                                                 </h3>
                                                 <div class="header-top">
-                                                    <div class="text-warning font-weight-bolder font-size-h1 font-size-h2 mb-9 animate__animated animate__fadeIn animate__delay-1s">@Html.DisplayFor(m => m.Distance) Metre</div>
+                                                    <div class="text-warning font-weight-bolder font-size-h1 font-size-h2 mb-9 animate__animated animate__fadeIn animate__delay-1s">
+                                                        @if (string.IsNullOrEmpty(Model.Distance))
+                                                        {
+                                                            @: -
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.DisplayFor(m => m.Distance) @: Metre
+                                                        }
+                                                    </div>
 
                                                     <h3 class="font-weight-bolder font-size-h3 mb-3 ">
                                                         <a href="#" class="text-white">Port Durumu</a>
