@@ -745,6 +745,9 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
         private NetspeedMainWebsite.MainSiteServiceReference.CustomerGeneralInfo CustomerGeneralInfoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NetspeedMainWebsite.MainSiteServiceReference.ExtraInfo ExtraInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NetspeedMainWebsite.MainSiteServiceReference.IDCardInfo IDCardInfoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -785,6 +788,19 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.CustomerGeneralInfoField, value) != true)) {
                     this.CustomerGeneralInfoField = value;
                     this.RaisePropertyChanged("CustomerGeneralInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NetspeedMainWebsite.MainSiteServiceReference.ExtraInfo ExtraInfo {
+            get {
+                return this.ExtraInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExtraInfoField, value) != true)) {
+                    this.ExtraInfoField = value;
+                    this.RaisePropertyChanged("ExtraInfo");
                 }
             }
         }
@@ -1186,6 +1202,131 @@ namespace NetspeedMainWebsite.MainSiteServiceReference {
                 if ((object.ReferenceEquals(this.OtherPhoneNosField, value) != true)) {
                     this.OtherPhoneNosField = value;
                     this.RaisePropertyChanged("OtherPhoneNos");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExtraInfo", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests")]
+    [System.SerializableAttribute()]
+    public partial class ExtraInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ApplicationTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ChurnOperatorNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PSTNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StaticIPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> WantModemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string XDSLNoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ApplicationType {
+            get {
+                return this.ApplicationTypeField;
+            }
+            set {
+                if ((this.ApplicationTypeField.Equals(value) != true)) {
+                    this.ApplicationTypeField = value;
+                    this.RaisePropertyChanged("ApplicationType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ChurnOperatorName {
+            get {
+                return this.ChurnOperatorNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ChurnOperatorNameField, value) != true)) {
+                    this.ChurnOperatorNameField = value;
+                    this.RaisePropertyChanged("ChurnOperatorName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PSTN {
+            get {
+                return this.PSTNField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PSTNField, value) != true)) {
+                    this.PSTNField = value;
+                    this.RaisePropertyChanged("PSTN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StaticIP {
+            get {
+                return this.StaticIPField;
+            }
+            set {
+                if ((this.StaticIPField.Equals(value) != true)) {
+                    this.StaticIPField = value;
+                    this.RaisePropertyChanged("StaticIP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> WantModem {
+            get {
+                return this.WantModemField;
+            }
+            set {
+                if ((this.WantModemField.Equals(value) != true)) {
+                    this.WantModemField = value;
+                    this.RaisePropertyChanged("WantModem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string XDSLNo {
+            get {
+                return this.XDSLNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.XDSLNoField, value) != true)) {
+                    this.XDSLNoField = value;
+                    this.RaisePropertyChanged("XDSLNo");
                 }
             }
         }

@@ -1343,10 +1343,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <!--end::Form Group-->
                                         <!--begin::Form Group-->
-
                                         <div class="form-group">
                                             <label class="font-size-h6 font-weight-bolder m-2 text-dark">Ev Telefonunuz Var mı?</label>
                                             <select class="form-control h-auto p-3 border-0 rounded-lg font-size-h6" id="housephone" name="housephone">
@@ -1361,14 +1359,11 @@
                                                 <div class="col-lg-6 col-md-6">
                                                     <label for="totherField1" class="font-size-h6 font-weight-bolder m-2 text-dark">Ev Telefon Numaranız</label>
                                                     <input type="text" class="form-control h-auto p-3 border-0 rounded-lg font-size-h6 w-100" placeholder="Ev Telefon No" name="evtelno" id="kt_inputmask_14" im-insert="true">
-
-
                                                 </div>
 
                                             </div>
                                         </div>
                                         <!--begin::Form Group-->
-
                                         <div class="separator separator-dashed my-3"></div>
                                         <div class="pb-10 pb-lg-5">
                                             <h3 class="font-weight-bolder text-dark-50 font-size-h2">Adres Bilgileriniz</h3><hr class="my-4">
@@ -1541,7 +1536,7 @@
                                     <div class="pb-5" data-wizard-type="step-content">
                                         <!--begin::Title-->
                                         <div class="pb-15 pb-lg-5">
-                                            <h3 class="font-weight-bolder text-dark font-size-h2">Kimlik Bilgileriniz</h3><hr class="my-4">
+                                            <h3 id="id-card-info" class="font-weight-bolder text-dark font-size-h2">Kimlik Bilgileriniz</h3><hr class="my-4">
                                         </div>
                                         <!-- card type begin-->
                                         <div class="form-group fv-plugins-icon-container">
@@ -1970,6 +1965,19 @@
     <script src="/assets/js/helpbubscript.js"></script>
     <script src="/Scripts/js/get-infrastructure.js"></script>
     <script>
+        //for id-card-info
+        $('input[name="firstname"]').on("change", function () {
+            var firstname = $(this).val();
+            var lastname = $('input[name="lastname"]').val();
+            var val = firstname + " " + lastname;
+            $('#id-card-info').text("Kimlik Bilgileriniz (" + val + ")");
+        });
+        $('input[name="lastname"]').on("change", function () {
+            var lastname = $(this).val();
+            var firstname = $('input[name="firstname"]').val();
+            var val = firstname + " " + lastname;
+            $('#id-card-info').text("Kimlik Bilgileriniz (" + val + ")");
+        });
         $('input').on("input", function () {
             if (!$(this).attr("name").includes("mail")) {
                 $(this).val($(this).val().toLocaleUpperCase());

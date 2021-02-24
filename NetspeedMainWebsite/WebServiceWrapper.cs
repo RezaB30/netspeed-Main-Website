@@ -225,7 +225,7 @@ namespace NetspeedMainWebsite
             string BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, string DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
             string Culture, string Email, string ReferenceCode, int? TariffId,
-            string RowNo, string VolumeNo, string PageNo, string IDCardProvince, string IDCardDistrict, string IDCardNeighbourhood)
+            string RowNo, string VolumeNo, string PageNo, string IDCardProvince, string IDCardDistrict, string IDCardNeighbourhood ,string ChurnOperatorName, bool? HasHousephone, string PSTN , string XDSLNo , int? ApplicationType)
         {
             UpdateRandom();
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()
@@ -236,6 +236,13 @@ namespace NetspeedMainWebsite
                 Culture = Culture,
                 CustomerRegisterParameters = new NewCustomerRegisterRequest()
                 {
+                    ExtraInfo = new ExtraInfo()
+                    {
+                        ApplicationType = ApplicationType,
+                        ChurnOperatorName = ChurnOperatorName,
+                        PSTN = HasHousephone == true ? PSTN : null,
+                        XDSLNo = ApplicationType == (int)Enums.ApplicationTypes.Churn ? XDSLNo : null
+                    },
                     SubscriptionInfo = new SubscriptionRegistrationInfo()
                     {
                         ReferralDiscountInfo = new ReferralDiscountInfo()

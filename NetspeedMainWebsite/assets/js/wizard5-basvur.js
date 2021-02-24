@@ -352,8 +352,9 @@ var KTWizard5 = function () {
                             notEmpty: {
                                 message: 'E-Posta Gerekli'
                             },
-                            emailAddress: {
-                                message: 'Lütfen geçerli bir e-posta yazınız'
+                            regexp: {
+                                regexp: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                message:'Lütfen geçerli bir e-posta yazınız'
                             }
                         }
 

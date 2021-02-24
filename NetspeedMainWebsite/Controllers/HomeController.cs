@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.Caching;
@@ -44,6 +45,16 @@ namespace NetspeedMainWebsite.Controllers
                 var bills = (Models.ViewModel.BillInfoViewModel[])Session["BillList"];
                 Session.Remove("BillList");
                 return View($"~/Views/Home/SupportParts/fatura-odeme-sonuc.cshtml", bills);
+            }
+            if (title == "fatura-odeme-toplam")
+            {
+                if (Session["HtmlForm"] == null || Session["TotalCount"] == null || Session["IsPaid"] == null)
+                {
+                    Session.Remove("HtmlForm");
+                    Session.Remove("TotalCount");                    
+                    return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
+                }
+                Session.Remove("IsPaid");
             }
             return View($"~/Views/Home/SupportParts/{title}.cshtml");
         }
@@ -161,6 +172,19 @@ namespace NetspeedMainWebsite.Controllers
             return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Payment()
+        {
+            if (Session["HtmlForm"] == null)
+            {
+                return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
+            }
+            var htmlForm = Session["HtmlForm"] as string;
+            Session.Remove("HtmlForm");
+            Session.Remove("TotalCount");
+            return Content(htmlForm);
+        }
+        [HttpPost]
         public ActionResult PayBills(long[] selectedBills)
         {
             if (selectedBills == null || selectedBills.Count() == 0)
@@ -208,8 +232,18 @@ namespace NetspeedMainWebsite.Controllers
                             Url.Action("PaymentConfirm", "Home", new { id = Key }, Request.Url.Scheme));
                         if (payResult.ResponseMessage.ErrorCode == 0)
                         {
+                            var billsTotal = bills.Where(b => customerBills.Contains(b.BillId)).Select(b => b.Total).ToArray();
+                            double total = 0;
+                            foreach (var item in billsTotal)
+                            {
+                                total += Double.Parse(item, CultureInfo.InvariantCulture);
+                            }
+                            Session["TotalCount"] = total;
                             var htmlForm = payResult.PaymentVPOSResponse.HtmlForm;
-                            return Content(htmlForm);
+                            Session["htmlForm"] = htmlForm;
+                            Session["IsPaid"] = true;
+                            return RedirectToAction("Support", "Home", new { title = "fatura-odeme-toplam" });
+                            //return Content(htmlForm);
                         }
                         TempData["errorMessage"] = payResult.ResponseMessage.ErrorMessage;
                         Session["BillList"] = bills;

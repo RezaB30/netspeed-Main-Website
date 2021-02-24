@@ -136,7 +136,12 @@ namespace NetspeedMainWebsite.Controllers
                 register.idCardType == (int)IDCardTypes.TCIDCardWithChip ? null : register.ailesirano,
                 register.idCardType == (int)IDCardTypes.TCIDCardWithChip ? null : register.kimlikil,
                 register.idCardType == (int)IDCardTypes.TCIDCardWithChip ? null : register.kimlikilce,
-                register.idCardType == (int)IDCardTypes.TCIDCardWithChip ? null : register.kimlikmahalle
+                register.idCardType == (int)IDCardTypes.TCIDCardWithChip ? null : register.kimlikmahalle,
+                register.mevcutoprad,
+                register.housephone == 2 ? true : false,
+                register.evtelno.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "").Replace("_", ""),
+                register.hizmetnosu,
+                register.applicationType
                 );
 
             if (response.ResponseMessage.ErrorCode == 0)
