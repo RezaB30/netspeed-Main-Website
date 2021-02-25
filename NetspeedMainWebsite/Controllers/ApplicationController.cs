@@ -83,6 +83,7 @@ namespace NetspeedMainWebsite.Controllers
             }
             DateTime birthDate;
             DateTime IDCardDate;
+            register.kimlikyil = (IDCardTypes)register.idCardType == IDCardTypes.TCIDCardWithChip ? register.kimlikyil - 10 : register.kimlikyil;
             DateTime.TryParse($"{register.dogumyili}-{register.dogumay}-{register.dogumgun}", out birthDate);
             DateTime.TryParse($"{register.kimlikyil}-{register.kimlikay}-{register.kimlikgun}", out IDCardDate);
             var wrapper = new WebServiceWrapper();
@@ -121,7 +122,7 @@ namespace NetspeedMainWebsite.Controllers
                 register.kimlikil, // verildiği yer olacak
                 DateUtilities.ConvertToWebServiceDate(IDCardDate),
                 null,
-                register.gsmno.Replace("(","").Replace(")","").Replace(" ","").Replace("-","").Replace("_",""),
+                register.gsmno.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "").Replace("_", ""),
                 "tr-tr",
                 register.email,
                 register.referans,
@@ -139,7 +140,7 @@ namespace NetspeedMainWebsite.Controllers
                 register.hizmetnosu,
                 register.applicationType
                 );
-            applicationLogger.Error(response.ResponseMessage.ErrorMessage);
+            applicationLogger.Error($"Customer Name : {register.firstname} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 return Json(new { message = "Başvurunuz başarıyla alındı.", errorCode = 0 }, JsonRequestBehavior.AllowGet);
@@ -161,6 +162,7 @@ namespace NetspeedMainWebsite.Controllers
                 {
                     var wrapper = new WebServiceWrapper();
                     var response = wrapper.SendGenericSMS(phoneNo);
+                    applicationLogger.Error($"Customer Phone No : {phoneNo} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
                     if (response.ResponseMessage.ErrorCode == 0)
                     {
                         Session["validationSMS"] = response.SMSCode;
@@ -181,7 +183,7 @@ namespace NetspeedMainWebsite.Controllers
             var getsmsCode = Session["validationSMS"] == null ? null : Session["validationSMS"] as string;
             if (getsmsCode == smsCode)
             {
-                Session.Remove("validationSMS");                
+                Session.Remove("validationSMS");
                 return Json("success", JsonRequestBehavior.AllowGet);
             }
             var smsCount = Session["smsCount"] == null ? 0 : (int)Session["smsCount"];
@@ -201,11 +203,13 @@ namespace NetspeedMainWebsite.Controllers
             var response = availability.ServiceAvailability(apartmentCode);
             if (response.ResponseMessage.ErrorCode != 0)
             {
+                applicationLogger.Error($"Apartment Code : {apartmentCode} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
                 return Content("error");
             }
             var responseTariffs = new WebServiceWrapper().GetTariffList();
             if (responseTariffs.ResponseMessage.ErrorCode != 0)
             {
+                applicationLogger.Error($"Apartment Code : {apartmentCode} - result : {responseTariffs.ResponseMessage.ErrorMessage} | Code : {responseTariffs.ResponseMessage.ErrorCode}");
                 return Content("error");
             }
             if (response.ServiceAvailabilityResponse.FIBER.HasInfrastructureFiber)
@@ -267,8 +271,10 @@ namespace NetspeedMainWebsite.Controllers
                 {
                     return Json("success", JsonRequestBehavior.AllowGet);
                 }
+                applicationLogger.Error($"Customer Info : {tckNo} {firstName} {lastName} | result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
             }
+            applicationLogger.Error($"BirthDate Error | Customer Info : {tckNo} {firstName} {lastName} ");
             return Json("error", JsonRequestBehavior.AllowGet);
-        }     
+        }
     }
 }

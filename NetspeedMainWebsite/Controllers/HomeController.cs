@@ -10,12 +10,16 @@ using System.Web;
 using System.Web.Mvc;
 using NetspeedMainWebsite.MainSiteServiceReference;
 using NetspeedMainWebsite.Models.ViewModel;
+using NLog;
 using RezaB.Mailing;
 
 namespace NetspeedMainWebsite.Controllers
 {
     public class HomeController : BaseController
     {
+        Logger genericLogger = LogManager.GetLogger("generic");
+        Logger paymentLogger = LogManager.GetLogger("payments");
+        Logger unpaidLogger = LogManager.GetLogger("unpaid");
         public ActionResult Index()
         {
             return View();
@@ -51,7 +55,7 @@ namespace NetspeedMainWebsite.Controllers
                 if (Session["HtmlForm"] == null || Session["TotalCount"] == null || Session["IsPaid"] == null)
                 {
                     Session.Remove("HtmlForm");
-                    Session.Remove("TotalCount");                    
+                    Session.Remove("TotalCount");
                     return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
                 }
                 Session.Remove("IsPaid");
@@ -245,6 +249,7 @@ namespace NetspeedMainWebsite.Controllers
                             return RedirectToAction("Support", "Home", new { title = "fatura-odeme-toplam" });
                             //return Content(htmlForm);
                         }
+                        unpaidLogger.Error($"VPOS service error | Bills : {string.Join(",", customerBills.ToArray())} ");
                         TempData["errorMessage"] = payResult.ResponseMessage.ErrorMessage;
                         Session["BillList"] = bills;
                         return RedirectToAction("Support", "Home", new { title = "fatura-odeme-sonuc" });
@@ -262,12 +267,13 @@ namespace NetspeedMainWebsite.Controllers
 
             WebServiceWrapper clientsPayBills = new WebServiceWrapper();
             var response = clientsPayBills.PayBills(billIds);
-
+            
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 // log
                 return RedirectToAction("Support", "Home", new { title = "odeme-tamam" });
             }
+            unpaidLogger.Error($"Error Payment | Bill ids : {string.Join(",", billIds)}");
             // log fail
             MemoryCache.Default.Remove(id);
             return RedirectToAction("Support", "Home", new { title = "odeme-tamam" });
