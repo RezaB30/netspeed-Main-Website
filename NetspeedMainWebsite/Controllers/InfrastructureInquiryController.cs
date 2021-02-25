@@ -47,7 +47,6 @@ namespace NetspeedMainWebsite.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult GetDistricts(long code)
         {
             var result = addressUtil.GetProvinceDistricts(code);

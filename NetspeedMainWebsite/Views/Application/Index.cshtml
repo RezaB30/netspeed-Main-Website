@@ -1035,10 +1035,6 @@
         </div>
     </div>
 
-
-
-
-
     <!--end::Header Menu Wrapper-->
     <!--end::Section-->
     <!--begin::Content-->
@@ -1210,8 +1206,7 @@
                             <div class="d-flex justify-content-center flex-row-fluid ">
                                 @using (Ajax.BeginForm("Index", "Application", new AjaxOptions { HttpMethod = "POST", OnComplete = "RegisterResult" }, new { @class = "pb-5 w-100 w-md-450px w-lg-500px fv-plugins-bootstrap fv-plugins-framework", @novalidate = "novalidate", @id = "kt_form", @dataform = "register" }))
                                 {
-                                    <!--begin: Wizard Step 1-->
-                                    @Html.AntiForgeryToken()
+                                    <!--begin: Wizard Step 1-->                                   
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                         <!--begin::Title-->
                                         <div class="pb-10 pb-lg-15">

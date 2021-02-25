@@ -16,10 +16,7 @@ namespace NetspeedMainWebsite.Controllers
     [Route("{action=Index}")]
     public class ApplicationController : BaseController
     {
-        //Logger applicationLogger = LogManager.GetLogger("applications");
-
-        //Logger countdownLogger = LogManager.GetLogger("countdown");
-
+        Logger applicationLogger = LogManager.GetLogger("applications");
         public ActionResult Index()
         {
             var responseIDCard = new WebServiceWrapper().GetIDCardTypes();
@@ -73,8 +70,7 @@ namespace NetspeedMainWebsite.Controllers
 
             return View();
         }
-        //news
-        [ValidateAntiForgeryToken]
+        //news        
         [HttpPost]
         public ActionResult Index(Models.ViewModel.RegisterViewModel register)
         {
@@ -143,7 +139,7 @@ namespace NetspeedMainWebsite.Controllers
                 register.hizmetnosu,
                 register.applicationType
                 );
-
+            applicationLogger.Error(response.ResponseMessage.ErrorMessage);
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 return Json(new { message = "Başvurunuz başarıyla alındı.", errorCode = 0 }, JsonRequestBehavior.AllowGet);
