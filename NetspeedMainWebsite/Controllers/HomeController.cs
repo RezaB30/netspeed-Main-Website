@@ -27,7 +27,7 @@ namespace NetspeedMainWebsite.Controllers
         [Route("giris")]
         public ActionResult RedirectCustomerServiceSite()
         {
-            return Redirect("https://online.netspeed.com.tr");
+            return Redirect("https://onlinebeta.netspeed.com.tr");
         }
         [Route("destek/{title?}")]
         public ActionResult Support(string title)
@@ -59,6 +59,16 @@ namespace NetspeedMainWebsite.Controllers
                     return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
                 }
                 Session.Remove("IsPaid");
+            }
+            if (title == "tesekkurederiz")
+            {
+                var successfullRegister = (bool?)Session["successfullregister"];
+                if (successfullRegister != null && successfullRegister == true)
+                {
+                    Session.Remove("successfullregister");
+                    return View($"~/Views/Home/SupportParts/{title}.cshtml");
+                }
+                return RedirectToAction("Index", "Home");
             }
             return View($"~/Views/Home/SupportParts/{title}.cshtml");
         }
@@ -267,7 +277,7 @@ namespace NetspeedMainWebsite.Controllers
 
             WebServiceWrapper clientsPayBills = new WebServiceWrapper();
             var response = clientsPayBills.PayBills(billIds);
-            
+
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 // log
@@ -288,7 +298,7 @@ namespace NetspeedMainWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ContactForm(ContactViewModel contact)
         {
-            var mailClient = new RezaB.Mailing.Client.MailClient(Properties.Settings.Default.MailHostName, Properties.Settings.Default.MailHostPort, Properties.Settings.Default.MailUseSSL, Properties.Settings.Default.MailUserName, Properties.Settings.Default.MailPassword);
+            var mailClient = new RezaB.Mailing.Client.MailClient(Properties.Settings.Default.MailHostName, Properties.Settings.Default.MailHostPort, Properties.Settings.Default.MailUseSSL, Properties.Settings.Default.MailUsernameNetspeed, Properties.Settings.Default.MailPasswordNetspeed);
 
             var ContactList = new List<ContactViewModel>();
             if (ModelState.IsValid)
@@ -303,12 +313,12 @@ namespace NetspeedMainWebsite.Controllers
 
                 var body = string.Join("\n", new[] { "Ad Soyad:", contact.FullName, "Telefon Numarası:", contact.PhoneNumber, "E-Posta Adresi:", contact.EmailAddress, "Mesaj:", contact.Message });
 
-                string[] mailTo = { Properties.Settings.Default.MailUserName };
+                string[] mailTo = { Properties.Settings.Default.MailReceiverNetspeed };
                 string[] mailCc = null;
                 string[] mailBc = null;
                 IEnumerable<MailFileAttachment> mailAttachment = Enumerable.Empty<MailFileAttachment>();
 
-                var mailMessage = new StandardMailMessage(new MailAddress(mailClient.Username, "Netspeed Contact Form"), mailTo, mailCc, mailBc, "Müşteri İletişim Formu", body, null, mailAttachment);
+                var mailMessage = new StandardMailMessage(new MailAddress(Properties.Settings.Default.MailDisplayEmail, Properties.Settings.Default.MailDisplayName), mailTo, mailCc, mailBc, "Müşteri İletişim Formu", body, null, mailAttachment);
 
                 mailClient.SendMail(mailMessage);
                 ModelState.AddModelError("resultMessage", "Mesajınız İletilmiştir. En Kısa Sürede Size Dönüş Yapılacaktır.");

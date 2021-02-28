@@ -34,15 +34,6 @@ namespace NetspeedMainWebsite.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FQgb65L0")]
-        public string MailPassword {
-            get {
-                return ((string)(this["MailPassword"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool MailUseSSL {
             get {
@@ -65,15 +56,6 @@ namespace NetspeedMainWebsite.Properties {
         public string MailHostName {
             get {
                 return ((string)(this["MailHostName"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("elif.findik@netspeed.com.tr")]
-        public string MailUserName {
-            get {
-                return ((string)(this["MailUserName"]));
             }
         }
         
@@ -124,7 +106,7 @@ namespace NetspeedMainWebsite.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("no-reply@netspeed.com.tr")]
+        [global::System.Configuration.DefaultSettingValueAttribute("sozlesmetest@netspeed.com.tr")]
         public string MailUsernameNetspeed {
             get {
                 return ((string)(this["MailUsernameNetspeed"]));
@@ -146,6 +128,24 @@ namespace NetspeedMainWebsite.Properties {
         public string MailPasswordNetspeed {
             get {
                 return ((string)(this["MailPasswordNetspeed"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("noreply@netspeed.com.tr")]
+        public string MailDisplayEmail {
+            get {
+                return ((string)(this["MailDisplayEmail"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Netspeed Beni Ara Talebi")]
+        public string MailDisplayName {
+            get {
+                return ((string)(this["MailDisplayName"]));
             }
         }
     }

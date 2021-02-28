@@ -1,4 +1,4 @@
-﻿@model NetspeedMainWebsite.Models.ViewModel.ContactViewModel
+﻿@model NetspeedMainWebsite.Models.ViewModel.ContactViewModel 
 
 <html lang="tr">
 <!--begin::Head-->
@@ -39,9 +39,9 @@
 
             <!--begin::Nav-->
             <div class="nav nav-dark order-1 order-md-1">
-                <div class="d-flex flex-wrap justify-content-center my-2">
+                <div class="d-flex justify-content-center my-2">
                     <a href="#" class="text-dark-25 font-size-sm text-hover-info mr-lg-8 mr-5 mb-lg-0 mb-6">Bireysel</a>
-                    <a href="#" class="text-dark-50 font-size-sm text-hover-info mr-lg-8 mr-5 mb-lg-0 mb-2">Kurumsal</a>
+                    <a href="kampanyalar" class="text-dark-50 font-size-sm text-hover-info mr-lg-8 mr-5 mb-lg-0 mb-2">İşiniz İçin</a>
                 </div>
             </div>
             <!--end::Nav-->
@@ -402,6 +402,10 @@
                         <div class="alert-text">Eğer abonemiz iseniz daha hızlı işleme alınabilmesi için Online İşlem Merkezi üzerinden Destek Kaydı oluşturmanızı öneririz.</div>
 
                     </div>
+                     @if (Html.ValidationMessage("resultMessage") != null)
+                    {
+                        <div style="color:green; border:1px solid; padding:0.5em;" class="h5 text-center">@Html.ValidationMessage("resultMessage")</div>
+                    }
                     <!--begin::Input-->
                     <div class="form-group">
                         <label class="font-size-h6 font-weight-bolder m-2 text-dark">Adınız Soyadınız</label>
@@ -431,10 +435,7 @@
                         <div style="color:red;" class="fv-plugins-message-container">@Html.ValidationMessageFor(m => m.Message)</div>
                     </div>
                     <!--end::Input-->
-                    @if (Html.ValidationMessage("resultMessage") != null)
-                    {
-                        <div style="color:green; border:1px solid; padding:0.5em;" class="h3 text-center">@Html.ValidationMessage("resultMessage")</div>
-                    }
+                   
                 </div>
                 <div class="col-xl-3"></div>
             </div>
@@ -488,7 +489,7 @@
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
             <!--begin::Copyright-->
             <div class="text-dark order-2 order-md-2">
-                <span class="text-muted font-weight-bold mr-2">©2020</span>
+                <span class="text-muted font-weight-bold mr-2">©2021</span>
                 <a href="/" class="mr-0">
                     <img alt="Netspeed" src="assets/media/logos/bejlogomini.svg" class="max-h-15px mr-3">
                 </a>

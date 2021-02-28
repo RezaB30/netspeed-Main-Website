@@ -275,7 +275,6 @@
     <Content Include="assets\js\widgets.js" />
     <Content Include="assets\js\wizard5-altyapi.js" />
     <Content Include="assets\js\wizard5-basvur.js" />
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.disco" />
     <Content Include="assets\media\bg\10now-bg.jpg" />
     <Content Include="assets\media\bg\11-3.svg" />
     <Content Include="assets\media\bg\111.jpg" />
@@ -774,6 +773,7 @@
     <Content Include="assets\media\svg\humans\login-visual-3.svg" />
     <Content Include="assets\media\svg\humans\new-1.svg" />
     <Content Include="assets\media\svg\humans\NOWTV_Family_Content.jpg" />
+    <Content Include="assets\media\svg\icons\Check.svg" />
     <Content Include="assets\media\svg\icons\Clothes\Brassiere.svg" />
     <Content Include="assets\media\svg\icons\Clothes\Briefcase.svg" />
     <Content Include="assets\media\svg\icons\Clothes\Cap.svg" />
@@ -1694,6 +1694,9 @@
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceIDCardValidationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericValidateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.wsdl" />
     <None Include="Connected Services\MainSiteServiceReference\MainSiteService6.xsd">
       <SubType>Designer</SubType>
@@ -1713,9 +1716,6 @@
     <None Include="Connected Services\MainSiteServiceReference\MainSiteService65.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericValidateResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -1852,6 +1852,9 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Home\_Tariffs.cshtml" />
     <Content Include="Views\Home\SupportParts\fatura-odeme-toplam.cshtml" />
+    <Content Include="Views\Home\SpecialOfferParts\fiber-superfast-35-kampanyasi.cshtml" />
+    <Content Include="Views\Home\SpecialOfferParts\fiber-ultrafast-75-kampanyasi.cshtml" />
+    <Content Include="Views\Home\SupportParts\tesekkurederiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -101,21 +101,21 @@ jQuery(document).ready(function () {
     KTInputmask.init();
 });
 
-$('.form-control.h-auto.border-0.py-7.px-1.font-size-h6').keypress(function (e) {   // search
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        // code for enter
-        var s = $('.form-control.h-auto.border-0.py-7.px-1.font-size-h6').val().toLocaleLowerCase();
-        if (s) {
-            $('.card-header').each(function (e) {
-                var url = $(this).attr("target-url");
-                var searchPattern = $(this).attr("target-name").toLocaleLowerCase();
-                if (searchPattern.includes(s)) {
-                    var addUrl = '<a href="' + url + '" class="btn btn-sm btn-info font-weight-bold mr-2 my-4 btn-pill">fatura ödeme</a>';
-                    //$('#find-url').append(addUrl);
-                    window.location.href = url;
-                }
-            });
-        }
-    }
-});
+//$('.form-control.h-auto.border-0.py-7.px-1.font-size-h6').keypress(function (e) {   // search
+//    if (e.key === 'Enter') {
+//        e.preventDefault();
+//        // code for enter
+//        var s = $('.form-control.h-auto.border-0.py-7.px-1.font-size-h6').val().toLocaleLowerCase();
+//        if (s) {
+//            $('.card-header').each(function (e) {
+//                var url = $(this).attr("target-url");
+//                var searchPattern = $(this).attr("target-name").toLocaleLowerCase();
+//                if (searchPattern.includes(s)) {
+//                    var addUrl = '<a href="' + url + '" class="btn btn-sm btn-info font-weight-bold mr-2 my-4 btn-pill">fatura ödeme</a>';
+//                    //$('#find-url').append(addUrl);
+//                    window.location.href = url;
+//                }
+//            });
+//        }
+//    }
+//});

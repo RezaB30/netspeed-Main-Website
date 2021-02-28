@@ -136,13 +136,14 @@ namespace NetspeedMainWebsite.Controllers
                 register.idCardType == (int)IDCardTypes.TCIDCardWithChip ? null : register.kimlikmahalle,
                 register.mevcutoprad,
                 register.housephone == 2 ? true : false,
-                register.evtelno.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "").Replace("_", ""),
+                string.IsNullOrEmpty(register.evtelno) ? null : register.evtelno.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "").Replace("_", ""),
                 register.hizmetnosu,
                 register.applicationType
                 );
             applicationLogger.Error($"Customer Name : {register.firstname} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
             if (response.ResponseMessage.ErrorCode == 0)
             {
+                Session["successfullregister"] = true;
                 return Json(new { message = "Başvurunuz başarıyla alındı.", errorCode = 0 }, JsonRequestBehavior.AllowGet);
             }
             if (response.ResponseMessage.ErrorCode == 7)
@@ -201,6 +202,8 @@ namespace NetspeedMainWebsite.Controllers
         {
             var availability = new WebServiceWrapper();
             var response = availability.ServiceAvailability(apartmentCode);
+
+            var speedResult = "0 MBPS";
             if (response.ResponseMessage.ErrorCode != 0)
             {
                 applicationLogger.Error($"Apartment Code : {apartmentCode} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
@@ -214,22 +217,36 @@ namespace NetspeedMainWebsite.Controllers
             }
             if (response.ServiceAvailabilityResponse.FIBER.HasInfrastructureFiber)
             {
+                var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FIBER.FiberSpeed.Value) * 1024, true);
+                speedResult = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
                 var getTariffs = responseTariffs.ExternalTariffList?.Where(ext => ext.HasFiber).Select(ext => new Models.ViewModel.TariffsViewModel()
                 {
                     DisplayName = ext.DisplayName,
                     TariffID = ext.TariffID,
                     Price = ext.Price,
-                    Speed = ext.Speed
+                    Speed = ext.Speed,
+                    DefaultSpeed = speedResult
                 });
                 return PartialView("~/Views/Home/_Tariffs.cshtml", getTariffs);
             }
             {
+                if (response.ServiceAvailabilityResponse.VDSL.HasInfrastructureVdsl && response.ServiceAvailabilityResponse.VDSL.VdslSpeed > response.ServiceAvailabilityResponse.ADSL.AdslSpeed)
+                {
+                    var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.VDSL.VdslSpeed.Value) * 1024, true);
+                    speedResult = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
+                }
+                else if (response.ServiceAvailabilityResponse.ADSL.HasInfrastructureAdsl && response.ServiceAvailabilityResponse.ADSL.AdslSpeed > response.ServiceAvailabilityResponse.VDSL.VdslSpeed)
+                {
+                    var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.ADSL.AdslSpeed.Value) * 1024, true);
+                    speedResult = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
+                }
                 var getTariffs = responseTariffs.ExternalTariffList?.Where(ext => ext.HasXDSL).Select(ext => new Models.ViewModel.TariffsViewModel()
                 {
                     DisplayName = ext.DisplayName,
                     TariffID = ext.TariffID,
                     Price = ext.Price,
-                    Speed = ext.Speed
+                    Speed = ext.Speed,
+                    DefaultSpeed = speedResult
                 });
                 return PartialView("~/Views/Home/_Tariffs.cshtml", getTariffs);
             }

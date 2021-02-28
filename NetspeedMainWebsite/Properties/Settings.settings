@@ -5,9 +5,6 @@
     <Setting Name="oimUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">online.netspeed.com.tr</Value>
     </Setting>
-    <Setting Name="MailPassword" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">FQgb65L0</Value>
-    </Setting>
     <Setting Name="MailUseSSL" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -16,9 +13,6 @@
     </Setting>
     <Setting Name="MailHostName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">mail.netspeed.com.tr</Value>
-    </Setting>
-    <Setting Name="MailUserName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">elif.findik@netspeed.com.tr</Value>
     </Setting>
     <Setting Name="WebServiceUsername" Type="System.String" Scope="Application">
       <Value Profile="(Default)">testwebservice</Value>
@@ -36,13 +30,19 @@
       <Value Profile="(Default)">6LemlQwaAAAAAFqlAuPzuuBF-gF0HrNBeelSS2xJ</Value>
     </Setting>
     <Setting Name="MailUsernameNetspeed" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">no-reply@netspeed.com.tr</Value>
+      <Value Profile="(Default)">sozlesmetest@netspeed.com.tr</Value>
     </Setting>
     <Setting Name="MailReceiverNetspeed" Type="System.String" Scope="Application">
       <Value Profile="(Default)">beniara@netspeed.com.tr</Value>
     </Setting>
     <Setting Name="MailPasswordNetspeed" Type="System.String" Scope="Application">
       <Value Profile="(Default)">JUpc47E0</Value>
+    </Setting>
+    <Setting Name="MailDisplayEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">noreply@netspeed.com.tr</Value>
+    </Setting>
+    <Setting Name="MailDisplayName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Netspeed Beni Ara Talebi</Value>
     </Setting>
   </Settings>
 </SettingsFile>

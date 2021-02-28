@@ -13,6 +13,7 @@ namespace NetspeedMainWebsite.Models.ViewModel
         public string DisplayName { get; set; }
         public string Speed { get; set; }
         public decimal Price { get; set; }
+        public string DefaultSpeed { get; set; }
     }
     public class InfrastructureTariffViewModel
     {        

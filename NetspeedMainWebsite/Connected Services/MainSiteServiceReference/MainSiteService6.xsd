@@ -1,42 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="anyType" nillable="true" type="xs:anyType" />
-  <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
-  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
-  <xs:element name="boolean" nillable="true" type="xs:boolean" />
-  <xs:element name="byte" nillable="true" type="xs:byte" />
-  <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
-  <xs:element name="decimal" nillable="true" type="xs:decimal" />
-  <xs:element name="double" nillable="true" type="xs:double" />
-  <xs:element name="float" nillable="true" type="xs:float" />
-  <xs:element name="int" nillable="true" type="xs:int" />
-  <xs:element name="long" nillable="true" type="xs:long" />
-  <xs:element name="QName" nillable="true" type="xs:QName" />
-  <xs:element name="short" nillable="true" type="xs:short" />
-  <xs:element name="string" nillable="true" type="xs:string" />
-  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
-  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
-  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
-  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
-  <xs:element name="char" nillable="true" type="tns:char" />
-  <xs:simpleType name="char">
-    <xs:restriction base="xs:int" />
-  </xs:simpleType>
-  <xs:element name="duration" nillable="true" type="tns:duration" />
-  <xs:simpleType name="duration">
-    <xs:restriction base="xs:duration">
-      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
-      <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
-      <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="guid" nillable="true" type="tns:guid" />
-  <xs:simpleType name="guid">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:attribute name="FactoryType" type="xs:QName" />
-  <xs:attribute name="Id" type="xs:ID" />
-  <xs:attribute name="Ref" type="xs:IDREF" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" />
+  <xs:import schemaLocation="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="NetspeedServiceCustomerContactRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q1:BaseRequestOfCustomerContactRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerContactParameters" nillable="true" type="tns:CustomerContactRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceCustomerContactRequest" nillable="true" type="tns:NetspeedServiceCustomerContactRequest" />
+  <xs:complexType name="CustomerContactRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactRequest" nillable="true" type="tns:CustomerContactRequest" />
+  <xs:complexType name="NetspeedServiceServiceAvailabilityRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q2:BaseRequestOfServiceAvailabilityRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ServiceAvailabilityParameters" nillable="true" type="tns:ServiceAvailabilityRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceServiceAvailabilityRequest" nillable="true" type="tns:NetspeedServiceServiceAvailabilityRequest" />
+  <xs:complexType name="ServiceAvailabilityRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bbk" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceAvailabilityRequest" nillable="true" type="tns:ServiceAvailabilityRequest" />
+  <xs:complexType name="NetspeedServiceRequests">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q3:BaseRequestOfSHA1o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceRequests" nillable="true" type="tns:NetspeedServiceRequests" />
+  <xs:complexType name="NetspeedServiceArrayListRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q4:BaseRequestOfNullableOflongSHA1qBRhzOKh">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ItemCode" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceArrayListRequest" nillable="true" type="tns:NetspeedServiceArrayListRequest" />
+  <xs:complexType name="NetspeedServiceAddressDetailsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q5:BaseRequestOfNullableOflongSHA1qBRhzOKh">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BBK" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceAddressDetailsRequest" nillable="true" type="tns:NetspeedServiceAddressDetailsRequest" />
+  <xs:complexType name="NetspeedServiceSubscriberGetBillsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q6:BaseRequestOfSubscriberGetBillsRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GetBillParameters" nillable="true" type="tns:SubscriberGetBillsRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceSubscriberGetBillsRequest" nillable="true" type="tns:NetspeedServiceSubscriberGetBillsRequest" />
+  <xs:complexType name="SubscriberGetBillsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCKOrSubscriberNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriberGetBillsRequest" nillable="true" type="tns:SubscriberGetBillsRequest" />
+  <xs:complexType name="NetspeedServicePaymentVPOSRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q7:BaseRequestOfPaymentVPOSRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PaymentVPOSParameters" nillable="true" type="tns:PaymentVPOSRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServicePaymentVPOSRequest" nillable="true" type="tns:NetspeedServicePaymentVPOSRequest" />
+  <xs:complexType name="PaymentVPOSRequest">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BillIds" nillable="true" type="q8:ArrayOflong" />
+      <xs:element minOccurs="0" name="FailUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OkUrl" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentVPOSRequest" nillable="true" type="tns:PaymentVPOSRequest" />
+  <xs:complexType name="NetspeedServicePayBillsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q9:BaseRequestOfArrayOflongSHA1PGu3YCeQ">
+        <xs:sequence>
+          <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PayBillsParameters" nillable="true" type="q10:ArrayOflong" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServicePayBillsRequest" nillable="true" type="tns:NetspeedServicePayBillsRequest" />
+  <xs:complexType name="NetspeedServiceNewCustomerRegisterRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseRequestOfNewCustomerRegisterRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerRegisterParameters" nillable="true" type="tns:NewCustomerRegisterRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceNewCustomerRegisterRequest" nillable="true" type="tns:NetspeedServiceNewCustomerRegisterRequest" />
+  <xs:complexType name="NewCustomerRegisterRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CorporateCustomerInfo" nillable="true" type="tns:CorporateCustomerInfo" />
+      <xs:element minOccurs="0" name="CustomerGeneralInfo" nillable="true" type="tns:CustomerGeneralInfo" />
+      <xs:element minOccurs="0" name="ExtraInfo" nillable="true" type="tns:ExtraInfo" />
+      <xs:element minOccurs="0" name="IDCardInfo" nillable="true" type="tns:IDCardInfo" />
+      <xs:element minOccurs="0" name="IndividualCustomerInfo" nillable="true" type="tns:IndividualCustomerInfo" />
+      <xs:element minOccurs="0" name="SubscriptionInfo" nillable="true" type="tns:SubscriptionRegistrationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NewCustomerRegisterRequest" nillable="true" type="tns:NewCustomerRegisterRequest" />
+  <xs:complexType name="CorporateCustomerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CentralSystemNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyAddress" nillable="true" type="tns:AddressInfo" />
+      <xs:element minOccurs="0" name="ExecutiveBirthPlace" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExecutiveFathersName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExecutiveMothersMaidenName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExecutiveMothersName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExecutiveNationality" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ExecutiveProfession" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ExecutiveResidencyAddress" nillable="true" type="tns:AddressInfo" />
+      <xs:element minOccurs="0" name="ExecutiveSex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxOffice" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TradeRegistrationNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CorporateCustomerInfo" nillable="true" type="tns:CorporateCustomerInfo" />
+  <xs:complexType name="AddressInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressNo" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="AddressText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApartmentID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ApartmentNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DistrictID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DistrictName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DoorID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="DoorNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Floor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NeighbourhoodID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="NeighbourhoodName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProvinceID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ProvinceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RuralCode" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="StreetID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="StreetName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddressInfo" nillable="true" type="tns:AddressInfo" />
+  <xs:complexType name="CustomerGeneralInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillingAddress" nillable="true" type="tns:AddressInfo" />
+      <xs:element minOccurs="0" name="ContactPhoneNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Culture" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherPhoneNos" nillable="true" type="tns:ArrayOfPhoneNoListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGeneralInfo" nillable="true" type="tns:CustomerGeneralInfo" />
+  <xs:complexType name="ArrayOfPhoneNoListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhoneNoListItem" nillable="true" type="tns:PhoneNoListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPhoneNoListItem" nillable="true" type="tns:ArrayOfPhoneNoListItem" />
+  <xs:complexType name="PhoneNoListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PhoneNoListItem" nillable="true" type="tns:PhoneNoListItem" />
+  <xs:complexType name="ExtraInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ChurnOperatorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PSTN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaticIP" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WantModem" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="XDSLNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExtraInfo" nillable="true" type="tns:ExtraInfo" />
+  <xs:complexType name="IDCardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DateOfIssue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="District" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Neighbourhood" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PageNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PassportNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaceOfIssue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RowNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SerialNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCKNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VolumeNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IDCardInfo" nillable="true" type="tns:IDCardInfo" />
+  <xs:complexType name="IndividualCustomerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthPlace" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FathersName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MothersMaidenName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MothersName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Profession" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ResidencyAddress" nillable="true" type="tns:AddressInfo" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IndividualCustomerInfo" nillable="true" type="tns:IndividualCustomerInfo" />
+  <xs:complexType name="SubscriptionRegistrationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReferralDiscountInfo" nillable="true" type="tns:ReferralDiscountInfo" />
+      <xs:element minOccurs="0" name="ServiceID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SetupAddress" nillable="true" type="tns:AddressInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriptionRegistrationInfo" nillable="true" type="tns:SubscriptionRegistrationInfo" />
+  <xs:complexType name="ReferralDiscountInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReferenceNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReferralDiscountInfo" nillable="true" type="tns:ReferralDiscountInfo" />
+  <xs:complexType name="NetspeedServiceSendGenericSMSRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseRequestOfSendGenericSMSRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SendGenericSMSParameters" nillable="true" type="tns:SendGenericSMSRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceSendGenericSMSRequest" nillable="true" type="tns:NetspeedServiceSendGenericSMSRequest" />
+  <xs:complexType name="SendGenericSMSRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerPhoneNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SendGenericSMSRequest" nillable="true" type="tns:SendGenericSMSRequest" />
+  <xs:complexType name="NetspeedServiceExternalTariffRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseRequestOfSHA1o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceExternalTariffRequest" nillable="true" type="tns:NetspeedServiceExternalTariffRequest" />
+  <xs:complexType name="NetspeedServiceGenericAppSettingsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q14:BaseRequestOfSHA1o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceGenericAppSettingsRequest" nillable="true" type="tns:NetspeedServiceGenericAppSettingsRequest" />
+  <xs:complexType name="NetspeedServiceIDCardValidationRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q15:BaseRequestOfIDCardValidationRequestSHA13jWQyVaD">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IDCardValidationRequest" nillable="true" type="tns:IDCardValidationRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceIDCardValidationRequest" nillable="true" type="tns:NetspeedServiceIDCardValidationRequest" />
+  <xs:complexType name="IDCardValidationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDCardType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistirationNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCKNo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IDCardValidationRequest" nillable="true" type="tns:IDCardValidationRequest" />
+  <xs:complexType name="NetspeedServiceCheckRegisteredCustomerRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q16:BaseRequestOfstringSHA1Miy85_SUl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PhoneNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NetspeedServiceCheckRegisteredCustomerRequest" nillable="true" type="tns:NetspeedServiceCheckRegisteredCustomerRequest" />
 </xs:schema>

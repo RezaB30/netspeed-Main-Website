@@ -19,17 +19,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:55311/MainSiteService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.184.3.63:5050/MainSiteService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MainSiteService6.xsd" MetadataType="Schema" ID="9335d79e-7354-46cb-8905-536888f68997" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd1" />
-    <MetadataFile FileName="MainSiteService61.xsd" MetadataType="Schema" ID="f9513005-2876-4c49-a0e1-e70a416cdc9b" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd3" />
-    <MetadataFile FileName="MainSiteService62.xsd" MetadataType="Schema" ID="37f3bcf3-9a7f-4ff4-a2b5-be172605e3a8" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd5" />
-    <MetadataFile FileName="MainSiteService63.xsd" MetadataType="Schema" ID="626825f0-7148-4a23-b48e-ca95fed73920" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd4" />
-    <MetadataFile FileName="MainSiteService1.wsdl" MetadataType="Wsdl" ID="6628195b-27ac-4d98-a0a1-e8f229263a97" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?wsdl" />
-    <MetadataFile FileName="MainSiteService1.disco" MetadataType="Disco" ID="a42d26e6-4fa9-49a2-8454-05fa121a7cc4" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?disco" />
-    <MetadataFile FileName="MainSiteService64.xsd" MetadataType="Schema" ID="f8b8f65a-10a7-47cf-b504-63df640f1877" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd0" />
-    <MetadataFile FileName="MainSiteService65.xsd" MetadataType="Schema" ID="5b78b94e-80fa-468e-8a62-b4c8492f91f2" SourceId="1" SourceUrl="http://localhost:55311/MainSiteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MainSiteService6.xsd" MetadataType="Schema" ID="3e5171aa-434f-4430-94a6-b65bc0e461af" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MainSiteService61.xsd" MetadataType="Schema" ID="30d08313-bdde-468b-8968-66d9af075cba" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MainSiteService1.wsdl" MetadataType="Wsdl" ID="f741f79e-0df5-4950-bf68-9841bc996df5" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?wsdl" />
+    <MetadataFile FileName="MainSiteService62.xsd" MetadataType="Schema" ID="ccf523c6-2565-4e38-a7fe-bd627db4bae1" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd4" />
+    <MetadataFile FileName="MainSiteService63.xsd" MetadataType="Schema" ID="9d236acf-681f-4240-a7f1-5cdfae7177bf" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MainSiteService64.xsd" MetadataType="Schema" ID="13c5e378-b452-4869-aefa-568dd309b102" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MainSiteService65.xsd" MetadataType="Schema" ID="a69c594a-eb79-48c1-8865-a185755c004f" SourceId="1" SourceUrl="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd5" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

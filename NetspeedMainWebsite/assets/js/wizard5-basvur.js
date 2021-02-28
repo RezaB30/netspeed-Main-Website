@@ -242,17 +242,18 @@ var KTWizard5 = function () {
         if (status == "success") {
             var result = data.responseJSON;
             if (result.errorCode == 0) {
-                Swal.fire({
-                    text: result.message,
-                    icon: "success",
-                    buttonsStyling: false,
-                    confirmButtonText: "Tamam",
-                    customClass: {
-                        confirmButton: "btn font-weight-bold btn-light"
-                    }
-                }).then(function () {
-                    window.location.href = "/";
-                });
+                //Swal.fire({
+                //    text: result.message,
+                //    icon: "success",
+                //    buttonsStyling: false,
+                //    confirmButtonText: "Tamam",
+                //    customClass: {
+                //        confirmButton: "btn font-weight-bold btn-light"
+                //    }
+                //}).then(function () {
+                //    window.location.href = "/";
+                //});
+                window.location.href = '/destek/tesekkurederiz';
             } else {
                 ShowErrorMessage(result.message);
             }
@@ -716,7 +717,7 @@ function CheckSMSCode(wizard) {
             if (status == "success") {
                 var response = data.responseJSON;
                 if (response.includes("error")) {
-                    ShowErrorMessage("Doğrulama kodu hatalı. Lütfen tekrar deneyiniz" + response);
+                    ShowErrorMessage("Doğrulama kodu hatalı. Lütfen tekrar deneyiniz");
                 } else {
                     if (response == "failed") {
                         window.location.reload();
@@ -731,7 +732,7 @@ function CheckSMSCode(wizard) {
     });
 }
 function GetTariffsPrefers(wizard) {
-    var apartmentCode = $('input[name="kapino"]').val();
+    var apartmentCode = $('select[name="kapino"]').val();
     $.ajax({
         url: '/basvur/GetTariffs',
         method: 'POST',
