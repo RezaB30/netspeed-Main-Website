@@ -176,7 +176,7 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
                     InfrastructureResult.SVUID = Fiber.FiberSVUID.ToString();
                 }
-                else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed > Adsl.AdslSpeed)
+                else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed != null && Vdsl.VdslSpeed > 24000)
                 {
                     var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
                     InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
@@ -185,7 +185,7 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
                     InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
                 }
-                else if (Adsl.HasInfrastructureAdsl && Adsl.AdslSpeed > Vdsl.VdslSpeed)
+                else if (Adsl.HasInfrastructureAdsl)
                 {
                     var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
                     InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
