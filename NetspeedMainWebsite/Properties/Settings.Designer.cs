@@ -25,7 +25,7 @@ namespace NetspeedMainWebsite.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("online.netspeed.com.tr")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://online.netspeed.com.tr")]
         public string oimUrl {
             get {
                 return ((string)(this["oimUrl"]));
@@ -146,6 +146,26 @@ namespace NetspeedMainWebsite.Properties {
         public string MailDisplayName {
             get {
                 return ((string)(this["MailDisplayName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<span style=\'color:green;\' class=\'h4\'>Ödenmemiş faturanız bulunmamaktadır.</span>" +
+            "")]
+        public string UnpaidBillsNotFoundMessage {
+            get {
+                return ((string)(this["UnpaidBillsNotFoundMessage"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<span style=\'color:red;\' class=\'h4\'>Aboneliğiniz bu işlem için uygun değil. Onlin" +
+            "e işlem merkezi üzerinden ödemenizi yapabilirsiniz.</span>")]
+        public string BillHaveMoreSubscriptionMessage {
+            get {
+                return ((string)(this["BillHaveMoreSubscriptionMessage"]));
             }
         }
     }

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="oimUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">online.netspeed.com.tr</Value>
+      <Value Profile="(Default)">https://online.netspeed.com.tr</Value>
     </Setting>
     <Setting Name="MailUseSSL" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
@@ -43,6 +43,12 @@
     </Setting>
     <Setting Name="MailDisplayName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Netspeed Beni Ara Talebi</Value>
+    </Setting>
+    <Setting Name="UnpaidBillsNotFoundMessage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;span style='color:green;' class='h4'&gt;Ödenmemiş faturanız bulunmamaktadır.&lt;/span&gt;</Value>
+    </Setting>
+    <Setting Name="BillHaveMoreSubscriptionMessage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;span style='color:red;' class='h4'&gt;Aboneliğiniz bu işlem için uygun değil. Online işlem merkezi üzerinden ödemenizi yapabilirsiniz.&lt;/span&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

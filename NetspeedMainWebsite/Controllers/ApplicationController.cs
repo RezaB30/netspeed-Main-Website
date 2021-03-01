@@ -195,7 +195,7 @@ namespace NetspeedMainWebsite.Controllers
                 return Json("failed", JsonRequestBehavior.AllowGet);
             }
             Session["smsCount"] = smsCount + 1;
-            return Json($"error : code -> {getsmsCode}", JsonRequestBehavior.AllowGet);
+            return Json($"error", JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult GetTariffs(string apartmentCode)

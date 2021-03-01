@@ -158,16 +158,15 @@ namespace NetspeedMainWebsite.Controllers
                 InfrastructureInquiryResultViewModel InfrastructureResult = new InfrastructureInquiryResultViewModel();
 
                 WebServiceWrapper clientAddres = new WebServiceWrapper();
-                var getAddress = clientAddres.ServiceAvailability(apartmentId);
-
-                var Fiber = getAddress.ServiceAvailabilityResponse.FIBER;
-                var Vdsl = getAddress.ServiceAvailabilityResponse.VDSL;
-                var Adsl = getAddress.ServiceAvailabilityResponse.ADSL;
+                var getAddress = clientAddres.ServiceAvailability(apartmentId);                
 
                 if (getAddress.ResponseMessage.ErrorCode != 0)
                 {
                     infrastructureLogger.Error($"{getAddress.ResponseMessage.ErrorMessage} - Error (ServiceAvailability)");
                 }
+                var Fiber = getAddress.ServiceAvailabilityResponse.FIBER;
+                var Vdsl = getAddress.ServiceAvailabilityResponse.VDSL;
+                var Adsl = getAddress.ServiceAvailabilityResponse.ADSL;
                 if (Fiber.HasInfrastructureFiber)
                 {
                     var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);

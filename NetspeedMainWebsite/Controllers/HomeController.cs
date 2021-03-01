@@ -27,7 +27,7 @@ namespace NetspeedMainWebsite.Controllers
         [Route("giris")]
         public ActionResult RedirectCustomerServiceSite()
         {
-            return Redirect("https://onlinebeta.netspeed.com.tr");
+            return Redirect(Properties.Settings.Default.oimUrl);
         }
         [Route("destek/{title?}")]
         public ActionResult Support(string title)
@@ -177,11 +177,11 @@ namespace NetspeedMainWebsite.Controllers
             }
             if (response.ResponseMessage.ErrorCode == 4)
             {
-                TempData["gsmNoError"] = "<span style='color:red;' class='h4'>Ödenmemiş faturanız bulunmamaktadır.</span>";
+                TempData["gsmNoError"] = Properties.Settings.Default.UnpaidBillsNotFoundMessage;
             }
             if (response.ResponseMessage.ErrorCode == 5)
             {
-                TempData["gsmNoError"] = "<span style='color:red;' class='h4'>Aboneliğiniz bu işlem için uygun değil. Online işlem merkezi üzerinden ödemenizi yapabilirsiniz.</span>";
+                TempData["gsmNoError"] = Properties.Settings.Default.BillHaveMoreSubscriptionMessage;
             }
             return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
         }
@@ -281,15 +281,18 @@ namespace NetspeedMainWebsite.Controllers
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 // log
+                paymentLogger.Info($"Payment successfull {string.Join(",", billIds)}");
                 return RedirectToAction("Support", "Home", new { title = "odeme-tamam" });
             }
-            unpaidLogger.Error($"Error Payment | Bill ids : {string.Join(",", billIds)}");
+            unpaidLogger.Error($"Error Payment. Error Message : {response.PayBillsResponse.PaymentResponse} | Bill ids : {string.Join(",", billIds)}");
             // log fail
             MemoryCache.Default.Remove(id);
             return RedirectToAction("Support", "Home", new { title = "odeme-tamam" });
         }
         public ActionResult PaymentFail(string id)
         {
+            var billIds = MemoryCache.Default.Get(id) as long[];
+            unpaidLogger.Error($"Error Payment. | Bill ids : {string.Join(",", billIds)}");
             MemoryCache.Default.Remove(id);
             TempData["pay-generic-error"] = "Ödeme işlemi başarısız. Tekrar deneyiniz.";
             return RedirectToAction("Support", "Home", new { title = "fatura-odeme" });
