@@ -112,6 +112,7 @@ namespace NetspeedMainWebsite.Controllers
                 return RedirectToAction("InfrastructureCheck", "Home");
             }
             var infrastructureResult = (Models.ViewModel.InfrastructureInquiryResultViewModel)Session["InfrastructureResult"];
+            Session["CallUsBBK"] = infrastructureResult.BBK;
             Session.Remove("InfrastructureResult");
             return View(infrastructureResult);
         }
@@ -332,9 +333,15 @@ namespace NetspeedMainWebsite.Controllers
             return RedirectToAction("Support", "Home", new { title = "iletisimformu" });
         }
         [HttpPost]
-        public ActionResult CallUs(string name, string phone)
+        public ActionResult CallUs(string name, string phone, bool? isBBK)
         {
             WebServiceWrapper wrapper = new WebServiceWrapper();
+            if (isBBK == true)
+            {
+                var bbk = Session["CallUsBBK"] as string;
+                Session.Remove("CallUsBBK");
+                phone = $"{phone}{Environment.NewLine}BBK : {bbk}";
+            }            
             var response = wrapper.RegisterCustomerContact(name, phone);
             if (response.ResponseMessage.ErrorCode == 0)
             {

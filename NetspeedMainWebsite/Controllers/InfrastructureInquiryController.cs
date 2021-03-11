@@ -171,28 +171,31 @@ namespace NetspeedMainWebsite.Controllers
                 {
                     var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Fiber.FiberSpeed.Value) * 1024, true);
                     InfrastructureResult.Distance = Fiber.FiberDistance.ToString();
-                    InfrastructureResult.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
+                    InfrastructureResult.MaxSpeed = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix.Replace("MBps","Mbps")}";
                     InfrastructureResult.XDSLType = "FİBER";
                     InfrastructureResult.PortState = Fiber.FiberPortState.ToString();
                     InfrastructureResult.SVUID = Fiber.FiberSVUID.ToString();
+                    InfrastructureResult.BBK = getAddress.ServiceAvailabilityResponse.BBK;
                 }
                 else if (Vdsl.HasInfrastructureVdsl && Vdsl.VdslSpeed != null && Vdsl.VdslSpeed > 24000)
                 {
                     var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Vdsl.VdslSpeed.Value) * 1024, true);
-                    InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
+                    InfrastructureResult.MaxSpeed = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix.Replace("MBps", "Mbps")}";
                     InfrastructureResult.Distance = Vdsl.VdslDistance.ToString();
                     InfrastructureResult.XDSLType = "VDSL";
                     InfrastructureResult.PortState = Vdsl.VdslPortState.ToString();
                     InfrastructureResult.SVUID = Vdsl.VdslSVUID.ToString();
+                    InfrastructureResult.BBK = getAddress.ServiceAvailabilityResponse.BBK;
                 }
                 else if (Adsl.HasInfrastructureAdsl)
                 {
                     var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)Adsl.AdslSpeed.Value) * 1024, true);
-                    InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
+                    InfrastructureResult.MaxSpeed = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix.Replace("MBps", "Mbps")}";
                     InfrastructureResult.Distance = Adsl.AdslDistance.ToString();
                     InfrastructureResult.XDSLType = "ADSL";
                     InfrastructureResult.PortState = Adsl.AdslPortState.ToString();
                     InfrastructureResult.SVUID = Adsl.AdslSVUID.ToString();
+                    InfrastructureResult.BBK = getAddress.ServiceAvailabilityResponse.BBK;
                 }
                 else
                 {
@@ -201,6 +204,7 @@ namespace NetspeedMainWebsite.Controllers
                     InfrastructureResult.MaxSpeed = "Sorguladığınız haneye ait altyapı bilgisi bulunamadı.";
                     InfrastructureResult.XDSLType = "";
                     InfrastructureResult.PortState = "Yok";
+                    InfrastructureResult.BBK = getAddress.ServiceAvailabilityResponse.BBK;
                 }
                 Session["InfrastructureResult"] = InfrastructureResult;
                 return RedirectToAction("InfrastructureResult", "Home");

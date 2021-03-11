@@ -217,6 +217,18 @@ namespace NetspeedMainWebsite
 
             });
         }
+        public NetspeedServiceAvailableChurnResponse AvailabilityChurn(string XDSLNo)
+        {
+            UpdateRandom();
+            return InternalClient.AvailableChurn(new NetspeedServiceAvailableChurnRequest()
+            {
+                Username = Username,
+                Rand = Rand,
+                Hash = CalculateHash(),
+                Culture = Culture,
+                XDSLNo = XDSLNo
+            });
+        }
 
 
         public NetspeedServiceNewCustomerRegisterResponse NewCustomerRegister(/*int? BillingPeriod,*/ /*int? DomainID,*/ int? ServiceID, long? ProvinceId, string ProvinceName,
@@ -226,7 +238,7 @@ namespace NetspeedMainWebsite
             string BirthDate, int? CardType, string FirstName, string LastName, string TCKNo, string SerialNo, string PlaceOfIssue, string DateOfIssue,
             string[] OtherPhoneNos, string ContactPhoneNo,
             string Culture, string Email, string ReferenceCode, int? TariffId,
-            string RowNo, string VolumeNo, string PageNo, string IDCardProvince, string IDCardDistrict, string IDCardNeighbourhood ,string ChurnOperatorName, bool? HasHousephone, string PSTN , string XDSLNo , int? ApplicationType)
+            string RowNo, string VolumeNo, string PageNo, string IDCardProvince, string IDCardDistrict, string IDCardNeighbourhood, string ChurnOperatorName, bool? HasHousephone, string PSTN, string XDSLNo, int? ApplicationType)
         {
             UpdateRandom();
             return InternalClient.NewCustomerRegister(new NetspeedServiceNewCustomerRegisterRequest()

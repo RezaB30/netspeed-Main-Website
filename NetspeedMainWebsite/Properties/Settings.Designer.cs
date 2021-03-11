@@ -168,5 +168,22 @@ namespace NetspeedMainWebsite.Properties {
                 return ((string)(this["BillHaveMoreSubscriptionMessage"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<div class=""alert alert-custom alert-danger fade show"" role=""alert"">
+    <div class=""alert-icon""><i class="" display-3  flaticon-warning""></i></div>
+    <div class=""font-size-h5 alert-text"">Üzgünüz! Adresinizde Altyapı veya Boş Port Bulunamadığından Başvurunuza Devam. Edemiyoruz</div>
+    <div class=""alert-close"">
+        <button type=""button"" class=""close"" data-dismiss=""alert"" aria-label=""Close"">
+            <span aria-hidden=""true""><i class=""ki ki-close""></i></span>
+        </button>
+    </div>
+</div>")]
+        public string ExternalTariffErrorMessage {
+            get {
+                return ((string)(this["ExternalTariffErrorMessage"]));
+            }
+        }
     }
 }

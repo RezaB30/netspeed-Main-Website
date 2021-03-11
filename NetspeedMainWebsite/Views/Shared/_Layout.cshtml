@@ -1,12 +1,9 @@
-﻿<head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-87816215-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'AW-785790319');
-        gtag('config', 'UA-87816215-2');
-    </script>
-</head>
+﻿@{
+    //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+    //Response.Cache.AppendCacheExtension("max-age=0,must-revalidate");
+
+    //Response.AppendHeader("Pragma", "no-cache");
+    //Response.AppendHeader("Expires", "0");
+}
 @RenderBody()

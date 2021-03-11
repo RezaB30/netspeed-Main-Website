@@ -89,11 +89,11 @@ var KTWizard5 = function () {
                             ClearValidations($('input[name="mevcutoprad"]'));
                             if ($('#housephone').val() == 2) {
                                 if (!$('input[name="evtelno"]').val()) {
-                                    registerStepCount++;                                    
+                                    registerStepCount++;
                                     $('input[name="evtelno"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="evtelno" data-validator="notEmpty" class="fv-help-block">' + 'Ev Telefon Numarası Zorunludur' + '</div></div>');
                                     $('input[name="evtelno"]').addClass("is-invalid");
                                 } else {
-                                    var _tempEvTelNo = $('input[name="evtelno"]').val().replace("(", "").replace(")", "").replace(" ", "").replace("-", "").replace("_","");
+                                    var _tempEvTelNo = $('input[name="evtelno"]').val().replace("(", "").replace(")", "").replace(" ", "").replace("-", "").replace("_", "");
                                     if (_tempEvTelNo.length != 10) {
                                         registerStepCount++;
                                         $('input[name="evtelno"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="evtelno" data-validator="notEmpty" class="fv-help-block">' + 'Lütfen Geçerli Telefon Numarası Giriniz' + '</div></div>');
@@ -103,18 +103,18 @@ var KTWizard5 = function () {
                             }
                             if ($('select[name="applicationType"]').val() == 2) {
                                 if (!$('input[name="hizmetnosu"]').val()) {
-                                    registerStepCount++;                                    
+                                    registerStepCount++;
                                     $('input[name="hizmetnosu"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="hizmetnosu" data-validator="notEmpty" class="fv-help-block">' + 'Hizmet Numarası Zorunludur' + '</div></div>');
                                     $('input[name="hizmetnosu"]').addClass("is-invalid");
                                 } else {
-                                    if ($('input[name="hizmetnosu"]').val().replace("_","").length != 10) {
+                                    if ($('input[name="hizmetnosu"]').val().replace("_", "").length != 10) {
                                         registerStepCount++;
                                         $('input[name="hizmetnosu"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="hizmetnosu" data-validator="notEmpty" class="fv-help-block">' + 'Lütfen Geçerli Hizmet Numarası Giriniz' + '</div></div>');
                                         $('input[name="hizmetnosu"]').addClass("is-invalid");
                                     }
                                 }
                                 if (!$('input[name="mevcutoprad"]').val()) {
-                                    registerStepCount++;                                    
+                                    registerStepCount++;
                                     $('input[name="mevcutoprad"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="mevcutoprad" data-validator="notEmpty" class="fv-help-block">' + 'Operatör Adı Zorunludur' + '</div></div>');
                                     $('input[name="mevcutoprad"]').addClass("is-invalid");
                                 }
@@ -132,7 +132,53 @@ var KTWizard5 = function () {
                                     KTUtil.scrollTop();
                                 });
                             } else {
-                                GetTariffsPrefers(wizard);
+                                if ($('select[name="applicationType"]').val() == 2) {
+                                    //churn available
+                                    $.ajax({
+                                        url: '/basvur/AvailabilityChurn',
+                                        method: 'POST',
+                                        data: { XDSLNo: $('input[name="hizmetnosu"]').val().replace("_", "") },
+                                        complete: function (data, status) {
+                                            if (status == "success") {
+                                                if (data.responseJSON == "error") {
+                                                    $('input[name="hizmetnosu"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="hizmetnosu" data-validator="notEmpty" class="fv-help-block">' + 'Hizmet Numaranız Hatalı veya İşlem İçin Uygun Değil' + '</div></div>');
+                                                    $('input[name="hizmetnosu"]').addClass("is-invalid");
+                                                    Swal.fire({
+                                                        text: "Hata Bulundu, Lütfen kontrol edin",
+                                                        icon: "error",
+                                                        buttonsStyling: false,
+                                                        confirmButtonText: "Tamam",
+                                                        customClass: {
+                                                            confirmButton: "btn font-weight-bold btn-light"
+                                                        }
+                                                    }).then(function () {
+                                                        KTUtil.scrollTop();
+                                                    });
+                                                } else {
+                                                    // churn is available
+                                                    GetTariffsPrefers(wizard);
+                                                }
+                                            } else {
+                                                $('input[name="hizmetnosu"]').parent("div").append('<div class="fv-plugins-message-container"><div data-field="hizmetnosu" data-validator="notEmpty" class="fv-help-block">' + 'Hizmet Numaranız Hatalı veya İşlem İçin Uygun Değil' + '</div></div>');
+                                                $('input[name="hizmetnosu"]').addClass("is-invalid");
+                                                Swal.fire({
+                                                    text: "Hata Bulundu, Lütfen kontrol edin",
+                                                    icon: "error",
+                                                    buttonsStyling: false,
+                                                    confirmButtonText: "Tamam",
+                                                    customClass: {
+                                                        confirmButton: "btn font-weight-bold btn-light"
+                                                    }
+                                                }).then(function () {
+                                                    KTUtil.scrollTop();
+                                                });
+                                            }
+                                        }
+                                    });
+                                    //
+                                } else {
+                                    GetTariffsPrefers(wizard);
+                                }
                             }
                         }
                         if (curFields.xstatikip && curFields.xphone && curFields.xemail && curFields.tariff) { // tarife ve tercihler
@@ -160,7 +206,7 @@ var KTWizard5 = function () {
                                 IDCardValidation(wizard);
                             }
                         }
-                        // do something for functions
+                        // do something for functions                        
                         KTUtil.scrollTop();
                     } else {
                         Swal.fire({
@@ -355,7 +401,7 @@ var KTWizard5 = function () {
                             },
                             regexp: {
                                 regexp: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                message:'Lütfen geçerli bir e-posta yazınız'
+                                message: 'Lütfen geçerli bir e-posta yazınız'
                             }
                         }
 
@@ -739,12 +785,18 @@ function GetTariffsPrefers(wizard) {
         data: { apartmentCode: apartmentCode },
         complete: function (data, status) {
             if (status == "success") {
-                var response = data.responseText;
-                if (response != "error") {
-                    $('#customer-tariffs').html(response);
-                    wizard.goTo(wizard.getNewStep()); // next step
+                var infrastructureResponse = data.responseJSON;
+                if (infrastructureResponse) {
+                    $('.infrastructure_check_register').html(infrastructureResponse.message);
+                } else {
+                    var response = data.responseText;
+                    if (response != "error") {
+                        $('#customer-tariffs').html(response);
+                        wizard.goTo(wizard.getNewStep()); // next step
+                    }
                 }
-            } else {
+            }
+            else {
                 ShowErrorMessage("Bir hata oluştu. Daha sonra tekrar deneyiniz.");
             }
         }

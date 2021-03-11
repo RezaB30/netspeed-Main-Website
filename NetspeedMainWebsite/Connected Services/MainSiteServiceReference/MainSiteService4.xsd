@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
-  <xs:import schemaLocation="http://10.184.3.63:5050/MainSiteService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" />
+  <xs:import schemaLocation="http://localhost:55311/MainSiteService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" />
+  <xs:import schemaLocation="http://localhost:55311/MainSiteService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" />
   <xs:element name="RegisterCustomerContact">
     <xs:complexType>
       <xs:sequence>
@@ -335,6 +335,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="CheckRegisteredCustomerResult" nillable="true" type="q46:NetspeedServiceGenericValidateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AvailableChurn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Requests" minOccurs="0" name="request" nillable="true" type="q47:NetspeedServiceAvailableChurnRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AvailableChurnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/RadiusR.API.Netspeed.Responses" minOccurs="0" name="AvailableChurnResult" nillable="true" type="q48:NetspeedServiceAvailableChurnResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

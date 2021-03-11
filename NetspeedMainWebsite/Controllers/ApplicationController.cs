@@ -179,6 +179,18 @@ namespace NetspeedMainWebsite.Controllers
             return Json("error", JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
+        public ActionResult AvailabilityChurn(string XDSLNo)
+        {
+            var customerWrapper = new WebServiceWrapper();
+            var response = customerWrapper.AvailabilityChurn(XDSLNo);
+            if (!response.IsAvailable)
+            {
+                applicationLogger.Error($"Customer XDSL No : {XDSLNo} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
         public ActionResult CheckValidationSMS(string smsCode)
         {
             var getsmsCode = Session["validationSMS"] == null ? null : Session["validationSMS"] as string;
@@ -200,10 +212,11 @@ namespace NetspeedMainWebsite.Controllers
         [HttpPost]
         public ActionResult GetTariffs(string apartmentCode)
         {
+            Session.Remove("RegisterExternalTariffErrorMessage");
             var availability = new WebServiceWrapper();
             var response = availability.ServiceAvailability(apartmentCode);
 
-            var speedResult = "0 MBPS";
+            var speedResult = "0 Mbps";
             if (response.ResponseMessage.ErrorCode != 0)
             {
                 applicationLogger.Error($"Apartment Code : {apartmentCode} - result : {response.ResponseMessage.ErrorMessage} | Code : {response.ResponseMessage.ErrorCode}");
@@ -218,7 +231,7 @@ namespace NetspeedMainWebsite.Controllers
             if (response.ServiceAvailabilityResponse.FIBER.HasInfrastructureFiber)
             {
                 var displaySpeed = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.FIBER.FiberSpeed.Value) * 1024, true);
-                speedResult = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix}";
+                speedResult = $"{displaySpeed.FieldValue} {displaySpeed.RateSuffix.Replace("MBps", "Mbps")}";
                 var getTariffs = responseTariffs.ExternalTariffList?.Where(ext => ext.HasFiber).Select(ext => new Models.ViewModel.TariffsViewModel()
                 {
                     DisplayName = ext.DisplayName,
@@ -230,17 +243,23 @@ namespace NetspeedMainWebsite.Controllers
                 return PartialView("~/Views/Home/_Tariffs.cshtml", getTariffs);
             }
             {
-                if (response.ServiceAvailabilityResponse.VDSL.HasInfrastructureVdsl && response.ServiceAvailabilityResponse.VDSL.VdslSpeed > response.ServiceAvailabilityResponse.ADSL.AdslSpeed)
+                if (response.ServiceAvailabilityResponse.VDSL.HasInfrastructureVdsl && response.ServiceAvailabilityResponse.VDSL.VdslSpeed > 24000)
                 {
                     var displaySpeedVdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.VDSL.VdslSpeed.Value) * 1024, true);
-                    speedResult = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix}";
+                    speedResult = $"{displaySpeedVdsl.FieldValue} {displaySpeedVdsl.RateSuffix.Replace("MBps", "Mbps")}";
                 }
-                else if (response.ServiceAvailabilityResponse.ADSL.HasInfrastructureAdsl && response.ServiceAvailabilityResponse.ADSL.AdslSpeed > response.ServiceAvailabilityResponse.VDSL.VdslSpeed)
+                else if (response.ServiceAvailabilityResponse.ADSL.HasInfrastructureAdsl)
                 {
                     var displaySpeedAdsl = RezaB.Data.Formating.RateLimitFormatter.ToTrafficMixedResults(((decimal)response.ServiceAvailabilityResponse.ADSL.AdslSpeed.Value) * 1024, true);
-                    speedResult = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix}";
+                    speedResult = $"{displaySpeedAdsl.FieldValue} {displaySpeedAdsl.RateSuffix.Replace("MBps", "Mbps")}";
                 }
-                var getTariffs = responseTariffs.ExternalTariffList?.Where(ext => ext.HasXDSL).Select(ext => new Models.ViewModel.TariffsViewModel()
+                if (response.ServiceAvailabilityResponse.ADSL.AdslPortState.Contains("Yok") && response.ServiceAvailabilityResponse.VDSL.VdslPortState.Contains("Yok"))
+                {
+                    Session["RegisterExternalTariffErrorMessage"] = Properties.Settings.Default.ExternalTariffErrorMessage;
+                    return Json(new { message = Properties.Settings.Default.ExternalTariffErrorMessage }, JsonRequestBehavior.AllowGet);
+                }
+                var vdslPortState = !response.ServiceAvailabilityResponse.VDSL.VdslPortState.Contains("Yok");
+                var getTariffs = responseTariffs.ExternalTariffList?.Where(ext => ext.HasXDSL && int.Parse(ext.Speed.Split(' ')[0]) <= (vdslPortState == false ? 24 : (int.Parse(speedResult.Split(' ')[0]) != 0 ? int.Parse(speedResult.Split(' ')[0]) + 11 : int.Parse(speedResult.Split(' ')[0])))).Select(ext => new Models.ViewModel.TariffsViewModel()
                 {
                     DisplayName = ext.DisplayName,
                     TariffID = ext.TariffID,
@@ -248,6 +267,12 @@ namespace NetspeedMainWebsite.Controllers
                     Speed = ext.Speed,
                     DefaultSpeed = speedResult
                 });
+                if (getTariffs == null || getTariffs.Count() == 0)
+                {
+                    Session["RegisterExternalTariffErrorMessage"] = Properties.Settings.Default.ExternalTariffErrorMessage;
+                    return Json(new { message = Properties.Settings.Default.ExternalTariffErrorMessage }, JsonRequestBehavior.AllowGet);
+                }
+                TempData["DefaultSpeed"] = speedResult;
                 return PartialView("~/Views/Home/_Tariffs.cshtml", getTariffs);
             }
 

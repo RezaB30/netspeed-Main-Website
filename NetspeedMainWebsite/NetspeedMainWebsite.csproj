@@ -1658,6 +1658,7 @@
     <Content Include="assets\media\users\52755289_772618326428147_6148716253725851648_n.png" />
     <Content Include="assets\media\users\blank.png" />
     <Content Include="assets\media\users\default.jpg" />
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.disco" />
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAddressDetailsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1697,25 +1698,28 @@
     <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceGenericValidateResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.wsdl" />
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService6.xsd">
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.wsdl" />
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService61.xsd">
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService62.xsd">
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService63.xsd">
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService64.xsd">
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\MainSiteServiceReference\MainSiteService65.xsd">
+    <None Include="Connected Services\MainSiteServiceReference\MainSiteService5.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Connected Services\MainSiteServiceReference\NetspeedMainWebsite.MainSiteServiceReference.NetspeedServiceAvailableChurnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\MainSiteServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

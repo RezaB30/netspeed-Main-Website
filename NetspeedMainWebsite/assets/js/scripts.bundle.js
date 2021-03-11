@@ -10950,10 +10950,14 @@ $('.zoom-out').on('click', function () {
 
 
 //bizi arayın
-function CallUs() {
+function CallUs(isBBK) {
     var lname = $('input[name="lname"]').val();
     var phone = $('input[name="phone"]').val().replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
     var isValid = true;
+    var isInfrastructure = false;
+    if (isBBK) {
+        isInfrastructure = true;
+    }
     if (!lname) {
         $('input[name="lname"]').next("div.fv-plugins-message-container").html('<span class="fv-help-block">Lütfen Adınızı Soyadınızı Giriniz</span>');
         isValid = false;
@@ -10971,7 +10975,7 @@ function CallUs() {
         $.ajax({
             method: 'POST',
             url: '/Home/CallUs',
-            data: { name: lname, phone: phone },
+            data: { name: lname, phone: phone, isBBK: isInfrastructure },
             complete: function (data, status) {
                 if (status == "success") {
                     //msg
